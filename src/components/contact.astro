@@ -1,73 +1,131 @@
-<section id="contact" class="w-full py-12 border-t border-[#ffffff10]">
+---
+import { profile } from "@/data/profile";
+
+const inputCls =
+  "px-4 py-3 bg-[#1414149c] text-[var(--white)] placeholder:text-[var(--white-icon)] border border-[var(--white-icon-tr)] rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--sec)] focus:border-transparent transition";
+---
+
+<section id="contact" class="w-full py-16 border-t border-[#ffffff10]">
   <div class="max-w-5xl mx-auto">
-    <h2 class="text-lg text-[var(--sec)] mb-2 shiny-sec">Let's talk</h2>
-    <h3 class="text-4xl md:text-5xl font-medium text-[var(--white)] mb-6">
-      Contact
-    </h3>
+    <div data-reveal>
+      <h2 class="text-lg text-[var(--sec)] mb-2 shiny-sec">Let's talk</h2>
+      <h3 class="text-4xl md:text-5xl font-medium text-[var(--white)] mb-8">
+        Contact
+      </h3>
+    </div>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      <div class="text-[var(--white-icon)]">
-        <p class="mb-4">
-          Have a question or a project in mind? Feel free to reach out.
+      <div class="text-[var(--white-icon)] space-y-6" data-reveal>
+        <p class="text-lg">
+          Hiring for a backend or AI role, or have a project in mind? I'd love
+          to hear about it — my inbox is always open.
         </p>
-        <div class="flex items-center gap-2">
-          <span>Location:</span>
-          <span class="text-[var(--white)]">Your country</span>
+
+        <div class="space-y-3">
+          <a
+            id="contact-email"
+            href={`mailto:${profile.email}`}
+            class="card group flex items-center gap-4 p-4"
+          >
+            <span
+              class="size-10 flex items-center justify-center rounded-lg bg-[#a476ff1a] text-[var(--sec)]"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-5">
+                <path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM20 7.23792L12.0718 14.338L4 7.21594V19H20V7.23792ZM4.51146 5L12.0619 11.662L19.501 5H4.51146Z"></path>
+              </svg>
+            </span>
+            <span class="min-w-0">
+              <span class="block text-xs uppercase tracking-wider">Email</span>
+              <span class="block text-[var(--white)] truncate group-hover:text-[var(--sec)] transition-colors">
+                {profile.email}
+              </span>
+            </span>
+          </a>
+
+          <div class="card flex items-center gap-4 p-4">
+            <span
+              class="size-10 flex items-center justify-center rounded-lg bg-[#a476ff1a] text-[var(--sec)]"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-5">
+                <path d="M12 20.8995L16.9497 15.9497C19.6834 13.2161 19.6834 8.78392 16.9497 6.05025C14.2161 3.31658 9.78392 3.31658 7.05025 6.05025C4.31658 8.78392 4.31658 13.2161 7.05025 15.9497L12 20.8995ZM12 23.7279L5.63604 17.364C2.12132 13.8492 2.12132 8.15076 5.63604 4.63604C9.15076 1.12132 14.8492 1.12132 18.364 4.63604C21.8787 8.15076 21.8787 13.8492 18.364 17.364L12 23.7279ZM12 13C13.1046 13 14 12.1046 14 11C14 9.89543 13.1046 9 12 9C10.8954 9 10 9.89543 10 11C10 12.1046 10.8954 13 12 13ZM12 15C9.79086 15 8 13.2091 8 11C8 8.79086 9.79086 7 12 7C14.2091 7 16 8.79086 16 11C16 13.2091 14.2091 15 12 15Z"></path>
+              </svg>
+            </span>
+            <span>
+              <span class="block text-xs uppercase tracking-wider">Location</span>
+              <span class="block text-[var(--white)]">{profile.location}</span>
+            </span>
+          </div>
         </div>
       </div>
 
-      <div>
+      <div data-reveal style="--reveal-delay:120ms">
         <form
           id="contact-form"
-          action="https://formspree.io/f/YOUR_FORM_ID_HERE"
+          action="https://formspree.io/f/mljdqvew"
           method="POST"
           class="flex flex-col gap-4"
         >
+          <label class="sr-only" for="contact-name">Name</label>
           <input
+            id="contact-name"
             type="text"
             name="from_name"
             placeholder="Name"
+            autocomplete="name"
             required
-            class="px-4 py-2 bg-[#1414149c] text-[var(--white)] border border-[var(--white-icon-tr)] rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--sec)]"
+            class={inputCls}
           />
+          <label class="sr-only" for="contact-reply">Email</label>
           <input
+            id="contact-reply"
             type="email"
             name="reply_to"
             placeholder="Email"
+            autocomplete="email"
             required
-            class="px-4 py-2 bg-[#1414149c] text-[var(--white)] border border-[var(--white-icon-tr)] rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--sec)]"
+            class={inputCls}
           />
+          <label class="sr-only" for="contact-message">Message</label>
           <textarea
+            id="contact-message"
             name="message"
             placeholder="Message"
             rows="6"
             required
-            class="px-4 py-2 bg-[#1414149c] text-[var(--white)] border border-[var(--white-icon-tr)] rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--sec)] resize-none"
-          ></textarea>
+            class={`${inputCls} resize-none`}></textarea>
           <button
+            id="contact-submit"
             type="submit"
-            class="px-4 py-2 bg-[var(--white-icon-tr)] text-[var(--white)] rounded-lg opacity-60 transition-opacity border border-[var(--white-icon-tr)] hover:opacity-100 hover:bg-[var(--white-icon-tr)]"
+            class="group inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-medium text-[var(--background)] bg-[var(--sec)] hover:shadow-[0_8px_30px_-6px_#a476ff80] transition disabled:opacity-60 disabled:cursor-wait"
           >
-            Submit
+            <span data-label>Send message</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+              <path d="M21.7267 2.95694L16.2734 22.0432C16.1225 22.5716 15.7979 22.5956 15.5563 22.1126L11 13L1.9229 9.36919C1.41322 9.16532 1.41953 8.86022 1.95695 8.68108L21.0432 2.31901C21.5716 2.14285 21.8747 2.43866 21.7267 2.95694ZM19.0353 5.09647L6.81221 9.17085L12.4488 11.4255L15.4895 17.5068L19.0353 5.09647Z"></path>
+            </svg>
           </button>
         </form>
         <div
           id="form-message"
-          class="hidden justify-center items-center mt-4 text-[var(--white)] text-lg"
+          role="status"
+          class="hidden card p-6 justify-center items-center text-[var(--white)] text-lg"
         >
-          ✅ Thank you for your message!
+          ✅ Thank you for your message! I'll get back to you soon.
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<script type="module" is:inline>
-  const form = document.getElementById("contact-form");
+<script>
+  const form = document.getElementById("contact-form") as HTMLFormElement | null;
   const formMessage = document.getElementById("form-message");
+  const submit = document.getElementById("contact-submit") as HTMLButtonElement | null;
+  const label = submit?.querySelector<HTMLElement>("[data-label]");
 
-  form.addEventListener("submit", async (e) => {
+  form?.addEventListener("submit", async (e) => {
     e.preventDefault();
     const formData = new FormData(form);
+    if (submit) submit.disabled = true;
+    if (label) label.textContent = "Sending…";
 
     try {
       const response = await fetch(form.action, {
@@ -78,7 +136,8 @@
       if (response.ok) {
         form.reset();
         form.style.display = "none";
-        formMessage.classList.remove("hidden");
+        formMessage?.classList.remove("hidden");
+        formMessage?.classList.add("flex");
       } else {
         const data = await response.json();
         console.error("Error response:", data);
@@ -87,6 +146,9 @@
     } catch (error) {
       console.error("Error:", error);
       alert("There was a problem sending your message.");
+    } finally {
+      if (submit) submit.disabled = false;
+      if (label) label.textContent = "Send message";
     }
   });
 </script>
