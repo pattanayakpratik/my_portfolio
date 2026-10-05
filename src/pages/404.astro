@@ -1,0 +1,24 @@
+---
+import Layout from "@/layouts/Layout.astro";
+---
+
+<Layout title="Page not found" description="The page you're looking for doesn't exist.">
+  <main class="min-h-screen flex items-center justify-center text-center">
+    <div class="space-y-6 max-w-lg">
+      <p class="text-[var(--sec)] text-sm tracking-[0.3em] uppercase">Error 404</p>
+      <h1 class="text-[var(--white)] text-6xl md:text-8xl font-semibold leading-none">
+        Lost in the <span class="text-[var(--sec)]">void</span>
+      </h1>
+      <p class="text-[var(--white-icon)] text-base md:text-lg">
+        This route doesn't exist — maybe it was refactored away.
+      </p>
+      <a
+        id="back-home"
+        href="/"
+        class="inline-flex items-center gap-2 h-[52px] px-6 rounded-xl font-medium text-[var(--background)] bg-[var(--sec)] hover:-translate-y-0.5 transition duration-300"
+      >
+        ← Back to home
+      </a>
+    </div>
+  </main>
+</Layout>
