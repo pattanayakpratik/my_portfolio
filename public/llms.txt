@@ -1,35 +1,33 @@
-# Portfolio
+# Pratik Pattanayak — Backend & AI Engineer
 
-> Open-source personal portfolio template for developers, built with Astro, React, and Tailwind CSS.
-> Designed to be cloned, customized, and deployed with minimal configuration; includes a working
-> contact form, a Spotify album embed, and a Firebase-backed like counter.
+> Personal portfolio of Pratik Pattanayak, a Mumbai-based Backend Engineer and
+> AWS-certified Machine Learning practitioner who builds scalable backend systems,
+> analytical APIs, and production Generative AI (LLM) integrations with Python.
 
-Built as an Astro static site with React islands for interactive components. Requires Node.js >= 20
-and pnpm >= 9. External services needed for full functionality: a Formspree account (contact form)
-and a Firebase project (like counter). Spotify embed is a plain HTML iframe--no API key required.
+## About
 
-## Docs
+- Role: Backend Engineer at Dirtcube Interactive (Jun 2026 – present); freelance Python & AI developer (2024 – present)
+- Location: Mumbai, Maharashtra, India
+- Education: B.Sc. Information Technology (2026), CGPI 8.65
+- Certification: AWS Certified — Fundamentals of Machine Learning and Artificial Intelligence
+- Contact: mr.pratikpattanayak@gmail.com
 
-- [README](https://github.com/Gothsec/Portfolio/blob/main/README.md): setup instructions, configuration guides for Spotify and Formspree, project structure, and deployment notes
-- [Spotify configuration guide](https://github.com/Gothsec/Portfolio/blob/main/README.md#show-your-favorite-spotify-album-or-your-own-): how to embed a Spotify album via iframe in `src/components/footer.astro`
-- [Formspree configuration guide](https://github.com/Gothsec/Portfolio/blob/main/README.md#set-up-contact-form-formspree-): how to wire the contact form in `src/components/contact.astro` to a Formspree endpoint
-- [Live demo](https://darkminimal.vercel.app): deployed instance of the portfolio
-- [Astro Themes listing](https://astro.build/themes/details/dark-minimal/): official theme entry
+## Skills
 
-## Stack
+- Languages: Python (advanced), Java, JavaScript, TypeScript, Dart/Flutter, C#, C++
+- Generative AI: Google Gemini API, Groq (LLaMA), prompt engineering, agent/workflow design, RAG, ChromaDB, vector search
+- ML: scikit-learn, TensorFlow, Pandas, predictive modeling, model evaluation, fine-tuning
+- Backend: Flask, RESTful APIs, socket programming, Gmail IMAP/SMTP & WhatsApp automation
+- Data: MySQL, PostgreSQL, SQLite
 
-- **Astro** -- static site generator and component orchestrator
-- **React 19** -- interactive islands (LetterGlitch animation, LikeButton, SkillsList)
-- **Tailwind CSS** -- utility-first styling
-- **TypeScript** -- type checking across `.astro` and `.tsx` files
-- **Firebase / Firestore** -- realtime like counter with optimistic UI updates
-- **Formspree** -- serverless contact form backend
-- **Montserrat** (Fontsource variable) -- primary typeface
-- **OGL** -- WebGL utility used by the LetterGlitch canvas effect
-- **pnpm** -- package manager (enforced via `only-allow`)
+## Projects
 
-## Optional
+- [Cypher](https://github.com/pattanayakpratik/Cypher-AI): AI-powered desktop automation agent using Gemini 1.5 Flash
+- [PyShare](https://github.com/pattanayakpratik/PyShare): offline PC-to-mobile file transfer over local Wi-Fi via Python sockets
 
-- [MIT License](https://opensource.org/licenses/mit): copyright 2026 Oscar Hernandez; attribution required on redistribution
-- [GitHub repository](https://github.com/Gothsec/Portfolio): source code, issues, and pull requests
-- [ReactBits Showcase](https://www.reactbits.dev/showcase): LetterGlitch component origin
+## Links
+
+- [GitHub](https://github.com/pattanayakpratik)
+- [LinkedIn](https://www.linkedin.com/in/pattanayakpratik)
+- [LeetCode](https://leetcode.com/u/pattanayakpratik/)
+- [Resume (PDF)](/Pratik_Pattanayak_Resume.pdf)
