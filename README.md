@@ -9,7 +9,7 @@
 
 ---
 
-[Live Demo](https://darkminimal.vercel.app)
+[Live Demo](https://pattanayakpratik.vercel.app/)
 
 ## **About Me**
 I'm a Backend Engineer and AWS-certified ML practitioner specializing in building scalable backend systems, analytical APIs, and production-grade Generative AI integrations with Python and TypeScript. I have extensive experience with Next.js, React Native, and AI Agents for complex automated workflows.
