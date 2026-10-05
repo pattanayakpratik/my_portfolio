@@ -1,0 +1,158 @@
+---
+import { experience, education, certifications } from "@/data/profile";
+---
+
+<section
+  id="experience"
+  class="py-16 border-t border-[#ffffff10] text-[var(--white)]"
+>
+  <div class="max-w-5xl mx-auto">
+    <div data-reveal>
+      <h2 class="text-lg text-[var(--sec)] mb-2 shiny-sec">Where I've worked</h2>
+      <h3 class="text-4xl md:text-5xl font-medium mb-10">Experience</h3>
+    </div>
+
+    <!-- Timeline -->
+    <ol class="relative timeline space-y-8 md:pl-10 pl-7">
+      {
+        experience.map((job, i) => (
+          <li class="relative" data-reveal style={`--reveal-delay:${i * 120}ms`}>
+            <span
+              class="timeline-dot absolute md:-left-10 -left-7 top-7 flex size-4 items-center justify-center"
+              aria-hidden="true"
+            >
+              {job.current && (
+                <span class="absolute inline-flex size-full rounded-full bg-[var(--sec)] opacity-40 animate-ping" />
+              )}
+              <span class="relative inline-flex size-3 rounded-full bg-[var(--sec)] ring-4 ring-[var(--background)]" />
+            </span>
+
+            <article class="card p-5 md:p-7">
+              <header class="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-5">
+                <div>
+                  <h4 class="text-xl md:text-2xl font-semibold">{job.role}</h4>
+                  <p class="text-[var(--sec)]">{job.company}</p>
+                </div>
+                <span class="tag self-start md:self-auto">
+                  {job.current && (
+                    <span class="mr-2 size-1.5 rounded-full bg-[var(--accent)]" />
+                  )}
+                  {job.period}
+                </span>
+              </header>
+
+              <ul class="space-y-4">
+                {job.points.map((p) => (
+                  <li class="flex gap-3 text-sm md:text-base">
+                    <span class="text-[var(--sec)] mt-[2px]">▹</span>
+                    <p class="text-[var(--white-icon)]">
+                      <span class="text-[var(--white)] font-medium">{p.title}: </span>
+                      {p.text}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+
+              <div class="flex flex-wrap gap-2 mt-5">
+                {job.tags.map((t) => (
+                  <span class="tag">{t}</span>
+                ))}
+              </div>
+            </article>
+          </li>
+        ))
+      }
+    </ol>
+
+    <!-- Education & Certifications -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-14">
+      <div class="card p-5 md:p-7" data-reveal>
+        <div class="flex items-center gap-3 mb-5">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="size-6 text-[var(--sec)]"
+            aria-hidden="true"
+          >
+            <path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"></path>
+            <path d="M22 10v6"></path>
+            <path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"></path>
+          </svg>
+          <h4 class="text-xl font-semibold">Education</h4>
+        </div>
+        <ul class="space-y-4">
+          {
+            education.map((e, i) => (
+              <li class={i === 0 ? "" : "pt-4 border-t border-[var(--white-icon-tr)]"}>
+                <p class="text-[var(--white)] font-medium">{e.title}</p>
+                <p class="text-sm text-[var(--white-icon)]">{e.detail}</p>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div class="card p-5 md:p-7" data-reveal style="--reveal-delay:120ms">
+        <div class="flex items-center gap-3 mb-5">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="size-6 text-[var(--sec)]"
+            aria-hidden="true"
+          >
+            <path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"></path>
+            <circle cx="12" cy="8" r="6"></circle>
+          </svg>
+          <h4 class="text-xl font-semibold">Certifications</h4>
+        </div>
+        <ul class="space-y-4">
+          {
+            certifications.map((c, i) => (
+              <li class={i === 0 ? "" : "pt-4 border-t border-[var(--white-icon-tr)]"}>
+                <p class="text-[var(--white)] font-medium">{c.title}</p>
+                <p class="text-sm text-[var(--white-icon)]">{c.detail}</p>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .timeline::before {
+    content: "";
+    position: absolute;
+    top: 0.5rem;
+    bottom: 0.5rem;
+    left: 0.45rem;
+    width: 1px;
+    background: linear-gradient(
+      to bottom,
+      var(--sec),
+      #a476ff40 60%,
+      transparent
+    );
+  }
+
+  @media (min-width: 768px) {
+    .timeline::before {
+      left: 0.45rem;
+    }
+  }
+
+  .timeline-dot {
+    transform: translateX(-0.05rem);
+  }
+</style>
