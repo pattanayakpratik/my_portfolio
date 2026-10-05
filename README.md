@@ -2,6 +2,8 @@
 
 > Highly customizable, performant, and interactive personal portfolio for Pratik Pattanayak, a Backend & AI Engineer.
 
+![Portfolio Preview](./public/portfolio_preview.png)
+
 ![Deploy Status](https://img.shields.io/badge/Deploy-Vercel-black?style=flat&logo=vercel)
 [![Built with Astro](https://astro.badg.es/v2/built-with-astro/tiny.svg)](https://astro.build)
 
