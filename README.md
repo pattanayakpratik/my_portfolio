@@ -1,108 +1,80 @@
-# Dark minimal
-> Highly customizable and performant portfolio template built with Astro, React, and Tailwind CSS.
+# Pratik Pattanayak - Portfolio
 
-<img width="1920" height="1080" alt="astro-portfolio" src="https://github.com/user-attachments/assets/0df80067-5fe2-4c24-90c4-4eb28e1a7508" />
+> Highly customizable, performant, and interactive personal portfolio for Pratik Pattanayak, a Backend & AI Engineer.
 
 ![Deploy Status](https://img.shields.io/badge/Deploy-Vercel-black?style=flat&logo=vercel)
 [![Built with Astro](https://astro.badg.es/v2/built-with-astro/tiny.svg)](https://astro.build)
 
 ---
 
-[Demo](https://darkminimal.vercel.app) | [Astro Themes](https://astro.build/themes/details/darkminimal/) | [ReactBits Showcase](https://www.reactbits.dev/showcase) 
+[Live Demo](https://darkminimal.vercel.app)
 
-## **Features**
-- **Blazing fast performance** powered by Astro
-- **Beautifully styled** with Tailwind CSS
-- **Spotify integration** for showcasing your favorite album
-- **Working contact form** powered by Formspree
-- **Interactive UI** including the `<LetterGlitch />` component from [ReactBits.dev](https://www.reactbits.dev/)
+## **About Me**
+I'm a Backend Engineer and AWS-certified ML practitioner specializing in building scalable backend systems, analytical APIs, and production-grade Generative AI integrations with Python and TypeScript. I have extensive experience with Next.js, React Native, and AI Agents for complex automated workflows.
 
-## **Stack**  
-### **Frontend**  
-![Astro](https://img.shields.io/badge/Astro-FF5D01?logo=astro&logoColor=white)
-![Tailwind](https://img.shields.io/badge/Tailwind_CSS-38B2AC?logo=tailwind-css&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)
+## **Featured Projects**
+- **Cypher**: A fast, multi-model AI assistant that converts natural language into reliable system-level automation using Gemini 1.5 Flash.
+- **PyShare**: A custom backend networking tool for instant, offline PC-to-mobile file transfer over local Wi-Fi via pure Python socket programming.
+- **Riff (Dirtcube Interactive)**: Engineered complete Next.js admin dashboards and precise V8 telemetry systems for an Expo React Native app.
 
-### **Tools**  
-![Figma](https://img.shields.io/badge/Figma-F24E1E?logo=figma&logoColor=white)
-![Prettier](https://img.shields.io/badge/Prettier-F7B93E?logo=prettier&logoColor=black)
-![Canva](https://img.shields.io/badge/Canva-c900c3?logo=canva&logoColor=white)
+## **Tech Stack**  
+- **Core Engine:** Astro
+- **Frontend & Interactivity:** React, TypeScript, Tailwind CSS
+- **Backend Services:** Firebase (Realtime Database for interactions)
+- **Deployment:** Vercel
 
-## **Configuration Guides**
-
-### **Show your favorite Spotify album (or your own)** ![Spotify](https://img.shields.io/badge/Spotify-06cc1a?logo=spotify&logoColor=white)
-1. Choose your Spotify album
-2. Access the share options
-3. Select 'copy embed code'
-```html
-<iframe src="https://open.spotify.com/embed/album/YOUR_ALBUM_ID_HERE" style="border-radius:12px border:0;" class="w-full h-40" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
-```
-4. Insert the embed code on `src/Components/footer.astro`
-
-### **Set up contact form (Formspree)** ![Formspree](https://img.shields.io/badge/Formspree-E21A28?logo=formspree&logoColor=white)
-1. Create an account on [Formspree](https://formspree.io/)
-2. Create a new project/form and copy your form endpoint URL (it looks like `https://formspree.io/f/your_id`)
-3. Open the `src/Components/contact.astro` file
-4. Replace the `action` attribute in the `<form>` tag with your endpoint URL:
-```html
-<form action="https://formspree.io/f/YOUR_FORM_ID_HERE" method="POST">
-```
-
-## **Customization Checklist**
-Before deploying your own instance, make sure to update these placeholder values with your real information:
-- **`src/layouts/Layout.astro`**: Update `title`, `description`, `canonical` URL, `og` tags, and the JSON-LD schema with your own details.
-- **`src/components/home.astro`**: Change the greeting "Your Name" and update the GitHub, LinkedIn, and email URLs.
-- **`src/components/projects.astro`**: Replace the generic projects (Project One, etc.) with your own, including titles, descriptions and links.
-- **`src/components/footer.astro`**: Update the social links, change the Spotify iframe to your playlist, and update the copyright name.
-
-## **Customization**
-To make this portfolio your own, you can edit the following files:
-- **Global Settings:** Update metadata and title in `src/layouts/Layout.astro`.
-- **Content:** Modify the text, links, and details inside the components in `src/Components/` (e.g., `home.astro`, `projects.astro`, `contact.astro`).
-- **Styling:** The design uses Tailwind CSS. You can adjust the theme configuration in `tailwind.config.mjs` and custom styles if needed.
-
-## **Project structure**
+## **Project Structure**
 ```text
 public/
-└── svg/
+├── svg/tech/       # SVGs for the scrolling marquee
+└── ...             # Static assets (Resume, icons)
 src/
-├── Components/
-|    ├── contact.astro
-|    ├── footer.astro
-|    ├── home.astro
-|    ├── logoWall.astro
-|    ├── nav.astro
-|    └── projects.astro
+├── assets/         # Optimized images
+├── components/     # Astro components (hero, projects, experience, contact)
+├── data/
+│    └── profile.ts # Single Source of Truth for all portfolio content
 ├── layouts/
-|    └── Layout.astro
-├── React/
-|    ├── LetterGlitch.tsx
-|    ├── LikeButton.tsx
-|    └── SkillsList.tsx
+│    └── Layout.astro # Base HTML layout and SEO tags
+├── React/          # Interactive React Islands
+│    ├── LetterGlitch.tsx
+│    ├── LikeButton.tsx
+│    └── SkillsList.tsx
 └── pages/
      └── index.astro
 ```
 
-## **Local configuration** 
+## **Local Configuration** 
 
 ### Prerequisites
 - **Node.js** (v18 or higher recommended)
 - **npm** or **pnpm**
 
-1. Clone the repo:  
+1. Clone the repository:  
 ```bash
-git clone https://github.com/Gothsec/dark-minimal
+git clone https://github.com/pattanayakpratik/my_portfolio.git
 ```
 2. Install dependencies:
 ```bash  
 npm install
 ```
-3. Start the development server:
+3. Set up environment variables (Optional, for Realtime Likes):
+Create a `.env` file in the root and add your Firebase credentials:
+```env
+PUBLIC_FIREBASE_API_KEY=...
+PUBLIC_FIREBASE_AUTH_DOMAIN=...
+PUBLIC_FIREBASE_DATABASE_URL=...
+PUBLIC_FIREBASE_PROJECT_ID=...
+PUBLIC_FIREBASE_STORAGE_BUCKET=...
+PUBLIC_FIREBASE_MESSAGING_SENDER_ID=...
+PUBLIC_FIREBASE_APP_ID=...
+```
+*(If `.env` is not provided, the site gracefully falls back to local component states.)*
+
+4. Start the development server:
 ```bash  
 npm run dev
 ```
 
 ## **Deployment**
-This project is built with Astro and can be easily deployed to Vercel, Netlify, or GitHub Pages. For the easiest setup, push your repository to GitHub and import it directly into [Vercel](https://vercel.com/) or [Netlify](https://www.netlify.com/).
- 
-> This project is licensed under the [MIT License](https://opensource.org/licenses/mit). 
+This project is built statically with Astro and deployed directly to Vercel. 
+Simply link the repository to your Vercel account, set the environment variables, and it will deploy automatically on push.
