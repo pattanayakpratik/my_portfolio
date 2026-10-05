@@ -24,7 +24,9 @@ const pageTitle = `${title} | ${profile.role}`;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#101010" />
     <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
     {siteUrl && <link rel="canonical" href={siteUrl} />}
+    <link rel="sitemap" href="/sitemap.xml" />
 
     <link
       rel="preload"
@@ -37,12 +39,15 @@ const pageTitle = `${title} | ${profile.role}`;
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
+    <meta property="og:image:alt" content={`${profile.name} — ${profile.role}`} />
     {siteUrl && <meta property="og:url" content={siteUrl} />}
     <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_IN" />
     <meta property="og:site_name" content={`${profile.name} Portfolio`} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
 
     <!-- Structured Data (JSON-LD) -->
     <script
