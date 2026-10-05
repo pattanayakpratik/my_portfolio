@@ -116,7 +116,7 @@ const SkillsList = () => {
               <div
                 className={`md:w-[420px] w-full bg-[#1414149c] rounded-2xl text-left transition-all border overflow-hidden ${
                   isOpen
-                    ? "border-[#a476ff40]"
+                    ? "border-[#22d3ee40]"
                     : "border-[var(--white-icon-tr)] hover:border-[#ffffff25]"
                 }`}
               >
