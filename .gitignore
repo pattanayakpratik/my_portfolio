@@ -44,3 +44,8 @@ Desktop.ini
 # Testing
 coverage/
 .nyc_output/
+
+# AI & Local configs
+AGENTS.md
+llms.txt
+public/llms.txt
