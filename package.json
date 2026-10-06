@@ -35,6 +35,8 @@
     "node": ">=20.0.0"
   },
   "allowScripts": {
-    "esbuild": true
+    "esbuild": true,
+    "@firebase/util": true,
+    "protobufjs": true
   }
 }
