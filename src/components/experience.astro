@@ -102,7 +102,11 @@ import { experience, education, certifications } from "@/data/profile";
                       <svg class="w-5 h-5 text-[var(--sec)] transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
                     </summary>
                     <div class="mt-4 overflow-hidden rounded-xl border border-[#ffffff10]">
-                      <img src={e.image} alt={e.title} class="w-full h-auto object-cover hover:scale-105 transition duration-500" loading="lazy" />
+                      {e.image?.endsWith('.pdf') ? (
+                        <iframe src={e.image} class="w-full h-80 sm:h-96" title={e.title}></iframe>
+                      ) : (
+                        <img src={e.image} alt={e.title} class="w-full h-auto object-cover hover:scale-105 transition duration-500" loading="lazy" />
+                      )}
                     </div>
                   </details>
                 ) : (
@@ -152,7 +156,11 @@ import { experience, education, certifications } from "@/data/profile";
                       <svg class="w-5 h-5 text-[var(--sec)] transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
                     </summary>
                     <div class="mt-4 overflow-hidden rounded-xl border border-[#ffffff10]">
-                      <img src={c.image} alt={c.title} class="w-full h-auto object-cover hover:scale-105 transition duration-500" loading="lazy" />
+                      {c.image?.endsWith('.pdf') ? (
+                        <iframe src={c.image} class="w-full h-80 sm:h-96" title={c.title}></iframe>
+                      ) : (
+                        <img src={c.image} alt={c.title} class="w-full h-auto object-cover hover:scale-105 transition duration-500" loading="lazy" />
+                      )}
                     </div>
                   </details>
                 ) : (
