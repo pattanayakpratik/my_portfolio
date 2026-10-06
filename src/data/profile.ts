@@ -102,7 +102,13 @@ export const experience: Experience[] = [
   },
 ];
 
-export const education = [
+export interface Education {
+  title: string;
+  detail: string;
+  image?: string;
+}
+
+export const education: Education[] = [
   {
     title: "B.Sc. Information Technology",
     detail: "Graduated 2026 · CGPI 8.65 · Sem 6 SGPA 9.10",
@@ -115,16 +121,22 @@ export const education = [
     title: "Secondary (WBBSE)",
     detail: "2021 · 83.85%",
   },
-] as const;
+];
 
-export const certifications = [
+export interface Certification {
+  title: string;
+  detail: string;
+  image?: string;
+}
+
+export const certifications: Certification[] = [
   {
     title: "AWS Certified",
     detail: "Fundamentals of Machine Learning and Artificial Intelligence",
   },
   { title: "Python for Data Science", detail: "SkillEcted" },
   { title: "MS-CIT", detail: "MKCL · 2024" },
-] as const;
+];
 
 export interface FeaturedProject {
   title: string;
