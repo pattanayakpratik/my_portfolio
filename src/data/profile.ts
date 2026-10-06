@@ -133,11 +133,12 @@ export const certifications: Certification[] = [
   {
     title: "AWS Certified",
     detail: "Fundamentals of Machine Learning and Artificial Intelligence",
+    image: "/certifications/AIMLbyAWS.pdf"
   },
   { 
     title: "Python for Data Science", 
     detail: "SkillEcted",
-    image: "/images/certifications/python-data-science.jpg"
+    image: "/certifications/pydataScience.pdf"
   },
   { title: "MS-CIT", detail: "MKCL · 2024" },
 ];
