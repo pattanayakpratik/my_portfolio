@@ -116,10 +116,12 @@ export const education: Education[] = [
   {
     title: "Higher Secondary (WBCHSE)",
     detail: "2023 · 65.2%",
+    image: "/certifications/class-xii-certificate.pdf"
   },
   {
     title: "Secondary (WBBSE)",
     detail: "2021 · 83.85%",
+    image: "/certifications/class-x-marksheet.pdf"
   },
 ];
 
