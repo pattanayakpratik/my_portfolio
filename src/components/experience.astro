@@ -103,7 +103,7 @@ import { experience, education, certifications } from "@/data/profile";
                     </summary>
                     <div class="mt-4 overflow-hidden rounded-xl border border-[#ffffff10]">
                       {e.image?.endsWith('.pdf') ? (
-                        <iframe src={e.image} class="w-full h-80 sm:h-96" title={e.title}></iframe>
+                        <iframe src={e.image} class="w-full h-80 sm:h-96" title={e.title} loading="lazy"></iframe>
                       ) : (
                         <img src={e.image} alt={e.title} class="w-full h-auto object-cover hover:scale-105 transition duration-500" loading="lazy" />
                       )}
@@ -157,7 +157,7 @@ import { experience, education, certifications } from "@/data/profile";
                     </summary>
                     <div class="mt-4 overflow-hidden rounded-xl border border-[#ffffff10]">
                       {c.image?.endsWith('.pdf') ? (
-                        <iframe src={c.image} class="w-full h-80 sm:h-96" title={c.title}></iframe>
+                        <iframe src={c.image} class="w-full h-80 sm:h-96" title={c.title} loading="lazy"></iframe>
                       ) : (
                         <img src={c.image} alt={c.title} class="w-full h-auto object-cover hover:scale-105 transition duration-500" loading="lazy" />
                       )}
