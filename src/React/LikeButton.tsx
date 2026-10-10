@@ -23,22 +23,22 @@ const LikeButton = () => {
     }
 
     // Authenticate user anonymously
-    const unsubscribeAuth = onAuthStateChanged(auth, async (currentUser) => {
+    const unsubscribeAuth = onAuthStateChanged(auth!, async (currentUser) => {
       if (currentUser) {
         setUser(currentUser);
         // Check if user already liked
-        const userLikeRef = doc(db, "userLikes", currentUser.uid);
+        const userLikeRef = doc(db!, "userLikes", currentUser.uid);
         const userLikeSnap = await getDoc(userLikeRef);
         if (userLikeSnap.exists() && userLikeSnap.data().hasLiked) {
           setIsLiked(true);
         }
       } else {
-        signInAnonymously(auth).catch(console.error);
+        signInAnonymously(auth!).catch(console.error);
       }
     });
 
     // Listen for realtime updates from Firestore
-    const likeDocRef = doc(db, "likes", "counter");
+    const likeDocRef = doc(db!, "likes", "counter");
     const unsubscribeLikes = onSnapshot(likeDocRef, (docSnap) => {
       if (docSnap.exists()) {
         const currentLikes = docSnap.data().likes;
@@ -74,13 +74,13 @@ const LikeButton = () => {
       setIsProcessing(true);
       
       // Update global counter
-      const likeDocRef = doc(db, "likes", "counter");
+      const likeDocRef = doc(db!, "likes", "counter");
       await updateDoc(likeDocRef, {
         likes: increment(1),
       });
 
       // Record that this specific user has liked it
-      const userLikeRef = doc(db, "userLikes", user.uid);
+      const userLikeRef = doc(db!, "userLikes", user.uid);
       await setDoc(userLikeRef, { hasLiked: true });
       
     } catch (error) {
