@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { doc, onSnapshot, updateDoc, increment } from "firebase/firestore";
-import { db, isFirebaseConfigured } from "../firebase";
+import { doc, onSnapshot, updateDoc, increment, getDoc, setDoc } from "firebase/firestore";
+import { signInAnonymously, onAuthStateChanged, type User } from "firebase/auth";
+import { db, auth, isFirebaseConfigured } from "../firebase";
 
 const LikeButton = () => {
   const [likes, setLikes] = useState(0);
@@ -9,31 +10,46 @@ const LikeButton = () => {
   const [isAnimating, setIsAnimating] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
 
+  const [user, setUser] = useState<User | null>(null);
+
   useEffect(() => {
     setIsClient(true);
-
-    const storedIsLiked = localStorage.getItem("websiteIsLiked");
-    if (storedIsLiked) {
-      setIsLiked(storedIsLiked === "true");
+    
+    // Fallback to localStorage if Firebase is not configured
+    if (!isFirebaseConfigured || !auth || !db) {
+      const storedIsLiked = localStorage.getItem("websiteIsLiked");
+      if (storedIsLiked) setIsLiked(storedIsLiked === "true");
+      return;
     }
 
-    // Without Firebase configured, the button works locally only
-    if (!db) return;
-
-    // Listen for realtime updates from Firestore
-    const likeDocRef = doc(db, "likes", "counter");
-    const unsubscribe = onSnapshot(likeDocRef, (docSnap) => {
-      if (docSnap.exists()) {
-        const currentLikes = docSnap.data().likes;
-        // Only update if the server value is different (prevents overwrite during optimistic update)
-        setLikes(() => {
-          const newLikes = Math.max(0, currentLikes);
-          return newLikes;
-        });
+    // Authenticate user anonymously
+    const unsubscribeAuth = onAuthStateChanged(auth, async (currentUser) => {
+      if (currentUser) {
+        setUser(currentUser);
+        // Check if user already liked
+        const userLikeRef = doc(db, "userLikes", currentUser.uid);
+        const userLikeSnap = await getDoc(userLikeRef);
+        if (userLikeSnap.exists() && userLikeSnap.data().hasLiked) {
+          setIsLiked(true);
+        }
+      } else {
+        signInAnonymously(auth).catch(console.error);
       }
     });
 
-    return () => unsubscribe();
+    // Listen for realtime updates from Firestore
+    const likeDocRef = doc(db, "likes", "counter");
+    const unsubscribeLikes = onSnapshot(likeDocRef, (docSnap) => {
+      if (docSnap.exists()) {
+        const currentLikes = docSnap.data().likes;
+        setLikes(() => Math.max(0, currentLikes));
+      }
+    });
+
+    return () => {
+      unsubscribeAuth();
+      unsubscribeLikes();
+    };
   }, []);
 
   const handleLike = async () => {
@@ -44,25 +60,34 @@ const LikeButton = () => {
     setLikes((prev) => prev + 1);
     setIsLiked(true);
     setIsAnimating(true);
-    localStorage.setItem("websiteIsLiked", "true");
+    
+    if (!isFirebaseConfigured || !db || !user) {
+      localStorage.setItem("websiteIsLiked", "true");
+      setTimeout(() => setIsAnimating(false), 600);
+      return;
+    }
 
     // Reset animation after it finishes
     setTimeout(() => setIsAnimating(false), 600);
 
-    if (!db) return;
-
     try {
       setIsProcessing(true);
+      
+      // Update global counter
       const likeDocRef = doc(db, "likes", "counter");
       await updateDoc(likeDocRef, {
         likes: increment(1),
       });
+
+      // Record that this specific user has liked it
+      const userLikeRef = doc(db, "userLikes", user.uid);
+      await setDoc(userLikeRef, { hasLiked: true });
+      
     } catch (error) {
       console.error("Error updating likes:", error);
       // Rollback on error
       setLikes(previousLikes);
       setIsLiked(false);
-      localStorage.removeItem("websiteIsLiked");
     } finally {
       setIsProcessing(false);
     }

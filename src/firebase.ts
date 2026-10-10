@@ -1,5 +1,6 @@
 import { initializeApp, type FirebaseApp } from 'firebase/app';
 import { getFirestore, type Firestore } from 'firebase/firestore';
+import { getAuth, type Auth } from 'firebase/auth';
 import { getAnalytics, isSupported, type Analytics } from 'firebase/analytics';
 
 const firebaseConfig = {
@@ -21,6 +22,7 @@ export const app: FirebaseApp | null = isFirebaseConfigured ? initializeApp(fire
 
 // Only initialize when configured, so the site works without a .env file
 export const db: Firestore | null = app ? getFirestore(app) : null;
+export const auth: Auth | null = app ? getAuth(app) : null;
 
 export let analytics: Analytics | null = null;
 
