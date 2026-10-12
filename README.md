@@ -25,36 +25,32 @@ I'm a Backend Engineer and AWS-certified ML practitioner specializing in buildin
 - **Riff (Dirtcube Interactive)**: Engineered complete Next.js admin dashboards and precise V8 telemetry systems for an Expo React Native app.
 
 ## **Tech Stack**  
-- **Core Engine:** Astro
-- **Frontend & Interactivity:** React, TypeScript, Tailwind CSS
-- **Backend Services:** Firebase (Realtime Database for interactions)
+- **Core Engine:** Next.js 16 (App Router)
+- **Frontend & Interactivity:** React 19, TypeScript, Tailwind CSS
+- **Backend Services:** Firebase Firestore (Realtime Like Counter), Formspree (Contact Form)
 - **Deployment:** Vercel
 
 ## **Project Structure**
 ```text
 public/
-├── svg/tech/       # SVGs for the scrolling marquee
-└── ...             # Static assets (Resume, icons)
+├── certifications/ # PDF certificates and marksheets
+├── fonts/          # Self-hosted Montserrat variable font
+├── svg/tech/       # SVGs for the scrolling tech marquee
+└── ...             # Static assets (Resume, OG preview, icons)
 src/
-├── assets/         # Optimized images
-├── components/     # Astro components (hero, projects, experience, contact)
+├── app/            # Next.js App Router (layout.tsx, page.tsx, globals.css, not-found.tsx)
+├── assets/         # Optimized project images
+├── components/     # React components (Home, Projects, Experience, Contact, Footer, Nav, LogoWall)
 ├── data/
 │    └── profile.ts # Single Source of Truth for all portfolio content
-├── layouts/
-│    └── Layout.astro # Base HTML layout and SEO tags
-├── React/          # Interactive React Islands
-│    ├── LetterGlitch.tsx
-│    ├── LikeButton.tsx
-│    └── SkillsList.tsx
-└── pages/
-     └── index.astro
+└── React/          # Interactive React Islands (LetterGlitch, LikeButton, SkillsList)
 ```
 
 ## **Local Configuration** 
 
 ### Prerequisites
-- **Node.js** (v18 or higher recommended)
-- **npm** or **pnpm**
+- **Node.js** (v20 or higher recommended)
+- **npm**
 
 1. Clone the repository:  
 ```bash
@@ -67,13 +63,13 @@ npm install
 3. Set up environment variables (Optional, for Realtime Likes):
 Create a `.env` file in the root and add your Firebase credentials:
 ```env
-PUBLIC_FIREBASE_API_KEY=...
-PUBLIC_FIREBASE_AUTH_DOMAIN=...
-PUBLIC_FIREBASE_DATABASE_URL=...
-PUBLIC_FIREBASE_PROJECT_ID=...
-PUBLIC_FIREBASE_STORAGE_BUCKET=...
-PUBLIC_FIREBASE_MESSAGING_SENDER_ID=...
-PUBLIC_FIREBASE_APP_ID=...
+NEXT_PUBLIC_FIREBASE_API_KEY=...
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=...
+NEXT_PUBLIC_FIREBASE_DATABASE_URL=...
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=...
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=...
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=...
+NEXT_PUBLIC_FIREBASE_APP_ID=...
 ```
 *(If `.env` is not provided, the site gracefully falls back to local component states.)*
 
@@ -83,5 +79,5 @@ npm run dev
 ```
 
 ## **Deployment**
-This project is built statically with Astro and deployed directly to Vercel. 
+This project is built with Next.js and deployed directly to Vercel. 
 Simply link the repository to your Vercel account, set the environment variables, and it will deploy automatically on push.
