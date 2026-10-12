@@ -28,10 +28,10 @@ const skills = [
       </svg>
     ),
     items: [
-      "RESTful APIs with Python & Flask",
+      "RESTful APIs with Python, Flask & Node.js",
       "Analytics dashboards & data-viz endpoints",
       "Push-notification systems & segment resolvers",
-      "Schema migrations & SQL query optimization",
+      "Schema migrations & SQL (Postgres, MySQL, Supabase)",
     ],
   },
   {
@@ -91,7 +91,7 @@ const skills = [
     items: [
       "Socket programming & local networking",
       "Gmail (IMAP/SMTP) & WhatsApp automation",
-      "Desktop apps with PyQt5 / Tkinter",
+      "Desktop apps & CLI tools (Tkinter, C++, C#, Bash)",
       "Git, Postman, MySQL, PostgreSQL, SQLite",
     ],
   },

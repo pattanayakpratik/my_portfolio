@@ -62,11 +62,18 @@ export default function RootLayout({
     sameAs: Object.values(profile.socials),
     knowsAbout: [
       "Python",
+      "TypeScript",
+      "JavaScript",
+      "Node.js",
       "Backend Engineering",
       "Generative AI",
       "Machine Learning",
       "REST APIs",
-      "SQL",
+      "PostgreSQL",
+      "Supabase",
+      "C++",
+      "C#",
+      "Flutter",
     ],
   };
 
