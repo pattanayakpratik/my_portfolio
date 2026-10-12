@@ -1,5 +1,7 @@
+"use client";
+
 import { useState, useEffect } from "react";
-import { doc, onSnapshot, updateDoc, increment, getDoc, setDoc } from "firebase/firestore";
+import { doc, onSnapshot, increment, getDoc, setDoc } from "firebase/firestore";
 import { signInAnonymously, onAuthStateChanged, type User } from "firebase/auth";
 import { db, auth, isFirebaseConfigured } from "../firebase";
 
@@ -73,11 +75,15 @@ const LikeButton = () => {
     try {
       setIsProcessing(true);
       
-      // Update global counter
+      // Update global counter (using setDoc with merge so it creates the document if not yet initialized)
       const likeDocRef = doc(db!, "likes", "counter");
-      await updateDoc(likeDocRef, {
-        likes: increment(1),
-      });
+      await setDoc(
+        likeDocRef,
+        {
+          likes: increment(1),
+        },
+        { merge: true }
+      );
 
       // Record that this specific user has liked it
       const userLikeRef = doc(db!, "userLikes", user.uid);

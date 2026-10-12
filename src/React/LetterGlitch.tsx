@@ -1,3 +1,5 @@
+"use client";
+
 import { useRef, useEffect } from "react";
 
 const LetterGlitch = ({
@@ -253,9 +255,15 @@ const LetterGlitch = ({
     const canvas = canvasRef.current;
     if (!canvas) return;
 
+    const prefersReducedMotion =
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
     context.current = canvas.getContext("2d");
     resizeCanvas();
-    animate();
+    if (!prefersReducedMotion) {
+      animate();
+    }
 
     let resizeTimeout: ReturnType<typeof setTimeout>;
 
