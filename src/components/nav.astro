@@ -93,15 +93,12 @@ const navItems: NavItem[] = [
       position: fixed;
       border-radius: 1rem 1rem 0 0;
       border-color: #ffffff10;
+      padding-bottom: env(safe-area-inset-bottom, 0px);
     }
 
     nav.scrolling {
       border-radius: 1rem 1rem 0 0;
       background-color: var(--component-bg);
-    }
-
-    body {
-      padding-bottom: 70px;
     }
   }
 </style>
@@ -183,14 +180,4 @@ const navItems: NavItem[] = [
   });
 </script>
 
-<style>
-  @media (max-width: 767px) {
-    body {
-      padding-bottom: 70px;
-    }
-  }
 
-  nav a.active {
-    color: white !important;
-  }
-</style>
