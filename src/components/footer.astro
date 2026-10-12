@@ -35,8 +35,8 @@ const currentYear = new Date().getFullYear();
             ].map((link) => (
               <a
                 href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
+                target={link.href.startsWith("mailto:") ? undefined : "_blank"}
+                rel={link.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
                 class="flex flex-col items-center group"
                 aria-label={link.label}
                 title={link.label}
