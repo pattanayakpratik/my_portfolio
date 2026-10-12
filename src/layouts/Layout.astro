@@ -153,6 +153,12 @@ const pageTitle = `${title} | ${profile.role}`;
     overflow-x: hidden;
   }
 
+  @media (max-width: 767px) {
+    body {
+      padding-bottom: calc(75px + env(safe-area-inset-bottom, 0px));
+    }
+  }
+
   *::selection {
     background-color: var(--sec);
     color: var(--background);
