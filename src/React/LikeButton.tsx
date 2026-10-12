@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect } from "react";
 import { doc, onSnapshot, increment, getDoc, setDoc } from "firebase/firestore";
 import { signInAnonymously, onAuthStateChanged, type User } from "firebase/auth";
