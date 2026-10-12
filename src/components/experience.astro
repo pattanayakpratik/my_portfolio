@@ -103,7 +103,23 @@ import { experience, education, certifications } from "@/data/profile";
                     </summary>
                     <div class="mt-4 overflow-hidden rounded-xl border border-[#ffffff10]">
                       {e.image?.endsWith('.pdf') ? (
-                        <iframe src={e.image} class="w-full h-80 sm:h-96" title={e.title} loading="lazy"></iframe>
+                        <div>
+                          <div class="flex items-center justify-between px-3 py-2 bg-[#101010] border-b border-[#ffffff10]">
+                            <span class="text-xs text-[var(--white-icon)]">Document Preview</span>
+                            <a
+                              href={e.image}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              class="text-xs text-[var(--sec)] hover:underline inline-flex items-center gap-1 font-medium"
+                            >
+                              <span>Open PDF</span>
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-3.5">
+                                <path d="M10 6V8H5V19H16V14H18V20C18 20.5523 17.5523 21 17 21H4C3.44772 21 3 20.5523 3 20V7C3 6.44772 3.44772 6 4 6H10ZM21 3V11H19V6.413L11.207 14.207L9.793 12.793L17.585 5H13V3H21Z" />
+                              </svg>
+                            </a>
+                          </div>
+                          <iframe src={e.image} class="w-full h-80 sm:h-96" title={e.title} loading="lazy"></iframe>
+                        </div>
                       ) : (
                         <img src={e.image} alt={e.title} class="w-full h-auto object-cover hover:scale-105 transition duration-500" loading="lazy" />
                       )}
@@ -157,7 +173,23 @@ import { experience, education, certifications } from "@/data/profile";
                     </summary>
                     <div class="mt-4 overflow-hidden rounded-xl border border-[#ffffff10]">
                       {c.image?.endsWith('.pdf') ? (
-                        <iframe src={c.image} class="w-full h-80 sm:h-96" title={c.title} loading="lazy"></iframe>
+                        <div>
+                          <div class="flex items-center justify-between px-3 py-2 bg-[#101010] border-b border-[#ffffff10]">
+                            <span class="text-xs text-[var(--white-icon)]">Document Preview</span>
+                            <a
+                              href={c.image}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              class="text-xs text-[var(--sec)] hover:underline inline-flex items-center gap-1 font-medium"
+                            >
+                              <span>Open PDF</span>
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-3.5">
+                                <path d="M10 6V8H5V19H16V14H18V20C18 20.5523 17.5523 21 17 21H4C3.44772 21 3 20.5523 3 20V7C3 6.44772 3.44772 6 4 6H10ZM21 3V11H19V6.413L11.207 14.207L9.793 12.793L17.585 5H13V3H21Z" />
+                              </svg>
+                            </a>
+                          </div>
+                          <iframe src={c.image} class="w-full h-80 sm:h-96" title={c.title} loading="lazy"></iframe>
+                        </div>
                       ) : (
                         <img src={c.image} alt={c.title} class="w-full h-auto object-cover hover:scale-105 transition duration-500" loading="lazy" />
                       )}
