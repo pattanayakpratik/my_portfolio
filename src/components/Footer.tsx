@@ -77,13 +77,13 @@ export default function Footer() {
           <div className="flex flex-col items-center lg:items-end space-y-6">
             <div className="grid grid-cols-1 gap-3 w-fit py-6">
               {techBadges.map((tech) => (
-                <div key={tech.name} className="flex items-center justify-center lg:justify-normal space-x-3">
+                <div key={tech.name} className="flex items-center justify-center lg:justify-normal space-x-3 group">
                   <span className="text-[var(--white-icon)] text-sm">{tech.desc}</span>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={tech.icon}
                     alt={tech.alt}
-                    className="h-5 w-5 object-contain filter brightness-0 dark:invert opacity-60 dark:opacity-50"
+                    className="h-5 w-5 object-contain brightness-0 dark:invert opacity-60 dark:opacity-50 transition duration-300 group-hover:opacity-100"
                     loading="lazy"
                   />
                   <span className="text-[var(--white-icon)] text-sm">{tech.name}</span>

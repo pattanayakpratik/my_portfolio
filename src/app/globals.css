@@ -11,28 +11,28 @@
 }
 
 :root {
-  /* Premium Slate Light Mode (Default when not .dark) */
-  --background: #f8fafc;
+  /* Premium Ice-Slate Light Mode */
+  --background: #eaf0f7;
   --sec: #0891b2;
   --accent: #16a34a;
   --white: #0f172a;
   --white-icon: #475569;
-  --white-icon-tr: #e2e8f0;
-  --component-bg: #ffffffd6;
-  --container: #f1f5f9;
+  --white-icon-tr: #d5e0ec;
+  --component-bg: #ffffffdb;
+  --container: #dfe7f1;
   --line: #cbd5e1;
   --pink: #0891b2;
   --card-bg: #ffffff;
   --card-hover-bg: #f8fafc;
-  --card-border-hover: #0891b250;
-  --card-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.06);
-  --project-media-bg: radial-gradient(120% 80% at 50% 0%, #0891b218 0%, transparent 60%), radial-gradient(80% 60% at 50% 110%, #0e749020 0%, transparent 70%), #f1f5f9;
-  --ambient-orb-1: #38bdf8;
-  --ambient-orb-2: #0284c7;
-  --ambient-opacity: 0.11;
+  --card-border-hover: #0891b260;
+  --card-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.08), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
+  --project-media-bg: radial-gradient(120% 80% at 50% 0%, #0891b225 0%, transparent 60%), radial-gradient(80% 60% at 50% 110%, #0e74902a 0%, transparent 70%), #e2ebf4;
+  --ambient-orb-1: #06b6d4;
+  --ambient-orb-2: #38bdf8;
+  --ambient-opacity: 0.28;
   --shiny-start: #0891b2;
   --shiny-mid: #0284c7;
-  --shiny-end: #0891b2;
+  --shiny-end: #0e7490;
 }
 
 html.dark {
@@ -78,6 +78,15 @@ html {
 body {
   overflow-x: hidden;
   background-color: var(--background);
+  background-image:
+    radial-gradient(ellipse 80% 50% at 85% -10%, rgba(6, 182, 212, 0.16), transparent 70%),
+    radial-gradient(ellipse 70% 50% at 10% 45%, rgba(56, 189, 248, 0.14), transparent 70%),
+    radial-gradient(ellipse 80% 50% at 80% 90%, rgba(99, 102, 241, 0.12), transparent 70%);
+  background-attachment: fixed;
+}
+
+html.dark body {
+  background-image: none;
 }
 
 @media (max-width: 767px) {
@@ -109,19 +118,19 @@ body {
 }
 
 .ambient-orb--1 {
-  width: 520px;
-  height: 520px;
+  width: 560px;
+  height: 560px;
   background: var(--ambient-orb-1, var(--sec));
-  top: -160px;
-  right: -120px;
+  top: -120px;
+  right: -80px;
 }
 
 .ambient-orb--2 {
-  width: 420px;
-  height: 420px;
+  width: 500px;
+  height: 500px;
   background: var(--ambient-orb-2, #0e7490);
-  bottom: -180px;
-  left: -140px;
+  bottom: -140px;
+  left: -100px;
   animation-delay: -11s;
 }
 

@@ -1,4 +1,3 @@
-import LetterGlitch from "@/React/LetterGlitch";
 import LogoWall from "@/components/LogoWall";
 import SkillsList from "@/React/SkillsList";
 import { profile, stats } from "@/data/profile";
@@ -133,18 +132,8 @@ export default function Home() {
 
         <LogoWall />
 
-        <div className="flex flex-col lg:flex-row items-center gap-8" data-reveal="">
+        <div data-reveal="">
           <SkillsList />
-          <div className="flex justify-center md:w-full md:h-[292px] size-[290px] pt-3 md:pt-9 md:ml-16">
-            <LetterGlitch
-              glitchColors={["#0e7490", "#22D3EE", "#083344", "#38bdf8"]}
-              lightGlitchColors={["#0891b2", "#0284c7", "#475569", "#0f172a"]}
-              glitchSpeed={33}
-              centerVignette={false}
-              outerVignette={true}
-              smooth={true}
-            />
-          </div>
         </div>
       </div>
     </section>
