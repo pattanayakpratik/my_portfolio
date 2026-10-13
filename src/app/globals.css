@@ -11,6 +11,32 @@
 }
 
 :root {
+  /* Premium Slate Light Mode (Default when not .dark) */
+  --background: #f8fafc;
+  --sec: #0891b2;
+  --accent: #16a34a;
+  --white: #0f172a;
+  --white-icon: #475569;
+  --white-icon-tr: #e2e8f0;
+  --component-bg: #ffffffeb;
+  --container: #f1f5f9;
+  --line: #cbd5e1;
+  --pink: #0891b2;
+  --card-bg: #ffffff;
+  --card-hover-bg: #f8fafc;
+  --card-border-hover: #0891b250;
+  --card-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.06);
+  --project-media-bg: radial-gradient(120% 80% at 50% 0%, #0891b218 0%, transparent 60%), radial-gradient(80% 60% at 50% 110%, #0e749020 0%, transparent 70%), #f1f5f9;
+  --ambient-orb-1: #38bdf8;
+  --ambient-orb-2: #0284c7;
+  --ambient-opacity: 0.11;
+  --shiny-start: #0891b2;
+  --shiny-mid: #0284c7;
+  --shiny-end: #0891b2;
+}
+
+html.dark {
+  /* Cyberpunk / Terminal Dark Mode */
   --background: #101010;
   --sec: #22d3ee;
   --accent: #a9ff5b;
@@ -21,6 +47,17 @@
   --container: #101010;
   --line: #2a2a2a;
   --pink: #22d3ee;
+  --card-bg: #1414149c;
+  --card-hover-bg: #10191c9c;
+  --card-border-hover: #22d3ee40;
+  --card-shadow: none;
+  --project-media-bg: radial-gradient(120% 80% at 50% 0%, #22d3ee2e 0%, transparent 60%), radial-gradient(80% 60% at 50% 110%, #0e74903a 0%, transparent 70%), #141414;
+  --ambient-orb-1: #22d3ee;
+  --ambient-orb-2: #0e7490;
+  --ambient-opacity: 0.16;
+  --shiny-start: #22d3ee;
+  --shiny-mid: #e6fbff;
+  --shiny-end: #22d3ee;
 }
 
 html {
@@ -67,14 +104,14 @@ body {
   position: absolute;
   border-radius: 9999px;
   filter: blur(120px);
-  opacity: 0.16;
+  opacity: var(--ambient-opacity, 0.16);
   animation: drift 22s ease-in-out infinite alternate;
 }
 
 .ambient-orb--1 {
   width: 520px;
   height: 520px;
-  background: var(--sec);
+  background: var(--ambient-orb-1, var(--sec));
   top: -160px;
   right: -120px;
 }
@@ -82,7 +119,7 @@ body {
 .ambient-orb--2 {
   width: 420px;
   height: 420px;
-  background: #0e7490;
+  background: var(--ambient-orb-2, #0e7490);
   bottom: -180px;
   left: -140px;
   animation-delay: -11s;
@@ -111,18 +148,20 @@ body {
 
 /* Reusable card surface */
 .card {
-  background: #1414149c;
+  background: var(--card-bg, #1414149c);
   border: 1px solid var(--white-icon-tr);
   border-radius: 1rem;
+  box-shadow: var(--card-shadow, none);
   transition:
     border-color 0.3s ease,
     background-color 0.3s ease,
+    box-shadow 0.3s ease,
     transform 0.3s ease;
 }
 
 .card:hover {
-  border-color: #22d3ee40;
-  background: #10191c9c;
+  border-color: var(--card-border-hover, #22d3ee40);
+  background: var(--card-hover-bg, #10191c9c);
 }
 
 .tag {
@@ -134,13 +173,13 @@ body {
   border-radius: 9999px;
   color: var(--white-icon);
   border: 1px solid var(--white-icon-tr);
-  background: #ffffff06;
+  background: var(--white-icon-tr);
   white-space: nowrap;
 }
 
 /* Shiny cyan gradient text */
 .shiny-sec {
-  background: linear-gradient(135deg, #22d3ee 25%, #e6fbff 50%, #22d3ee 75%);
+  background: linear-gradient(135deg, var(--shiny-start) 25%, var(--shiny-mid) 50%, var(--shiny-end) 75%);
   background-size: 400% 100%;
   -webkit-background-clip: text;
   background-clip: text;
@@ -178,6 +217,10 @@ body {
 }
 
 .resume-btn:hover {
+  box-shadow: 0 8px 30px -6px rgba(8, 145, 178, 0.35);
+}
+
+html.dark .resume-btn:hover {
   box-shadow: 0 8px 30px -6px #22d3ee80;
 }
 
@@ -192,7 +235,7 @@ body {
   background: linear-gradient(
     to bottom,
     var(--sec),
-    #22d3ee40 60%,
+    var(--white-icon-tr) 60%,
     transparent
   );
 }
@@ -209,10 +252,7 @@ body {
 
 /* Project media card header */
 .project-media {
-  background:
-    radial-gradient(120% 80% at 50% 0%, #22d3ee2e 0%, transparent 60%),
-    radial-gradient(80% 60% at 50% 110%, #0e74903a 0%, transparent 70%),
-    #141414;
+  background: var(--project-media-bg);
   border-bottom: 1px solid var(--white-icon-tr);
 }
 
@@ -239,7 +279,8 @@ body {
 /* Navigation active link indicator */
 nav.scrolling {
   background-color: var(--component-bg);
-  border-color: #ffffff10;
+  border-color: var(--white-icon-tr);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08);
   border-radius: 9999px;
 }
 
@@ -249,7 +290,7 @@ nav a.active .nav-indicator {
 }
 
 nav a.active {
-  color: white !important;
+  color: var(--white) !important;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { profile } from "@/data/profile";
 
 const inputCls =
-  "px-4 py-3 bg-[#1414149c] text-[var(--white)] placeholder:text-[var(--white-icon)] border border-[var(--white-icon-tr)] rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--sec)] focus:border-transparent transition";
+  "px-4 py-3 bg-[var(--card-bg)] text-[var(--white)] placeholder:text-[var(--white-icon)] border border-[var(--white-icon-tr)] rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--sec)] focus:border-transparent transition shadow-sm dark:shadow-none";
 
 export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -42,7 +42,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="w-full py-16 border-t border-[#ffffff10]">
+    <section id="contact" className="w-full py-16 border-t border-[var(--white-icon-tr)]">
       <div className="max-w-5xl mx-auto">
         <div data-reveal="">
           <h2 className="text-lg text-[var(--sec)] mb-2 shiny-sec">Let&apos;s talk</h2>
@@ -156,7 +156,7 @@ export default function Contact() {
                   id="contact-submit"
                   type="submit"
                   disabled={isSubmitting}
-                  className="group inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-medium text-[var(--background)] bg-[var(--sec)] hover:shadow-[0_8px_30px_-6px_#22d3ee80] transition disabled:opacity-60 disabled:cursor-wait"
+                  className="group inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-medium text-white dark:text-[#101010] bg-[var(--sec)] hover:shadow-[0_8px_30px_-6px_rgba(8,145,178,0.4)] dark:hover:shadow-[0_8px_30px_-6px_#22d3ee80] transition disabled:opacity-60 disabled:cursor-wait"
                 >
                   <span>{isSubmitting ? "Sending…" : "Send message"}</span>
                   <svg
