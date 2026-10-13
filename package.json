@@ -25,5 +25,9 @@
   "devDependencies": {
     "@types/node": "^26.5.1",
     "prettier": "^3.8.3"
+  },
+  "allowScripts": {
+    "@firebase/util": true,
+    "protobufjs": true
   }
 }
