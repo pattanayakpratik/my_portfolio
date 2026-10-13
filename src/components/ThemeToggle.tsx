@@ -49,7 +49,7 @@ export default function ThemeToggle({
       onClick={toggleTheme}
       aria-label={title}
       title={title}
-      className={`group flex flex-col md:flex-row items-center gap-1 md:gap-2 text-[var(--white-icon)] hover:text-[var(--white)] transition-all cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-[var(--sec)] rounded-lg ${className}`}
+      className={`group flex flex-col md:flex-row items-center gap-1 text-[var(--white-icon)] hover:text-[var(--white)] transition-all cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-[var(--sec)] rounded-full p-1 md:p-1.5 hover:bg-[var(--white-icon-tr)] ${className}`}
     >
       <span className="relative flex items-center justify-center w-6 h-6 transition-transform duration-300 group-hover:scale-110">
         {!mounted ? (
