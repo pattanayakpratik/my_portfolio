@@ -64,16 +64,21 @@ export default function Nav() {
         const scrollProgress = Math.min(window.scrollY / maxScroll, 1);
         const easeProgress = 1 - Math.pow(1 - scrollProgress, 4);
 
-        const minWidth = 660;
-        const maxWidth = Math.max(window.innerWidth * 0.8, minWidth);
+        const minWidth = 510;
+        const maxWidth = Math.min(Math.round(window.innerWidth * 0.7), 570);
         const currentWidth = maxWidth - (maxWidth - minWidth) * easeProgress;
 
         if (window.innerWidth >= 768) {
-          nav.style.setProperty("width", `${currentWidth}px`);
+          nav.style.setProperty("width", `${Math.round(currentWidth)}px`);
         }
       } else {
         nav.classList.remove("scrolling");
-        nav.style.setProperty("width", "80%");
+        if (window.innerWidth >= 768) {
+          const defaultWidth = Math.min(Math.round(window.innerWidth * 0.7), 570);
+          nav.style.setProperty("width", `${defaultWidth}px`);
+        } else {
+          nav.style.setProperty("width", "100%");
+        }
       }
       rafId = null;
     }
@@ -134,10 +139,10 @@ export default function Nav() {
       <nav
         ref={navRef}
         id="main-nav"
-        className="fixed left-1/2 -translate-x-1/2 z-[100] bg-transparent border border-1 border-transparent backdrop-blur-xl transition-all duration-500 ease-in-out md:top-6 md:bottom-auto bottom-0 w-full md:w-[80%] max-w-4xl max-md:rounded-t-2xl max-md:border-t max-md:border-[var(--white-icon-tr)] max-md:bg-[var(--component-bg)] max-md:pb-[env(safe-area-inset-bottom,0px)]"
+        className="fixed left-1/2 -translate-x-1/2 z-[100] bg-transparent border border-1 border-transparent backdrop-blur-xl transition-all duration-300 ease-out md:top-5 md:bottom-auto bottom-0 w-full md:w-[570px] md:max-w-[570px] md:rounded-full max-md:rounded-t-2xl max-md:border-t max-md:border-[var(--white-icon-tr)] max-md:bg-[var(--component-bg)] max-md:pb-[env(safe-area-inset-bottom,0px)]"
       >
-        <div className="relative w-full flex justify-center items-center p-3 md:px-8">
-          <ul className="flex w-full md:w-auto justify-between md:justify-center items-center md:gap-10 gap-3">
+        <div className="relative w-full flex justify-center items-center py-2 px-4 md:py-2 md:px-6">
+          <ul className="flex w-full md:w-auto justify-between md:justify-center items-center md:gap-8 gap-2">
             {navItems.map((item) => (
               <li key={item.label} className="flex-1 md:flex-none">
                 <a
@@ -146,7 +151,7 @@ export default function Nav() {
                   onClick={(e) => handleNavClick(e, item.href)}
                   className="flex flex-col items-center gap-1 text-[var(--white-icon)] hover:text-[var(--white)] transition-colors text-xs md:text-base relative group"
                 >
-                  <div className="absolute -left-5 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full transition-all duration-300 scale-0 opacity-0 bg-[var(--accent)] nav-indicator hidden md:block" />
+                  <div className="absolute -left-4 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full transition-all duration-300 scale-0 opacity-0 bg-[var(--accent)] nav-indicator hidden md:block" />
                   <span className="md:hidden flex items-center justify-center w-6 h-6">
                     {item.icon}
                   </span>
