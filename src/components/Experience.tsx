@@ -4,7 +4,7 @@ export default function Experience() {
   return (
     <section
       id="experience"
-      className="py-16 border-t border-[#ffffff10] text-[var(--white)]"
+      className="py-16 border-t border-[var(--white-icon-tr)] text-[var(--white)]"
     >
       <div className="max-w-5xl mx-auto">
         <div data-reveal="">
@@ -122,10 +122,10 @@ export default function Experience() {
                           />
                         </svg>
                       </summary>
-                      <div className="mt-4 overflow-hidden rounded-xl border border-[#ffffff10]">
+                      <div className="mt-4 overflow-hidden rounded-xl border border-[var(--white-icon-tr)]">
                         {e.image.endsWith(".pdf") ? (
                           <div>
-                            <div className="flex items-center justify-between px-3 py-2 bg-[#101010] border-b border-[#ffffff10]">
+                            <div className="flex items-center justify-between px-3 py-2 bg-[var(--container)] border-b border-[var(--white-icon-tr)]">
                               <span className="text-xs text-[var(--white-icon)]">Document Preview</span>
                               <a
                                 href={e.image}
@@ -227,10 +227,10 @@ export default function Experience() {
                           />
                         </svg>
                       </summary>
-                      <div className="mt-4 overflow-hidden rounded-xl border border-[#ffffff10]">
+                      <div className="mt-4 overflow-hidden rounded-xl border border-[var(--white-icon-tr)]">
                         {c.image.endsWith(".pdf") ? (
                           <div>
-                            <div className="flex items-center justify-between px-3 py-2 bg-[#101010] border-b border-[#ffffff10]">
+                            <div className="flex items-center justify-between px-3 py-2 bg-[var(--container)] border-b border-[var(--white-icon-tr)]">
                               <span className="text-xs text-[var(--white-icon)]">Document Preview</span>
                               <a
                                 href={c.image}

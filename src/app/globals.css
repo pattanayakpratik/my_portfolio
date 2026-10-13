@@ -11,16 +11,53 @@
 }
 
 :root {
+  /* Premium Ice-Slate Light Mode */
+  --background: #eaf0f7;
+  --sec: #0891b2;
+  --accent: #16a34a;
+  --white: #0f172a;
+  --white-icon: #475569;
+  --white-icon-tr: #d5e0ec;
+  --component-bg: #ffffffdb;
+  --container: #dfe7f1;
+  --line: #cbd5e1;
+  --pink: #0891b2;
+  --card-bg: #ffffff;
+  --card-hover-bg: #f8fafc;
+  --card-border-hover: #0891b260;
+  --card-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.08), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
+  --project-media-bg: radial-gradient(120% 80% at 50% 0%, #0891b225 0%, transparent 60%), radial-gradient(80% 60% at 50% 110%, #0e74902a 0%, transparent 70%), #e2ebf4;
+  --ambient-orb-1: #06b6d4;
+  --ambient-orb-2: #38bdf8;
+  --ambient-opacity: 0.28;
+  --shiny-start: #0891b2;
+  --shiny-mid: #0284c7;
+  --shiny-end: #0e7490;
+}
+
+html.dark {
+  /* Cyberpunk / Terminal Dark Mode */
   --background: #101010;
   --sec: #22d3ee;
   --accent: #a9ff5b;
   --white: #dfdfdf;
   --white-icon: #f3f3f398;
   --white-icon-tr: #f3f3f310;
-  --component-bg: #161616e6;
+  --component-bg: #141414cc;
   --container: #101010;
   --line: #2a2a2a;
   --pink: #22d3ee;
+  --card-bg: #1414149c;
+  --card-hover-bg: #10191c9c;
+  --card-border-hover: #22d3ee40;
+  --card-shadow: none;
+  --project-media-bg: radial-gradient(120% 80% at 50% 0%, #22d3ee2e 0%, transparent 60%), radial-gradient(80% 60% at 50% 110%, #0e74903a 0%, transparent 70%), #141414;
+  --ambient-orb-1: #22d3ee;
+  --ambient-orb-2: #0e7490;
+  --ambient-opacity: 0.16;
+  --shiny-start: #22d3ee;
+  --shiny-mid: #e6fbff;
+  --shiny-end: #22d3ee;
 }
 
 html {
@@ -41,6 +78,15 @@ html {
 body {
   overflow-x: hidden;
   background-color: var(--background);
+  background-image:
+    radial-gradient(ellipse 80% 50% at 85% -10%, rgba(6, 182, 212, 0.16), transparent 70%),
+    radial-gradient(ellipse 70% 50% at 10% 45%, rgba(56, 189, 248, 0.14), transparent 70%),
+    radial-gradient(ellipse 80% 50% at 80% 90%, rgba(99, 102, 241, 0.12), transparent 70%);
+  background-attachment: fixed;
+}
+
+html.dark body {
+  background-image: none;
 }
 
 @media (max-width: 767px) {
@@ -67,24 +113,24 @@ body {
   position: absolute;
   border-radius: 9999px;
   filter: blur(120px);
-  opacity: 0.16;
+  opacity: var(--ambient-opacity, 0.16);
   animation: drift 22s ease-in-out infinite alternate;
 }
 
 .ambient-orb--1 {
-  width: 520px;
-  height: 520px;
-  background: var(--sec);
-  top: -160px;
-  right: -120px;
+  width: 560px;
+  height: 560px;
+  background: var(--ambient-orb-1, var(--sec));
+  top: -120px;
+  right: -80px;
 }
 
 .ambient-orb--2 {
-  width: 420px;
-  height: 420px;
-  background: #0e7490;
-  bottom: -180px;
-  left: -140px;
+  width: 500px;
+  height: 500px;
+  background: var(--ambient-orb-2, #0e7490);
+  bottom: -140px;
+  left: -100px;
   animation-delay: -11s;
 }
 
@@ -111,18 +157,20 @@ body {
 
 /* Reusable card surface */
 .card {
-  background: #1414149c;
+  background: var(--card-bg, #1414149c);
   border: 1px solid var(--white-icon-tr);
   border-radius: 1rem;
+  box-shadow: var(--card-shadow, none);
   transition:
     border-color 0.3s ease,
     background-color 0.3s ease,
+    box-shadow 0.3s ease,
     transform 0.3s ease;
 }
 
 .card:hover {
-  border-color: #22d3ee40;
-  background: #10191c9c;
+  border-color: var(--card-border-hover, #22d3ee40);
+  background: var(--card-hover-bg, #10191c9c);
 }
 
 .tag {
@@ -134,13 +182,13 @@ body {
   border-radius: 9999px;
   color: var(--white-icon);
   border: 1px solid var(--white-icon-tr);
-  background: #ffffff06;
+  background: var(--white-icon-tr);
   white-space: nowrap;
 }
 
 /* Shiny cyan gradient text */
 .shiny-sec {
-  background: linear-gradient(135deg, #22d3ee 25%, #e6fbff 50%, #22d3ee 75%);
+  background: linear-gradient(135deg, var(--shiny-start) 25%, var(--shiny-mid) 50%, var(--shiny-end) 75%);
   background-size: 400% 100%;
   -webkit-background-clip: text;
   background-clip: text;
@@ -178,6 +226,10 @@ body {
 }
 
 .resume-btn:hover {
+  box-shadow: 0 8px 30px -6px rgba(8, 145, 178, 0.35);
+}
+
+html.dark .resume-btn:hover {
   box-shadow: 0 8px 30px -6px #22d3ee80;
 }
 
@@ -192,7 +244,7 @@ body {
   background: linear-gradient(
     to bottom,
     var(--sec),
-    #22d3ee40 60%,
+    var(--white-icon-tr) 60%,
     transparent
   );
 }
@@ -209,10 +261,7 @@ body {
 
 /* Project media card header */
 .project-media {
-  background:
-    radial-gradient(120% 80% at 50% 0%, #22d3ee2e 0%, transparent 60%),
-    radial-gradient(80% 60% at 50% 110%, #0e74903a 0%, transparent 70%),
-    #141414;
+  background: var(--project-media-bg);
   border-bottom: 1px solid var(--white-icon-tr);
 }
 
@@ -227,20 +276,62 @@ body {
 }
 
 .animate-scroll {
-  animation: scroll 60s linear infinite;
+  animation: scroll 80s linear infinite;
 }
 
 @media (min-width: 768px) {
   .animate-scroll {
-    animation-duration: 50s;
+    animation-duration: 70s;
+  }
+}
+
+/* Logo marquee smooth edge fade mask */
+.logo-marquee-mask {
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 40px,
+    black calc(100% - 40px),
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 40px,
+    black calc(100% - 40px),
+    transparent 100%
+  );
+}
+
+@media (min-width: 768px) {
+  .logo-marquee-mask {
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 90px,
+      black calc(100% - 90px),
+      transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 90px,
+      black calc(100% - 90px),
+      transparent 100%
+    );
   }
 }
 
 /* Navigation active link indicator */
 nav.scrolling {
   background-color: var(--component-bg);
-  border-color: #ffffff10;
+  border-color: var(--white-icon-tr);
+  box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.08);
   border-radius: 9999px;
+}
+
+html.dark nav.scrolling {
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.45);
 }
 
 nav a.active .nav-indicator {
@@ -249,7 +340,8 @@ nav a.active .nav-indicator {
 }
 
 nav a.active {
-  color: white !important;
+  color: var(--white) !important;
+  font-weight: 600;
 }
 
 @media (prefers-reduced-motion: reduce) {

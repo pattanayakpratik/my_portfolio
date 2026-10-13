@@ -30,6 +30,11 @@ I'm a Backend Engineer and AWS-certified ML practitioner specializing in buildin
 - **Backend Services:** Firebase Firestore (Realtime Like Counter), Formspree (Contact Form)
 - **Deployment:** Vercel
 
+## **Key Features**
+- **Interactive Code Terminal:** Syntax-highlighted developer terminal with two-way synchronized accordion state showcasing real backend, GenAI, and ML code.
+- **Dual-Theme Design System:** Cyberpunk Terminal Dark Mode and a soothing, high-contrast Ice-Slate Light Mode with ambient drifting gradient mesh.
+- **Performance Focused:** 100% pure CSS/HTML animations, 0% CPU canvas overhead, and instant zero-hydration-flicker theme toggle.
+
 ## **Project Structure**
 ```text
 public/
@@ -40,10 +45,10 @@ public/
 src/
 ├── app/            # Next.js App Router (layout.tsx, page.tsx, globals.css, not-found.tsx)
 ├── assets/         # Optimized project images
-├── components/     # React components (Home, Projects, Experience, Contact, Footer, Nav, LogoWall)
+├── components/     # UI Components (Home, Projects, Experience, Contact, Footer, Nav, LogoWall, CodeTerminal, ThemeToggle)
 ├── data/
 │    └── profile.ts # Single Source of Truth for all portfolio content
-└── React/          # Interactive React Islands (LetterGlitch, LikeButton, SkillsList)
+└── React/          # Interactive Client Components (LikeButton, SkillsList)
 ```
 
 ## **Local Configuration** 
