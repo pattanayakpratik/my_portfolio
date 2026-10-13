@@ -65,7 +65,7 @@ export default function Nav() {
         const easeProgress = 1 - Math.pow(1 - scrollProgress, 4);
 
         const minWidth = 660;
-        const maxWidth = window.innerWidth * 0.8;
+        const maxWidth = Math.max(window.innerWidth * 0.8, minWidth);
         const currentWidth = maxWidth - (maxWidth - minWidth) * easeProgress;
 
         if (window.innerWidth >= 768) {
@@ -137,7 +137,7 @@ export default function Nav() {
         className="fixed left-1/2 -translate-x-1/2 z-[100] bg-transparent border border-1 border-transparent backdrop-blur-xl transition-all duration-500 ease-in-out md:top-6 md:bottom-auto bottom-0 w-full md:w-[80%] max-w-4xl max-md:rounded-t-2xl max-md:border-t max-md:border-[var(--white-icon-tr)] max-md:bg-[var(--component-bg)] max-md:pb-[env(safe-area-inset-bottom,0px)]"
       >
         <div className="relative w-full flex justify-center items-center p-3 md:px-8">
-          <ul className="flex w-full md:w-auto justify-between md:justify-center items-center md:gap-12 gap-6">
+          <ul className="flex w-full md:w-auto justify-between md:justify-center items-center md:gap-10 gap-3">
             {navItems.map((item) => (
               <li key={item.label} className="flex-1 md:flex-none">
                 <a
@@ -146,7 +146,7 @@ export default function Nav() {
                   onClick={(e) => handleNavClick(e, item.href)}
                   className="flex flex-col items-center gap-1 text-[var(--white-icon)] hover:text-[var(--white)] transition-colors text-xs md:text-base relative group"
                 >
-                  <div className="absolute -left-6 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full transition-all duration-300 scale-0 opacity-0 bg-[var(--accent)] nav-indicator hidden md:block" />
+                  <div className="absolute -left-5 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full transition-all duration-300 scale-0 opacity-0 bg-[var(--accent)] nav-indicator hidden md:block" />
                   <span className="md:hidden flex items-center justify-center w-6 h-6">
                     {item.icon}
                   </span>
@@ -156,16 +156,10 @@ export default function Nav() {
               </li>
             ))}
 
-            {/* Mobile bottom-nav theme toggle */}
-            <li className="flex-1 md:hidden flex items-center justify-center">
+            <li className="flex-1 md:flex-none flex items-center justify-center">
               <ThemeToggle />
             </li>
           </ul>
-
-          {/* Desktop theme toggle placed neatly on the right wing */}
-          <div className="hidden md:flex absolute right-4 lg:right-6 top-1/2 -translate-y-1/2 items-center">
-            <ThemeToggle />
-          </div>
         </div>
       </nav>
     </div>
