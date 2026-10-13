@@ -11,25 +11,40 @@ export default function ThemeToggle({
   showLabel = false,
   className = "",
 }: ThemeToggleProps) {
-  const [mounted, setMounted] = useState(false);
   const [isDark, setIsDark] = useState(true);
 
   useEffect(() => {
-    setMounted(true);
-    const hasDarkClass = document.documentElement.classList.contains("dark");
-    setIsDark(hasDarkClass);
-
-    const onThemeChange = () => {
+    const updateThemeState = () => {
       setIsDark(document.documentElement.classList.contains("dark"));
     };
 
-    window.addEventListener("themechange", onThemeChange);
-    return () => window.removeEventListener("themechange", onThemeChange);
+    updateThemeState();
+    window.addEventListener("themechange", updateThemeState);
+
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const onSystemChange = (e: MediaQueryListEvent) => {
+      // If user hasn't explicitly set a custom theme in localStorage, adapt to device
+      if (!localStorage.getItem("theme")) {
+        if (e.matches) {
+          document.documentElement.classList.add("dark");
+        } else {
+          document.documentElement.classList.remove("dark");
+        }
+        updateThemeState();
+      }
+    };
+
+    mediaQuery.addEventListener("change", onSystemChange);
+
+    return () => {
+      window.removeEventListener("themechange", updateThemeState);
+      mediaQuery.removeEventListener("change", onSystemChange);
+    };
   }, []);
 
   const toggleTheme = () => {
-    const nextDark = !isDark;
-    setIsDark(nextDark);
+    const isCurrentlyDark = document.documentElement.classList.contains("dark");
+    const nextDark = !isCurrentlyDark;
     if (nextDark) {
       document.documentElement.classList.add("dark");
       localStorage.setItem("theme", "dark");
@@ -37,10 +52,10 @@ export default function ThemeToggle({
       document.documentElement.classList.remove("dark");
       localStorage.setItem("theme", "light");
     }
+    setIsDark(nextDark);
     window.dispatchEvent(new Event("themechange"));
   };
 
-  const label = isDark ? "Light mode" : "Dark mode";
   const title = isDark ? "Switch to light theme" : "Switch to dark theme";
 
   return (
@@ -52,56 +67,53 @@ export default function ThemeToggle({
       className={`group flex flex-col md:flex-row items-center gap-1 text-[var(--white-icon)] hover:text-[var(--white)] transition-all cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-[var(--sec)] rounded-full p-1 md:p-1.5 hover:bg-[var(--white-icon-tr)] ${className}`}
     >
       <span className="relative flex items-center justify-center w-6 h-6 transition-transform duration-300 group-hover:scale-110">
-        {!mounted ? (
-          // Neutral fallback placeholder during SSR hydration
-          <span className="w-4 h-4 rounded-full bg-[var(--white-icon-tr)]" />
-        ) : isDark ? (
-          // Sun Icon (when dark, click to go light)
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="w-5 h-5 text-amber-400 transition-transform duration-500 rotate-0 group-hover:rotate-45"
-          >
-            <circle cx="12" cy="12" r="4" />
-            <path d="M12 2v2" />
-            <path d="M12 20v2" />
-            <path d="m4.93 4.93 1.41 1.41" />
-            <path d="m17.66 17.66 1.41 1.41" />
-            <path d="M2 12h2" />
-            <path d="M20 12h2" />
-            <path d="m6.34 17.66-1.41 1.41" />
-            <path d="m19.07 4.93-1.41 1.41" />
-          </svg>
-        ) : (
-          // Moon Icon (when light, click to go dark)
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="w-5 h-5 text-cyan-600 transition-transform duration-500 -rotate-12 group-hover:rotate-0"
-          >
-            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
-          </svg>
-        )}
+        {/* Sun Icon (shown in dark mode, click to switch to light) - instant pure CSS */}
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="w-5 h-5 text-amber-400 transition-transform duration-500 rotate-0 group-hover:rotate-45 hidden dark:block"
+        >
+          <circle cx="12" cy="12" r="4" />
+          <path d="M12 2v2" />
+          <path d="M12 20v2" />
+          <path d="m4.93 4.93 1.41 1.41" />
+          <path d="m17.66 17.66 1.41 1.41" />
+          <path d="M2 12h2" />
+          <path d="M20 12h2" />
+          <path d="m6.34 17.66-1.41 1.41" />
+          <path d="m19.07 4.93-1.41 1.41" />
+        </svg>
+
+        {/* Moon Icon (shown in light mode, click to switch to dark) - instant pure CSS */}
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="w-5 h-5 text-cyan-600 transition-transform duration-500 -rotate-12 group-hover:rotate-0 block dark:hidden"
+        >
+          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+        </svg>
       </span>
 
       {showLabel && (
-        <span className="text-xs md:text-sm font-medium transition-colors">
-          {label}
-        </span>
+        <>
+          <span className="text-xs md:text-sm font-medium transition-colors hidden dark:inline">
+            Light mode
+          </span>
+          <span className="text-xs md:text-sm font-medium transition-colors inline dark:hidden">
+            Dark mode
+          </span>
+        </>
       )}
-      <span className="md:hidden text-xs">
-        {mounted ? (isDark ? "Light" : "Dark") : "Theme"}
-      </span>
     </button>
   );
 }
