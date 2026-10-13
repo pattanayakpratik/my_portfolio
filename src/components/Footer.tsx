@@ -50,7 +50,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="w-full py-12 border-t border-[#ffffff10]">
+    <footer className="w-full py-12 border-t border-[var(--white-icon-tr)]">
       <div className="max-w-5xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 items-center">
           <div className="flex flex-col lg:items-start items-center space-y-6 gap-9">
@@ -77,13 +77,13 @@ export default function Footer() {
           <div className="flex flex-col items-center lg:items-end space-y-6">
             <div className="grid grid-cols-1 gap-3 w-fit py-6">
               {techBadges.map((tech) => (
-                <div key={tech.name} className="flex items-center justify-center lg:justify-normal space-x-3">
+                <div key={tech.name} className="flex items-center justify-center lg:justify-normal space-x-3 group">
                   <span className="text-[var(--white-icon)] text-sm">{tech.desc}</span>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={tech.icon}
                     alt={tech.alt}
-                    className="h-5 w-5 object-contain filter brightness-0 invert opacity-50"
+                    className="h-5 w-5 object-contain brightness-0 dark:invert opacity-60 dark:opacity-50 transition duration-300 group-hover:opacity-100"
                     loading="lazy"
                   />
                   <span className="text-[var(--white-icon)] text-sm">{tech.name}</span>
@@ -93,7 +93,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-[#ffffff10]">
+        <div className="mt-12 pt-8 border-t border-[var(--white-icon-tr)]">
           <p className="text-center text-sm text-[var(--white-icon)] space-y-2">
             <span className="block sm:inline">
               Copyright © {currentYear} {profile.name}. All rights reserved.

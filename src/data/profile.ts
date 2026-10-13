@@ -30,6 +30,7 @@ export const techStack = [
   { name: "Python", icon: "python" },
   { name: "Flask", icon: "flask" },
   { name: "Node.js", icon: "nodejs" },
+  { name: "Next.js", icon: "next" },
   { name: "PostgreSQL", icon: "postgresql" },
   { name: "MySQL", icon: "mysql" },
   { name: "Supabase", icon: "supabase" },

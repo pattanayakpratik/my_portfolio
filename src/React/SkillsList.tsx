@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import CodeTerminal from "@/components/CodeTerminal";
 
 const iconProps = {
   xmlns: "http://www.w3.org/2000/svg",
@@ -105,68 +106,97 @@ const SkillsList = () => {
   };
 
   return (
-    <div className="text-left pt-3 md:pt-9">
-      <h3 className="text-[var(--white)] text-3xl md:text-4xl font-semibold md:mb-6">
-        What I do?
-      </h3>
-      <ul className="space-y-4 mt-4 text-lg">
-        {skills.map(({ category, icon, items }) => {
-          const isOpen = openItem === category;
-          const panelId = `skill-panel-${category.replace(/\W+/g, "-").toLowerCase()}`;
-          return (
-            <li key={category} className="w-full">
-              <div
-                className={`md:w-[420px] w-full bg-[#1414149c] rounded-2xl text-left transition-all border overflow-hidden ${
-                  isOpen
-                    ? "border-[#22d3ee40]"
-                    : "border-[var(--white-icon-tr)] hover:border-[#ffffff25]"
-                }`}
-              >
-                <button
-                  type="button"
-                  onClick={() => toggleItem(category)}
-                  aria-expanded={isOpen}
-                  aria-controls={panelId}
-                  className="w-full flex items-center gap-3 p-4 cursor-pointer"
-                >
-                  {icon}
-                  <span className="flex items-center gap-2 flex-grow justify-between min-w-0">
-                    <span className="block truncate text-[var(--white)] text-lg">
-                      {category}
-                    </span>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                      className={`w-6 h-6 text-[var(--white)] transform transition-transform duration-300 flex-shrink-0 ${
-                        isOpen ? "rotate-180" : ""
+    <div className="text-left pt-3 md:pt-9 w-full">
+      <div className="mb-6">
+        <span className="block text-xs md:text-sm text-[var(--sec)] shiny-sec font-mono font-medium tracking-wider uppercase mb-1">
+          Capabilities &amp; Tech Stack
+        </span>
+        <h3 className="text-[var(--white)] text-3xl md:text-4xl font-semibold">
+          What I do?
+        </h3>
+      </div>
+      <div className="flex flex-col lg:flex-row items-start gap-8 lg:gap-10 w-full">
+        {/* Left: Skills Accordion */}
+        <div className="w-full lg:w-[420px] shrink-0">
+          <ul className="space-y-4 text-lg">
+            {skills.map(({ category, icon, items }) => {
+              const isOpen = openItem === category;
+              const panelId = `skill-panel-${category.replace(/\W+/g, "-").toLowerCase()}`;
+              return (
+                <li key={category} className="w-full">
+                  <div
+                    className={`relative w-full rounded-2xl text-left transition-all duration-300 border overflow-hidden ${
+                      isOpen
+                        ? "bg-gradient-to-r from-cyan-500/10 via-sky-500/[0.04] to-white dark:from-cyan-950/40 dark:via-[#141414] dark:to-[#141414] border-[var(--sec)] shadow-md shadow-cyan-500/10 ring-1 ring-[var(--sec)]/30"
+                        : "bg-[var(--card-bg)] border-[var(--white-icon-tr)] hover:border-[var(--sec)]/40 hover:shadow-md shadow-sm dark:shadow-none"
+                    }`}
+                  >
+                    {/* Glowing Left Indicator on Open */}
+                    {isOpen && (
+                      <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-[var(--sec)] to-sky-400" />
+                    )}
+
+                    <button
+                      type="button"
+                      onClick={() => toggleItem(category)}
+                      aria-expanded={isOpen}
+                      aria-controls={panelId}
+                      className="w-full flex items-center gap-3 p-4 cursor-pointer"
+                    >
+                      <div className={`transition-transform duration-300 ${isOpen ? "scale-110" : ""}`}>
+                        {icon}
+                      </div>
+                      <span className="flex items-center gap-2 flex-grow justify-between min-w-0">
+                        <span
+                          className={`block truncate text-lg transition-colors ${
+                            isOpen ? "text-[var(--white)] font-semibold" : "text-[var(--white)]"
+                          }`}
+                        >
+                          {category}
+                        </span>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                          className={`w-6 h-6 transform transition-transform duration-300 flex-shrink-0 ${
+                            isOpen ? "rotate-180 text-[var(--sec)]" : "text-[var(--white-icon)]"
+                          }`}
+                        >
+                          <path d="M11.9999 13.1714L16.9497 8.22168L18.3639 9.63589L11.9999 15.9999L5.63599 9.63589L7.0502 8.22168L11.9999 13.1714Z"></path>
+                        </svg>
+                      </span>
+                    </button>
+
+                    <div
+                      id={panelId}
+                      className={`transition-all duration-300 px-4 ${
+                        isOpen ? "max-h-[500px] pb-4 opacity-100" : "max-h-0 opacity-0"
                       }`}
                     >
-                      <path d="M11.9999 13.1714L16.9497 8.22168L18.3639 9.63589L11.9999 15.9999L5.63599 9.63589L7.0502 8.22168L11.9999 13.1714Z"></path>
-                    </svg>
-                  </span>
-                </button>
+                      <ul className="space-y-2 text-[var(--white-icon)] text-sm pl-1">
+                        {items.map((item) => (
+                          <li key={item} className="flex items-start gap-3">
+                            <span className="pl-1 text-[var(--sec)] font-bold">•</span>
+                            <span className="leading-snug">{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
 
-                <div
-                  id={panelId}
-                  className={`transition-all duration-300 px-4 ${
-                    isOpen ? "max-h-[500px] pb-4 opacity-100" : "max-h-0 opacity-0"
-                  }`}
-                >
-                  <ul className="space-y-2 text-[var(--white-icon)] text-sm">
-                    {items.map((item) => (
-                      <li key={item} className="flex items-start gap-3">
-                        <span className="pl-1 text-[var(--sec)]">•</span>
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </li>
-          );
-        })}
-      </ul>
+        {/* Right: Interactive Code Terminal (Desktop) */}
+        <div className="hidden lg:flex flex-1 w-full min-w-0 self-start">
+          <CodeTerminal
+            activeCategory={openItem || skills[0].category}
+            onSelectCategory={(category) => setOpenItem(category)}
+          />
+        </div>
+      </div>
     </div>
   );
 };

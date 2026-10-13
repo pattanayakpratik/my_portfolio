@@ -4,11 +4,12 @@ import { useState } from "react";
 import { profile } from "@/data/profile";
 
 const inputCls =
-  "px-4 py-3 bg-[#1414149c] text-[var(--white)] placeholder:text-[var(--white-icon)] border border-[var(--white-icon-tr)] rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--sec)] focus:border-transparent transition";
+  "px-4 py-3 bg-[var(--card-bg)] text-[var(--white)] placeholder:text-[var(--white-icon)] border border-[var(--white-icon-tr)] rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--sec)] focus:border-transparent transition shadow-sm dark:shadow-none";
 
 export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -16,6 +17,7 @@ export default function Contact() {
     const formData = new FormData(form);
 
     setIsSubmitting(true);
+    setErrorMessage(null);
     try {
       const response = await fetch(form.action, {
         method: "POST",
@@ -27,20 +29,20 @@ export default function Contact() {
         setIsSubmitted(true);
         form.reset();
       } else {
-        const data = await response.json();
+        const data = await response.json().catch(() => null);
         console.error("Form error:", data);
-        alert("There was a problem sending your message.");
+        setErrorMessage("Unable to send message right now. Please email me directly!");
       }
     } catch (err) {
       console.error("Submit error:", err);
-      alert("There was a problem sending your message.");
+      setErrorMessage("Network error. Please check your connection or email me directly!");
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <section id="contact" className="w-full py-16 border-t border-[#ffffff10]">
+    <section id="contact" className="w-full py-16 border-t border-[var(--white-icon-tr)]">
       <div className="max-w-5xl mx-auto">
         <div data-reveal="">
           <h2 className="text-lg text-[var(--sec)] mb-2 shiny-sec">Let&apos;s talk</h2>
@@ -135,11 +137,26 @@ export default function Contact() {
                   className={`${inputCls} resize-none`}
                 ></textarea>
 
+                {errorMessage && (
+                  <div
+                    role="alert"
+                    className="p-3.5 rounded-xl border border-red-500/30 bg-red-500/10 text-red-200 text-sm flex items-center justify-between gap-3"
+                  >
+                    <span>⚠️ {errorMessage}</span>
+                    <a
+                      href={`mailto:${profile.email}`}
+                      className="text-[var(--sec)] hover:underline shrink-0 font-medium"
+                    >
+                      Email directly →
+                    </a>
+                  </div>
+                )}
+
                 <button
                   id="contact-submit"
                   type="submit"
                   disabled={isSubmitting}
-                  className="group inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-medium text-[var(--background)] bg-[var(--sec)] hover:shadow-[0_8px_30px_-6px_#22d3ee80] transition disabled:opacity-60 disabled:cursor-wait"
+                  className="group inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-medium text-white dark:text-[#101010] bg-[var(--sec)] hover:shadow-[0_8px_30px_-6px_rgba(8,145,178,0.4)] dark:hover:shadow-[0_8px_30px_-6px_#22d3ee80] transition disabled:opacity-60 disabled:cursor-wait"
                 >
                   <span>{isSubmitting ? "Sending…" : "Send message"}</span>
                   <svg
