@@ -2,10 +2,7 @@ import { techStack } from "@/data/profile";
 
 export default function LogoWall() {
   return (
-    <div className="relative overflow-x-hidden py-8" aria-label="Technologies I work with">
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[var(--background)] to-transparent z-20"></div>
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[var(--background)] to-transparent z-20"></div>
-
+    <div className="relative overflow-x-hidden py-8 logo-marquee-mask" aria-label="Technologies I work with">
       <div className="flex animate-scroll w-max will-change-transform hover:[animation-play-state:paused]">
         {[...techStack, ...techStack].map((tech, index) => (
           <div

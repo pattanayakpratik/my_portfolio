@@ -276,6 +276,43 @@ html.dark .resume-btn:hover {
   }
 }
 
+/* Logo marquee smooth edge fade mask */
+.logo-marquee-mask {
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 40px,
+    black calc(100% - 40px),
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 40px,
+    black calc(100% - 40px),
+    transparent 100%
+  );
+}
+
+@media (min-width: 768px) {
+  .logo-marquee-mask {
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 90px,
+      black calc(100% - 90px),
+      transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 90px,
+      black calc(100% - 90px),
+      transparent 100%
+    );
+  }
+}
+
 /* Navigation active link indicator */
 nav.scrolling {
   background-color: var(--component-bg);
