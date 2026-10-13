@@ -11,6 +11,34 @@ export const metadata: Metadata = {
   title: `${profile.name} | ${profile.role}`,
   description: profile.summary,
   authors: [{ name: profile.name }],
+  keywords: [
+    "Pratik Pattanayak",
+    "Backend Engineer",
+    "AI Engineer",
+    "Python Developer",
+    "Generative AI",
+    "AI Agents",
+    "Flask",
+    "Next.js",
+    "Machine Learning",
+    "PostgreSQL",
+    "Supabase",
+    "Portfolio",
+  ],
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   icons: {
     icon: [
       { url: "/favicon.svg", type: "image/svg+xml" },
@@ -18,6 +46,7 @@ export const metadata: Metadata = {
     ],
     apple: "/apple-touch-icon.png",
   },
+  manifest: "/manifest.webmanifest",
   openGraph: {
     title: `${profile.name} | ${profile.role}`,
     description: profile.summary,
@@ -26,6 +55,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: "/og.image.png",
+        width: 1200,
+        height: 630,
         alt: `${profile.name} — ${profile.role}`,
       },
     ],
@@ -36,7 +67,14 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${profile.name} | ${profile.role}`,
     description: profile.summary,
-    images: ["/og.image.png"],
+    images: [
+      {
+        url: "/og.image.png",
+        width: 1200,
+        height: 630,
+        alt: `${profile.name} — ${profile.role}`,
+      },
+    ],
   },
 };
 

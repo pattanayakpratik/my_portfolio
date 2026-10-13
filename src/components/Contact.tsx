@@ -9,6 +9,7 @@ const inputCls =
 export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -16,6 +17,7 @@ export default function Contact() {
     const formData = new FormData(form);
 
     setIsSubmitting(true);
+    setErrorMessage(null);
     try {
       const response = await fetch(form.action, {
         method: "POST",
@@ -27,13 +29,13 @@ export default function Contact() {
         setIsSubmitted(true);
         form.reset();
       } else {
-        const data = await response.json();
+        const data = await response.json().catch(() => null);
         console.error("Form error:", data);
-        alert("There was a problem sending your message.");
+        setErrorMessage("Unable to send message right now. Please email me directly!");
       }
     } catch (err) {
       console.error("Submit error:", err);
-      alert("There was a problem sending your message.");
+      setErrorMessage("Network error. Please check your connection or email me directly!");
     } finally {
       setIsSubmitting(false);
     }
@@ -134,6 +136,21 @@ export default function Contact() {
                   required
                   className={`${inputCls} resize-none`}
                 ></textarea>
+
+                {errorMessage && (
+                  <div
+                    role="alert"
+                    className="p-3.5 rounded-xl border border-red-500/30 bg-red-500/10 text-red-200 text-sm flex items-center justify-between gap-3"
+                  >
+                    <span>⚠️ {errorMessage}</span>
+                    <a
+                      href={`mailto:${profile.email}`}
+                      className="text-[var(--sec)] hover:underline shrink-0 font-medium"
+                    >
+                      Email directly →
+                    </a>
+                  </div>
+                )}
 
                 <button
                   id="contact-submit"

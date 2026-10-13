@@ -93,11 +93,15 @@ export default function Nav() {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          navLinks.forEach((link) => link.classList.remove("active"));
+          navLinks.forEach((link) => {
+            link.classList.remove("active");
+            link.removeAttribute("aria-current");
+          });
           const id = entry.target.getAttribute("id");
-          const activeLink = document.querySelector(`nav a[href="#${id}"]`);
+          const activeLink = document.querySelector<HTMLAnchorElement>(`nav a[href="#${id}"]`);
           if (activeLink) {
             activeLink.classList.add("active");
+            activeLink.setAttribute("aria-current", "location");
           }
         }
       });
@@ -134,6 +138,7 @@ export default function Nav() {
               <li key={item.label} className="flex-1 md:flex-none">
                 <a
                   href={item.href}
+                  aria-label={item.label}
                   onClick={(e) => handleNavClick(e, item.href)}
                   className="flex flex-col items-center gap-1 text-[var(--white-icon)] transition-colors text-xs md:text-base relative group"
                 >
