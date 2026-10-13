@@ -317,8 +317,12 @@ html.dark .resume-btn:hover {
 nav.scrolling {
   background-color: var(--component-bg);
   border-color: var(--white-icon-tr);
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.08);
   border-radius: 9999px;
+}
+
+html.dark nav.scrolling {
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.45);
 }
 
 nav a.active .nav-indicator {
@@ -328,6 +332,7 @@ nav a.active .nav-indicator {
 
 nav a.active {
   color: var(--white) !important;
+  font-weight: 600;
 }
 
 @media (prefers-reduced-motion: reduce) {
