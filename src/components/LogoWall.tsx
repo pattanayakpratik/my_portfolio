@@ -17,7 +17,7 @@ export default function LogoWall() {
             <img
               src={`/svg/tech/${tech.icon}.svg`}
               alt=""
-              className="h-7 w-7 object-contain brightness-0 invert opacity-50 transition duration-300 group-hover:opacity-100 group-hover:scale-110"
+              className="h-7 w-7 object-contain brightness-0 dark:invert opacity-60 dark:opacity-50 transition duration-300 group-hover:opacity-100 group-hover:scale-110"
               width={28}
               height={28}
               loading={index < techStack.length ? "eager" : "lazy"}

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import ThemeToggle from "./ThemeToggle";
 
 interface NavItem {
   label: string;
@@ -130,10 +131,10 @@ export default function Nav() {
       <nav
         ref={navRef}
         id="main-nav"
-        className="fixed left-1/2 -translate-x-1/2 z-[100] bg-transparent border border-1 border-transparent backdrop-blur-xl transition-all duration-500 ease-in-out md:top-6 md:bottom-auto bottom-0 w-full md:w-[80%] max-md:rounded-t-2xl max-md:border-[#ffffff10] max-md:pb-[env(safe-area-inset-bottom,0px)]"
+        className="fixed left-1/2 -translate-x-1/2 z-[100] bg-transparent border border-1 border-transparent backdrop-blur-xl transition-all duration-500 ease-in-out md:top-6 md:bottom-auto bottom-0 w-full md:w-[80%] max-md:rounded-t-2xl max-md:border-[var(--white-icon-tr)] max-md:bg-[var(--component-bg)] max-md:pb-[env(safe-area-inset-bottom,0px)]"
       >
         <div className="container mx-auto flex justify-center items-center p-3">
-          <ul className="flex w-full justify-between md:space-x-6 md:justify-center md:gap-12 gap-6">
+          <ul className="flex w-full justify-between md:space-x-6 md:justify-center md:gap-10 gap-3 items-center">
             {navItems.map((item) => (
               <li key={item.label} className="flex-1 md:flex-none">
                 <a
@@ -151,6 +152,12 @@ export default function Nav() {
                 </a>
               </li>
             ))}
+            <li className="hidden md:flex items-center text-[var(--white-icon-tr)] select-none" aria-hidden="true">
+              |
+            </li>
+            <li className="flex-1 md:flex-none flex items-center justify-center">
+              <ThemeToggle />
+            </li>
           </ul>
         </div>
       </nav>

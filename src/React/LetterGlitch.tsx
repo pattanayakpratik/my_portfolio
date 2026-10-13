@@ -1,20 +1,23 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState, useCallback } from "react";
 
 const LetterGlitch = ({
   glitchColors = ["#0e7490", "#22D3EE", "#083344"],
+  lightGlitchColors = ["#0891b2", "#0284c7", "#475569", "#0f172a"],
   glitchSpeed = 33,
   centerVignette = false,
   outerVignette = false,
   smooth = true,
 }: {
-  glitchColors: string[];
-  glitchSpeed: number;
-  centerVignette: boolean;
-  outerVignette: boolean;
-  smooth: boolean;
+  glitchColors?: string[];
+  lightGlitchColors?: string[];
+  glitchSpeed?: number;
+  centerVignette?: boolean;
+  outerVignette?: boolean;
+  smooth?: boolean;
 }) => {
+  const [isDark, setIsDark] = useState(true);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const animationRef = useRef<number | null>(null);
   const letters = useRef<
@@ -100,9 +103,41 @@ const LetterGlitch = ({
     ];
   };
 
-  const getRandomColor = () => {
-    return glitchColors[Math.floor(Math.random() * glitchColors.length)];
-  };
+  const getRandomColor = useCallback(() => {
+    const activeColors = isDark ? glitchColors : lightGlitchColors;
+    return activeColors[Math.floor(Math.random() * activeColors.length)];
+  }, [isDark, glitchColors, lightGlitchColors]);
+
+  useEffect(() => {
+    const checkTheme = () => {
+      setIsDark(document.documentElement.classList.contains("dark"));
+    };
+    checkTheme();
+
+    window.addEventListener("themechange", checkTheme);
+    const observer = new MutationObserver((mutations) => {
+      for (const m of mutations) {
+        if (m.attributeName === "class") checkTheme();
+      }
+    });
+    observer.observe(document.documentElement, { attributes: true });
+
+    return () => {
+      window.removeEventListener("themechange", checkTheme);
+      observer.disconnect();
+    };
+  }, []);
+
+  useEffect(() => {
+    if (letters.current.length > 0) {
+      letters.current.forEach((l) => {
+        l.color = getRandomColor();
+        l.targetColor = getRandomColor();
+        l.colorProgress = 1;
+      });
+      drawLetters();
+    }
+  }, [isDark, getRandomColor]);
 
   const hexToRgb = (hex: string) => {
     const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
@@ -326,13 +361,29 @@ const LetterGlitch = ({
   }, [glitchSpeed, smooth]);
 
   return (
-    <div className="relative w-full h-full bg-[#101010] overflow-hidden">
+    <div
+      className={`relative w-full h-full overflow-hidden transition-colors duration-500 ${
+        isDark ? "bg-[#101010]" : "bg-[#f1f5f9]"
+      }`}
+    >
       <canvas ref={canvasRef} className="block w-full h-full" />
       {outerVignette && (
-        <div className="absolute top-0 left-0 w-full h-full pointer-events-none bg-[radial-gradient(circle,_rgba(16,16,16,0)_60%,_rgba(16,16,16,1)_100%)]"></div>
+        <div
+          className={`absolute top-0 left-0 w-full h-full pointer-events-none transition-colors duration-500 ${
+            isDark
+              ? "bg-[radial-gradient(circle,_rgba(16,16,16,0)_60%,_rgba(16,16,16,1)_100%)]"
+              : "bg-[radial-gradient(circle,_rgba(241,245,249,0)_60%,_rgba(241,245,249,1)_100%)]"
+          }`}
+        ></div>
       )}
       {centerVignette && (
-        <div className="absolute top-0 left-0 w-full h-full pointer-events-none bg-[radial-gradient(circle,_rgba(0,0,0,0.8)_0%,_rgba(0,0,0,0)_60%)]"></div>
+        <div
+          className={`absolute top-0 left-0 w-full h-full pointer-events-none transition-colors duration-500 ${
+            isDark
+              ? "bg-[radial-gradient(circle,_rgba(0,0,0,0.8)_0%,_rgba(0,0,0,0)_60%)]"
+              : "bg-[radial-gradient(circle,_rgba(241,245,249,0.8)_0%,_rgba(241,245,249,0)_60%)]"
+          }`}
+        ></div>
       )}
     </div>
   );

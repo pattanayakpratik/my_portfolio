@@ -4,7 +4,7 @@ import SkillsList from "@/React/SkillsList";
 import { profile, stats } from "@/data/profile";
 
 const iconBtn =
-  "text-[var(--white-icon)] hover:text-white transition duration-300 ease-in-out border border-1 border-[var(--white-icon-tr)] p-3 rounded-xl bg-[#1414149c] hover:bg-[var(--white-icon-tr)] hover:-translate-y-0.5";
+  "text-[var(--white-icon)] hover:text-[var(--white)] transition duration-300 ease-in-out border border-1 border-[var(--white-icon-tr)] p-3 rounded-xl bg-[var(--card-bg)] hover:bg-[var(--white-icon-tr)] hover:-translate-y-0.5 shadow-sm dark:shadow-none";
 
 const socials = [
   {
@@ -33,7 +33,7 @@ export default function Home() {
             <p className="text-md md:text-lg text-[var(--white-icon)]">
               Hi, I&apos;m {profile.firstName} 👋
             </p>
-            <span className="inline-flex items-center gap-2 text-xs md:text-sm text-[var(--white-icon)] border border-[var(--white-icon-tr)] bg-[#1414149c] rounded-full px-3 py-1">
+            <span className="inline-flex items-center gap-2 text-xs md:text-sm text-[var(--white-icon)] border border-[var(--white-icon-tr)] bg-[var(--card-bg)] rounded-full px-3 py-1 shadow-sm dark:shadow-none">
               <span className="relative flex size-2">
                 <span className="absolute inline-flex h-full w-full rounded-full bg-[var(--accent)] opacity-75 animate-ping"></span>
                 <span className="relative inline-flex size-2 rounded-full bg-[var(--accent)]"></span>
@@ -103,7 +103,7 @@ export default function Home() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="View and download resume (PDF)"
-              className="resume-btn group inline-flex items-center gap-2 h-[58px] px-5 rounded-xl font-medium text-[var(--background)] bg-[var(--sec)] hover:-translate-y-0.5 transition duration-300"
+              className="resume-btn group inline-flex items-center gap-2 h-[58px] px-5 rounded-xl font-medium text-white dark:text-[#101010] bg-[var(--sec)] hover:-translate-y-0.5 transition duration-300"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -137,7 +137,8 @@ export default function Home() {
           <SkillsList />
           <div className="flex justify-center md:w-full md:h-[292px] size-[290px] pt-3 md:pt-9 md:ml-16">
             <LetterGlitch
-              glitchColors={["#0e7490", "#22D3EE", "#083344"]}
+              glitchColors={["#0e7490", "#22D3EE", "#083344", "#38bdf8"]}
+              lightGlitchColors={["#0891b2", "#0284c7", "#475569", "#0f172a"]}
               glitchSpeed={33}
               centerVignette={false}
               outerVignette={true}

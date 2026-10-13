@@ -116,10 +116,10 @@ const SkillsList = () => {
           return (
             <li key={category} className="w-full">
               <div
-                className={`md:w-[420px] w-full bg-[#1414149c] rounded-2xl text-left transition-all border overflow-hidden ${
+                className={`md:w-[420px] w-full bg-[var(--card-bg)] rounded-2xl text-left transition-all border overflow-hidden shadow-sm dark:shadow-none ${
                   isOpen
-                    ? "border-[#22d3ee40]"
-                    : "border-[var(--white-icon-tr)] hover:border-[#ffffff25]"
+                    ? "border-[var(--sec)]/50"
+                    : "border-[var(--white-icon-tr)] hover:border-[var(--sec)]/30"
                 }`}
               >
                 <button

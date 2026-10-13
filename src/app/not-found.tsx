@@ -14,7 +14,7 @@ export default function NotFound() {
         <Link
           id="back-home"
           href="/"
-          className="inline-flex items-center gap-2 h-[52px] px-6 rounded-xl font-medium text-[var(--background)] bg-[var(--sec)] hover:-translate-y-0.5 transition duration-300"
+          className="inline-flex items-center gap-2 h-[52px] px-6 rounded-xl font-medium text-white dark:text-[#101010] bg-[var(--sec)] hover:-translate-y-0.5 transition duration-300"
         >
           ← Back to home
         </Link>
