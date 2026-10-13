@@ -261,25 +261,65 @@ const LetterGlitch = ({
 
     context.current = canvas.getContext("2d");
     resizeCanvas();
-    if (!prefersReducedMotion) {
-      animate();
-    }
+
+    let isVisible = false;
+
+    const startAnimation = () => {
+      if (!animationRef.current && !prefersReducedMotion && isVisible && !document.hidden) {
+        lastGlitchTime.current = Date.now();
+        animationRef.current = requestAnimationFrame(animate);
+      }
+    };
+
+    const stopAnimation = () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+        animationRef.current = null;
+      }
+    };
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisible = entry.isIntersecting;
+        if (isVisible) {
+          startAnimation();
+        } else {
+          stopAnimation();
+        }
+      },
+      { threshold: 0.05 }
+    );
+
+    observer.observe(canvas);
+
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        stopAnimation();
+      } else if (isVisible) {
+        startAnimation();
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
 
     let resizeTimeout: ReturnType<typeof setTimeout>;
-
     const handleResize = () => {
       clearTimeout(resizeTimeout);
       resizeTimeout = setTimeout(() => {
-        cancelAnimationFrame(animationRef.current as number);
+        stopAnimation();
         resizeCanvas();
-        animate();
+        if (isVisible && !document.hidden) {
+          startAnimation();
+        }
       }, 100);
     };
 
     window.addEventListener("resize", handleResize);
 
     return () => {
-      cancelAnimationFrame(animationRef.current!);
+      stopAnimation();
+      observer.disconnect();
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
       window.removeEventListener("resize", handleResize);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps

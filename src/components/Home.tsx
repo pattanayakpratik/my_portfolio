@@ -102,6 +102,7 @@ export default function Home() {
               href={profile.resume}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="View and download resume (PDF)"
               className="resume-btn group inline-flex items-center gap-2 h-[58px] px-5 rounded-xl font-medium text-[var(--background)] bg-[var(--sec)] hover:-translate-y-0.5 transition duration-300"
             >
               <svg
