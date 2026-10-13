@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" width="180" height="180" fill="none">
+  <mask id="next-n-cutout-tech">
+    <circle cx="90" cy="90" r="90" fill="#ffffff" />
+    <path d="M149.508 157.52L69.142 54H54V125.97H66.1136V69.3836L139.999 164.845C143.333 162.614 146.509 160.165 149.508 157.52Z" fill="#000000" />
+    <rect x="115" y="54" width="12" height="72" fill="#000000" />
+  </mask>
+  <circle cx="90" cy="90" r="90" fill="#000000" mask="url(#next-n-cutout-tech)" />
+</svg>
