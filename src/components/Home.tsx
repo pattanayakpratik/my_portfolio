@@ -1,9 +1,13 @@
+"use client";
+
+import { useState } from "react";
 import LogoWall from "@/components/LogoWall";
 import SkillsList from "@/React/SkillsList";
 import { profile, stats } from "@/data/profile";
+import { showToast } from "./Toast";
 
 const iconBtn =
-  "text-[var(--white-icon)] hover:text-[var(--white)] transition duration-300 ease-in-out border border-1 border-[var(--white-icon-tr)] p-3 rounded-xl bg-[var(--card-bg)] hover:bg-[var(--white-icon-tr)] hover:-translate-y-0.5 shadow-sm dark:shadow-none";
+  "text-[var(--white-icon)] hover:text-[var(--white)] transition duration-300 ease-in-out border border-1 border-[var(--white-icon-tr)] p-3 rounded-xl bg-[var(--card-bg)] hover:bg-[var(--white-icon-tr)] hover:-translate-y-0.5 shadow-sm dark:shadow-none cursor-pointer";
 
 const socials = [
   {
@@ -24,6 +28,15 @@ const socials = [
 ];
 
 export default function Home() {
+  const [emailCopied, setEmailCopied] = useState(false);
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText(profile.email);
+    setEmailCopied(true);
+    showToast("Email copied to clipboard!", "📋");
+    setTimeout(() => setEmailCopied(false), 2500);
+  };
+
   return (
     <section className="text-[var(--white)] mt-12 md:mt-0" id="home">
       <div className="max-w-5xl mx-auto space-y-8 md:pt-40 md:pb-24 pb-14">
@@ -82,25 +95,47 @@ export default function Home() {
               </a>
             ))}
 
-            <a
-              href={`mailto:${profile.email}`}
-              aria-label="Email"
-              title="Email"
-              className={iconBtn}
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="size-8">
-                <path
-                  fill="currentColor"
-                  d="m18.73 5.41l-1.28 1L12 10.46L6.55 6.37l-1.28-1A2 2 0 0 0 2 7.05v11.59A1.36 1.36 0 0 0 3.36 20h3.19v-7.72L12 16.37l5.45-4.09V20h3.19A1.36 1.36 0 0 0 22 18.64V7.05a2 2 0 0 0-3.27-1.64"
-                ></path>
-              </svg>
-            </a>
+            {/* Email Button with Quick Copy */}
+            <div className="inline-flex items-center rounded-xl border border-[var(--white-icon-tr)] bg-[var(--card-bg)] shadow-sm dark:shadow-none hover:-translate-y-0.5 transition duration-300">
+              <a
+                href={`mailto:${profile.email}`}
+                aria-label="Send email"
+                title={`Email: ${profile.email}`}
+                className="p-3 text-[var(--white-icon)] hover:text-[var(--white)] transition"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="size-8">
+                  <path
+                    fill="currentColor"
+                    d="m18.73 5.41l-1.28 1L12 10.46L6.55 6.37l-1.28-1A2 2 0 0 0 2 7.05v11.59A1.36 1.36 0 0 0 3.36 20h3.19v-7.72L12 16.37l5.45-4.09V20h3.19A1.36 1.36 0 0 0 22 18.64V7.05a2 2 0 0 0-3.27-1.64"
+                  ></path>
+                </svg>
+              </a>
+              <button
+                type="button"
+                onClick={handleCopyEmail}
+                aria-label="Copy email to clipboard"
+                title="Copy email to clipboard"
+                className="pr-3 pl-1 py-3 text-[var(--white-icon)] hover:text-[var(--sec)] transition cursor-pointer border-l border-[var(--white-icon-tr)]"
+              >
+                {emailCopied ? (
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-5 text-[var(--accent)]">
+                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                  </svg>
+                ) : (
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-5">
+                    <path d="M16 1H4C2.9 1 2 1.9 2 3V17H4V3H16V1ZM19 5H8C6.9 5 6 5.9 6 7V21C6 22.1 6.9 23 8 23H19C20.1 23 21 22.1 21 21V7C21 5.9 20.1 5 19 5ZM19 21H8V7H19V21Z" />
+                  </svg>
+                )}
+              </button>
+            </div>
 
+            {/* Resume Button */}
             <a
               id="download-resume"
               href={profile.resume}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => showToast("Opening Resume PDF...", "📄")}
               aria-label="View and download resume (PDF)"
               className="resume-btn group inline-flex items-center gap-2 h-[58px] px-5 rounded-xl font-medium text-white dark:text-[#101010] bg-[var(--sec)] hover:-translate-y-0.5 transition duration-300"
             >

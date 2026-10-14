@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { profile } from "@/data/profile";
+import { showToast } from "./Toast";
 
 const inputCls =
   "px-4 py-3 bg-[var(--card-bg)] text-[var(--white)] placeholder:text-[var(--white-icon)] border border-[var(--white-icon-tr)] rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--sec)] focus:border-transparent transition shadow-sm dark:shadow-none";
@@ -10,6 +11,17 @@ export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [messageLength, setMessageLength] = useState(0);
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyEmail = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    navigator.clipboard.writeText(profile.email);
+    setCopied(true);
+    showToast("Email copied to clipboard!", "📋");
+    setTimeout(() => setCopied(false), 2500);
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -28,6 +40,8 @@ export default function Contact() {
       if (response.ok) {
         setIsSubmitted(true);
         form.reset();
+        setMessageLength(0);
+        showToast("Message sent successfully! 🚀", "✅");
       } else {
         const data = await response.json().catch(() => null);
         console.error("Form error:", data);
@@ -58,24 +72,51 @@ export default function Contact() {
             </p>
 
             <div className="space-y-3">
-              <a
-                id="contact-email"
-                href={`mailto:${profile.email}`}
-                className="card group flex items-center gap-4 p-4"
-              >
-                <span className="size-10 flex items-center justify-center rounded-lg bg-[#22d3ee1a] text-[var(--sec)]">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-5">
-                    <path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM20 7.23792L12.0718 14.338L4 7.21594V19H20V7.23792ZM4.51146 5L12.0619 11.662L19.501 5H4.51146Z"></path>
-                  </svg>
-                </span>
-                <span className="min-w-0">
-                  <span className="block text-xs uppercase tracking-wider">Email</span>
-                  <span className="block text-[var(--white)] truncate group-hover:text-[var(--sec)] transition-colors">
-                    {profile.email}
+              {/* Email Card with One-Click Copy */}
+              <div className="card group flex items-center justify-between p-4 transition-all">
+                <a
+                  id="contact-email"
+                  href={`mailto:${profile.email}`}
+                  className="flex items-center gap-4 min-w-0 flex-grow"
+                  title="Send email via mail client"
+                >
+                  <span className="size-10 flex items-center justify-center rounded-lg bg-[#22d3ee1a] text-[var(--sec)] shrink-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-5">
+                      <path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM20 7.23792L12.0718 14.338L4 7.21594V19H20V7.23792ZM4.51146 5L12.0619 11.662L19.501 5H4.51146Z"></path>
+                    </svg>
                   </span>
-                </span>
-              </a>
+                  <span className="min-w-0">
+                    <span className="block text-xs uppercase tracking-wider text-[var(--white-icon)]">Email</span>
+                    <span className="block text-[var(--white)] truncate group-hover:text-[var(--sec)] transition-colors">
+                      {profile.email}
+                    </span>
+                  </span>
+                </a>
 
+                {/* Instant Copy Button */}
+                <button
+                  type="button"
+                  onClick={handleCopyEmail}
+                  aria-label="Copy email address"
+                  title="Copy email to clipboard"
+                  className="shrink-0 p-2 rounded-lg border border-[var(--white-icon-tr)] text-[var(--white-icon)] hover:text-[var(--white)] hover:bg-[var(--white-icon-tr)] transition cursor-pointer"
+                >
+                  {copied ? (
+                    <span className="flex items-center gap-1 text-xs text-[var(--accent)] font-medium">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-4">
+                        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                      </svg>
+                      Copied
+                    </span>
+                  ) : (
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-4">
+                      <path d="M16 1H4C2.9 1 2 1.9 2 3V17H4V3H16V1ZM19 5H8C6.9 5 6 5.9 6 7V21C6 22.1 6.9 23 8 23H19C20.1 23 21 22.1 21 21V7C21 5.9 20.1 5 19 5ZM19 21H8V7H19V21Z" />
+                    </svg>
+                  )}
+                </button>
+              </div>
+
+              {/* Location Card */}
               <div className="card flex items-center gap-4 p-4">
                 <span className="size-10 flex items-center justify-center rounded-lg bg-[#22d3ee1a] text-[var(--sec)]">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-5">
@@ -106,7 +147,7 @@ export default function Contact() {
                   id="contact-name"
                   type="text"
                   name="name"
-                  placeholder="Name"
+                  placeholder="Your Name"
                   autoComplete="name"
                   required
                   className={inputCls}
@@ -119,23 +160,30 @@ export default function Contact() {
                   id="contact-reply"
                   type="email"
                   name="email"
-                  placeholder="Email"
+                  placeholder="Your Email"
                   autoComplete="email"
                   required
                   className={inputCls}
                 />
 
-                <label className="sr-only" htmlFor="contact-message">
-                  Message
-                </label>
-                <textarea
-                  id="contact-message"
-                  name="message"
-                  placeholder="Message"
-                  rows={6}
-                  required
-                  className={`${inputCls} resize-none`}
-                ></textarea>
+                <div className="relative">
+                  <label className="sr-only" htmlFor="contact-message">
+                    Message
+                  </label>
+                  <textarea
+                    id="contact-message"
+                    name="message"
+                    placeholder="Your Message"
+                    rows={6}
+                    maxLength={1000}
+                    required
+                    onChange={(e) => setMessageLength(e.target.value.length)}
+                    className={`${inputCls} w-full resize-none`}
+                  ></textarea>
+                  <span className="absolute bottom-3 right-4 text-[11px] text-[var(--white-icon)] pointer-events-none">
+                    {messageLength} / 1000
+                  </span>
+                </div>
 
                 {errorMessage && (
                   <div
@@ -156,7 +204,7 @@ export default function Contact() {
                   id="contact-submit"
                   type="submit"
                   disabled={isSubmitting}
-                  className="group inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-medium text-white dark:text-[#101010] bg-[var(--sec)] hover:shadow-[0_8px_30px_-6px_rgba(8,145,178,0.4)] dark:hover:shadow-[0_8px_30px_-6px_#22d3ee80] transition disabled:opacity-60 disabled:cursor-wait"
+                  className="group inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-medium text-white dark:text-[#101010] bg-[var(--sec)] hover:shadow-[0_8px_30px_-6px_rgba(8,145,178,0.4)] dark:hover:shadow-[0_8px_30px_-6px_#22d3ee80] transition disabled:opacity-60 disabled:cursor-wait cursor-pointer"
                 >
                   <span>{isSubmitting ? "Sending…" : "Send message"}</span>
                   <svg
@@ -173,9 +221,26 @@ export default function Contact() {
               <div
                 id="form-message"
                 role="status"
-                className="card p-6 flex justify-center items-center text-[var(--white)] text-lg"
+                className="card p-8 flex flex-col items-center justify-center text-center gap-4 text-[var(--white)] animate-in fade-in zoom-in-95 duration-300"
               >
-                ✅ Thank you for your message! I&apos;ll get back to you soon.
+                <div className="size-14 rounded-full bg-[var(--accent)]/15 text-[var(--accent)] flex items-center justify-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-8">
+                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="text-xl font-semibold mb-1">Message Sent!</h4>
+                  <p className="text-sm text-[var(--white-icon)] max-w-sm">
+                    Thank you for reaching out. I&apos;ll review your message and reply as soon as possible.
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setIsSubmitted(false)}
+                  className="mt-2 text-xs text-[var(--sec)] hover:underline font-medium cursor-pointer"
+                >
+                  Send another message →
+                </button>
               </div>
             )}
           </div>
