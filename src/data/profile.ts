@@ -47,6 +47,7 @@ export const techStack = [
   { name: "Java", icon: "java" },
   { name: "C++", icon: "cplusplus" },
   { name: "C#", icon: "csharp" },
+  { name: ".NET", icon: "dotnet" },
   { name: "Bash", icon: "bash" },
   { name: "HTML5", icon: "html5" },
   { name: "CSS3", icon: "css3" },

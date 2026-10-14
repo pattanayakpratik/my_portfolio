@@ -169,18 +169,20 @@ const SkillsList = () => {
 
                     <div
                       id={panelId}
-                      className={`transition-all duration-300 px-4 ${
-                        isOpen ? "max-h-[500px] pb-4 opacity-100" : "max-h-0 opacity-0"
+                      className={`grid transition-all duration-300 ease-in-out px-4 ${
+                        isOpen ? "grid-rows-[1fr] opacity-100 pb-4" : "grid-rows-[0fr] opacity-0 pb-0"
                       }`}
                     >
-                      <ul className="space-y-2 text-[var(--white-icon)] text-sm pl-1">
-                        {items.map((item) => (
-                          <li key={item} className="flex items-start gap-3">
-                            <span className="pl-1 text-[var(--sec)] font-bold">•</span>
-                            <span className="leading-snug">{item}</span>
-                          </li>
-                        ))}
-                      </ul>
+                      <div className="overflow-hidden">
+                        <ul className="space-y-2 text-[var(--white-icon)] text-sm pl-1">
+                          {items.map((item) => (
+                            <li key={item} className="flex items-start gap-3">
+                              <span className="pl-1 text-[var(--sec)] font-bold">•</span>
+                              <span className="leading-snug">{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
                   </div>
                 </li>
@@ -190,7 +192,7 @@ const SkillsList = () => {
         </div>
 
         {/* Right: Interactive Code Terminal (Desktop) */}
-        <div className="hidden lg:flex flex-1 w-full min-w-0 self-start">
+        <div className="hidden lg:flex flex-1 w-full min-w-0 self-start sticky top-24 transition-all duration-300">
           <CodeTerminal
             activeCategory={openItem || skills[0].category}
             onSelectCategory={(category) => setOpenItem(category)}
