@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import ThemeToggle from "./ThemeToggle";
+import { openCommandMenu } from "./CommandMenu";
 
 interface NavItem {
   label: string;
@@ -161,7 +162,35 @@ export default function Nav() {
               </li>
             ))}
 
-            <li className="flex-1 md:flex-none flex items-center justify-center">
+            <li className="flex-1 md:flex-none flex items-center justify-center gap-1 md:gap-1.5">
+              <button
+                type="button"
+                onClick={openCommandMenu}
+                aria-label="Open command palette (Ctrl+K)"
+                title="Search / Command Palette (Ctrl+K)"
+                className="group flex flex-col md:flex-row items-center gap-1 text-[var(--white-icon)] hover:text-[var(--white)] transition-all cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-[var(--sec)] rounded-full p-1 md:px-2 md:py-1.5 hover:bg-[var(--white-icon-tr)]"
+              >
+                <span className="flex items-center justify-center w-6 h-6 md:w-5 md:h-5 transition-transform duration-300 group-hover:scale-110">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="size-4 md:size-4"
+                  >
+                    <circle cx="11" cy="11" r="8" />
+                    <path d="m21 21-4.3-4.3" />
+                  </svg>
+                </span>
+                <span className="text-[10px] md:hidden font-medium">Search</span>
+                <kbd className="hidden md:inline-flex items-center text-[10px] font-mono font-medium px-1.5 py-0.5 rounded bg-[var(--white-icon-tr)] text-[var(--white-icon)] group-hover:text-[var(--white)]">
+                  ⌘K
+                </kbd>
+              </button>
+
               <ThemeToggle />
             </li>
           </ul>
