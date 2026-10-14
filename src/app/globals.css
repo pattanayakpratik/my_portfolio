@@ -335,7 +335,7 @@ html.dark nav.scrolling {
 }
 
 nav a.active .nav-indicator {
-  transform: translateY(-50%) scale(1);
+  transform: scale(1);
   opacity: 1;
 }
 
