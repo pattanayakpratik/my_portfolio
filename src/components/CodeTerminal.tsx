@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 export interface CodeSnippet {
   category: string;
@@ -411,6 +411,20 @@ export default function CodeTerminal({
   onSelectCategory,
 }: CodeTerminalProps) {
   const [copied, setCopied] = useState(false);
+  const tabRefs = useRef<Record<string, HTMLButtonElement | null>>({});
+  const tabsContainerRef = useRef<HTMLDivElement>(null);
+
+  // Automatically scroll active tab into view when activeCategory changes
+  useEffect(() => {
+    const activeBtn = tabRefs.current[activeCategory];
+    if (activeBtn) {
+      activeBtn.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "center",
+      });
+    }
+  }, [activeCategory]);
 
   const snippet = codeSnippets[activeCategory] || codeSnippets["Backend Engineering"];
 
@@ -450,24 +464,30 @@ export default function CodeTerminal({
       <div className="h-[2px] w-full bg-gradient-to-r from-[var(--sec)] via-sky-400 to-[var(--sec)]" />
 
       {/* Window Title Bar */}
-      <div className="flex items-center justify-between px-4 py-3 border-b border-[var(--white-icon-tr)] bg-[var(--container)]/60 backdrop-blur-md">
+      <div className="flex items-center justify-between px-4 py-3 border-b border-[var(--white-icon-tr)] bg-[var(--container)]/60 backdrop-blur-md gap-2">
         {/* macOS Traffic Lights */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 shrink-0">
           <span className="w-3 h-3 rounded-full bg-[#ef4444] inline-block shadow-xs" />
           <span className="w-3 h-3 rounded-full bg-[#f59e0b] inline-block shadow-xs" />
           <span className="w-3 h-3 rounded-full bg-[#10b981] inline-block shadow-xs" />
         </div>
 
-        {/* Clickable File Tabs */}
-        <div className="hidden sm:flex items-center gap-1 overflow-x-auto no-scrollbar">
+        {/* Clickable File Tabs with Auto-Scroll */}
+        <div
+          ref={tabsContainerRef}
+          className="hidden sm:flex items-center gap-1.5 overflow-x-auto scroll-smooth no-scrollbar flex-1 min-w-0 mx-2"
+        >
           {Object.values(codeSnippets).map((item) => {
             const isActive = item.category === activeCategory;
             return (
               <button
                 key={item.category}
+                ref={(el) => {
+                  tabRefs.current[item.category] = el;
+                }}
                 type="button"
                 onClick={() => onSelectCategory(item.category)}
-                className={`flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-mono transition-all duration-200 cursor-pointer ${
+                className={`shrink-0 flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-mono transition-all duration-200 cursor-pointer ${
                   isActive
                     ? "bg-[var(--card-bg)] text-[var(--sec)] shadow-sm border border-[var(--white-icon-tr)] font-semibold"
                     : "text-[var(--white-icon)] hover:text-[var(--white)] hover:bg-[var(--white-icon-tr)]/50 border border-transparent"

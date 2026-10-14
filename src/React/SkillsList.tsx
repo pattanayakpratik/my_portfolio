@@ -192,7 +192,7 @@ const SkillsList = () => {
         </div>
 
         {/* Right: Interactive Code Terminal (Desktop) */}
-        <div className="hidden lg:flex flex-1 w-full min-w-0 self-start">
+        <div className="hidden lg:flex flex-1 w-full min-w-0 self-start sticky top-24 transition-all duration-300">
           <CodeTerminal
             activeCategory={openItem || skills[0].category}
             onSelectCategory={(category) => setOpenItem(category)}
