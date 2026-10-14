@@ -5,11 +5,17 @@ import Projects from "@/components/Projects";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
+import ScrollProgress from "@/components/ScrollProgress";
+import BackToTop from "@/components/BackToTop";
+import CommandMenu from "@/components/CommandMenu";
+import Toast from "@/components/Toast";
 
 export default function Page() {
   return (
     <>
+      <ScrollProgress />
       <ScrollReveal />
+      <CommandMenu />
       <Nav />
       <main>
         <Home />
@@ -18,6 +24,8 @@ export default function Page() {
         <Contact />
       </main>
       <Footer />
+      <BackToTop />
+      <Toast />
     </>
   );
 }

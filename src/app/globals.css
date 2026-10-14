@@ -335,7 +335,7 @@ html.dark nav.scrolling {
 }
 
 nav a.active .nav-indicator {
-  transform: translateY(-50%) scale(1);
+  transform: scale(1);
   opacity: 1;
 }
 
@@ -356,9 +356,26 @@ nav a.active {
   .ambient-orb,
   .animate-scroll,
   .shiny-sec,
-  .hero-in {
+  .hero-in,
+  .animate-terminal-fade {
     animation: none !important;
   }
+}
+
+/* Code Terminal Smooth Switching Animation */
+@keyframes terminal-fade {
+  0% {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-terminal-fade {
+  animation: terminal-fade 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* Scrollbar styles */

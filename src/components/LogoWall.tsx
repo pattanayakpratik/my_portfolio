@@ -7,7 +7,7 @@ export default function LogoWall() {
         {[...techStack, ...techStack].map((tech, index) => (
           <div
             key={`${tech.name}-${index}`}
-            className="flex items-center gap-2 pr-12 md:pr-20 group transition-all duration-300"
+            className="flex items-center gap-3 pr-12 md:pr-20 group transition-all duration-300"
             aria-hidden={index >= techStack.length ? true : false}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
