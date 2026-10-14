@@ -111,13 +111,16 @@ export default function Projects() {
 
         {/* Featured projects */}
         {filteredFeatured.length > 0 && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 animate-in fade-in duration-300">
+          <div
+            key={`featured-${activeCategory}`}
+            className="grid grid-cols-1 md:grid-cols-2 gap-8 animate-terminal-fade"
+          >
             {filteredFeatured.map((project, i) => {
               const imgData = images[project.image];
               return (
                 <article
                   key={project.title}
-                  className="group card overflow-hidden flex flex-col"
+                  className="group card overflow-hidden flex flex-col is-visible"
                   data-reveal=""
                   style={{ ["--reveal-delay" as string]: `${i * 120}ms` }}
                 >
@@ -189,7 +192,7 @@ export default function Projects() {
 
         {/* Other projects */}
         {filteredOther.length > 0 && (
-          <div className="animate-in fade-in duration-300">
+          <div key={`other-${activeCategory}`} className="animate-terminal-fade">
             <h4 className="text-2xl font-medium mt-16 mb-6" data-reveal="">
               More things I&apos;ve built
             </h4>
@@ -200,7 +203,7 @@ export default function Projects() {
                   href={p.repo}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mini-card group card p-5 flex flex-col gap-3 hover:-translate-y-1"
+                  className="mini-card group card p-5 flex flex-col gap-3 hover:-translate-y-1 is-visible"
                   data-reveal=""
                   style={{ ["--reveal-delay" as string]: `${(i % 3) * 90}ms` }}
                 >

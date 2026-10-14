@@ -6,7 +6,6 @@ export default function ScrollReveal() {
   useEffect(() => {
     document.documentElement.classList.add("js");
 
-    const els = document.querySelectorAll<HTMLElement>("[data-reveal]");
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -16,13 +15,38 @@ export default function ScrollReveal() {
           }
         });
       },
-      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+      { threshold: 0.05, rootMargin: "50px 0px 50px 0px" }
     );
 
-    els.forEach((el) => io.observe(el));
+    const observePending = () => {
+      const elements = document.querySelectorAll<HTMLElement>(
+        "[data-reveal]:not(.is-visible)"
+      );
+      elements.forEach((el) => {
+        const rect = el.getBoundingClientRect();
+        // If element is already in or above the visible viewport, reveal immediately
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          el.classList.add("is-visible");
+        } else {
+          io.observe(el);
+        }
+      });
+    };
+
+    observePending();
+
+    // Observe DOM changes so dynamically rendered or filtered elements are never stuck at opacity 0
+    const mo = new MutationObserver(() => {
+      observePending();
+    });
+
+    mo.observe(document.body, { childList: true, subtree: true });
+    window.addEventListener("scroll", observePending, { passive: true });
 
     return () => {
       io.disconnect();
+      mo.disconnect();
+      window.removeEventListener("scroll", observePending);
     };
   }, []);
 
