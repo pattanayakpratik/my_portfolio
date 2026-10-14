@@ -104,14 +104,21 @@ export const codeSnippets: Record<string, CodeSnippet> = {
       {
         num: "10",
         tokens: [
-          { text: "    return ", color: "keyword" },
+          { text: "    metrics = ", color: "text" },
           { text: "{", color: "text" },
           { text: '"status"', color: "string" },
           { text: ': "ok", ', color: "text" },
           { text: '"latency_ms"', color: "string" },
           { text: ": 14.8, ", color: "text" },
-          { text: '"throughput_rps"', color: "string" },
+          { text: '"rps"', color: "string" },
           { text: ": 1420}", color: "text" },
+        ],
+      },
+      {
+        num: "11",
+        tokens: [
+          { text: "    return ", color: "keyword" },
+          { text: "metrics", color: "variable" },
         ],
       },
     ],
@@ -452,7 +459,7 @@ export default function CodeTerminal({
         </div>
 
         {/* Clickable File Tabs */}
-        <div className="hidden sm:flex items-center gap-1.5 overflow-x-auto no-scrollbar">
+        <div className="hidden sm:flex items-center gap-1 overflow-x-auto no-scrollbar">
           {Object.values(codeSnippets).map((item) => {
             const isActive = item.category === activeCategory;
             return (
@@ -460,15 +467,17 @@ export default function CodeTerminal({
                 key={item.category}
                 type="button"
                 onClick={() => onSelectCategory(item.category)}
-                className={`flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-mono transition-all cursor-pointer ${
+                className={`flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-mono transition-all duration-200 cursor-pointer ${
                   isActive
-                    ? "bg-[var(--card-bg)] text-[var(--sec)] shadow-xs border border-[var(--white-icon-tr)] font-semibold"
-                    : "text-[var(--white-icon)] hover:text-[var(--white)] hover:bg-[var(--white-icon-tr)]/50"
+                    ? "bg-[var(--card-bg)] text-[var(--sec)] shadow-sm border border-[var(--white-icon-tr)] font-semibold"
+                    : "text-[var(--white-icon)] hover:text-[var(--white)] hover:bg-[var(--white-icon-tr)]/50 border border-transparent"
                 }`}
               >
                 <span
-                  className={`w-1.5 h-1.5 rounded-full ${
-                    isActive ? "bg-[var(--sec)]" : "bg-transparent"
+                  className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
+                    isActive
+                      ? "bg-[var(--sec)] scale-125 shadow-[0_0_6px_var(--sec)]"
+                      : "bg-slate-400/40 dark:bg-slate-600/40"
                   }`}
                 />
                 {item.tabLabel}
@@ -522,11 +531,14 @@ export default function CodeTerminal({
       </div>
 
       {/* Code Editor Body */}
-      <div className="p-4 sm:p-5 overflow-x-auto font-mono text-xs sm:text-[13px] leading-relaxed select-text min-h-[260px] flex flex-col justify-between bg-[var(--card-bg)]">
-        <div className="space-y-1">
+      <div className="p-4 sm:p-5 overflow-x-auto font-mono text-xs sm:text-[13px] leading-relaxed select-text min-h-[310px] flex flex-col justify-between bg-[var(--card-bg)]">
+        <div
+          key={activeCategory}
+          className="space-y-1 animate-terminal-fade"
+        >
           {snippet.lines.map((line, idx) => (
-            <div key={idx} className="flex items-start gap-4 group">
-              <span className="text-[var(--white-icon)]/50 select-none text-[11px] w-5 text-right shrink-0 pt-0.5">
+            <div key={`${activeCategory}-${idx}`} className="flex items-start gap-4 group">
+              <span className="text-[var(--white-icon)]/50 select-none text-[11px] w-5 text-right shrink-0 pt-0.5 font-mono">
                 {line.num}
               </span>
               <div className="flex-1 whitespace-pre">
@@ -545,10 +557,13 @@ export default function CodeTerminal({
         </div>
 
         {/* Live Execution / Response Terminal Bar */}
-        <div className="mt-5 pt-3 border-t border-[var(--white-icon-tr)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs">
-          <div className="flex items-center gap-2 text-[var(--white-icon)] font-mono">
-            <span className="text-[var(--sec)] font-bold">&gt;</span>
-            <span className="truncate max-w-[360px]">{snippet.output.message}</span>
+        <div
+          key={`output-${activeCategory}`}
+          className="mt-5 pt-3 border-t border-[var(--white-icon-tr)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs animate-terminal-fade"
+        >
+          <div className="flex items-center gap-2 text-[var(--white-icon)] font-mono min-w-0">
+            <span className="text-[var(--sec)] font-bold shrink-0">&gt;</span>
+            <span className="truncate max-w-[420px]">{snippet.output.message}</span>
           </div>
           <span
             className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full border text-[11px] font-mono shrink-0 ${snippet.output.badgeColor}`}
