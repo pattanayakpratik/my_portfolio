@@ -130,12 +130,10 @@ export const education: Education[] = [
   {
     title: "Higher Secondary (WBCHSE)",
     detail: "Datan Bhagabat Charan High School · 2023 · 65.2% (Grade B+)",
-    image: "/certifications/class-xii-certificate.pdf"
   },
   {
     title: "Secondary (WBBSE)",
     detail: "Arunya Netaji Siksha Niketan · 2021 · 83.85% (Grade A+)",
-    image: "/certifications/class-x-marksheet.pdf"
   },
 ];
 
