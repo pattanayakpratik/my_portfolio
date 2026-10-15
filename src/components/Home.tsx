@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import LogoWall from "@/components/LogoWall";
 import SkillsList from "@/React/SkillsList";
 import { profile, stats } from "@/data/profile";
@@ -25,17 +24,14 @@ const socials = [
     label: "LeetCode",
     path: "M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .066-.523 2.545 2.545 0 0 1 .619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 0 0-.207-1.943l-3.5-2.831c-.8-.647-1.766-1.045-2.774-1.202l2.015-2.158A1.384 1.384 0 0 0 13.483 0zm-2.866 12.815a1.38 1.38 0 0 0-1.38 1.382 1.38 1.38 0 0 0 1.38 1.382H20.79a1.38 1.38 0 0 0 1.38-1.382 1.38 1.38 0 0 0-1.38-1.382z",
   },
+  {
+    href: `mailto:${profile.email}`,
+    label: "Email",
+    path: "m18.73 5.41l-1.28 1L12 10.46L6.55 6.37l-1.28-1A2 2 0 0 0 2 7.05v11.59A1.36 1.36 0 0 0 3.36 20h3.19v-7.72L12 16.37l5.45-4.09V20h3.19A1.36 1.36 0 0 0 22 18.64V7.05a2 2 0 0 0-3.27-1.64",
+  },
 ];
 
 export default function Home() {
-  const [emailCopied, setEmailCopied] = useState(false);
-
-  const handleCopyEmail = () => {
-    navigator.clipboard.writeText(profile.email);
-    setEmailCopied(true);
-    showToast("Email copied to clipboard!", "📋");
-    setTimeout(() => setEmailCopied(false), 2500);
-  };
 
   return (
     <section className="text-[var(--white)] mt-12 md:mt-0" id="home">
@@ -78,8 +74,8 @@ export default function Home() {
               {socials.map((s) => (
                 <a
                   key={s.label}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  target={s.href.startsWith("mailto:") ? undefined : "_blank"}
+                  rel={s.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
                   href={s.href}
                   aria-label={s.label}
                   title={s.label}
@@ -95,40 +91,6 @@ export default function Home() {
                   </svg>
                 </a>
               ))}
-
-              {/* Email Button with Quick Copy */}
-              <div className="inline-flex items-center rounded-xl border border-[var(--white-icon-tr)] bg-[var(--card-bg)] shadow-sm dark:shadow-none hover:-translate-y-0.5 transition duration-300">
-                <a
-                  href={`mailto:${profile.email}`}
-                  aria-label="Send email"
-                  title={`Email: ${profile.email}`}
-                  className="p-3 text-[var(--white-icon)] hover:text-[var(--white)] transition"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="size-8">
-                    <path
-                      fill="currentColor"
-                      d="m18.73 5.41l-1.28 1L12 10.46L6.55 6.37l-1.28-1A2 2 0 0 0 2 7.05v11.59A1.36 1.36 0 0 0 3.36 20h3.19v-7.72L12 16.37l5.45-4.09V20h3.19A1.36 1.36 0 0 0 22 18.64V7.05a2 2 0 0 0-3.27-1.64"
-                    ></path>
-                  </svg>
-                </a>
-                <button
-                  type="button"
-                  onClick={handleCopyEmail}
-                  aria-label="Copy email to clipboard"
-                  title="Copy email to clipboard"
-                  className="pr-3 pl-1 py-3 text-[var(--white-icon)] hover:text-[var(--sec)] transition cursor-pointer border-l border-[var(--white-icon-tr)]"
-                >
-                  {emailCopied ? (
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-5 text-[var(--accent)]">
-                      <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
-                    </svg>
-                  ) : (
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-5">
-                      <path d="M16 1H4C2.9 1 2 1.9 2 3V17H4V3H16V1ZM19 5H8C6.9 5 6 5.9 6 7V21C6 22.1 6.9 23 8 23H19C20.1 23 21 22.1 21 21V7C21 5.9 20.1 5 19 5ZM19 21H8V7H19V21Z" />
-                    </svg>
-                  )}
-                </button>
-              </div>
             </div>
 
             {/* Resume Button */}
