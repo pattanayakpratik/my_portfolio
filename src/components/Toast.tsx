@@ -49,17 +49,17 @@ export default function Toast() {
   return (
     <div
       aria-live="polite"
-      className="fixed bottom-20 md:bottom-8 left-1/2 -translate-x-1/2 z-[150] flex flex-col items-center gap-2 pointer-events-none"
+      className="fixed top-5 md:top-auto md:bottom-8 left-1/2 -translate-x-1/2 z-[150] flex flex-col items-center gap-2 pointer-events-none w-[90%] max-w-sm"
     >
       {toasts.map((toast) => (
         <div
           key={toast.id}
-          className="pointer-events-auto flex items-center gap-2.5 px-4 py-2.5 rounded-full border border-[var(--white-icon-tr)] bg-[var(--card-bg)] text-[var(--white)] shadow-lg shadow-black/15 backdrop-blur-xl animate-in fade-in slide-in-from-bottom-3 duration-300 transition-all text-xs md:text-sm font-medium"
+          className="pointer-events-auto flex items-center gap-2.5 px-4 py-2.5 rounded-full border border-[var(--white-icon-tr)] bg-[var(--card-bg)] text-[var(--white)] shadow-lg shadow-black/15 backdrop-blur-xl animate-in fade-in slide-in-from-top-3 md:slide-in-from-bottom-3 duration-300 transition-all text-xs md:text-sm font-medium"
         >
-          <span className="flex items-center justify-center size-5 rounded-full bg-[var(--sec)]/15 text-[var(--sec)] text-xs font-bold">
+          <span className="flex items-center justify-center size-5 rounded-full bg-[var(--sec)]/15 text-[var(--sec)] text-xs font-bold shrink-0">
             {toast.icon}
           </span>
-          <span>{toast.message}</span>
+          <span className="truncate">{toast.message}</span>
         </div>
       ))}
     </div>
