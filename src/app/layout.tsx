@@ -151,7 +151,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="bg-[--background] sm:px-28 lg:px-20 px-9">
+      <body className="bg-[--background] px-4 sm:px-12 md:px-20 lg:px-28">
         <div className="ambient" aria-hidden="true">
           <span className="ambient-orb ambient-orb--1"></span>
           <span className="ambient-orb ambient-orb--2"></span>
