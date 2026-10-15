@@ -56,7 +56,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="w-full py-16 border-t border-[var(--white-icon-tr)]">
+    <section id="contact" className="w-full pt-16 pb-28 md:py-16 border-t border-[var(--white-icon-tr)]">
       <div className="max-w-5xl mx-auto">
         <div data-reveal="">
           <h2 className="text-lg text-[var(--sec)] mb-2 shiny-sec">Let&apos;s talk</h2>

@@ -143,36 +143,36 @@ export default function Nav() {
         className="fixed left-1/2 -translate-x-1/2 z-[100] bg-transparent border border-1 border-transparent backdrop-blur-xl transition-all duration-300 ease-out md:top-5 md:bottom-auto bottom-0 w-full md:w-[620px] md:max-w-[620px] md:rounded-full max-md:rounded-t-2xl max-md:border-t max-md:border-[var(--white-icon-tr)] max-md:bg-[var(--component-bg)] max-md:pb-[env(safe-area-inset-bottom,0px)]"
       >
         <div className="relative w-full flex justify-center items-center py-2 px-4 md:py-2 md:px-6">
-          <ul className="flex w-full md:w-auto justify-between md:justify-center items-center md:gap-6 gap-2">
+          <ul className="flex w-full md:w-auto justify-between md:justify-center items-center md:gap-6 gap-1">
             {navItems.map((item) => (
               <li key={item.label} className="flex-1 md:flex-none">
                 <a
                   href={item.href}
                   aria-label={item.label}
                   onClick={(e) => handleNavClick(e, item.href)}
-                  className="flex flex-col md:flex-row items-center gap-1 md:gap-2 text-[var(--white-icon)] hover:text-[var(--white)] transition-colors text-xs md:text-sm font-medium relative group py-1"
+                  className="flex flex-col md:flex-row items-center justify-center gap-1 md:gap-2 text-[var(--white-icon)] hover:text-[var(--white)] transition-colors text-[10px] md:text-sm font-medium relative group py-1"
                 >
                   <span
                     className="size-1.5 rounded-full bg-[var(--accent)] transition-all duration-300 scale-0 opacity-0 nav-indicator hidden md:inline-block shrink-0"
                     aria-hidden="true"
                   />
-                  <span className="md:hidden flex items-center justify-center w-6 h-6">
+                  <span className="md:hidden flex items-center justify-center w-5 h-5">
                     {item.icon}
                   </span>
-                  <span>{item.label}</span>
+                  <span className="truncate">{item.label}</span>
                 </a>
               </li>
             ))}
 
-            <li className="flex-1 md:flex-none flex items-center justify-center gap-1 md:gap-1.5">
+            <li className="flex-1 md:flex-none">
               <button
                 type="button"
                 onClick={openCommandMenu}
                 aria-label="Open command palette (Ctrl+K)"
                 title="Search / Command Palette (Ctrl+K)"
-                className="group flex flex-col md:flex-row items-center gap-1 text-[var(--white-icon)] hover:text-[var(--white)] transition-all cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-[var(--sec)] rounded-full p-1 md:px-2 md:py-1.5 hover:bg-[var(--white-icon-tr)]"
+                className="w-full group flex flex-col md:flex-row items-center justify-center gap-1 text-[var(--white-icon)] hover:text-[var(--white)] transition-all cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-[var(--sec)] rounded-full py-1 md:px-2 md:py-1.5 hover:bg-[var(--white-icon-tr)]"
               >
-                <span className="flex items-center justify-center w-6 h-6 md:w-5 md:h-5 transition-transform duration-300 group-hover:scale-110">
+                <span className="flex items-center justify-center w-5 h-5 md:w-5 md:h-5 transition-transform duration-300 group-hover:scale-110">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
@@ -192,8 +192,10 @@ export default function Nav() {
                   ⌘K
                 </kbd>
               </button>
+            </li>
 
-              <ThemeToggle />
+            <li className="flex-1 md:flex-none flex items-center justify-center">
+              <ThemeToggle showMobileLabel={true} className="w-full py-1 md:p-1.5 justify-center" />
             </li>
           </ul>
         </div>

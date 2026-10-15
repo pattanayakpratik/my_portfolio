@@ -69,7 +69,7 @@ export default function Projects() {
             <div
               role="tablist"
               aria-label="Filter projects by category"
-              className="flex flex-wrap items-center gap-1.5 p-1 rounded-xl bg-[var(--component-bg)] border border-[var(--white-icon-tr)] backdrop-blur-md self-start md:self-auto"
+              className="flex items-center gap-1.5 p-1 rounded-xl bg-[var(--component-bg)] border border-[var(--white-icon-tr)] backdrop-blur-md max-w-full overflow-x-auto no-scrollbar scroll-smooth self-start md:self-auto shrink-0"
             >
               {categories.map((cat) => {
                 const isSelected = activeCategory === cat;
@@ -86,7 +86,7 @@ export default function Projects() {
                     type="button"
                     aria-selected={isSelected}
                     onClick={() => setActiveCategory(cat)}
-                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs md:text-sm font-medium transition-all duration-200 cursor-pointer ${
+                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs md:text-sm font-medium transition-all duration-200 cursor-pointer shrink-0 whitespace-nowrap ${
                       isSelected
                         ? "bg-[var(--card-bg)] text-[var(--sec)] shadow-sm ring-1 ring-[var(--sec)]/30 font-semibold"
                         : "text-[var(--white-icon)] hover:text-[var(--white)] hover:bg-[var(--white-icon-tr)]"

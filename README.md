@@ -2,12 +2,32 @@
 
 > Highly customizable, performant, and interactive personal portfolio for Pratik Pattanayak, a Backend & AI Engineer.
 
-![Portfolio Hero](./public/portfolio_preview.png)
-
-### Portfolio Gallery
 <p align="center">
-  <img src="./public/portfolio_projects.png" width="48%" />
-  <img src="./public/portfolio_experience.png" width="48%" />
+  <a href="https://pattanayakpratik.vercel.app/">
+    <img src="./public/portfolio_hero_dark.png" alt="Portfolio Dark Mode Hero" width="100%" />
+  </a>
+</p>
+
+### 🌓 Dual Theme Gallery (Dark & Light Mode)
+
+Dual design system featuring **Cyberpunk Terminal Dark Mode** and soothing **Ice-Slate Light Mode** with zero hydration flicker and ambient gradient mesh.
+
+#### 1. Hero & Interactive Python Code Terminal
+<p align="center">
+  <img src="./public/portfolio_terminal_dark.png" width="49%" alt="Interactive Terminal - Dark Mode" />
+  <img src="./public/portfolio_terminal_light.png" width="49%" alt="Interactive Terminal - Light Mode" />
+</p>
+
+#### 2. Featured Projects & Category Filter Tabs
+<p align="center">
+  <img src="./public/portfolio_projects_dark.png" width="49%" alt="Projects Showcase - Dark Mode" />
+  <img src="./public/portfolio_projects_light.png" width="49%" alt="Projects Showcase - Light Mode" />
+</p>
+
+#### 3. Experience & Engineering Timeline
+<p align="center">
+  <img src="./public/portfolio_experience_dark.png" width="49%" alt="Experience Timeline - Dark Mode" />
+  <img src="./public/portfolio_experience_light.png" width="49%" alt="Experience Timeline - Light Mode" />
 </p>
 
 ![Deploy Status](https://img.shields.io/badge/Deploy-Vercel-black?style=flat&logo=vercel)
