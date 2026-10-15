@@ -322,6 +322,17 @@ export default function CommandMenu() {
           <kbd className="hidden sm:inline-flex items-center px-2 py-0.5 text-[10px] font-semibold tracking-wide text-[var(--white-icon)] bg-[var(--container)] border border-[var(--white-icon-tr)] rounded-md">
             ESC
           </kbd>
+          <button
+            type="button"
+            onClick={() => setIsOpen(false)}
+            aria-label="Close command palette"
+            className="sm:hidden p-1 text-[var(--white-icon)] hover:text-[var(--white)] rounded-lg transition cursor-pointer"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-5">
+              <path d="M18 6 6 18" />
+              <path d="m6 6 12 12" />
+            </svg>
+          </button>
         </div>
 
         {/* Results List */}
