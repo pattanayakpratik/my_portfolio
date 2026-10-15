@@ -344,6 +344,22 @@ nav a.active {
   font-weight: 600;
 }
 
+@media (max-width: 767px) {
+  nav a.active {
+    color: var(--sec) !important;
+  }
+}
+
+/* Hide scrollbar for Chrome, Safari, Opera, Edge, Firefox */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
