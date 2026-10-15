@@ -4,11 +4,13 @@ import { useEffect, useState } from "react";
 
 interface ThemeToggleProps {
   showLabel?: boolean;
+  showMobileLabel?: boolean;
   className?: string;
 }
 
 export default function ThemeToggle({
   showLabel = false,
+  showMobileLabel = false,
   className = "",
 }: ThemeToggleProps) {
   const [isDark, setIsDark] = useState(true);
@@ -113,6 +115,10 @@ export default function ThemeToggle({
             Dark mode
           </span>
         </>
+      )}
+
+      {showMobileLabel && (
+        <span className="text-[10px] md:hidden font-medium">Theme</span>
       )}
     </button>
   );
