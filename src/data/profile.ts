@@ -177,6 +177,7 @@ export interface FeaturedProject {
   version?: string;
   downloadUrl?: string;
   releaseUrl?: string;
+  showcaseUrl?: string;
   fileSize?: string;
   screenshots?: ProjectScreenshot[];
   extendedDetails?: {
@@ -200,6 +201,7 @@ export const featuredProjects: FeaturedProject[] = [
     ],
     image: "cypher",
     repo: "https://github.com/pattanayakpratik/Cypher-AI",
+    showcaseUrl: "/projects/cypher",
     tags: ["Python", "Gemini 1.5", "PyQt5", "Edge-TTS", "Standalone EXE", "Automation"],
     version: "v3.0.0",
     downloadUrl: "https://github.com/pattanayakpratik/Cypher-AI/releases/download/v3.0.0/Cypher-AI.exe",
