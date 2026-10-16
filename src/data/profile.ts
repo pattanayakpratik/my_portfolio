@@ -157,6 +157,15 @@ export const certifications: Certification[] = [
   { title: "MS-CIT", detail: "MKCL · 2024" },
 ];
 
+export interface ProjectScreenshot {
+  id: string;
+  label: string;
+  shortTag: string;
+  stateColor: string;
+  caption: string;
+  src: string;
+}
+
 export interface FeaturedProject {
   title: string;
   tagline: string;
@@ -165,22 +174,110 @@ export interface FeaturedProject {
   image: "cypher" | "pyshare";
   repo: string;
   tags: string[];
+  version?: string;
+  downloadUrl?: string;
+  releaseUrl?: string;
+  fileSize?: string;
+  screenshots?: ProjectScreenshot[];
+  extendedDetails?: {
+    overview: string;
+    specs: { title: string; desc: string; icon: string }[];
+    quickStart: string[];
+  };
 }
 
 export const featuredProjects: FeaturedProject[] = [
   {
     title: "Cypher",
-    tagline: "AI-Powered Workflow & Desktop Automation Agent",
+    tagline: "Holographic F.R.I.D.A.Y. Desktop HUD & Autonomous Voice Assistant",
     description:
-      "A fast, multi-model AI assistant that converts natural language into reliable system-level automation.",
+      "A futuristic desktop AI assistant featuring an animated multi-ring Arc Reactor HUD, real-time 32-band audio spectrum equalizer, telemetry gauges, and OS automation powered by Google Gemini 1.5 Flash.",
     highlights: [
       "Gemini 1.5 Flash as the primary reasoning engine with context management & semantic parsing",
       "Agentic workflows for autonomous Gmail reading/sending (IMAP/SMTP) and WhatsApp dispatch",
-      "Sci-fi PyQt5 interface with voice recognition",
+      "Sci-fi PyQt5 holographic HUD with 4 reactive operational states & Arc Reactor",
+      "Built-in Holographic Credentials Vault with live Google AI Studio connection test",
     ],
     image: "cypher",
     repo: "https://github.com/pattanayakpratik/Cypher-AI",
-    tags: ["Python", "Gemini", "PyQt5", "Automation"],
+    tags: ["Python", "Gemini 1.5", "PyQt5", "Edge-TTS", "Standalone EXE", "Automation"],
+    version: "v3.0.0",
+    downloadUrl: "https://github.com/pattanayakpratik/Cypher-AI/releases/download/v3.0.0/Cypher-AI.exe",
+    releaseUrl: "https://github.com/pattanayakpratik/Cypher-AI/releases/tag/v3.0.0",
+    fileSize: "176 MB",
+    screenshots: [
+      {
+        id: "idle",
+        label: "Standby (Idle)",
+        shortTag: "STANDBY",
+        stateColor: "#22d3ee",
+        caption: "Ambient cyan vector Arc Reactor featuring a 48-tick radar compass calibration ring, 3 energy blades, counter-rotating orbital satellite beads, and targeting reticles.",
+        src: "/projects/cypher/cypher_gui_idle.png",
+      },
+      {
+        id: "listening",
+        label: "Listening",
+        shortTag: "LISTENING",
+        stateColor: "#4ade80",
+        caption: "Matrix-green alert protocol with expanding sonar ripple wave pulses radiating outward from the reactor core during microphone speech capture.",
+        src: "/projects/cypher/cypher_gui_listening.png",
+      },
+      {
+        id: "processing",
+        label: "Processing",
+        shortTag: "PROCESSING",
+        stateColor: "#38bdf8",
+        caption: "Electric-blue vortex hyperspeed core rotation with accelerated energy arcs while Google Gemini 1.5 Flash synthesizes contextual responses.",
+        src: "/projects/cypher/cypher_gui_processing.png",
+      },
+      {
+        id: "speaking",
+        label: "Vocalizing",
+        shortTag: "SPEAKING",
+        stateColor: "#f43f5e",
+        caption: "Neon-magenta HUD color transition, harmonic core vocal pulse, and real-time 32-band audio spectrum frequency response with decaying peak caps.",
+        src: "/projects/cypher/cypher_gui_speaking.png",
+      },
+      {
+        id: "vault",
+        label: "Credentials Vault",
+        shortTag: "CONFIG",
+        stateColor: "#fbbf24",
+        caption: "Holographic glassmorphism settings dialog: configure Gemini, Groq, OpenWeather, and Gmail credentials with live diagnostic testing and zero-restart hot-reloading.",
+        src: "/projects/cypher/cypher_settings_dialog.png",
+      },
+    ],
+    extendedDetails: {
+      overview:
+        "Cypher AI v3.0.0 is an autonomous desktop companion engineered in Python and PyQt5. Inspired by Iron Man's F.R.I.D.A.Y., it bridges generative AI intelligence with system-level Windows automation, neural speech synthesis, and real-time hardware telemetry.",
+      specs: [
+        {
+          title: "Multi-Ring Arc Reactor",
+          desc: "48-tick radar compass, counter-rotating energy blades, orbital satellite beads, and central targeting crosshairs.",
+          icon: "reactor",
+        },
+        {
+          title: "32-Band Audio Equalizer",
+          desc: "Harmonic frequency spectrum visualizer with dynamic wave dynamics and floating white peak caps.",
+          icon: "audio",
+        },
+        {
+          title: "12-Segment LED Telemetry",
+          desc: "Real-time hardware gauges for CPU load, RAM allocation, battery status, and disk storage with color shifts.",
+          icon: "telemetry",
+        },
+        {
+          title: "One-Click Credentials Vault",
+          desc: "Configure API keys inside the GUI with live AI Studio connection probes and zero manual .env editing.",
+          icon: "vault",
+        },
+      ],
+      quickStart: [
+        "Download the standalone Cypher-AI.exe (176 MB) — no Python or terminal needed.",
+        "Double-click to launch the holographic interface.",
+        "Enter your free Google Gemini API key into the Vault and start voice commanding!",
+      ],
+    },
   },
   {
     title: "PyShare",
