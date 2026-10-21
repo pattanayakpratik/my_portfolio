@@ -177,6 +177,7 @@ export interface FeaturedProject {
   version?: string;
   downloadUrl?: string;
   releaseUrl?: string;
+  liveUrl?: string;
   showcaseUrl?: string;
   fileSize?: string;
   screenshots?: ProjectScreenshot[];
@@ -283,17 +284,106 @@ export const featuredProjects: FeaturedProject[] = [
   },
   {
     title: "PyShare",
-    tagline: "High-Speed Local Data Transfer Platform",
+    tagline: "High-Speed Cross-Device File Transfer & Clipboard Hub",
     description:
-      "A custom backend networking tool for instant, offline PC-to-mobile file transfer over local Wi-Fi.",
+      "A modern, ultra-fast cross-platform file transfer and universal clipboard hub. Effortlessly share files, photos, media, and text between PC, Mac, iPhone, Android, and Tablets with zero configuration via WebRTC P2P or offline local Wi-Fi.",
     highlights: [
-      "Pure Python socket programming & HTTP — no external servers involved",
-      "QR-code pairing for zero-config device connection",
-      "Lightweight, open-source and fully offline",
+      "Zero-install Web Mode with WebRTC P2P DataChannels hosted live at pyshare.vercel.app",
+      "High-speed offline Wi-Fi LAN transfer (50–100 MB/s) with 1-click Cloudflare Internet Tunnel",
+      "In-app media preview lightbox with HTTP 206 Partial Content video seeking & audio streaming",
+      "Universal bidirectional shared clipboard with 1-click native Windows OS clipboard push",
+      "Dynamic QR-code generation & rotating 4-digit PIN authentication with grace rollover",
     ],
     image: "pyshare",
     repo: "https://github.com/pattanayakpratik/PyShare",
-    tags: ["Python", "Sockets", "HTTP", "Networking"],
+    showcaseUrl: "/projects/pyshare",
+    liveUrl: "https://pyshare.vercel.app",
+    tags: ["WebRTC", "Python", "P2P", "Fast Transfer", "Standalone EXE", "Sockets", "Vercel"],
+    version: "v4.6.0",
+    downloadUrl: "https://github.com/pattanayakpratik/PyShare/releases/download/v4.6.0/PyShare.exe",
+    releaseUrl: "https://github.com/pattanayakpratik/PyShare/releases/tag/v4.6.0",
+    fileSize: "Standalone EXE",
+    screenshots: [
+      {
+        id: "host_dark",
+        label: "Desktop Studio (Host)",
+        shortTag: "HOST STUDIO",
+        stateColor: "#38bdf8",
+        caption: "Command center for Windows PC: dynamic QR pairing, 30s PIN countdown, 1-click Cloudflare tunnel, received/shared files manager with ZIP-all download, and live SSE event monitor.",
+        src: "/projects/pyshare/host_dark.png",
+      },
+      {
+        id: "mobile_host",
+        label: "Mobile P2P Host",
+        shortTag: "PHONE AS HOST",
+        stateColor: "#a855f7",
+        caption: "Phone-to-phone WebRTC P2P mode: Phone A creates an instant Room PIN and QR code directly in mobile Safari or Chrome; Phone B scans to transfer files with zero PC and zero app install.",
+        src: "/projects/pyshare/mobile_host_dark.png",
+      },
+      {
+        id: "client_mobile",
+        label: "Mobile Client",
+        shortTag: "CLIENT VIEW",
+        stateColor: "#10b981",
+        caption: "Touch-friendly mobile interface with PIN keypad authentication, Send-to-PC cloud dropzone, Download files manager with search, media preview lightbox, and 1-tap clipboard beam.",
+        src: "/projects/pyshare/client_dark.png",
+      },
+      {
+        id: "web_transfer",
+        label: "Instant Web Transfer",
+        shortTag: "ZERO INSTALL",
+        stateColor: "#f59e0b",
+        caption: "Browser-to-browser WebRTC DataChannel transfer running live on pyshare.vercel.app: Create Room, enter PIN, or drag-and-drop files across devices worldwide without downloading any software.",
+        src: "/projects/pyshare/web_transfer.png",
+      },
+      {
+        id: "guide",
+        label: "Interactive Guide",
+        shortTag: "HOW-TO GUIDE",
+        stateColor: "#6366f1",
+        caption: "Comprehensive built-in visual user manual and troubleshooting guide: step-by-step connection instructions for Wi-Fi LAN, Hotspot, and Web P2P modes.",
+        src: "/projects/pyshare/guide.png",
+      },
+      {
+        id: "host_light",
+        label: "Host Studio (Light)",
+        shortTag: "LIGHT THEME",
+        stateColor: "#64748b",
+        caption: "High-contrast clean light mode with smooth theme toggling, optimized for bright environments.",
+        src: "/projects/pyshare/host_white.png",
+      },
+    ],
+    extendedDetails: {
+      overview:
+        "PyShare v4.6.0 is an ultra-fast, cross-device file transfer and clipboard hub designed for instant connectivity between PC, Mac, iPhone, Android, and Tablets. It offers two flexible operation modes: a zero-install WebRTC P2P web app hosted at pyshare.vercel.app, and a standalone offline Windows executable capable of 50–100 MB/s local network speeds.",
+      specs: [
+        {
+          title: "WebRTC P2P Engine",
+          desc: "Direct browser-to-browser DataChannels with STUN signaling for worldwide cross-device transfer without installing software.",
+          icon: "webrtc",
+        },
+        {
+          title: "HTTP 206 Streaming",
+          desc: "Partial content byte-range streaming for instantaneous video/audio scrubbing and playback directly in browser lightboxes.",
+          icon: "stream",
+        },
+        {
+          title: "Universal Clipboard Sync",
+          desc: "Bidirectional text/link sharing with in-memory state and 1-click native Windows OS clipboard injection.",
+          icon: "clipboard",
+        },
+        {
+          title: "Zero-Config Discovery & Tunnel",
+          desc: "Dynamic QR generation, rotating 4-digit PIN with grace period, mDNS Zeroconf broadcast, and 1-click Cloudflare Internet Tunnel.",
+          icon: "tunnel",
+        },
+      ],
+      quickStart: [
+        "Instant Web Mode: Open pyshare.vercel.app in any browser, tap 'Create Room', and scan QR code on another device.",
+        "Desktop App Mode: Download PyShare.exe standalone (no Python required) and double-click to launch the offline hub.",
+        "Connect phones and laptops via local Wi-Fi, hotspot, or Internet tunnel to share files and clipboard at maximum speeds.",
+      ],
+    },
   },
 ];
 
