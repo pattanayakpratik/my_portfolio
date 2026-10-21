@@ -9,7 +9,7 @@ import { featuredProjects, otherProjects, profile } from "@/data/profile";
 
 const images = {
   cypher: { src: cypherImg, pad: "p-6 md:p-8" },
-  pyshare: { src: pyshareImg, pad: "p-10 md:p-14" },
+  pyshare: { src: pyshareImg, pad: "p-2 md:p-3" },
 };
 
 const iconBtn =
@@ -175,6 +175,31 @@ export default function Projects() {
                         <p className="text-sm text-[var(--sec)] mt-0.5">{project.tagline}</p>
                       </div>
                       <div className="flex items-center gap-1.5 shrink-0">
+                        {project.liveUrl && (
+                          <a
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            href={project.liveUrl}
+                            aria-label={`Open ${project.title} live web app`}
+                            title={`Open ${project.title} Live Web App (${project.liveUrl})`}
+                            className={`${iconBtn} shrink-0 text-[var(--sec)] hover:text-white hover:bg-[var(--sec)]/20 border-[var(--sec)]/40`}
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              className="size-5"
+                            >
+                              <circle cx="12" cy="12" r="10" />
+                              <line x1="2" y1="12" x2="22" y2="12" />
+                              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                            </svg>
+                          </a>
+                        )}
                         {project.downloadUrl && (
                           <a
                             target="_blank"
@@ -243,7 +268,11 @@ export default function Projects() {
                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--sec)] opacity-75"></span>
                             <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--sec)]"></span>
                           </span>
-                          <span>Explore Cypher HUD & Download EXE</span>
+                          <span>
+                            {project.title === "Cypher"
+                              ? "Explore Cypher HUD & Download EXE"
+                              : "Explore PyShare Showcase, Web App & EXE"}
+                          </span>
                         </span>
                         <span className="text-base group-hover/btn:translate-x-1 transition-transform">
                           →
