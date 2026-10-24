@@ -414,14 +414,23 @@ export default function CodeTerminal({
   const tabRefs = useRef<Record<string, HTMLButtonElement | null>>({});
   const tabsContainerRef = useRef<HTMLDivElement>(null);
 
-  // Automatically scroll active tab into view when activeCategory changes
+  const isFirstMount = useRef(true);
+
+  // Automatically scroll active tab into view inside the tabs container (never scroll the window)
   useEffect(() => {
+    if (isFirstMount.current) {
+      isFirstMount.current = false;
+      return;
+    }
+
+    const container = tabsContainerRef.current;
     const activeBtn = tabRefs.current[activeCategory];
-    if (activeBtn) {
-      activeBtn.scrollIntoView({
+    if (container && activeBtn) {
+      const targetLeft =
+        activeBtn.offsetLeft - container.offsetWidth / 2 + activeBtn.offsetWidth / 2;
+      container.scrollTo({
+        left: Math.max(0, targetLeft),
         behavior: "smooth",
-        block: "nearest",
-        inline: "center",
       });
     }
   }, [activeCategory]);
