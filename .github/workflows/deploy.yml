@@ -1,27 +1,30 @@
 name: CI/CD Pipeline
 
 on:
+  push:
+    branches:
+      - main
+      - master
   pull_request:
     branches:
       - main
+      - master
     types:
       - opened
       - synchronize
       - reopened
-      - closed
   workflow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: false
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   # =========================================================================
-  # 1. CI: Quality & Build Verification (Runs on Pull Request open/update)
+  # 1. CI: Quality & Build Verification (Runs on Push & Pull Requests)
   # =========================================================================
   verify:
     name: CI / Lint & Build Check
-    if: github.event_name == 'pull_request' && github.event.action != 'closed'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -43,14 +46,18 @@ jobs:
         run: npm run build
 
   # =========================================================================
-  # 2. CD: Automatic Deployment (Runs ONLY when PR is merged into main)
-  #    Does NOT run on direct push to main!
+  # 2. CD: Automatic Deployment (Runs on push to main or manual dispatch)
   # =========================================================================
   deploy:
     name: CD / Deploy to Production (Vercel)
+    needs: verify
     if: |
-      (github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true) ||
-      github.event_name == 'workflow_dispatch'
+      always() &&
+      needs.verify.result == 'success' &&
+      (
+        (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
+        github.event_name == 'workflow_dispatch'
+      )
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository (main branch)
