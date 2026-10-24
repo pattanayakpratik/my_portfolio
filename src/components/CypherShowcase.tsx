@@ -47,9 +47,9 @@ export default function CypherShowcase() {
 
   const downloadUrl =
     cypher?.downloadUrl ||
-    "https://github.com/pattanayakpratik/Cypher-AI/releases/download/v3.0.0/Cypher-AI.exe";
+    "https://github.com/pattanayakpratik/Cypher-AI/releases/latest/download/Cypher-AI.exe";
   const releaseUrl =
-    cypher?.releaseUrl || "https://github.com/pattanayakpratik/Cypher-AI/releases/tag/v3.0.0";
+    cypher?.releaseUrl || "https://github.com/pattanayakpratik/Cypher-AI/releases/latest";
   const repoUrl = cypher?.repo || "https://github.com/pattanayakpratik/Cypher-AI";
 
   // Eagerly preload all screenshots into browser cache on mount
@@ -142,7 +142,7 @@ export default function CypherShowcase() {
         <div className="flex items-center gap-3">
           <div className="hidden sm:flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--component-bg)] border border-[var(--white-icon-tr)] text-xs font-mono">
             <span className="size-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            <span className="text-[var(--white-icon)]">CYPHER-V3 PROTOCOL ONLINE</span>
+            <span className="text-[var(--white-icon)]">CYPHER PROTOCOL ONLINE</span>
           </div>
 
           <a
@@ -164,9 +164,6 @@ export default function CypherShowcase() {
         <div className="flex items-center gap-2 mb-3 flex-wrap">
           <span className="px-3 py-1 rounded-full text-xs font-mono font-bold tracking-wider uppercase bg-[var(--sec)]/15 text-[var(--sec)] border border-[var(--sec)]/30">
             F.R.I.D.A.Y. DESKTOP HUD
-          </span>
-          <span className="px-2.5 py-1 rounded-md text-xs font-mono bg-[var(--white-icon-tr)] text-[var(--white-icon)]">
-            v3.0.0
           </span>
           <span className="px-2.5 py-1 rounded-md text-xs font-mono bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
             Standalone Windows x64
@@ -240,7 +237,7 @@ export default function CypherShowcase() {
                   <polyline points="7 10 12 15 17 10" />
                   <line x1="12" y1="15" x2="12" y2="3" />
                 </svg>
-                <span>Download .exe (v3.0.0)</span>
+                <span>Download Cypher-AI.exe</span>
               </a>
 
               <a
@@ -249,7 +246,7 @@ export default function CypherShowcase() {
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-1.5 px-4 py-3.5 rounded-xl border border-[var(--white-icon-tr)] bg-[var(--component-bg)] hover:bg-[var(--white-icon-tr)] text-xs md:text-sm font-medium text-[var(--white-icon)] hover:text-[var(--white)] transition-colors"
               >
-                <span>Release Notes</span>
+                <span>Releases</span>
                 <span className="text-xs">↗</span>
               </a>
             </div>
@@ -446,7 +443,7 @@ export default function CypherShowcase() {
                 />
                 <div className="flex-grow">
                   <h4 className="text-sm md:text-base font-semibold text-[var(--white)]">
-                    {activeScreen.label} Protocol
+                    {activeScreen.label}
                   </h4>
                   <p className="text-xs md:text-sm text-[var(--white-icon)] mt-1 leading-relaxed">
                     {activeScreen.caption}
@@ -758,7 +755,7 @@ export default function CypherShowcase() {
       <footer className="text-center p-8 md:p-12 rounded-3xl border border-[var(--white-icon-tr)] bg-[var(--card-bg)] shadow-xl">
         <h3 className="text-2xl sm:text-3xl font-bold mb-3">Ready to Command Cypher?</h3>
         <p className="text-xs sm:text-sm text-[var(--white-icon)] max-w-xl mx-auto mb-6">
-          Download the latest v3.0.0 Windows standalone executable and bring Tony Stark&apos;s
+          Download the latest Windows standalone executable and bring Tony Stark&apos;s
           F.R.I.D.A.Y. to your workspace.
         </p>
 

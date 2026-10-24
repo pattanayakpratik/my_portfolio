@@ -19,9 +19,9 @@ export default function PyShareShowcase() {
   const liveUrl = pyshare?.liveUrl || "https://pyshare.vercel.app";
   const downloadUrl =
     pyshare?.downloadUrl ||
-    "https://github.com/pattanayakpratik/PyShare/releases/download/v4.6.0/PyShare.exe";
+    "https://github.com/pattanayakpratik/PyShare/releases/latest/download/PyShare.exe";
   const releaseUrl =
-    pyshare?.releaseUrl || "https://github.com/pattanayakpratik/PyShare/releases/tag/v4.6.0";
+    pyshare?.releaseUrl || "https://github.com/pattanayakpratik/PyShare/releases/latest";
   const repoUrl = pyshare?.repo || "https://github.com/pattanayakpratik/PyShare";
 
   // Eagerly preload all screenshots into browser cache on mount
@@ -138,7 +138,7 @@ export default function PyShareShowcase() {
         <div className="flex items-center gap-3">
           <div className="hidden sm:flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--component-bg)] border border-[var(--white-icon-tr)] text-xs font-mono">
             <span className="size-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            <span className="text-[var(--white-icon)]">PYSHARE-V4.6 PROTOCOL ONLINE</span>
+            <span className="text-[var(--white-icon)]">PYSHARE PROTOCOL ONLINE</span>
           </div>
 
           <a
@@ -170,9 +170,6 @@ export default function PyShareShowcase() {
         <div className="flex items-center gap-2 mb-3 flex-wrap">
           <span className="px-3 py-1 rounded-full text-xs font-mono font-bold tracking-wider uppercase bg-[var(--sec)]/15 text-[var(--sec)] border border-[var(--sec)]/30">
             P2P FILE SHARING & CLIPBOARD HUB
-          </span>
-          <span className="px-2.5 py-1 rounded-md text-xs font-mono bg-[var(--white-icon-tr)] text-[var(--white-icon)]">
-            v4.6.0
           </span>
           <span className="px-2.5 py-1 rounded-md text-xs font-mono bg-purple-500/10 text-purple-400 border border-purple-500/20">
             WebRTC Zero-Install
@@ -247,9 +244,8 @@ export default function PyShareShowcase() {
 
               <a
                 href={downloadUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 px-4 py-3.5 rounded-xl border border-[var(--white-icon-tr)] bg-[var(--component-bg)] hover:bg-[var(--white-icon-tr)] text-xs md:text-sm font-medium text-[var(--white-icon)] hover:text-[var(--white)] transition-colors"
+                download="PyShare.exe"
+                className="flex items-center justify-center gap-2 px-4 py-3.5 rounded-xl border border-[var(--white-icon-tr)] bg-[var(--component-bg)] hover:bg-[var(--white-icon-tr)] text-xs md:text-sm font-medium text-[var(--white-icon)] hover:text-[var(--white)] transition-colors cursor-pointer"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -265,7 +261,7 @@ export default function PyShareShowcase() {
                   <polyline points="7 10 12 15 17 10" />
                   <line x1="12" y1="15" x2="12" y2="3" />
                 </svg>
-                <span>Download .exe (v4.6.0)</span>
+                <span>Download PyShare.exe</span>
               </a>
 
               <a
@@ -275,7 +271,7 @@ export default function PyShareShowcase() {
                 className="flex items-center justify-center gap-1.5 px-3.5 py-3.5 rounded-xl border border-[var(--white-icon-tr)] bg-[var(--component-bg)] hover:bg-[var(--white-icon-tr)] text-xs font-medium text-[var(--white-icon)] hover:text-[var(--white)] transition-colors"
                 title="View GitHub Releases"
               >
-                <span>Release</span>
+                <span>Releases</span>
                 <span className="text-xs">↗</span>
               </a>
             </div>

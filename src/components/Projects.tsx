@@ -215,11 +215,7 @@ export default function Projects() {
                           ) : (
                             <h4 className="text-2xl font-semibold">{project.title}</h4>
                           )}
-                          {project.version && (
-                            <span className="px-2 py-0.5 rounded text-[11px] font-mono font-semibold bg-[var(--sec)]/15 text-[var(--sec)] border border-[var(--sec)]/30">
-                              {project.version}
-                            </span>
-                          )}
+
                         </div>
                         <p className="text-sm text-[var(--sec)] mt-0.5">{project.tagline}</p>
                       </div>
@@ -251,12 +247,11 @@ export default function Projects() {
                         )}
                         {project.downloadUrl && (
                           <a
-                            target="_blank"
-                            rel="noopener noreferrer"
                             href={project.downloadUrl}
-                            aria-label={`Download ${project.title} standalone executable`}
-                            title={`Download ${project.title} Standalone Windows .exe (${project.fileSize || ""})`}
-                            className={`${iconBtn} shrink-0 text-[var(--sec)] hover:text-white hover:bg-[var(--sec)]/20 border-[var(--sec)]/40`}
+                            download={`${project.title}.exe`}
+                            aria-label={`Direct download ${project.title}.exe`}
+                            title={`Direct download ${project.title}.exe`}
+                            className={`${iconBtn} shrink-0 text-[var(--sec)] hover:text-white hover:bg-[var(--sec)]/20 border-[var(--sec)]/40 cursor-pointer`}
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
