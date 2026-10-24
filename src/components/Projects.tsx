@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { showToast } from "./Toast";
 import Image from "next/image";
 import Link from "next/link";
 import cypherImg from "@/assets/projects/cypher.png";
@@ -44,13 +45,37 @@ function matchCategory(tags: string[], category: ProjectCategory): boolean {
 
 export default function Projects() {
   const [activeCategory, setActiveCategory] = useState<ProjectCategory>("All");
+  const [selectedTag, setSelectedTag] = useState<string | null>(null);
 
-  const filteredFeatured = featuredProjects.filter((p) =>
-    matchCategory(p.tags, activeCategory)
+  useEffect(() => {
+    const handleFilterTag = (e: Event) => {
+      const customEvent = e as CustomEvent<{ tag: string }>;
+      if (customEvent.detail?.tag) {
+        setSelectedTag(customEvent.detail.tag);
+        setActiveCategory("All");
+        showToast(`Filtered projects by "${customEvent.detail.tag}"`, "🔍");
+        const el = document.getElementById("projects");
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+    };
+    window.addEventListener("filter-project-tag", handleFilterTag);
+    return () => window.removeEventListener("filter-project-tag", handleFilterTag);
+  }, []);
+
+  const filterByTag = (tags: string[]) => {
+    if (!selectedTag) return true;
+    const lower = selectedTag.toLowerCase();
+    return tags.some((t) => t.toLowerCase().includes(lower) || lower.includes(t.toLowerCase()));
+  };
+
+  const filteredFeatured = featuredProjects.filter(
+    (p) => matchCategory(p.tags, activeCategory) && filterByTag(p.tags)
   );
 
-  const filteredOther = otherProjects.filter((p) =>
-    matchCategory(p.tags, activeCategory)
+  const filteredOther = otherProjects.filter(
+    (p) => matchCategory(p.tags, activeCategory) && filterByTag(p.tags)
   );
 
   const totalFilteredCount = filteredFeatured.length + filteredOther.length;
@@ -109,6 +134,30 @@ export default function Projects() {
             </div>
           </div>
         </div>
+
+        {/* Active Tech Filter Banner */}
+        {selectedTag && (
+          <div className="flex items-center gap-2 mb-6 p-3 px-4 rounded-xl bg-[var(--component-bg)] border border-[var(--sec)]/40 text-xs md:text-sm animate-terminal-fade shadow-sm">
+            <span className="size-2 rounded-full bg-[var(--sec)] animate-pulse" />
+            <span className="text-[var(--white-icon)]">Filtered by technology:</span>
+            <span className="font-mono font-bold text-[var(--sec)] px-2 py-0.5 rounded bg-[var(--sec)]/15 border border-[var(--sec)]/30">
+              {selectedTag}
+            </span>
+            <span className="text-xs text-[var(--white-icon)] hidden sm:inline">
+              ({totalFilteredCount} matching)
+            </span>
+            <button
+              type="button"
+              onClick={() => {
+                setSelectedTag(null);
+                showToast("Cleared skill filter", "↺");
+              }}
+              className="ml-auto flex items-center gap-1 px-2.5 py-1 rounded-lg bg-[var(--white-icon-tr)] hover:bg-[var(--sec)]/20 text-[var(--white-icon)] hover:text-[var(--sec)] text-xs font-medium cursor-pointer transition-colors"
+            >
+              <span>✕ Clear filter</span>
+            </button>
+          </div>
+        )}
 
         {/* Featured projects */}
         {filteredFeatured.length > 0 && (
@@ -282,9 +331,24 @@ export default function Projects() {
 
                     <div className="flex flex-wrap gap-2 mt-auto pt-2">
                       {project.tags.map((t) => (
-                        <span key={t} className="tag">
+                        <button
+                          key={t}
+                          type="button"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            setSelectedTag(t === selectedTag ? null : t);
+                            showToast(t === selectedTag ? "Cleared filter" : `Filtered by "${t}"`, "🔍");
+                          }}
+                          className={`tag transition-all cursor-pointer ${
+                            selectedTag === t
+                              ? "bg-[var(--sec)]/20 text-[var(--sec)] border-[var(--sec)] ring-1 ring-[var(--sec)]/30 font-semibold"
+                              : "hover:border-[var(--sec)]/60 hover:text-[var(--white)]"
+                          }`}
+                          title={`Filter projects by ${t}`}
+                        >
                           {t}
-                        </span>
+                        </button>
                       ))}
                     </div>
                   </div>
@@ -339,9 +403,24 @@ export default function Projects() {
                   </p>
                   <div className="flex flex-wrap gap-2 pt-1">
                     {p.tags.map((t) => (
-                      <span key={t} className="tag">
+                      <button
+                        key={t}
+                        type="button"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          setSelectedTag(t === selectedTag ? null : t);
+                          showToast(t === selectedTag ? "Cleared filter" : `Filtered by "${t}"`, "🔍");
+                        }}
+                        className={`tag transition-all cursor-pointer ${
+                          selectedTag === t
+                            ? "bg-[var(--sec)]/20 text-[var(--sec)] border-[var(--sec)] ring-1 ring-[var(--sec)]/30 font-semibold"
+                            : "hover:border-[var(--sec)]/60 hover:text-[var(--white)]"
+                        }`}
+                        title={`Filter projects by ${t}`}
+                      >
                         {t}
-                      </span>
+                      </button>
                     ))}
                   </div>
                 </a>
