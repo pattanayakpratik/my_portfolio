@@ -524,6 +524,72 @@ export default function PyShareShowcase() {
         </div>
       </section>
 
+      {/* Interactive Live Web App Sandbox */}
+      <section className="mb-16">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
+          <div>
+            <h2 className="text-xs font-mono uppercase tracking-widest text-[var(--sec)] mb-1">
+              Interactive Live Sandbox
+            </h2>
+            <h3 className="text-2xl sm:text-3xl font-bold">Try PyShare Web Directly Here</h3>
+          </div>
+          <div className="flex items-center gap-3">
+            <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 text-xs font-mono font-medium">
+              <span className="size-2 rounded-full bg-emerald-400 animate-pulse" />
+              <span>LIVE P2P WEBRTC</span>
+            </span>
+            <a
+              href={liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-xs font-medium text-[var(--sec)] hover:underline"
+            >
+              <span>Launch fullscreen</span>
+              <span>↗</span>
+            </a>
+          </div>
+        </div>
+
+        <div className="rounded-2xl border border-[var(--sec)]/40 bg-[var(--component-bg)] overflow-hidden shadow-2xl relative">
+          {/* Browser Mockup Chrome Bar */}
+          <div className="px-4 py-3 bg-[var(--card-bg)] border-b border-[var(--white-icon-tr)] flex items-center justify-between gap-3">
+            <div className="flex items-center gap-2">
+              <span className="size-3 rounded-full bg-red-500/80 inline-block" />
+              <span className="size-3 rounded-full bg-amber-500/80 inline-block" />
+              <span className="size-3 rounded-full bg-emerald-500/80 inline-block" />
+            </div>
+
+            <div className="flex-1 max-w-md mx-auto flex items-center justify-center gap-2 px-3 py-1 rounded-lg bg-[var(--component-bg)] border border-[var(--white-icon-tr)] text-xs font-mono text-[var(--white-icon)]">
+              <span className="text-emerald-400">🔒</span>
+              <span className="truncate">https://pyshare.vercel.app</span>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <a
+                href={liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-2.5 py-1 rounded-md bg-[var(--sec)]/15 text-[var(--sec)] hover:bg-[var(--sec)]/25 text-xs font-mono font-medium transition-colors"
+                title="Open in new browser tab"
+              >
+                ↗ Open Tab
+              </a>
+            </div>
+          </div>
+
+          {/* Interactive Frame */}
+          <div className="relative w-full h-[540px] md:h-[640px] bg-black">
+            <iframe
+              src="https://pyshare.vercel.app"
+              title="PyShare Live Interactive Web App Sandbox"
+              className="w-full h-full border-0"
+              allow="camera; microphone; clipboard-read; clipboard-write; display-capture"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </section>
+
       {/* Two Ways to Use PyShare (Comparison Matrix) */}
       <section className="mb-16">
         <div className="mb-6">
