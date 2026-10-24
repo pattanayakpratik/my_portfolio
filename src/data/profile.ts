@@ -204,9 +204,8 @@ export const featuredProjects: FeaturedProject[] = [
     repo: "https://github.com/pattanayakpratik/Cypher-AI",
     showcaseUrl: "/projects/cypher",
     tags: ["Python", "Gemini 1.5", "PyQt5", "Edge-TTS", "Standalone EXE", "Automation"],
-    version: "v3.0.0",
-    downloadUrl: "https://github.com/pattanayakpratik/Cypher-AI/releases/download/v3.0.0/Cypher-AI.exe",
-    releaseUrl: "https://github.com/pattanayakpratik/Cypher-AI/releases/tag/v3.0.0",
+    downloadUrl: "https://github.com/pattanayakpratik/Cypher-AI/releases/latest/download/Cypher-AI.exe",
+    releaseUrl: "https://github.com/pattanayakpratik/Cypher-AI/releases/latest",
     fileSize: "176 MB",
     screenshots: [
       {
@@ -252,7 +251,7 @@ export const featuredProjects: FeaturedProject[] = [
     ],
     extendedDetails: {
       overview:
-        "Cypher AI v3.0.0 is an autonomous desktop companion engineered in Python and PyQt5. Inspired by Iron Man's F.R.I.D.A.Y., it bridges generative AI intelligence with system-level Windows automation, neural speech synthesis, and real-time hardware telemetry.",
+        "Cypher AI is an autonomous desktop companion engineered in Python and PyQt5. Inspired by Iron Man's F.R.I.D.A.Y., it bridges generative AI intelligence with system-level Windows automation, neural speech synthesis, and real-time hardware telemetry.",
       specs: [
         {
           title: "Multi-Ring Arc Reactor",
@@ -299,15 +298,14 @@ export const featuredProjects: FeaturedProject[] = [
     showcaseUrl: "/projects/pyshare",
     liveUrl: "https://pyshare.vercel.app",
     tags: ["WebRTC", "Python", "P2P", "Fast Transfer", "Standalone EXE", "Sockets", "Vercel"],
-    version: "v4.6.0",
-    downloadUrl: "https://github.com/pattanayakpratik/PyShare/releases/download/v4.6.0/PyShare.exe",
-    releaseUrl: "https://github.com/pattanayakpratik/PyShare/releases/tag/v4.6.0",
+    downloadUrl: "https://github.com/pattanayakpratik/PyShare/releases/latest/download/PyShare.exe",
+    releaseUrl: "https://github.com/pattanayakpratik/PyShare/releases/latest",
     fileSize: "Standalone EXE",
     screenshots: [
       {
         id: "host_dark",
-        label: "Desktop Studio (Host)",
-        shortTag: "HOST STUDIO",
+        label: "Cyberpunk Host Studio",
+        shortTag: "HOST DARK",
         stateColor: "#38bdf8",
         caption: "Command center for Windows PC: dynamic QR pairing, 30s PIN countdown, 1-click Cloudflare tunnel, received/shared files manager with ZIP-all download, and live SSE event monitor.",
         src: "/projects/pyshare/host_dark.png",
@@ -322,7 +320,7 @@ export const featuredProjects: FeaturedProject[] = [
       },
       {
         id: "client_mobile",
-        label: "Mobile Client",
+        label: "Liquid Glass Client",
         shortTag: "CLIENT VIEW",
         stateColor: "#10b981",
         caption: "Touch-friendly mobile interface with PIN keypad authentication, Send-to-PC cloud dropzone, Download files manager with search, media preview lightbox, and 1-tap clipboard beam.",
@@ -346,7 +344,7 @@ export const featuredProjects: FeaturedProject[] = [
       },
       {
         id: "host_light",
-        label: "Host Studio (Light)",
+        label: "Liquid Glass Host (Light)",
         shortTag: "LIGHT THEME",
         stateColor: "#64748b",
         caption: "High-contrast clean light mode with smooth theme toggling, optimized for bright environments.",
@@ -355,7 +353,7 @@ export const featuredProjects: FeaturedProject[] = [
     ],
     extendedDetails: {
       overview:
-        "PyShare v4.6.0 is an ultra-fast, cross-device file transfer and clipboard hub designed for instant connectivity between PC, Mac, iPhone, Android, and Tablets. It offers two flexible operation modes: a zero-install WebRTC P2P web app hosted at pyshare.vercel.app, and a standalone offline Windows executable capable of 50–100 MB/s local network speeds.",
+        "PyShare is an ultra-fast, cross-device file transfer and clipboard hub designed for instant connectivity between PC, Mac, iPhone, Android, and Tablets. It offers two flexible operation modes: a zero-install WebRTC P2P web app hosted at pyshare.vercel.app, and a standalone offline Windows executable capable of 50–100 MB/s local network speeds.",
       specs: [
         {
           title: "WebRTC P2P Engine",

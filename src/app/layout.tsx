@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { profile } from "@/data/profile";
+import SpotlightEffect from "@/components/SpotlightEffect";
 
 export const viewport: Viewport = {
   themeColor: [
@@ -152,6 +153,7 @@ export default function RootLayout({
         />
       </head>
       <body className="bg-[--background] px-4 sm:px-12 md:px-20 lg:px-28">
+        <SpotlightEffect />
         <div className="ambient" aria-hidden="true">
           <span className="ambient-orb ambient-orb--1"></span>
           <span className="ambient-orb ambient-orb--2"></span>

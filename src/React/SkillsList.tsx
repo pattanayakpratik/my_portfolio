@@ -114,6 +114,37 @@ const SkillsList = () => {
         <h3 className="text-[var(--white)] text-3xl md:text-4xl font-semibold">
           What I do?
         </h3>
+
+        {/* Quick Filter Stack Bar */}
+        <div className="flex items-center gap-2 mt-4 overflow-x-auto no-scrollbar pb-1">
+          <span className="text-[11px] font-mono text-[var(--sec)] uppercase tracking-wider shrink-0 font-semibold">
+            ⚡ Filter by Stack:
+          </span>
+          {[
+            { label: "Python", query: "Python" },
+            { label: "WebRTC", query: "WebRTC" },
+            { label: "Gemini AI", query: "Gemini" },
+            { label: "Sockets", query: "Sockets" },
+            { label: "SQLite / SQL", query: "SQLite" },
+            { label: "PyQt5 / GUI", query: "PyQt5" },
+            { label: "C++ / C#", query: "C++" },
+          ].map((item) => (
+            <button
+              key={item.label}
+              type="button"
+              onClick={() => {
+                window.dispatchEvent(
+                  new CustomEvent("filter-project-tag", { detail: { tag: item.query } })
+                );
+              }}
+              className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-mono border border-[var(--white-icon-tr)] bg-[var(--component-bg)] hover:bg-[var(--white-icon-tr)] hover:border-[var(--sec)] text-[var(--white-icon)] hover:text-[var(--sec)] transition-all cursor-pointer shrink-0 shadow-xs"
+              title={`View projects built with ${item.label}`}
+            >
+              <span>{item.label}</span>
+              <span className="text-[10px] text-[var(--sec)]">↓</span>
+            </button>
+          ))}
+        </div>
       </div>
       <div className="flex flex-col lg:flex-row items-start gap-8 lg:gap-10 w-full">
         {/* Left: Skills Accordion */}
