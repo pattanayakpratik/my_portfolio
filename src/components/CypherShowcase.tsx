@@ -10,35 +10,6 @@ export default function CypherShowcase() {
   const [activeTab, setActiveTab] = useState(0);
   const [isAutoPlay, setIsAutoPlay] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
-  const [activeSimulation, setActiveSimulation] = useState<number | null>(null);
-
-  // Synthesize futuristic HUD chime via Web Audio API (0 external assets)
-  const playHudSound = () => {
-    try {
-      if (typeof window === "undefined") return;
-      const AudioCtx = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
-      if (!AudioCtx) return;
-      const ctx = new AudioCtx();
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-
-      osc.type = "sine";
-      const now = ctx.currentTime;
-      osc.frequency.setValueAtTime(520, now);
-      osc.frequency.exponentialRampToValueAtTime(880, now + 0.12);
-
-      gain.gain.setValueAtTime(0.08, now);
-      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
-
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-
-      osc.start(now);
-      osc.stop(now + 0.25);
-    } catch {
-      // AudioContext policy gracefully ignored
-    }
-  };
 
   const cypher = featuredProjects.find((p) => p.title === "Cypher");
   const screenshots = cypher?.screenshots || [];
@@ -596,107 +567,39 @@ export default function CypherShowcase() {
           </div>
         </div>
       </section>
-
-      {/* Interactive Voice Command Simulator & Holographic Console */}
+      {/* Voice Command Matrix */}
       <section className="mb-16">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
-          <div>
-            <h2 className="text-xs font-mono uppercase tracking-widest text-[var(--sec)] mb-1">
-              Voice Command Protocol
-            </h2>
-            <h3 className="text-2xl sm:text-3xl font-bold">Interactive Voice Simulator</h3>
-          </div>
-          <p className="text-xs sm:text-sm text-[var(--white-icon)]">
-            Click any command below to simulate Tony Stark's F.R.I.D.A.Y. HUD response
-          </p>
+        <div className="mb-6">
+          <h2 className="text-xs font-mono uppercase tracking-widest text-[var(--sec)] mb-1">
+            Voice Command Protocol
+          </h2>
+          <h3 className="text-2xl sm:text-3xl font-bold">Natural Voice Interaction Matrix</h3>
         </div>
 
-        {/* Command Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mb-6">
-          {voiceCommands.map((cmd, idx) => {
-            const isSimulated = activeSimulation === idx;
-            return (
-              <button
-                key={cmd.trigger}
-                type="button"
-                onClick={() => {
-                  setActiveSimulation(idx);
-                  playHudSound();
-                }}
-                className={`p-4 rounded-xl border text-left transition-all duration-300 cursor-pointer flex flex-col justify-between group ${
-                  isSimulated
-                    ? "border-[var(--sec)] bg-[var(--sec)]/15 shadow-lg shadow-cyan-500/10 ring-2 ring-[var(--sec)]/30 scale-[1.02]"
-                    : "border-[var(--white-icon-tr)] bg-[var(--card-bg)] hover:border-[var(--sec)]/50 hover:bg-[var(--component-bg)]"
-                }`}
-              >
-                <div>
-                  <div className="flex items-center justify-between gap-2 mb-2">
-                    <span className="text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded bg-[var(--sec)]/15 text-[var(--sec)] font-semibold">
-                      {cmd.category}
-                    </span>
-                    <span className="text-[11px] font-mono text-[var(--white-icon)] group-hover:text-[var(--sec)] transition-colors">
-                      {isSimulated ? "▶ EXECUTING" : "▶ Simulate"}
-                    </span>
-                  </div>
-                  <h4 className="font-mono text-xs sm:text-sm text-[var(--white)] font-semibold mb-2 leading-snug">
+        <div className="overflow-x-auto rounded-2xl border border-[var(--white-icon-tr)] bg-[var(--card-bg)]">
+          <table className="w-full text-left text-xs sm:text-sm">
+            <thead className="bg-[var(--component-bg)] border-b border-[var(--white-icon-tr)] text-[var(--white)] font-semibold">
+              <tr>
+                <th className="py-3.5 px-4 md:px-6">Category</th>
+                <th className="py-3.5 px-4 md:px-6">Example Voice Trigger</th>
+                <th className="py-3.5 px-4 md:px-6">Action Performed</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-[var(--white-icon-tr)] text-[var(--white-icon)]">
+              {voiceCommands.map((cmd) => (
+                <tr key={cmd.trigger} className="hover:bg-[var(--card-hover-bg)] transition-colors">
+                  <td className="py-3.5 px-4 md:px-6 font-medium text-[var(--sec)] whitespace-nowrap">
+                    {cmd.category}
+                  </td>
+                  <td className="py-3.5 px-4 md:px-6 font-mono text-[var(--white)] font-medium">
                     {cmd.trigger}
-                  </h4>
-                  <p className="text-xs text-[var(--white-icon)] leading-relaxed">
-                    {cmd.action}
-                  </p>
-                </div>
-                <div className="mt-3 pt-2 border-t border-[var(--white-icon-tr)] flex items-center justify-between text-[10px] font-mono text-[var(--white-icon)]">
-                  <span>Latency: ~42ms</span>
-                  <span className={isSimulated ? "text-emerald-400 font-bold" : ""}>
-                    {isSimulated ? "● ONLINE" : "○ CLICK TO TEST"}
-                  </span>
-                </div>
-              </button>
-            );
-          })}
+                  </td>
+                  <td className="py-3.5 px-4 md:px-6 leading-relaxed">{cmd.action}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
-
-        {/* Live Holographic Diagnostic Console */}
-        {activeSimulation !== null && (
-          <div className="p-5 md:p-6 rounded-2xl border border-[var(--sec)]/50 bg-black/95 text-emerald-400 font-mono text-xs md:text-sm shadow-2xl relative overflow-hidden animate-terminal-fade">
-            <div className="flex items-center justify-between pb-3 mb-3 border-b border-emerald-500/30 text-xs">
-              <div className="flex items-center gap-2">
-                <span className="size-2 rounded-full bg-emerald-400 animate-ping" />
-                <span className="text-white font-bold tracking-wider">
-                  CYPHER-AI // F.R.I.D.A.Y. HOLOGRAPHIC DIAGNOSTIC FEED
-                </span>
-              </div>
-              <button
-                type="button"
-                onClick={() => setActiveSimulation(null)}
-                className="text-white/60 hover:text-white px-2 py-0.5 rounded bg-white/10 hover:bg-white/20 transition-colors cursor-pointer"
-              >
-                ✕ Dismiss
-              </button>
-            </div>
-
-            <div className="space-y-1.5 leading-relaxed text-xs">
-              <div className="text-cyan-400">
-                &gt; [AUDIO_STREAM] Captured 16-bit 44.1kHz PCM from input device... OK
-              </div>
-              <div className="text-white">
-                &gt; [SPEECH_DECODE] Recognized Phrase:{" "}
-                <span className="text-amber-300 font-bold">
-                  {voiceCommands[activeSimulation].trigger}
-                </span>
-              </div>
-              <div className="text-sky-300">
-                &gt; [GEMINI_CORE] Google Gemini 1.5 Flash query dispatch... [200 OK, 38ms]
-              </div>
-              <div className="text-emerald-300">
-                &gt; [SYSTEM_ACTION] {voiceCommands[activeSimulation].action}
-              </div>
-              <div className="text-slate-400 text-[11px] pt-1">
-                &gt; [ARC_REACTOR_HUD] State: ACTIVE | Telemetry: 100% NOMINAL | F.R.I.D.A.Y. Vocalizer: READY
-              </div>
-            </div>
-          </div>
-        )}
       </section>
 
       {/* 3-Step Windows Quickstart Guide */}
