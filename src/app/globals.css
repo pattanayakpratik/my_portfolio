@@ -155,12 +155,14 @@ html.dark body {
   transform: none;
 }
 
-/* Reusable card surface */
+/* Reusable card surface with cursor spotlight */
 .card {
+  position: relative;
   background: var(--card-bg, #1414149c);
   border: 1px solid var(--white-icon-tr);
   border-radius: 1rem;
   box-shadow: var(--card-shadow, none);
+  overflow: hidden;
   transition:
     border-color 0.3s ease,
     background-color 0.3s ease,
@@ -171,6 +173,41 @@ html.dark body {
 .card:hover {
   border-color: var(--card-border-hover, #22d3ee40);
   background: var(--card-hover-bg, #10191c9c);
+}
+
+/* Linear-style cursor spotlight effect */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    650px circle at var(--mouse-x, -999px) var(--mouse-y, -999px),
+    rgba(34, 211, 238, 0.12),
+    transparent 80%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+html:not(.dark) .card::before {
+  background: radial-gradient(
+    650px circle at var(--mouse-x, -999px) var(--mouse-y, -999px),
+    rgba(8, 145, 178, 0.08),
+    transparent 80%
+  );
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+/* Ensure card contents stay interactive above spotlight overlay */
+.card > * {
+  position: relative;
+  z-index: 2;
 }
 
 .tag {
