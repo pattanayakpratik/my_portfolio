@@ -60,19 +60,24 @@ function useLiveLocalTime() {
   return timeStr;
 }
 
-// Smooth odometer counting component
+// Smooth odometer counting component for numeric stats; renders text cleanly
 function StatCounter({ targetValue, label }: { targetValue: string; label: string }) {
-  const [count, setCount] = useState(0);
+  const [displayValue, setDisplayValue] = useState(targetValue);
   const ref = useRef<HTMLDivElement>(null);
   const [hasAnimated, setHasAnimated] = useState(false);
-
-  const match = targetValue.match(/(\d+)/);
-  const numericTarget = match ? parseInt(match[1], 10) : 0;
-  const suffix = targetValue.replace(/\d+/g, "");
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+
+    // Check if target is a float (e.g. "8.65"), an int with suffix (e.g. "15+"), or plain text (e.g. "AWS")
+    const floatMatch = targetValue.match(/^(\d+\.\d+)$/);
+    const intMatch = targetValue.match(/^(\d+)(.*)$/);
+
+    if (!floatMatch && !intMatch) {
+      setDisplayValue(targetValue);
+      return;
+    }
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -81,21 +86,40 @@ function StatCounter({ targetValue, label }: { targetValue: string; label: strin
           const duration = 1200;
           const startTime = performance.now();
 
-          const animate = (currentTime: number) => {
-            const elapsed = currentTime - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-            const easedProgress = 1 - Math.pow(1 - progress, 3);
-            const current = Math.floor(easedProgress * numericTarget);
-            setCount(current);
+          if (floatMatch) {
+            const targetNum = parseFloat(floatMatch[1]);
+            const animate = (currentTime: number) => {
+              const elapsed = currentTime - startTime;
+              const progress = Math.min(elapsed / duration, 1);
+              const easedProgress = 1 - Math.pow(1 - progress, 3);
+              const current = easedProgress * targetNum;
+              setDisplayValue(current.toFixed(2));
 
-            if (progress < 1) {
-              requestAnimationFrame(animate);
-            } else {
-              setCount(numericTarget);
-            }
-          };
+              if (progress < 1) {
+                requestAnimationFrame(animate);
+              } else {
+                setDisplayValue(targetValue);
+              }
+            };
+            requestAnimationFrame(animate);
+          } else if (intMatch) {
+            const targetNum = parseInt(intMatch[1], 10);
+            const suffix = intMatch[2] || "";
+            const animate = (currentTime: number) => {
+              const elapsed = currentTime - startTime;
+              const progress = Math.min(elapsed / duration, 1);
+              const easedProgress = 1 - Math.pow(1 - progress, 3);
+              const current = Math.floor(easedProgress * targetNum);
+              setDisplayValue(`${current}${suffix}`);
 
-          requestAnimationFrame(animate);
+              if (progress < 1) {
+                requestAnimationFrame(animate);
+              } else {
+                setDisplayValue(targetValue);
+              }
+            };
+            requestAnimationFrame(animate);
+          }
         }
       },
       { threshold: 0.3 }
@@ -103,14 +127,13 @@ function StatCounter({ targetValue, label }: { targetValue: string; label: strin
 
     observer.observe(el);
     return () => observer.disconnect();
-  }, [numericTarget, hasAnimated]);
+  }, [targetValue, hasAnimated]);
 
   return (
     <div ref={ref} className="border-l border-[var(--white-icon-tr)] pl-3 md:pl-4">
       <dt className="sr-only">{label}</dt>
       <dd className="text-2xl md:text-3xl font-semibold text-[var(--white)] font-mono">
-        {hasAnimated ? count : 0}
-        {suffix}
+        {displayValue}
       </dd>
       <dd className="text-xs md:text-sm text-[var(--white-icon)]">{label}</dd>
     </div>
