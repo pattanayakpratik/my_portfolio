@@ -417,3 +417,17 @@ nav a.active {
   scrollbar-width: thin;
   scrollbar-color: var(--line) var(--container);
 }
+
+/* Showcase Carousel Progress Bar */
+@keyframes carousel-progress {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.animate-carousel-progress {
+  animation: carousel-progress 4.5s linear;
+}
