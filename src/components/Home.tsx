@@ -2,6 +2,7 @@
 
 import LogoWall from "@/components/LogoWall";
 import SkillsList from "@/React/SkillsList";
+import { useState, useEffect, useRef } from "react";
 import { profile, stats } from "@/data/profile";
 import { showToast } from "./Toast";
 
@@ -31,13 +32,99 @@ const socials = [
   },
 ];
 
+// Custom hook to tick IST local time
+function useLiveLocalTime() {
+  const [timeStr, setTimeStr] = useState<string>("");
+
+  useEffect(() => {
+    const updateTime = () => {
+      try {
+        const now = new Date();
+        const formatted = new Intl.DateTimeFormat("en-US", {
+          timeZone: "Asia/Kolkata",
+          hour: "numeric",
+          minute: "2-digit",
+          second: "2-digit",
+          hour12: true,
+        }).format(now);
+        setTimeStr(formatted);
+      } catch {
+        setTimeStr("");
+      }
+    };
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return timeStr;
+}
+
+// Smooth odometer counting component
+function StatCounter({ targetValue, label }: { targetValue: string; label: string }) {
+  const [count, setCount] = useState(0);
+  const ref = useRef<HTMLDivElement>(null);
+  const [hasAnimated, setHasAnimated] = useState(false);
+
+  const match = targetValue.match(/(\d+)/);
+  const numericTarget = match ? parseInt(match[1], 10) : 0;
+  const suffix = targetValue.replace(/\d+/g, "");
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && !hasAnimated) {
+          setHasAnimated(true);
+          const duration = 1200;
+          const startTime = performance.now();
+
+          const animate = (currentTime: number) => {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const easedProgress = 1 - Math.pow(1 - progress, 3);
+            const current = Math.floor(easedProgress * numericTarget);
+            setCount(current);
+
+            if (progress < 1) {
+              requestAnimationFrame(animate);
+            } else {
+              setCount(numericTarget);
+            }
+          };
+
+          requestAnimationFrame(animate);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [numericTarget, hasAnimated]);
+
+  return (
+    <div ref={ref} className="border-l border-[var(--white-icon-tr)] pl-3 md:pl-4">
+      <dt className="sr-only">{label}</dt>
+      <dd className="text-2xl md:text-3xl font-semibold text-[var(--white)] font-mono">
+        {hasAnimated ? count : 0}
+        {suffix}
+      </dd>
+      <dd className="text-xs md:text-sm text-[var(--white-icon)]">{label}</dd>
+    </div>
+  );
+}
+
 export default function Home() {
+  const timeStr = useLiveLocalTime();
 
   return (
     <section className="text-[var(--white)] mt-12 md:mt-0" id="home">
       <div className="max-w-5xl mx-auto space-y-8 md:pt-40 md:pb-24 pb-14">
         <div className="text-left space-y-4">
-          <div className="flex flex-wrap items-center gap-3 hero-in" style={{ ["--d" as string]: "0ms" }}>
+          <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 hero-in" style={{ ["--d" as string]: "0ms" }}>
             <p className="text-md md:text-lg text-[var(--white-icon)]">
               Hi, I&apos;m {profile.firstName} 👋
             </p>
@@ -48,6 +135,15 @@ export default function Home() {
               </span>
               Open to opportunities · {profile.location}
             </span>
+            {timeStr && (
+              <span
+                className="inline-flex items-center gap-1.5 text-xs font-mono text-[var(--sec)] border border-[var(--sec)]/30 bg-[var(--sec)]/10 rounded-full px-3 py-1 shadow-sm dark:shadow-none"
+                title="Current local time in Mumbai, India (UTC+5:30 IST)"
+              >
+                <span className="size-1.5 rounded-full bg-[var(--sec)] animate-pulse" />
+                <span>{timeStr} IST</span>
+              </span>
+            )}
           </div>
 
           <div className="flex flex-col lg:flex-row lg:items-center space-y-4 lg:space-y-0 lg:space-x-8 md:gap-4">
@@ -120,11 +216,7 @@ export default function Home() {
             style={{ ["--d" as string]: "320ms" }}
           >
             {stats.map((s) => (
-              <div key={s.label} className="border-l border-[var(--white-icon-tr)] pl-3 md:pl-4">
-                <dt className="sr-only">{s.label}</dt>
-                <dd className="text-2xl md:text-3xl font-semibold text-[var(--white)]">{s.value}</dd>
-                <dd className="text-xs md:text-sm text-[var(--white-icon)]">{s.label}</dd>
-              </div>
+              <StatCounter key={s.label} targetValue={s.value} label={s.label} />
             ))}
           </dl>
         </div>
