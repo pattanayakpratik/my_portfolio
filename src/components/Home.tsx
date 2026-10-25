@@ -1,7 +1,7 @@
 "use client";
 
 import LogoWall from "@/components/LogoWall";
-import SkillsList from "@/React/SkillsList";
+import SkillsList from "@/components/SkillsList";
 import { useState, useEffect, useRef } from "react";
 import { profile, stats } from "@/data/profile";
 import { showToast } from "./Toast";

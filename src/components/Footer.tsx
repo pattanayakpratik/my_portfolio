@@ -1,4 +1,4 @@
-import LikeButton from "@/React/LikeButton";
+import LikeButton from "@/components/LikeButton";
 import { profile } from "@/data/profile";
 
 export default function Footer() {
