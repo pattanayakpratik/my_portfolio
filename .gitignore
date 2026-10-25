@@ -51,3 +51,9 @@ coverage/
 AGENTS.md
 llms.txt
 public/llms.txt
+
+# Agent Skills Clutter
+.agents/
+.claude/
+agent/
+skills-lock.json
