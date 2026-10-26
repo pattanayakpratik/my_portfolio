@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { codeSnippets } from "@/data/terminalSnippets";
+import InteractiveCli from "@/components/InteractiveCli";
 
 interface CodeTerminalProps {
   activeCategory: string;
@@ -12,6 +13,7 @@ export default function CodeTerminal({
   activeCategory,
   onSelectCategory,
 }: CodeTerminalProps) {
+  const [viewMode, setViewMode] = useState<"code" | "cli">("code");
   const [copied, setCopied] = useState(false);
   const tabRefs = useRef<Record<string, HTMLButtonElement | null>>({});
   const tabsContainerRef = useRef<HTMLDivElement>(null);
@@ -25,17 +27,19 @@ export default function CodeTerminal({
       return;
     }
 
-    const container = tabsContainerRef.current;
-    const activeBtn = tabRefs.current[activeCategory];
-    if (container && activeBtn) {
-      const targetLeft =
-        activeBtn.offsetLeft - container.offsetWidth / 2 + activeBtn.offsetWidth / 2;
-      container.scrollTo({
-        left: Math.max(0, targetLeft),
-        behavior: "smooth",
-      });
+    if (viewMode === "code") {
+      const container = tabsContainerRef.current;
+      const activeBtn = tabRefs.current[activeCategory];
+      if (container && activeBtn) {
+        const targetLeft =
+          activeBtn.offsetLeft - container.offsetWidth / 2 + activeBtn.offsetWidth / 2;
+        container.scrollTo({
+          left: Math.max(0, targetLeft),
+          behavior: "smooth",
+        });
+      }
     }
-  }, [activeCategory]);
+  }, [activeCategory, viewMode]);
 
   const snippet = codeSnippets[activeCategory] || codeSnippets["Backend Engineering"];
 
@@ -89,7 +93,7 @@ export default function CodeTerminal({
           className="hidden sm:flex items-center gap-1.5 overflow-x-auto scroll-smooth no-scrollbar flex-1 min-w-0 mx-2"
         >
           {Object.values(codeSnippets).map((item) => {
-            const isActive = item.category === activeCategory;
+            const isActive = viewMode === "code" && item.category === activeCategory;
             return (
               <button
                 key={item.category}
@@ -97,7 +101,10 @@ export default function CodeTerminal({
                   tabRefs.current[item.category] = el;
                 }}
                 type="button"
-                onClick={() => onSelectCategory(item.category)}
+                onClick={() => {
+                  setViewMode("code");
+                  onSelectCategory(item.category);
+                }}
                 className={`shrink-0 flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-mono transition-all duration-200 cursor-pointer ${
                   isActive
                     ? "bg-[var(--card-bg)] text-[var(--sec)] shadow-sm border border-[var(--white-icon-tr)] font-semibold"
@@ -115,95 +122,141 @@ export default function CodeTerminal({
               </button>
             );
           })}
+
+          {/* Interactive Terminal Shell Tab */}
+          <button
+            type="button"
+            onClick={() => setViewMode("cli")}
+            className={`shrink-0 flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-mono transition-all duration-200 cursor-pointer ${
+              viewMode === "cli"
+                ? "bg-[var(--card-bg)] text-cyan-400 shadow-sm border border-[var(--white-icon-tr)] font-semibold"
+                : "text-[var(--white-icon)] hover:text-[var(--white)] hover:bg-[var(--white-icon-tr)]/50 border border-transparent"
+            }`}
+          >
+            <span
+              className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
+                viewMode === "cli"
+                  ? "bg-cyan-400 scale-125 shadow-[0_0_6px_#22d3ee]"
+                  : "bg-slate-400/40 dark:bg-slate-600/40"
+              }`}
+            />
+            &gt;_ Shell
+          </button>
         </div>
 
-        {/* Copy Button */}
-        <button
-          type="button"
-          onClick={handleCopy}
-          aria-label="Copy code"
-          className="flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs text-[var(--white-icon)] hover:text-[var(--white)] hover:bg-[var(--white-icon-tr)]/60 transition-colors cursor-pointer border border-transparent hover:border-[var(--white-icon-tr)]"
-        >
-          {copied ? (
-            <>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                className="w-3.5 h-3.5 text-emerald-500"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              <span className="text-emerald-500 font-medium">Copied</span>
-            </>
+        {/* Title Bar Action Buttons */}
+        <div className="flex items-center gap-2">
+          {viewMode === "cli" ? (
+            <button
+              type="button"
+              onClick={() => setViewMode("code")}
+              className="flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-mono text-[var(--white-icon)] hover:text-[var(--white)] hover:bg-[var(--white-icon-tr)]/60 transition cursor-pointer border border-[var(--white-icon-tr)]"
+            >
+              &lt;/&gt; View Code
+            </button>
           ) : (
             <>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="w-3.5 h-3.5"
+              <button
+                type="button"
+                onClick={() => setViewMode("cli")}
+                className="hidden sm:inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-mono text-[var(--sec)] hover:bg-[var(--white-icon-tr)]/40 transition cursor-pointer border border-transparent hover:border-[var(--white-icon-tr)]"
+                title="Launch Interactive Shell"
               >
-                <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
-                <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
-              </svg>
-              <span>Copy</span>
+                &gt;_ CLI
+              </button>
+              <button
+                type="button"
+                onClick={handleCopy}
+                aria-label="Copy code"
+                className="flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs text-[var(--white-icon)] hover:text-[var(--white)] hover:bg-[var(--white-icon-tr)]/60 transition-colors cursor-pointer border border-transparent hover:border-[var(--white-icon-tr)]"
+              >
+                {copied ? (
+                  <>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      className="w-3.5 h-3.5 text-emerald-500"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                    <span className="text-emerald-500 font-medium">Copied</span>
+                  </>
+                ) : (
+                  <>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="w-3.5 h-3.5"
+                    >
+                      <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+                      <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+                    </svg>
+                    <span>Copy</span>
+                  </>
+                )}
+              </button>
             </>
           )}
-        </button>
+        </div>
       </div>
 
-      {/* Code Editor Body */}
-      <div className="p-4 sm:p-5 overflow-x-auto font-mono text-xs sm:text-[13px] leading-relaxed select-text min-h-[310px] flex flex-col justify-between bg-[var(--card-bg)]">
-        <div
-          key={activeCategory}
-          className="space-y-1 animate-terminal-fade"
-        >
-          {snippet.lines.map((line, idx) => (
-            <div key={`${activeCategory}-${idx}`} className="flex items-start gap-4 group">
-              <span className="text-[var(--white-icon)]/50 select-none text-[11px] w-5 text-right shrink-0 pt-0.5 font-mono">
-                {line.num}
-              </span>
-              <div className="flex-1 whitespace-pre">
-                {line.tokens.length === 0 ? (
-                  <span>&nbsp;</span>
-                ) : (
-                  line.tokens.map((token, tIdx) => (
-                    <span key={tIdx} className={getTokenColor(token.color)}>
-                      {token.text}
-                    </span>
-                  ))
-                )}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Live Execution / Response Terminal Bar */}
-        <div
-          key={`output-${activeCategory}`}
-          className="mt-5 pt-3 border-t border-[var(--white-icon-tr)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs animate-terminal-fade"
-        >
-          <div className="flex items-center gap-2 text-[var(--white-icon)] font-mono min-w-0">
-            <span className="text-[var(--sec)] font-bold shrink-0">&gt;</span>
-            <span className="truncate max-w-[420px]">{snippet.output.message}</span>
-          </div>
-          <span
-            className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full border text-[11px] font-mono shrink-0 ${snippet.output.badgeColor}`}
+      {/* Main Terminal Window Body */}
+      {viewMode === "cli" ? (
+        <InteractiveCli onExit={() => setViewMode("code")} />
+      ) : (
+        <div className="p-4 sm:p-5 overflow-x-auto font-mono text-xs sm:text-[13px] leading-relaxed select-text min-h-[360px] flex flex-col justify-between bg-[var(--card-bg)]">
+          <div
+            key={activeCategory}
+            className="space-y-1 animate-terminal-fade"
           >
-            <span className="w-1.5 h-1.5 rounded-full bg-current animate-pulse" />
-            {snippet.output.badge}
-          </span>
+            {snippet.lines.map((line, idx) => (
+              <div key={`${activeCategory}-${idx}`} className="flex items-start gap-4 group">
+                <span className="text-[var(--white-icon)]/50 select-none text-[11px] w-5 text-right shrink-0 pt-0.5 font-mono">
+                  {line.num}
+                </span>
+                <div className="flex-1 whitespace-pre">
+                  {line.tokens.length === 0 ? (
+                    <span>&nbsp;</span>
+                  ) : (
+                    line.tokens.map((token, tIdx) => (
+                      <span key={tIdx} className={getTokenColor(token.color)}>
+                        {token.text}
+                      </span>
+                    ))
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Live Execution / Response Terminal Bar */}
+          <div
+            key={`output-${activeCategory}`}
+            className="mt-5 pt-3 border-t border-[var(--white-icon-tr)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs animate-terminal-fade"
+          >
+            <div className="flex items-center gap-2 text-[var(--white-icon)] font-mono min-w-0">
+              <span className="text-[var(--sec)] font-bold shrink-0">&gt;</span>
+              <span className="truncate max-w-[420px]">{snippet.output.message}</span>
+            </div>
+            <span
+              className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full border text-[11px] font-mono shrink-0 ${snippet.output.badgeColor}`}
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-current animate-pulse" />
+              {snippet.output.badge}
+            </span>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

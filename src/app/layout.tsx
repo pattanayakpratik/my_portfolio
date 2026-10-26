@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { profile } from "@/data/profile";
 import SpotlightEffect from "@/components/SpotlightEffect";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const viewport: Viewport = {
   themeColor: [
@@ -159,6 +161,8 @@ export default function RootLayout({
           <span className="ambient-orb ambient-orb--2"></span>
         </div>
         {children}
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

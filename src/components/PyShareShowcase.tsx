@@ -16,9 +16,9 @@ export default function PyShareShowcase() {
   const liveUrl = pyshare?.liveUrl || "https://pyshare.vercel.app";
   const downloadUrl =
     pyshare?.downloadUrl ||
-    "https://github.com/pattanayakpratik/PyShare/releases/latest/download/PyShare.exe";
+    "https://github.com/pattanayakpratik/PyShare/releases/download/v4.8.0/PyShare.exe";
   const releaseUrl =
-    pyshare?.releaseUrl || "https://github.com/pattanayakpratik/PyShare/releases/latest";
+    pyshare?.releaseUrl || "https://github.com/pattanayakpratik/PyShare/releases/tag/v4.8.0";
   const repoUrl = pyshare?.repo || "https://github.com/pattanayakpratik/PyShare";
 
   const comparisonModes = pyshareComparisonModes(liveUrl, downloadUrl);
@@ -61,6 +61,9 @@ export default function PyShareShowcase() {
           <span className="px-3 py-1 rounded-full text-xs font-mono font-bold tracking-wider uppercase bg-[var(--sec)]/15 text-[var(--sec)] border border-[var(--sec)]/30">
             HYBRID P2P ECOSYSTEM
           </span>
+          <span className="px-2.5 py-1 rounded-md text-xs font-mono font-semibold bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+            v4.8.0 RELEASE
+          </span>
           <span className="px-2.5 py-1 rounded-md text-xs font-mono bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
             WebRTC + Python Socket LAN
           </span>
@@ -93,7 +96,7 @@ export default function PyShareShowcase() {
             download="PyShare.exe"
             className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-[var(--white-icon-tr)] bg-[var(--component-bg)] hover:bg-[var(--white-icon-tr)] text-sm font-medium text-[var(--white)] transition-colors"
           >
-            <span>Download PyShare.exe</span>
+            <span>Download PyShare v4.8.0 (.exe)</span>
             <span className="text-xs opacity-60">Windows</span>
           </a>
 
@@ -103,50 +106,28 @@ export default function PyShareShowcase() {
             rel="noopener noreferrer"
             className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-[var(--white-icon-tr)] bg-[var(--component-bg)] hover:bg-[var(--white-icon-tr)] text-sm font-medium text-[var(--white-icon)] hover:text-[var(--white)] transition-colors"
           >
-            <span>Changelog</span>
+            <span>Release Notes</span>
             <span className="text-xs">↗</span>
           </a>
         </div>
-
-        {/* Quick Highlights Pill Row */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-8">
-          <div className="p-3 rounded-xl border border-[var(--white-icon-tr)] bg-[var(--card-bg)]">
-            <div className="text-xs font-mono text-[var(--sec)] mb-0.5">SPEED</div>
-            <div className="text-sm font-semibold text-[var(--white)]">50–100 MB/s LAN</div>
-          </div>
-          <div className="p-3 rounded-xl border border-[var(--white-icon-tr)] bg-[var(--card-bg)]">
-            <div className="text-xs font-mono text-[var(--sec)] mb-0.5">SIZE LIMIT</div>
-            <div className="text-sm font-semibold text-[var(--white)]">Zero File Limits</div>
-          </div>
-          <div className="p-3 rounded-xl border border-[var(--white-icon-tr)] bg-[var(--card-bg)]">
-            <div className="text-xs font-mono text-[var(--sec)] mb-0.5">PRIVACY</div>
-            <div className="text-sm font-semibold text-[var(--white)]">100% P2P · Zero Cloud</div>
-          </div>
-          <div className="p-3 rounded-xl border border-[var(--white-icon-tr)] bg-[var(--card-bg)]">
-            <div className="text-xs font-mono text-[var(--sec)] mb-0.5">PAIRING</div>
-            <div className="text-sm font-semibold text-[var(--white)]">Dynamic QR + PIN</div>
-          </div>
-        </div>
       </header>
 
-      {/* Interactive Screenshot & State Gallery */}
+      {/* Screenshot Showcase / Gallery Carousel */}
       <PyShareGallery screenshots={screenshots} />
 
       {/* Two Ways to Use PyShare (Comparison Matrix) */}
       <PyShareModes modes={comparisonModes} />
 
-      {/* Engineering Architecture & Core Features */}
+      {/* System Architecture Section */}
       <PyShareArchitecture />
 
-      {/* Quick Start Guide */}
+      {/* Step-by-Step Quick Start Guide */}
       <PyShareQuickStart steps={pyshareQuickSteps} />
 
-      {/* Bottom CTA Banner */}
-      <section className="p-8 md:p-10 rounded-2xl border border-[var(--sec)]/40 bg-gradient-to-r from-[var(--component-bg)] via-[var(--card-bg)] to-[var(--component-bg)] text-center relative overflow-hidden">
-        <h3 className="text-2xl sm:text-3xl font-bold mb-3">
-          Ready to Share Files Across Your Devices?
-        </h3>
-        <p className="text-xs sm:text-sm text-[var(--white-icon)] max-w-xl mx-auto mb-6">
+      {/* Bottom Call to Action */}
+      <section className="p-8 sm:p-12 rounded-3xl border border-[var(--white-icon-tr)] bg-[var(--component-bg)] text-center max-w-3xl mx-auto">
+        <h3 className="text-2xl sm:text-3xl font-bold mb-3">Ready to Transfer at Wire Speeds?</h3>
+        <p className="text-sm text-[var(--white-icon)] mb-8 max-w-xl mx-auto leading-relaxed">
           Try the instant Web P2P mode in your browser with zero installs, or download the portable
           standalone Windows executable.
         </p>
@@ -168,7 +149,7 @@ export default function PyShareShowcase() {
             rel="noopener noreferrer"
             className="flex items-center gap-2 px-5 py-3 rounded-xl border border-[var(--white-icon-tr)] bg-[var(--card-bg)] hover:bg-[var(--white-icon-tr)] text-xs sm:text-sm font-semibold text-[var(--white)] transition-colors"
           >
-            <span>⬇️ Download PyShare.exe</span>
+            <span>⬇️ Download PyShare v4.8.0</span>
           </a>
 
           <a
