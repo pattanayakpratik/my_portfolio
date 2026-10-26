@@ -27,17 +27,18 @@ export const caseStudies: CaseStudy[] = [
     id: "pyshare",
     slug: "pyshare-architecture",
     title: "Designing a Zero-Config P2P LAN File Transfer Engine",
-    subtitle: "High-throughput chunked socket streaming and UDP broadcast discovery across heterogeneous devices",
+    subtitle: "High-throughput chunked socket streaming, UDP broadcast discovery, and v4.8.0 security hardening",
     category: "Distributed Systems & Networking",
-    readTime: "6 min read",
+    readTime: "7 min read",
     date: "October 2026",
     summary:
-      "PyShare solves the friction of moving multi-gigabyte datasets and media across local networks without uploading to external cloud drives. By coupling UDP broadcast beaconing for zero-configuration discovery with chunked TCP streams and a dual GUI/Web interface, it achieves wire-speed throughput with zero cloud dependencies.",
+      "PyShare solves the friction of moving multi-gigabyte datasets and media across local networks without uploading to external cloud drives. By coupling UDP broadcast beaconing for zero-configuration discovery with chunked TCP streams, v4.8.0 brute-force rate-limiting, and a dual Cyberpunk/Liquid Glass interface, it achieves wire-speed throughput with zero cloud dependencies.",
     highlights: [
       "Zero-config peer discovery via UDP broadcast sockets (port 5005)",
       "High-throughput chunked TCP transfer using 64KB optimized buffer slices",
       "End-to-end SHA-256 chunk hashing preventing corrupt partial writes",
-      "Dual interface: Native desktop client (Tkinter) + embedded HTTP web server for mobile phones",
+      "v4.8.0 Security: PIN rate limiting (30s lockout after 5 fails) & path traversal canonicalization",
+      "Dual interface: Native desktop studio + embedded HTTP web server for mobile devices",
     ],
     architecturePoints: [
       {
@@ -56,6 +57,11 @@ export const caseStudies: CaseStudy[] = [
         title: "3. Universal Web Mode for Cross-Ecosystem Devices",
         description:
           "iOS and Android devices cannot run native Python Tkinter applications. To resolve this, PyShare includes a lightweight embedded HTTP/WS server. A mobile device simply scans the generated on-screen QR code to open an in-browser web app, uploading or downloading files directly through standard browser multipart HTTP streams.",
+      },
+      {
+        title: "4. v4.8.0 Sliding-Window PIN Rate Limiter & CSRF Defense",
+        description:
+          "To protect local hosts from brute-force PIN guessing, v4.8.0 integrates a thread-safe sliding window rate limiter on `/login`. Five consecutive invalid attempts automatically lock the client IP out for 30 seconds with a real-time countdown in the client keypad UI, while host mutating endpoints validate `Origin` and `Sec-Fetch-Site` to prevent intranet drive-by CSRF attacks.",
       },
     ],
     benchmarks: [

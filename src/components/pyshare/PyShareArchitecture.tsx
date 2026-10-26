@@ -8,7 +8,8 @@ export default function PyShareArchitecture() {
         <h3 className="text-2xl sm:text-3xl font-bold">Engineered for Speed, Privacy & Fluidity</h3>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {/* WebRTC */}
         <div className="p-6 rounded-2xl border border-[var(--white-icon-tr)] bg-[var(--card-bg)] flex flex-col gap-3">
           <div className="flex items-center gap-3">
             <span className="size-10 rounded-xl bg-purple-500/15 border border-purple-500/30 flex items-center justify-center text-lg text-purple-400">
@@ -24,12 +25,12 @@ export default function PyShareArchitecture() {
             </div>
           </div>
           <p className="text-xs sm:text-sm text-[var(--white-icon)] leading-relaxed">
-            Enables direct browser-to-browser encrypted transfers with STUN signaling. Files stream
-            peer-to-peer across phones, tablets, and computers worldwide without traveling through
-            or getting stored on any third-party cloud server.
+            Direct browser-to-browser encrypted transfers with STUN signaling. Files stream
+            peer-to-peer across phones, tablets, and computers worldwide with direct-to-disk File System Access API writing.
           </p>
         </div>
 
+        {/* HTTP 206 */}
         <div className="p-6 rounded-2xl border border-[var(--white-icon-tr)] bg-[var(--card-bg)] flex flex-col gap-3">
           <div className="flex items-center gap-3">
             <span className="size-10 rounded-xl bg-[var(--sec)]/15 border border-[var(--sec)]/30 flex items-center justify-center text-lg text-[var(--sec)]">
@@ -37,7 +38,7 @@ export default function PyShareArchitecture() {
             </span>
             <div>
               <h4 className="font-semibold text-base text-[var(--white)]">
-                HTTP 206 Partial Content Streaming
+                HTTP 206 Partial Content
               </h4>
               <span className="text-xs font-mono text-[var(--sec)]">
                 Instant Media Scrubbing & Playback
@@ -45,12 +46,34 @@ export default function PyShareArchitecture() {
             </div>
           </div>
           <p className="text-xs sm:text-sm text-[var(--white-icon)] leading-relaxed">
-            Implements RFC 7233 byte-range requests for audio and video media. Users can instantly
-            scrub through massive multi-gigabyte video files in the in-app lightbox with zero
-            buffering pauses, fully compatible with iOS Safari and Android Chrome.
+            RFC 7233 byte-range requests for audio and video media. Users can instantly
+            scrub through multi-gigabyte video files in the in-app lightbox with zero
+            buffering pauses across iOS Safari and Android Chrome.
           </p>
         </div>
 
+        {/* Security Hardening v4.8.0 */}
+        <div className="p-6 rounded-2xl border border-[var(--white-icon-tr)] bg-[var(--card-bg)] flex flex-col gap-3">
+          <div className="flex items-center gap-3">
+            <span className="size-10 rounded-xl bg-rose-500/15 border border-rose-500/30 flex items-center justify-center text-lg text-rose-400">
+              🛡️
+            </span>
+            <div>
+              <h4 className="font-semibold text-base text-[var(--white)]">
+                v4.8.0 Security Hardening
+              </h4>
+              <span className="text-xs font-mono text-rose-400">
+                Rate Limiter · CSRF & Traversal Defense
+              </span>
+            </div>
+          </div>
+          <p className="text-xs sm:text-sm text-[var(--white-icon)] leading-relaxed">
+            Thread-safe sliding window rate-limiter on PIN authentication, canonical path traversal
+            rejection, `Sec-Fetch-Site` intranet defense, and non-blocking `/api/zip` semaphore controls.
+          </p>
+        </div>
+
+        {/* Clipboard */}
         <div className="p-6 rounded-2xl border border-[var(--white-icon-tr)] bg-[var(--card-bg)] flex flex-col gap-3">
           <div className="flex items-center gap-3">
             <span className="size-10 rounded-xl bg-blue-500/15 border border-blue-500/30 flex items-center justify-center text-lg text-blue-400">
@@ -72,6 +95,7 @@ export default function PyShareArchitecture() {
           </p>
         </div>
 
+        {/* Dual-Grace PIN & Discovery */}
         <div className="p-6 rounded-2xl border border-[var(--white-icon-tr)] bg-[var(--card-bg)] flex flex-col gap-3">
           <div className="flex items-center gap-3">
             <span className="size-10 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-lg text-emerald-400">
@@ -79,7 +103,7 @@ export default function PyShareArchitecture() {
             </span>
             <div>
               <h4 className="font-semibold text-base text-[var(--white)]">
-                Dual-Grace 30s PIN & mDNS Discovery
+                Dual-Grace 30s PIN & mDNS
               </h4>
               <span className="text-xs font-mono text-emerald-400">
                 Zero-Config Pairing · Grace Rollover
@@ -89,7 +113,28 @@ export default function PyShareArchitecture() {
           <p className="text-xs sm:text-sm text-[var(--white-icon)] leading-relaxed">
             Dynamic QR code pairing and rotating 4-digit PIN with a dual-grace window ensures entering
             the PIN right at the boundary never causes lockouts. Features Zeroconf mDNS discovery
-            broadcasting across your local network.
+            broadcasting across local networks.
+          </p>
+        </div>
+
+        {/* Cyberpunk & Liquid Glass UI */}
+        <div className="p-6 rounded-2xl border border-[var(--white-icon-tr)] bg-[var(--card-bg)] flex flex-col gap-3">
+          <div className="flex items-center gap-3">
+            <span className="size-10 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-lg text-amber-400">
+              💎
+            </span>
+            <div>
+              <h4 className="font-semibold text-base text-[var(--white)]">
+                Cyberpunk &amp; Liquid Glass UI
+              </h4>
+              <span className="text-xs font-mono text-amber-400">
+                Ultra-Wide Studio · Floating Queue
+              </span>
+            </div>
+          </div>
+          <p className="text-xs sm:text-sm text-[var(--white-icon)] leading-relaxed">
+            Responsive 1180px+ desktop layout, frosted glass surfaces with specular borders,
+            and a global floating upload queue drawer with real-time MB/s speed meters.
           </p>
         </div>
       </div>
