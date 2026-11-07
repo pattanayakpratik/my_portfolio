@@ -18,6 +18,10 @@ export default function PyShareShowcase() {
   const downloadUrl =
     pyshare?.downloadUrl ||
     "https://github.com/pattanayakpratik/PyShare/releases/download/v4.9.3/PyShare.exe";
+  const setupUrl =
+    "https://github.com/pattanayakpratik/PyShare/releases/download/v4.9.3/PyShare-Setup-v4.9.3.exe";
+  const universalZipUrl =
+    "https://github.com/pattanayakpratik/PyShare/releases/download/v4.9.3/PyShare-v4.9.3-Universal.zip";
   const releaseUrl =
     pyshare?.releaseUrl || "https://github.com/pattanayakpratik/PyShare/releases/tag/v4.9.3";
   const repoUrl = pyshare?.repo || "https://github.com/pattanayakpratik/PyShare";
@@ -93,12 +97,32 @@ export default function PyShareShowcase() {
           </a>
 
           <a
+            href={setupUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-emerald-500/30 bg-emerald-500/10 hover:bg-emerald-500/20 text-sm font-medium text-emerald-400 transition-colors"
+          >
+            <span>Windows Setup (.exe)</span>
+            <span className="text-xs opacity-75">Installer</span>
+          </a>
+
+          <a
             href={downloadUrl}
             download="PyShare.exe"
             className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-[var(--white-icon-tr)] bg-[var(--component-bg)] hover:bg-[var(--white-icon-tr)] text-sm font-medium text-[var(--white)] transition-colors"
           >
-            <span>Download PyShare {version} (.exe)</span>
-            <span className="text-xs opacity-60">Windows</span>
+            <span>Standalone EXE ({version})</span>
+            <span className="text-xs opacity-60">Portable</span>
+          </a>
+
+          <a
+            href={universalZipUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-[var(--white-icon-tr)] bg-[var(--component-bg)] hover:bg-[var(--white-icon-tr)] text-sm font-medium text-[var(--white-icon)] hover:text-[var(--white)] transition-colors"
+          >
+            <span>Universal ZIP</span>
+            <span className="text-xs opacity-60">Mac/Linux</span>
           </a>
 
           <a
@@ -145,12 +169,21 @@ export default function PyShareShowcase() {
           </a>
 
           <a
+            href={setupUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 px-5 py-3 rounded-xl border border-emerald-500/30 bg-emerald-500/10 hover:bg-emerald-500/20 text-xs sm:text-sm font-semibold text-emerald-400 transition-colors"
+          >
+            <span>💾 Windows Setup Installer</span>
+          </a>
+
+          <a
             href={downloadUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 px-5 py-3 rounded-xl border border-[var(--white-icon-tr)] bg-[var(--card-bg)] hover:bg-[var(--white-icon-tr)] text-xs sm:text-sm font-semibold text-[var(--white)] transition-colors"
           >
-            <span>⬇️ Download PyShare {version}</span>
+            <span>⬇️ Standalone EXE ({version})</span>
           </a>
 
           <a
