@@ -55,11 +55,13 @@ export function handleAskQuery(query: string): CliOutputLine[] {
     ];
   }
 
-  if (q.includes("project") || q.includes("pyshare") || q.includes("cypher")) {
+  if (q.includes("project") || q.includes("pyshare") || q.includes("cypher") || q.includes("pulse") || q.includes("attendance")) {
     return [
       { text: "Featured Projects by Pratik:", type: "info" },
-      { text: "1. PyShare: Cross-platform P2P LAN file transfer engine with chunked TCP streaming & UDP discovery. Visit /projects/pyshare", type: "default" },
-      { text: "2. Cypher: Desktop voice assistant with async event loop, offline heuristics, and PyQt modern UI. Visit /projects/cypher", type: "default" },
+      { text: "1. PyShare (v4.9.3): Cross-platform P2P file transfer, LAN quick chat, & universal clipboard. Visit /projects/pyshare", type: "default" },
+      { text: "2. PulseEngine: Distributed notification infrastructure (FastAPI, Postgres, Redis, Next.js 16). Demo: pulse-engine-dashboard-ten.vercel.app", type: "default" },
+      { text: "3. Smart Campus Attendance: Multi-tenant QR attendance platform (Next.js, Flutter, Flask, Supabase). Demo: smartcampus-attendance.vercel.app", type: "default" },
+      { text: "4. Cypher: Desktop voice assistant with async event loop and PyQt holographic HUD. Visit /projects/cypher", type: "default" },
     ];
   }
 

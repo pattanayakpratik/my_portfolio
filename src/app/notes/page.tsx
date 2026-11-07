@@ -149,9 +149,15 @@ export default function NotesPage() {
             <div className="pt-6 border-t border-[var(--white-icon-tr)] flex flex-wrap items-center justify-between gap-4">
               <Link
                 href={study.showcaseUrl}
+                target={study.showcaseUrl.startsWith("http") ? "_blank" : undefined}
+                rel={study.showcaseUrl.startsWith("http") ? "noopener noreferrer" : undefined}
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-medium bg-[var(--sec)] text-white dark:text-[#101010] hover:opacity-90 transition-opacity"
               >
-                <span>Explore Interactive Showcase</span>
+                <span>
+                  {study.showcaseUrl.startsWith("http")
+                    ? "Launch Live Dashboard"
+                    : "Explore Interactive Showcase"}
+                </span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"

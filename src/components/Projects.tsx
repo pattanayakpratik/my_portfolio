@@ -32,7 +32,21 @@ function matchCategory(tags: string[], category: ProjectCategory): boolean {
   }
   if (category === "Backend & APIs") {
     return lower.some((t) =>
-      ["sockets", "http", "networking", "rest api", "job queue", "api"].includes(t)
+      [
+        "sockets",
+        "http",
+        "networking",
+        "rest api",
+        "job queue",
+        "api",
+        "fastapi",
+        "redis",
+        "postgresql",
+        "distributed systems",
+        "flask",
+        "supabase",
+        "docker",
+      ].includes(t)
     );
   }
   if (category === "Python & Automation") {
@@ -371,24 +385,47 @@ export default function Projects() {
                   style={{ ["--reveal-delay" as string]: `${(i % 3) * 90}ms` }}
                 >
                   <div className="flex items-center justify-between">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                      className="size-7 text-[var(--sec)]"
-                      aria-hidden="true"
-                    >
-                      <path d="M4 5V19H20V7H11.5858L9.58579 5H4ZM12.4142 5H21C21.5523 5 22 5.44772 22 6V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3H10.4142L12.4142 5Z" />
-                    </svg>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                      className="size-5 text-[var(--white-icon)] transition-all duration-300 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                      aria-hidden="true"
-                    >
-                      <path d="M16.0037 9.41421L7.39712 18.0208L5.98291 16.6066L14.5895 8H7.00373V6H18.0037V17H16.0037V9.41421Z" />
-                    </svg>
+                    <div className="flex items-center gap-2">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        className="size-7 text-[var(--sec)]"
+                        aria-hidden="true"
+                      >
+                        <path d="M4 5V19H20V7H11.5858L9.58579 5H4ZM12.4142 5H21C21.5523 5 22 5.44772 22 6V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3H10.4142L12.4142 5Z" />
+                      </svg>
+                      {p.badge && (
+                        <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-[var(--sec)]/15 text-[var(--sec)] border border-[var(--sec)]/30 font-semibold tracking-wider">
+                          {p.badge}
+                        </span>
+                      )}
+                    </div>
+                    <div className="flex items-center gap-2">
+                      {p.liveUrl && (
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            window.open(p.liveUrl, "_blank", "noopener,noreferrer");
+                          }}
+                          className="px-2 py-0.5 rounded text-[11px] font-mono font-medium text-[var(--sec)] hover:bg-[var(--sec)]/20 border border-[var(--sec)]/30 transition-colors"
+                          title="Open live app"
+                        >
+                          Live ↗
+                        </button>
+                      )}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        className="size-5 text-[var(--white-icon)] transition-all duration-300 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                        aria-hidden="true"
+                      >
+                        <path d="M16.0037 9.41421L7.39712 18.0208L5.98291 16.6066L14.5895 8H7.00373V6H18.0037V17H16.0037V9.41421Z" />
+                      </svg>
+                    </div>
                   </div>
                   <h5 className="text-lg font-semibold group-hover:text-[var(--sec)] transition-colors">
                     {p.title}

@@ -416,9 +416,29 @@ export interface MiniProject {
   description: string;
   repo: string;
   tags: string[];
+  liveUrl?: string;
+  badge?: string;
 }
 
 export const otherProjects: MiniProject[] = [
+  {
+    title: "PulseEngine",
+    description:
+      "Distributed multi-channel notification infrastructure featuring an ACID Transactional Outbox, 2-lane priority worker isolation, Redis Lua token-bucket rate limiter, 24h idempotency guard, and dynamic AST JSON-to-SQL segment resolver.",
+    repo: "https://github.com/pattanayakpratik/PulseEngine",
+    liveUrl: "https://pulse-engine-dashboard-ten.vercel.app",
+    badge: "LIVE VERCEL",
+    tags: ["FastAPI", "PostgreSQL", "Redis", "Next.js", "Distributed Systems", "Docker"],
+  },
+  {
+    title: "Smart Campus & Multi-Tenant Attendance",
+    description:
+      "Enterprise attendance and timetable management platform with dynamic QR code projection, GPS geofencing radius validation, fixed weekly timetable matrix, Supabase RLS security, and Flutter Android APK release.",
+    repo: "https://github.com/pattanayakpratik/attendance_project",
+    liveUrl: "https://smartcampus-attendance.vercel.app",
+    badge: "WEB & ANDROID APK",
+    tags: ["Next.js", "Flutter", "Flask", "Supabase", "PostgreSQL", "Mobile"],
+  },
   {
     title: "AI Transaction Processor",
     description:
