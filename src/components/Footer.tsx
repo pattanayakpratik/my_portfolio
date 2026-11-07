@@ -1,5 +1,4 @@
 import LikeButton from "@/components/LikeButton";
-import GuestbookModal from "@/components/GuestbookModal";
 import { profile } from "@/data/profile";
 
 export default function Footer() {
@@ -74,7 +73,6 @@ export default function Footer() {
             </div>
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3">
               <LikeButton />
-              <GuestbookModal />
             </div>
           </div>
 
