@@ -305,6 +305,22 @@ export const featuredProjects: FeaturedProject[] = [
     fileSize: "v4.9.3 Installer & Portable EXE",
     screenshots: [
       {
+        id: "desktop_host",
+        label: "Cyberpunk Desktop Studio",
+        shortTag: "DESKTOP STUDIO",
+        stateColor: "#00ffcc",
+        caption: "Native standalone Windows desktop application: Cyberpunk Neon Liquid Glass studio layout, direct drag-and-drop staging, instant QR pairing, LAN Quick Chat, and active peer inspector.",
+        src: "/projects/pyshare/desktop_host.png",
+      },
+      {
+        id: "desktop_client",
+        label: "Cyberpunk Desktop Client",
+        shortTag: "DESKTOP CLIENT",
+        stateColor: "#38bdf8",
+        caption: "Native desktop client mode for peer workstations: automatic LAN discovery, real-time chunked streaming progress, and folder upload preservation.",
+        src: "/projects/pyshare/desktop_client.png",
+      },
+      {
         id: "host_dark",
         label: "Cyberpunk Host Studio",
         shortTag: "HOST DARK",
@@ -341,7 +357,7 @@ export const featuredProjects: FeaturedProject[] = [
         label: "PIN Keypad & Rate Limiter",
         shortTag: "SECURITY PIN",
         stateColor: "#f43f5e",
-        caption: "Touch-friendly PIN keypad authentication with v4.8.0 thread-safe brute-force rate-limiting and 30-second lockout timer.",
+        caption: "Touch-friendly PIN keypad authentication with v4.9.3 thread-safe brute-force rate-limiting and 30-second lockout timer.",
         src: "/projects/pyshare/client_login.png",
       },
       {
