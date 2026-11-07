@@ -6,7 +6,7 @@ import { showToast } from "./Toast";
 
 interface CommandItem {
   id: string;
-  category: "Navigation" | "Quick Actions" | "Socials & Links" | "Preferences";
+  category: "Navigation" | "Live Demos & Deployments" | "Quick Actions" | "Socials & Links" | "Preferences";
   title: string;
   subtitle?: string;
   icon: React.ReactNode;
@@ -140,6 +140,91 @@ export default function CommandMenu() {
       ),
       shortcut: "C",
       action: () => scrollTo("contact"),
+    },
+
+    // Live Demos & Deployments
+    {
+      id: "demo-pulseengine",
+      category: "Live Demos & Deployments",
+      title: "Launch PulseEngine Live Dashboard",
+      subtitle: "High-throughput outbox notification infrastructure (Vercel)",
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-4 text-emerald-400">
+          <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" />
+        </svg>
+      ),
+      shortcut: "1",
+      action: () => {
+        window.open("https://pulse-engine-dashboard-ten.vercel.app", "_blank");
+        showToast("Opening PulseEngine Dashboard...", "⚡");
+        setIsOpen(false);
+      },
+    },
+    {
+      id: "demo-attendance",
+      category: "Live Demos & Deployments",
+      title: "Launch Smart Campus Attendance",
+      subtitle: "Multi-tenant institutional attendance portal (Vercel)",
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-4 text-cyan-400">
+          <path d="M19 3H5C3.89 3 3 3.89 3 5V19C3 20.1 3.89 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.89 20.1 3 19 3ZM19 19H5V8H19V19ZM7 10H9V12H7V10ZM11 10H13V12H11V10ZM15 10H17V12H15V10Z" />
+        </svg>
+      ),
+      shortcut: "2",
+      action: () => {
+        window.open("https://smartcampus-attendance.vercel.app", "_blank");
+        showToast("Opening Smart Campus Attendance...", "📱");
+        setIsOpen(false);
+      },
+    },
+    {
+      id: "demo-pyshare-web",
+      category: "Live Demos & Deployments",
+      title: "Launch PyShare Web P2P",
+      subtitle: "Zero-install peer-to-peer file transfer (Vercel)",
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-4 text-purple-400">
+          <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM11 7H13V9H11V7ZM11 11H13V17H11V11Z" />
+        </svg>
+      ),
+      shortcut: "3",
+      action: () => {
+        window.open("https://pyshare.vercel.app", "_blank");
+        showToast("Opening PyShare Web P2P...", "🌐");
+        setIsOpen(false);
+      },
+    },
+    {
+      id: "download-pyshare-setup",
+      category: "Live Demos & Deployments",
+      title: "Download PyShare Setup Installer (v4.9.3)",
+      subtitle: "Windows Program Files installer with desktop shortcuts",
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-4 text-emerald-400">
+          <path d="M19 9H15V3H9V9H5L12 16L19 9ZM5 18V20H19V18H5Z" />
+        </svg>
+      ),
+      action: () => {
+        window.open("https://github.com/pattanayakpratik/PyShare/releases/download/v4.9.3/PyShare-Setup-v4.9.3.exe", "_blank");
+        showToast("Downloading PyShare Setup Installer v4.9.3...", "💾");
+        setIsOpen(false);
+      },
+    },
+    {
+      id: "download-attendance-apk",
+      category: "Live Demos & Deployments",
+      title: "Download Smart Campus Android APK (v1.0.0)",
+      subtitle: "Flutter cross-platform mobile client (.apk)",
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-4 text-green-400">
+          <path d="M17.6 9.48L19.54 6.13C19.7 5.86 19.61 5.51 19.34 5.35C19.07 5.19 18.72 5.28 18.56 5.55L16.58 8.98C15.22 8.36 13.68 8 12 8C10.32 8 8.78 8.36 7.42 8.98L5.44 5.55C5.28 5.28 4.93 5.19 4.66 5.35C4.39 5.51 4.3 5.86 4.46 6.13L6.4 9.48C3.84 10.87 2.12 13.54 2 16.67H22C21.88 13.54 20.16 10.87 17.6 9.48ZM7.5 13.5C6.95 13.5 6.5 13.05 6.5 12.5C6.5 11.95 6.95 11.5 7.5 11.5C8.05 11.5 8.5 11.95 8.5 12.5C8.5 13.05 8.05 13.5 7.5 13.5ZM16.5 13.5C15.95 13.5 15.5 13.05 15.5 12.5C15.5 11.95 15.95 11.5 16.5 11.5C17.05 11.5 17.5 11.95 17.5 12.5C17.5 13.05 17.05 13.5 16.5 13.5Z" />
+        </svg>
+      ),
+      action: () => {
+        window.open("https://github.com/pattanayakpratik/attendance_project/releases/download/v1.0.0/smart-campus-attendance-v1.0.0.apk", "_blank");
+        showToast("Downloading Android APK v1.0.0...", "📱");
+        setIsOpen(false);
+      },
     },
 
     // Quick Actions

@@ -27,17 +27,18 @@ export const caseStudies: CaseStudy[] = [
     id: "pyshare",
     slug: "pyshare-architecture",
     title: "Designing a Zero-Config P2P LAN File Transfer Engine",
-    subtitle: "High-throughput chunked socket streaming, UDP broadcast discovery, and v4.8.0 security hardening",
+    subtitle: "High-throughput chunked socket streaming, UDP broadcast discovery, and v4.9.3 security hardening",
     category: "Distributed Systems & Networking",
     readTime: "7 min read",
-    date: "October 2026",
+    date: "November 2026",
     summary:
-      "PyShare solves the friction of moving multi-gigabyte datasets and media across local networks without uploading to external cloud drives. By coupling UDP broadcast beaconing for zero-configuration discovery with chunked TCP streams, v4.8.0 brute-force rate-limiting, and a dual Cyberpunk/Liquid Glass interface, it achieves wire-speed throughput with zero cloud dependencies.",
+      "PyShare solves the friction of moving multi-gigabyte datasets, seekable media, and universal clipboard across local networks without external cloud drives. By coupling UDP broadcast beaconing for zero-configuration discovery with chunked TCP streams, v4.9.3 sliding-window rate limiting, LAN Quick Chat, and a dual Cyberpunk/Liquid Glass interface, it achieves wire-speed throughput with zero cloud dependencies.",
     highlights: [
-      "Zero-config peer discovery via UDP broadcast sockets (port 5005)",
-      "High-throughput chunked TCP transfer using 64KB optimized buffer slices",
+      "Zero-config peer discovery via UDP broadcast sockets (port 5005 & port 53535)",
+      "High-throughput chunked TCP transfer using 64KB optimized buffer slices & 4MB window scaling",
       "End-to-end SHA-256 chunk hashing preventing corrupt partial writes",
-      "v4.8.0 Security: PIN rate limiting (30s lockout after 5 fails) & path traversal canonicalization",
+      "v4.9.3 Upgrades: LAN Quick Chat, Knock-to-Join approval flow, and active peer inspector with IP masking",
+      "HTTP 206 Partial Content byte-range streaming for seekable audio/video & recursive folder uploads",
       "Dual interface: Native desktop studio + embedded HTTP web server for mobile devices",
     ],
     architecturePoints: [
@@ -59,9 +60,9 @@ export const caseStudies: CaseStudy[] = [
           "iOS and Android devices cannot run native Python Tkinter applications. To resolve this, PyShare includes a lightweight embedded HTTP/WS server. A mobile device simply scans the generated on-screen QR code to open an in-browser web app, uploading or downloading files directly through standard browser multipart HTTP streams.",
       },
       {
-        title: "4. v4.8.0 Sliding-Window PIN Rate Limiter & CSRF Defense",
+        title: "4. v4.9.3 Sliding-Window PIN Rate Limiter, CSRF Defense & LAN Quick Chat",
         description:
-          "To protect local hosts from brute-force PIN guessing, v4.8.0 integrates a thread-safe sliding window rate limiter on `/login`. Five consecutive invalid attempts automatically lock the client IP out for 30 seconds with a real-time countdown in the client keypad UI, while host mutating endpoints validate `Origin` and `Sec-Fetch-Site` to prevent intranet drive-by CSRF attacks.",
+          "To protect local hosts from brute-force PIN guessing, PyShare integrates a thread-safe sliding window rate limiter on `/login` (5 consecutive failures enforce a 30s client lockout). Mutating endpoints validate `Origin` and `Sec-Fetch-Site` against intranet drive-by CSRF attacks, while v4.9.3 adds an in-memory 30-message rolling LAN Quick Chat buffer with sender attribution and clipboard image paste.",
       },
     ],
     benchmarks: [
@@ -113,5 +114,53 @@ export const caseStudies: CaseStudy[] = [
     ],
     githubUrl: "https://github.com/pattanayakpratik/Cypher",
     showcaseUrl: "/projects/cypher",
+  },
+  {
+    id: "pulseengine",
+    slug: "pulseengine-architecture",
+    title: "Designing a Fault-Tolerant Distributed Notification & Dynamic Segmentation Engine",
+    subtitle: "ACID Transactional Outbox, two-lane priority worker queues, Redis Lua rate limiting, and AST-based SQL resolvers",
+    category: "Distributed Systems & Cloud Infrastructure",
+    readTime: "8 min read",
+    date: "November 2026",
+    summary:
+      "Modern applications struggle with notification infrastructure: marketing broadcasts cause head-of-line blocking delaying critical OTPs, dual-write operations cause data loss during broker hiccups, and manual segmentation queries burden engineering. PulseEngine eliminates these bottlenecks by coupling an ACID Transactional Outbox pattern with two-lane priority Celery/Redis workers, a 24-hour atomic idempotency guard, and an AST-based dynamic JSON-to-SQL segment compiler.",
+    highlights: [
+      "ACID Transactional Outbox eliminating dual-write broker data loss in PostgreSQL 16",
+      "Two-lane priority worker isolation preventing marketing broadcasts from delaying OTPs/alerts",
+      "Redis Lua token-bucket rate limiter with atomic 24-hour idempotency locking",
+      "Dynamic AST parser compiling arbitrary nested JSON logic directly to parameterized SQL",
+      "Live Vercel analytics dashboard with real-time SSE metrics and chaos engineering simulator",
+    ],
+    architecturePoints: [
+      {
+        title: "1. ACID Transactional Outbox Pattern",
+        description:
+          "Rather than publishing notifications directly to message queues inside HTTP route handlers (which risks broker disconnection data loss), PulseEngine commits notifications and outbox_events within a single atomic PostgreSQL transaction. Dedicated relay workers poll outbox events using 'SELECT ... FOR UPDATE SKIP LOCKED' before streaming to Redis broker lanes.",
+        codeSnippet: `async def commit_notification_with_outbox(session, notification_data, payload):\n    async with session.begin():\n        notif = Notification(**notification_data)\n        session.add(notif)\n        await session.flush()\n        outbox = OutboxEvent(\n            aggregate_id=notif.id,\n            event_type="notification.dispatched",\n            payload=payload,\n            priority=notif.priority,\n        )\n        session.add(outbox)`,
+      },
+      {
+        title: "2. Two-Lane Priority Worker Queue Isolation",
+        description:
+          "To completely eliminate Head-of-Line blocking, PulseEngine routes tasks into isolated lanes: Lane 1 (Critical: OTPs, security alerts) with sub-100ms SLA, and Lane 2 (Bulk: marketing broadcasts, batch engagement) with asynchronous background throttling. Critical workers never poll the bulk queue, guaranteeing urgent communications arrive without queue lag.",
+      },
+      {
+        title: "3. AST-Based Dynamic JSON-to-SQL Segment Resolver",
+        description:
+          "Instead of running slow in-memory filtering or hardcoding cohort queries, PulseEngine parses abstract syntax tree (AST) JSON rules into secure, parameterized PostgreSQL SQL with GIN/B-tree index optimization.",
+      },
+      {
+        title: "4. Chaos Simulation & Real-Time SSE Dashboard",
+        description:
+          "The system includes built-in chaos endpoints simulating broker packet loss, worker failover, and rate-limit backpressure. A responsive Next.js 16 dashboard subscribes to Server-Sent Events (SSE) to render live delivery percentiles, queue depth, and chaos recovery in real time.",
+      },
+    ],
+    benchmarks: [
+      { metric: "Critical OTP Dispatch Latency", value: "< 45 ms", detail: "High-priority queue isolated from background marketing blasts" },
+      { metric: "Idempotency TTL Window", value: "24 Hours", detail: "Zero duplicate dispatches across network timeouts and retries" },
+      { metric: "Delivery Guarantee", value: "ACID Guaranteed", detail: "Transactional outbox prevents data loss on broker failure" },
+    ],
+    githubUrl: "https://github.com/pattanayakpratik/PulseEngine",
+    showcaseUrl: "https://pulse-engine-dashboard-ten.vercel.app",
   },
 ];

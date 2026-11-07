@@ -14,11 +14,16 @@ export default function PyShareShowcase() {
   const screenshots = pyshare?.screenshots || [];
 
   const liveUrl = pyshare?.liveUrl || "https://pyshare.vercel.app";
+  const version = pyshare?.version || "v4.9.3";
   const downloadUrl =
     pyshare?.downloadUrl ||
-    "https://github.com/pattanayakpratik/PyShare/releases/download/v4.8.0/PyShare.exe";
+    "https://github.com/pattanayakpratik/PyShare/releases/download/v4.9.3/PyShare.exe";
+  const setupUrl =
+    "https://github.com/pattanayakpratik/PyShare/releases/download/v4.9.3/PyShare-Setup-v4.9.3.exe";
+  const universalZipUrl =
+    "https://github.com/pattanayakpratik/PyShare/releases/download/v4.9.3/PyShare-v4.9.3-Universal.zip";
   const releaseUrl =
-    pyshare?.releaseUrl || "https://github.com/pattanayakpratik/PyShare/releases/tag/v4.8.0";
+    pyshare?.releaseUrl || "https://github.com/pattanayakpratik/PyShare/releases/tag/v4.9.3";
   const repoUrl = pyshare?.repo || "https://github.com/pattanayakpratik/PyShare";
 
   const comparisonModes = pyshareComparisonModes(liveUrl, downloadUrl);
@@ -62,7 +67,7 @@ export default function PyShareShowcase() {
             HYBRID P2P ECOSYSTEM
           </span>
           <span className="px-2.5 py-1 rounded-md text-xs font-mono font-semibold bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
-            v4.8.0 RELEASE
+            {version} RELEASE
           </span>
           <span className="px-2.5 py-1 rounded-md text-xs font-mono bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
             WebRTC + Python Socket LAN
@@ -74,7 +79,7 @@ export default function PyShareShowcase() {
         </h1>
 
         <p className="text-base sm:text-lg text-[var(--white-icon)] max-w-3xl leading-relaxed">
-          High-performance peer-to-peer file transfer and universal clipboard beam system. Share
+          High-performance peer-to-peer file transfer, LAN quick chat, and universal clipboard beam system. Share
           unlimited files, photos, 4K videos, and text across Windows, macOS, Linux, iOS, and
           Android with zero cloud intermediates, zero logins, and zero file size limits.
         </p>
@@ -92,12 +97,32 @@ export default function PyShareShowcase() {
           </a>
 
           <a
+            href={setupUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-emerald-500/30 bg-emerald-500/10 hover:bg-emerald-500/20 text-sm font-medium text-emerald-400 transition-colors"
+          >
+            <span>Windows Setup (.exe)</span>
+            <span className="text-xs opacity-75">Installer</span>
+          </a>
+
+          <a
             href={downloadUrl}
             download="PyShare.exe"
             className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-[var(--white-icon-tr)] bg-[var(--component-bg)] hover:bg-[var(--white-icon-tr)] text-sm font-medium text-[var(--white)] transition-colors"
           >
-            <span>Download PyShare v4.8.0 (.exe)</span>
-            <span className="text-xs opacity-60">Windows</span>
+            <span>Standalone EXE ({version})</span>
+            <span className="text-xs opacity-60">Portable</span>
+          </a>
+
+          <a
+            href={universalZipUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-[var(--white-icon-tr)] bg-[var(--component-bg)] hover:bg-[var(--white-icon-tr)] text-sm font-medium text-[var(--white-icon)] hover:text-[var(--white)] transition-colors"
+          >
+            <span>Universal ZIP</span>
+            <span className="text-xs opacity-60">Mac/Linux</span>
           </a>
 
           <a
@@ -144,12 +169,21 @@ export default function PyShareShowcase() {
           </a>
 
           <a
+            href={setupUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 px-5 py-3 rounded-xl border border-emerald-500/30 bg-emerald-500/10 hover:bg-emerald-500/20 text-xs sm:text-sm font-semibold text-emerald-400 transition-colors"
+          >
+            <span>💾 Windows Setup Installer</span>
+          </a>
+
+          <a
             href={downloadUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 px-5 py-3 rounded-xl border border-[var(--white-icon-tr)] bg-[var(--card-bg)] hover:bg-[var(--white-icon-tr)] text-xs sm:text-sm font-semibold text-[var(--white)] transition-colors"
           >
-            <span>⬇️ Download PyShare v4.8.0</span>
+            <span>⬇️ Standalone EXE ({version})</span>
           </a>
 
           <a

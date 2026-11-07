@@ -283,25 +283,26 @@ export const featuredProjects: FeaturedProject[] = [
   },
   {
     title: "PyShare",
-    tagline: "High-Speed Cross-Device File Transfer & Clipboard Hub",
+    tagline: "High-Speed Cross-Device File Transfer, LAN Quick Chat & Universal Clipboard",
     description:
-      "A modern, ultra-fast cross-platform file transfer and universal clipboard hub. Effortlessly share files, photos, media, and text between PC, Mac, iPhone, Android, and Tablets with zero configuration via WebRTC P2P or offline local Wi-Fi.",
+      "A modern, ultra-fast cross-platform file transfer, LAN quick chat, and universal clipboard hub. Effortlessly share files, photos, media, and text between PC, Mac, iPhone, Android, and Tablets with zero configuration via WebRTC P2P or offline local Wi-Fi.",
     highlights: [
-      "v4.8.0 Release: Rate-limiting defense against PIN brute-force, path traversal mitigation & CSRF guards",
-      "Zero-install Web Mode with WebRTC P2P DataChannels hosted live at pyshare.vercel.app",
-      "Cyberpunk Neon & Luxury Liquid Glass dual design systems with responsive 1180px+ Studio layout",
-      "High-speed offline Wi-Fi LAN transfer (50–100 MB/s) with 1-click Cloudflare Internet Tunnel",
-      "Server-Sent Events (SSE) live push & direct-to-disk File System Access API streaming",
-      "Universal bidirectional shared clipboard with 1-click native Windows OS clipboard push",
+      "v4.9.3 Release: LAN Quick Chat (30-msg rolling buffer, Ctrl+V image paste, inline file previews & unread badges)",
+      "Knock-to-Join guest authentication flow with branded approve/decline host modals",
+      "Active Peer Inspector with masked IPs, custom device nicknames, and 1-click session revocation",
+      "HTTP 206 Partial Content byte-range streaming for seekable media & recursive folder preservation",
+      "Official Inno Setup Installer (with AppMutex), Standalone Portable EXE, and Universal ZIP",
+      "Indexed by XERJ Corpus Hub for open security hardening, rate limiting, and web host UX architecture",
     ],
     image: "pyshare",
     repo: "https://github.com/pattanayakpratik/PyShare",
     showcaseUrl: "/projects/pyshare",
     liveUrl: "https://pyshare.vercel.app",
     tags: ["WebRTC", "Python", "P2P", "Fast Transfer", "Standalone EXE", "Sockets", "Vercel"],
-    downloadUrl: "https://github.com/pattanayakpratik/PyShare/releases/download/v4.8.0/PyShare.exe",
-    releaseUrl: "https://github.com/pattanayakpratik/PyShare/releases/tag/v4.8.0",
-    fileSize: "v4.8.0 Standalone EXE",
+    version: "v4.9.3",
+    downloadUrl: "https://github.com/pattanayakpratik/PyShare/releases/download/v4.9.3/PyShare.exe",
+    releaseUrl: "https://github.com/pattanayakpratik/PyShare/releases/tag/v4.9.3",
+    fileSize: "v4.9.3 Installer & Portable EXE",
     screenshots: [
       {
         id: "host_dark",
@@ -415,9 +416,31 @@ export interface MiniProject {
   description: string;
   repo: string;
   tags: string[];
+  liveUrl?: string;
+  apkUrl?: string;
+  badge?: string;
 }
 
 export const otherProjects: MiniProject[] = [
+  {
+    title: "PulseEngine",
+    description:
+      "Distributed multi-channel notification infrastructure featuring an ACID Transactional Outbox, 2-lane priority worker isolation, Redis Lua token-bucket rate limiter, 24h idempotency guard, and dynamic AST JSON-to-SQL segment resolver.",
+    repo: "https://github.com/pattanayakpratik/PulseEngine",
+    liveUrl: "https://pulse-engine-dashboard-ten.vercel.app",
+    badge: "LIVE VERCEL",
+    tags: ["FastAPI", "PostgreSQL", "Redis", "Next.js", "Distributed Systems", "Docker"],
+  },
+  {
+    title: "Smart Campus & Multi-Tenant Attendance",
+    description:
+      "Enterprise attendance and timetable management platform with dynamic QR code projection, GPS geofencing radius validation, fixed weekly timetable matrix, Supabase RLS security, and Flutter Android APK release.",
+    repo: "https://github.com/pattanayakpratik/attendance_project",
+    liveUrl: "https://smartcampus-attendance.vercel.app",
+    apkUrl: "https://github.com/pattanayakpratik/attendance_project/releases/download/v1.0.0/smart-campus-attendance-v1.0.0.apk",
+    badge: "WEB & ANDROID APK",
+    tags: ["Next.js", "Flutter", "Flask", "Supabase", "PostgreSQL", "Mobile"],
+  },
   {
     title: "AI Transaction Processor",
     description:

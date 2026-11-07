@@ -179,19 +179,51 @@ export default function InteractiveCli({ onExit }: InteractiveCliProps) {
 
       case "projects":
         newLines = [
-          { text: "Active Projects in Repository:", type: "info" },
-          { text: "• PyShare: Cross-Platform P2P LAN Transfer (Python / Next.js) -> /projects/pyshare", type: "default" },
-          { text: "• Cypher: Intelligent Desktop Voice Assistant (PyQt / Python) -> /projects/cypher", type: "default" },
-          { text: "Use your browser to visit these showcase routes!", type: "success" },
+          { text: "ENGINEERING PROJECTS MATRIX:", type: "info" },
+          { text: "┌──────────────────────┬────────────────────────────────────┬──────────┐", type: "ascii" },
+          { text: "│ Project              │ Core Stack & Architecture          │ Status   │", type: "ascii" },
+          { text: "├──────────────────────┼────────────────────────────────────┼──────────┤", type: "ascii" },
+          { text: "│ 1. PulseEngine       │ FastAPI, Postgres, Redis, Outbox   │ ● LIVE   │", type: "ascii" },
+          { text: "│ 2. PyShare v4.9.3    │ WebRTC P2P, Python LAN, Quick Chat │ ● LIVE   │", type: "ascii" },
+          { text: "│ 3. Smart Campus Att. │ Next.js, Flutter, Flask, Supabase  │ ● LIVE   │", type: "ascii" },
+          { text: "│ 4. Cypher AI         │ Python, Gemini 1.5, PyQt5 HUD      │ EXE READY│", type: "ascii" },
+          { text: "└──────────────────────┴────────────────────────────────────┴──────────┘", type: "ascii" },
+          { text: "Tip: Type 'demo pulseengine', 'demo pyshare', or 'demo attendance' to launch!", type: "success" },
         ];
         break;
+
+      case "demo":
+      case "launch": {
+        const target = args.toLowerCase().trim();
+        if (target.includes("pulse")) {
+          if (typeof window !== "undefined") window.open("https://pulse-engine-dashboard-ten.vercel.app", "_blank");
+          showToast("Launching PulseEngine Live Dashboard...", "⚡");
+          newLines = [{ text: "Opening PulseEngine Live Dashboard (https://pulse-engine-dashboard-ten.vercel.app)...", type: "success" }];
+        } else if (target.includes("pyshare") || target.includes("share")) {
+          if (typeof window !== "undefined") window.open("https://pyshare.vercel.app", "_blank");
+          showToast("Launching PyShare Web App...", "🌐");
+          newLines = [{ text: "Opening PyShare P2P Web App (https://pyshare.vercel.app)...", type: "success" }];
+        } else if (target.includes("attendance") || target.includes("campus")) {
+          if (typeof window !== "undefined") window.open("https://smartcampus-attendance.vercel.app", "_blank");
+          showToast("Launching Smart Campus Attendance...", "📱");
+          newLines = [{ text: "Opening Smart Campus Attendance (https://smartcampus-attendance.vercel.app)...", type: "success" }];
+        } else if (target.includes("cypher")) {
+          if (typeof window !== "undefined") window.location.href = "/projects/cypher";
+          newLines = [{ text: "Navigating to Cypher Showcase (/projects/cypher)...", type: "success" }];
+        } else {
+          newLines = [
+            { text: "Usage: 'demo <name>' - Available targets: 'pulseengine', 'pyshare', 'attendance', 'cypher'", type: "warning" },
+          ];
+        }
+        break;
+      }
 
       case "skills":
         newLines = [
           { text: "Engineering Domains:", type: "info" },
-          { text: "• Backend: Python, Flask, Node.js, RESTful APIs, Postgres, Supabase", type: "default" },
+          { text: "• Backend: Python, FastAPI, Flask, Node.js, Postgres, Redis, Supabase, ACID Outbox", type: "default" },
           { text: "• AI & ML: Gemini API, Groq, ChromaDB, scikit-learn, TensorFlow, AWS ML", type: "default" },
-          { text: "• Systems: TCP Sockets, UDP Discovery, PyQt, Threading, Linux/Bash", type: "default" },
+          { text: "• Systems: TCP Sockets, UDP Discovery, PyQt, Threading, Linux/Bash, Docker", type: "default" },
         ];
         break;
 
