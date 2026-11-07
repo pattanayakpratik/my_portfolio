@@ -396,12 +396,13 @@ export default function Projects() {
                         <path d="M4 5V19H20V7H11.5858L9.58579 5H4ZM12.4142 5H21C21.5523 5 22 5.44772 22 6V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3H10.4142L12.4142 5Z" />
                       </svg>
                       {p.badge && (
-                        <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-[var(--sec)]/15 text-[var(--sec)] border border-[var(--sec)]/30 font-semibold tracking-wider">
+                        <span className="inline-flex items-center gap-1.5 text-[10px] font-mono px-2 py-0.5 rounded-full bg-[var(--sec)]/15 text-[var(--sec)] border border-[var(--sec)]/30 font-semibold tracking-wider">
+                          {p.liveUrl && <span className="size-1.5 rounded-full bg-emerald-400 animate-pulse" />}
                           {p.badge}
                         </span>
                       )}
                     </div>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-1.5">
                       {p.liveUrl && (
                         <button
                           type="button"
@@ -414,6 +415,20 @@ export default function Projects() {
                           title="Open live app"
                         >
                           Live ↗
+                        </button>
+                      )}
+                      {p.apkUrl && (
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            window.open(p.apkUrl, "_blank", "noopener,noreferrer");
+                          }}
+                          className="px-2 py-0.5 rounded text-[11px] font-mono font-medium text-emerald-400 hover:bg-emerald-500/20 border border-emerald-500/30 transition-colors"
+                          title="Download Android APK"
+                        >
+                          APK ⬇
                         </button>
                       )}
                       <svg

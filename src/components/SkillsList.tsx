@@ -29,10 +29,10 @@ const skills = [
       </svg>
     ),
     items: [
-      "RESTful APIs with Python, Flask & Node.js",
-      "Analytics dashboards & data-viz endpoints",
-      "Push-notification systems & segment resolvers",
-      "Schema migrations & SQL (Postgres, MySQL, Supabase)",
+      "High-throughput APIs with Python, FastAPI, Flask & Node.js",
+      "ACID Transactional Outbox & 2-lane priority worker queues",
+      "Redis Lua token-bucket rate limiting & 24h idempotency",
+      "PostgreSQL, Supabase & SQL optimization with GIN/B-Tree indexing",
     ],
   },
   {

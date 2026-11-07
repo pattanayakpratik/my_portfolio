@@ -417,6 +417,7 @@ export interface MiniProject {
   repo: string;
   tags: string[];
   liveUrl?: string;
+  apkUrl?: string;
   badge?: string;
 }
 
@@ -436,6 +437,7 @@ export const otherProjects: MiniProject[] = [
       "Enterprise attendance and timetable management platform with dynamic QR code projection, GPS geofencing radius validation, fixed weekly timetable matrix, Supabase RLS security, and Flutter Android APK release.",
     repo: "https://github.com/pattanayakpratik/attendance_project",
     liveUrl: "https://smartcampus-attendance.vercel.app",
+    apkUrl: "https://github.com/pattanayakpratik/attendance_project/releases/download/v1.0.0/smart-campus-attendance-v1.0.0.apk",
     badge: "WEB & ANDROID APK",
     tags: ["Next.js", "Flutter", "Flask", "Supabase", "PostgreSQL", "Mobile"],
   },
