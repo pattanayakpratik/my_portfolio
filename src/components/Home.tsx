@@ -148,8 +148,26 @@ export default function Home() {
       <div className="max-w-5xl mx-auto space-y-8 md:pt-40 md:pb-24 pb-14">
         <div className="text-left space-y-4">
           <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 hero-in" style={{ ["--d" as string]: "0ms" }}>
-            <p className="text-md md:text-lg text-[var(--white-icon)]">
-              Hi, I&apos;m {profile.firstName} 👋
+            <p className="text-md md:text-lg text-[var(--white-icon)] flex items-center gap-2">
+              <span>Hi, I&apos;m {profile.firstName}</span>
+              <span className="inline-block origin-[70%_70%] hover:rotate-12 transition-transform duration-300">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="size-5 text-[var(--sec)]"
+                  aria-hidden="true"
+                >
+                  <path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0" />
+                  <path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v2" />
+                  <path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8" />
+                  <path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15" />
+                </svg>
+              </span>
             </p>
             <span className="inline-flex items-center gap-2 text-xs md:text-sm text-[var(--white-icon)] border border-[var(--white-icon-tr)] bg-[var(--card-bg)] rounded-full px-3 py-1 shadow-sm dark:shadow-none">
               <span className="relative flex size-2">
@@ -218,7 +236,7 @@ export default function Home() {
               href={profile.resume}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={() => showToast("Opening Resume PDF...", "📄")}
+              onClick={() => showToast("Opening Resume PDF...", "file")}
               aria-label="View and download resume (PDF)"
               className="resume-btn group inline-flex items-center justify-center gap-2 h-[58px] px-6 rounded-xl font-medium text-white dark:text-[#101010] bg-[var(--sec)] hover:-translate-y-0.5 transition duration-300 w-full sm:w-auto"
             >

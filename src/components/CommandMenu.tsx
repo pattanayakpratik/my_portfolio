@@ -39,7 +39,7 @@ export default function CommandMenu() {
 
   const copyEmail = () => {
     navigator.clipboard.writeText(profile.email);
-    showToast("Email copied to clipboard!", "📋");
+    showToast("Email copied to clipboard!", "copy");
     setIsOpen(false);
   };
 
@@ -48,11 +48,11 @@ export default function CommandMenu() {
     if (isDark) {
       document.documentElement.classList.remove("dark");
       localStorage.setItem("theme", "light");
-      showToast("Switched to Light mode", "☀️");
+      showToast("Switched to Light mode", "sun");
     } else {
       document.documentElement.classList.add("dark");
       localStorage.setItem("theme", "dark");
-      showToast("Switched to Dark mode", "🌙");
+      showToast("Switched to Dark mode", "moon");
     }
     window.dispatchEvent(new Event("themechange"));
     setIsOpen(false);
@@ -156,7 +156,7 @@ export default function CommandMenu() {
       shortcut: "1",
       action: () => {
         window.open("https://pulse-engine-dashboard-ten.vercel.app", "_blank");
-        showToast("Opening PulseEngine Dashboard...", "⚡");
+        showToast("Opening PulseEngine Dashboard...", "zap");
         setIsOpen(false);
       },
     },
@@ -173,7 +173,7 @@ export default function CommandMenu() {
       shortcut: "2",
       action: () => {
         window.open("https://smartcampus-attendance.vercel.app", "_blank");
-        showToast("Opening Smart Campus Attendance...", "📱");
+        showToast("Opening Smart Campus Attendance...", "mobile");
         setIsOpen(false);
       },
     },
@@ -190,7 +190,7 @@ export default function CommandMenu() {
       shortcut: "3",
       action: () => {
         window.open("https://pyshare.vercel.app", "_blank");
-        showToast("Opening PyShare Web P2P...", "🌐");
+        showToast("Opening PyShare Web P2P...", "globe");
         setIsOpen(false);
       },
     },
@@ -206,7 +206,7 @@ export default function CommandMenu() {
       ),
       action: () => {
         window.open("https://github.com/pattanayakpratik/PyShare/releases/download/v4.9.3/PyShare-Setup-v4.9.3.exe", "_blank");
-        showToast("Downloading PyShare Setup Installer v4.9.3...", "💾");
+        showToast("Downloading PyShare Setup Installer v4.9.3...", "download");
         setIsOpen(false);
       },
     },
@@ -222,7 +222,7 @@ export default function CommandMenu() {
       ),
       action: () => {
         window.open("https://github.com/pattanayakpratik/attendance_project/releases/download/v1.0.0/smart-campus-attendance-v1.0.0.apk", "_blank");
-        showToast("Downloading Android APK v1.0.0...", "📱");
+        showToast("Downloading Android APK v1.0.0...", "download");
         setIsOpen(false);
       },
     },
@@ -252,7 +252,7 @@ export default function CommandMenu() {
       ),
       action: () => {
         window.open(profile.resume, "_blank");
-        showToast("Opening Resume...", "📄");
+        showToast("Opening Resume...", "file");
         setIsOpen(false);
       },
     },

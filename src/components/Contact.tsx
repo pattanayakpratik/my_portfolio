@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { profile } from "@/data/profile";
 import { showToast } from "./Toast";
+import { AlertCircle, MapPin } from "lucide-react";
 
 const inputCls =
   "px-4 py-3 bg-[var(--card-bg)] text-[var(--white)] placeholder:text-[var(--white-icon)] border border-[var(--white-icon-tr)] rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--sec)] focus:border-transparent transition shadow-sm dark:shadow-none";
@@ -19,7 +20,7 @@ export default function Contact() {
     e.stopPropagation();
     navigator.clipboard.writeText(profile.email);
     setCopied(true);
-    showToast("Email copied to clipboard!", "📋");
+    showToast("Email copied to clipboard!", "copy");
     setTimeout(() => setCopied(false), 2500);
   };
 
@@ -41,7 +42,7 @@ export default function Contact() {
         setIsSubmitted(true);
         form.reset();
         setMessageLength(0);
-        showToast("Message sent successfully! 🚀", "✅");
+        showToast("Message sent successfully!", "check");
       } else {
         const data = await response.json().catch(() => null);
         console.error("Form error:", data);
@@ -190,7 +191,10 @@ export default function Contact() {
                     role="alert"
                     className="p-3.5 rounded-xl border border-red-500/30 bg-red-500/10 text-red-200 text-sm flex items-center justify-between gap-3"
                   >
-                    <span>⚠️ {errorMessage}</span>
+                    <span className="flex items-center gap-2">
+                      <AlertCircle className="size-4 shrink-0 text-red-400" />
+                      {errorMessage}
+                    </span>
                     <a
                       href={`mailto:${profile.email}`}
                       className="text-[var(--sec)] hover:underline shrink-0 font-medium"

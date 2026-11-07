@@ -9,6 +9,8 @@ import PyShareModes from "./pyshare/PyShareModes";
 import PyShareArchitecture from "./pyshare/PyShareArchitecture";
 import PyShareQuickStart from "./pyshare/PyShareQuickStart";
 
+import { Globe, Download, HardDrive, ExternalLink } from "lucide-react";
+
 export default function PyShareShowcase() {
   const pyshare = featuredProjects.find((p) => p.title === "PyShare");
   const screenshots = pyshare?.screenshots || [];
@@ -164,8 +166,9 @@ export default function PyShareShowcase() {
             rel="noopener noreferrer"
             className="flex items-center gap-2 px-6 py-3 rounded-xl bg-[var(--sec)] text-white dark:text-[#101010] font-bold text-sm shadow-md hover:scale-105 transition-transform"
           >
-            <span>🌐 Open Web App (pyshare.vercel.app)</span>
-            <span className="text-xs">↗</span>
+            <Globe className="size-4" />
+            <span>Open Web App (pyshare.vercel.app)</span>
+            <ExternalLink className="size-3.5" />
           </a>
 
           <a
@@ -174,7 +177,8 @@ export default function PyShareShowcase() {
             rel="noopener noreferrer"
             className="flex items-center gap-2 px-5 py-3 rounded-xl border border-emerald-500/30 bg-emerald-500/10 hover:bg-emerald-500/20 text-xs sm:text-sm font-semibold text-emerald-400 transition-colors"
           >
-            <span>💾 Windows Setup Installer</span>
+            <Download className="size-4" />
+            <span>Windows Setup Installer</span>
           </a>
 
           <a
@@ -183,7 +187,8 @@ export default function PyShareShowcase() {
             rel="noopener noreferrer"
             className="flex items-center gap-2 px-5 py-3 rounded-xl border border-[var(--white-icon-tr)] bg-[var(--card-bg)] hover:bg-[var(--white-icon-tr)] text-xs sm:text-sm font-semibold text-[var(--white)] transition-colors"
           >
-            <span>⬇️ Standalone EXE ({version})</span>
+            <HardDrive className="size-4" />
+            <span>Standalone EXE ({version})</span>
           </a>
 
           <a
@@ -193,7 +198,7 @@ export default function PyShareShowcase() {
             className="flex items-center gap-2 px-4 py-3 rounded-xl border border-[var(--white-icon-tr)] bg-[var(--card-bg)] hover:bg-[var(--white-icon-tr)] text-xs sm:text-sm font-medium text-[var(--white-icon)] hover:text-[var(--white)] transition-colors"
           >
             <span>GitHub Repo</span>
-            <span className="text-xs">↗</span>
+            <ExternalLink className="size-3.5" />
           </a>
         </div>
       </section>

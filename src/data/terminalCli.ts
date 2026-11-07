@@ -28,7 +28,7 @@ export function getNeofetchOutput(theme: string): CliOutputLine[] {
     { text: `                      CGPI: ${stats[0].value} (${stats[0].label})`, type: "ascii" },
     { text: `                      Certification: AWS Certified (${stats[1].label})`, type: "ascii" },
     { text: `                      Stack: Python, Next.js, Flask, FastAPI, Postgres`, type: "ascii" },
-    { text: `                      Status: Open to high-impact opportunities 🚀`, type: "success" },
+    { text: `                      Status: Open to high-impact opportunities [ACTIVE]`, type: "success" },
   ];
 }
 

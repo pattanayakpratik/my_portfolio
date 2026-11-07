@@ -1,3 +1,5 @@
+import { Globe, Zap, ShieldCheck, ClipboardCopy, LockKeyhole, Sparkles } from "lucide-react";
+
 export default function PyShareArchitecture() {
   return (
     <section className="mb-16">
@@ -12,8 +14,8 @@ export default function PyShareArchitecture() {
         {/* WebRTC */}
         <div className="p-6 rounded-2xl border border-[var(--white-icon-tr)] bg-[var(--card-bg)] flex flex-col gap-3">
           <div className="flex items-center gap-3">
-            <span className="size-10 rounded-xl bg-purple-500/15 border border-purple-500/30 flex items-center justify-center text-lg text-purple-400">
-              🌐
+            <span className="size-10 rounded-xl bg-purple-500/15 border border-purple-500/30 flex items-center justify-center text-purple-400">
+              <Globe className="size-5" />
             </span>
             <div>
               <h4 className="font-semibold text-base text-[var(--white)]">
@@ -33,8 +35,8 @@ export default function PyShareArchitecture() {
         {/* HTTP 206 */}
         <div className="p-6 rounded-2xl border border-[var(--white-icon-tr)] bg-[var(--card-bg)] flex flex-col gap-3">
           <div className="flex items-center gap-3">
-            <span className="size-10 rounded-xl bg-[var(--sec)]/15 border border-[var(--sec)]/30 flex items-center justify-center text-lg text-[var(--sec)]">
-              ⚡
+            <span className="size-10 rounded-xl bg-[var(--sec)]/15 border border-[var(--sec)]/30 flex items-center justify-center text-[var(--sec)]">
+              <Zap className="size-5" />
             </span>
             <div>
               <h4 className="font-semibold text-base text-[var(--white)]">
@@ -52,15 +54,15 @@ export default function PyShareArchitecture() {
           </p>
         </div>
 
-        {/* Security Hardening v4.8.0 */}
+        {/* Security Hardening */}
         <div className="p-6 rounded-2xl border border-[var(--white-icon-tr)] bg-[var(--card-bg)] flex flex-col gap-3">
           <div className="flex items-center gap-3">
-            <span className="size-10 rounded-xl bg-rose-500/15 border border-rose-500/30 flex items-center justify-center text-lg text-rose-400">
-              🛡️
+            <span className="size-10 rounded-xl bg-rose-500/15 border border-rose-500/30 flex items-center justify-center text-rose-400">
+              <ShieldCheck className="size-5" />
             </span>
             <div>
               <h4 className="font-semibold text-base text-[var(--white)]">
-                v4.8.0 Security Hardening
+                v4.9.3 Security Hardening
               </h4>
               <span className="text-xs font-mono text-rose-400">
                 Rate Limiter · CSRF & Traversal Defense
@@ -76,8 +78,8 @@ export default function PyShareArchitecture() {
         {/* Clipboard */}
         <div className="p-6 rounded-2xl border border-[var(--white-icon-tr)] bg-[var(--card-bg)] flex flex-col gap-3">
           <div className="flex items-center gap-3">
-            <span className="size-10 rounded-xl bg-blue-500/15 border border-blue-500/30 flex items-center justify-center text-lg text-blue-400">
-              📋
+            <span className="size-10 rounded-xl bg-blue-500/15 border border-blue-500/30 flex items-center justify-center text-blue-400">
+              <ClipboardCopy className="size-5" />
             </span>
             <div>
               <h4 className="font-semibold text-base text-[var(--white)]">
@@ -98,8 +100,8 @@ export default function PyShareArchitecture() {
         {/* Dual-Grace PIN & Discovery */}
         <div className="p-6 rounded-2xl border border-[var(--white-icon-tr)] bg-[var(--card-bg)] flex flex-col gap-3">
           <div className="flex items-center gap-3">
-            <span className="size-10 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-lg text-emerald-400">
-              🔒
+            <span className="size-10 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+              <LockKeyhole className="size-5" />
             </span>
             <div>
               <h4 className="font-semibold text-base text-[var(--white)]">
@@ -120,8 +122,8 @@ export default function PyShareArchitecture() {
         {/* Cyberpunk & Liquid Glass UI */}
         <div className="p-6 rounded-2xl border border-[var(--white-icon-tr)] bg-[var(--card-bg)] flex flex-col gap-3">
           <div className="flex items-center gap-3">
-            <span className="size-10 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-lg text-amber-400">
-              💎
+            <span className="size-10 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-400">
+              <Sparkles className="size-5" />
             </span>
             <div>
               <h4 className="font-semibold text-base text-[var(--white)]">

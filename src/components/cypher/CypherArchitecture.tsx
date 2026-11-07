@@ -1,3 +1,5 @@
+import { Atom, AudioWaveform, Gauge, KeyRound } from "lucide-react";
+
 export default function CypherArchitecture() {
   return (
     <section className="mb-16">
@@ -11,8 +13,8 @@ export default function CypherArchitecture() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="p-6 rounded-2xl border border-[var(--white-icon-tr)] bg-[var(--card-bg)] flex flex-col gap-3">
           <div className="flex items-center gap-3">
-            <span className="size-10 rounded-xl bg-[var(--sec)]/15 border border-[var(--sec)]/30 flex items-center justify-center text-lg text-[var(--sec)]">
-              ⚛️
+            <span className="size-10 rounded-xl bg-[var(--sec)]/15 border border-[var(--sec)]/30 flex items-center justify-center text-[var(--sec)]">
+              <Atom className="size-5" />
             </span>
             <div>
               <h4 className="font-semibold text-base text-[var(--white)]">
@@ -33,8 +35,8 @@ export default function CypherArchitecture() {
 
         <div className="p-6 rounded-2xl border border-[var(--white-icon-tr)] bg-[var(--card-bg)] flex flex-col gap-3">
           <div className="flex items-center gap-3">
-            <span className="size-10 rounded-xl bg-pink-500/15 border border-pink-500/30 flex items-center justify-center text-lg text-pink-400">
-              📊
+            <span className="size-10 rounded-xl bg-pink-500/15 border border-pink-500/30 flex items-center justify-center text-pink-400">
+              <AudioWaveform className="size-5" />
             </span>
             <div>
               <h4 className="font-semibold text-base text-[var(--white)]">
@@ -54,8 +56,8 @@ export default function CypherArchitecture() {
 
         <div className="p-6 rounded-2xl border border-[var(--white-icon-tr)] bg-[var(--card-bg)] flex flex-col gap-3">
           <div className="flex items-center gap-3">
-            <span className="size-10 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-lg text-emerald-400">
-              📈
+            <span className="size-10 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+              <Gauge className="size-5" />
             </span>
             <div>
               <h4 className="font-semibold text-base text-[var(--white)]">
@@ -76,8 +78,8 @@ export default function CypherArchitecture() {
 
         <div className="p-6 rounded-2xl border border-[var(--white-icon-tr)] bg-[var(--card-bg)] flex flex-col gap-3">
           <div className="flex items-center gap-3">
-            <span className="size-10 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-lg text-amber-400">
-              ⚙️
+            <span className="size-10 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-400">
+              <KeyRound className="size-5" />
             </span>
             <div>
               <h4 className="font-semibold text-base text-[var(--white)]">

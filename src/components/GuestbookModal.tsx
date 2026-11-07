@@ -4,6 +4,16 @@ import { useState, useEffect } from "react";
 import { showToast } from "./Toast";
 import { db, isFirebaseConfigured } from "@/firebase";
 import { collection, addDoc, query, orderBy, limit, onSnapshot } from "firebase/firestore";
+import {
+  PenLine,
+  BookOpen,
+  X,
+  Rocket,
+  Flame,
+  Code2,
+  Lightbulb,
+  Heart,
+} from "lucide-react";
 
 export interface GuestbookEntry {
   id: string;
@@ -20,7 +30,7 @@ const SEED_ENTRIES: GuestbookEntry[] = [
     name: "Alex R.",
     role: "Full-Stack Dev",
     message: "The chunked TCP streaming in PyShare is brilliant and super fast!",
-    reaction: "🔥",
+    reaction: "flame",
     createdAt: "Just now",
   },
   {
@@ -28,7 +38,7 @@ const SEED_ENTRIES: GuestbookEntry[] = [
     name: "Dr. Elena Vance",
     role: "AI Engineer",
     message: "Really impressed with the multi-threaded event loop design in Cypher.",
-    reaction: "🚀",
+    reaction: "rocket",
     createdAt: "Yesterday",
   },
   {
@@ -36,18 +46,40 @@ const SEED_ENTRIES: GuestbookEntry[] = [
     name: "Marcus K.",
     role: "Systems Architect",
     message: "Slick interactive terminal and clean repository architecture. Great work!",
-    reaction: "💻",
+    reaction: "code",
     createdAt: "2 days ago",
   },
 ];
 
 const REACTIONS = [
-  { emoji: "🚀", label: "Speed" },
-  { emoji: "🔥", label: "Architecture" },
-  { emoji: "💻", label: "Clean Code" },
-  { emoji: "💡", label: "Creative" },
-  { emoji: "❤️", label: "Loved it" },
+  { id: "rocket", icon: Rocket, label: "Speed", color: "text-amber-400" },
+  { id: "flame", icon: Flame, label: "Architecture", color: "text-rose-400" },
+  { id: "code", icon: Code2, label: "Clean Code", color: "text-cyan-400" },
+  { id: "lightbulb", icon: Lightbulb, label: "Creative", color: "text-yellow-400" },
+  { id: "heart", icon: Heart, label: "Loved it", color: "text-pink-400" },
 ];
+
+function renderReactionIcon(reaction: string) {
+  switch (reaction) {
+    case "rocket":
+    case "🚀":
+      return <Rocket className="size-3.5 text-amber-400 shrink-0" />;
+    case "flame":
+    case "🔥":
+      return <Flame className="size-3.5 text-rose-400 shrink-0" />;
+    case "code":
+    case "💻":
+      return <Code2 className="size-3.5 text-cyan-400 shrink-0" />;
+    case "lightbulb":
+    case "💡":
+      return <Lightbulb className="size-3.5 text-yellow-400 shrink-0" />;
+    case "heart":
+    case "❤️":
+      return <Heart className="size-3.5 text-pink-400 shrink-0" />;
+    default:
+      return <Rocket className="size-3.5 text-amber-400 shrink-0" />;
+  }
+}
 
 export default function GuestbookModal() {
   const [isOpen, setIsOpen] = useState(false);
@@ -55,7 +87,7 @@ export default function GuestbookModal() {
   const [name, setName] = useState("");
   const [role, setRole] = useState("");
   const [message, setMessage] = useState("");
-  const [selectedReaction, setSelectedReaction] = useState("🚀");
+  const [selectedReaction, setSelectedReaction] = useState("rocket");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Load entries from Firestore or localStorage
@@ -116,7 +148,7 @@ export default function GuestbookModal() {
     const trimmedMsg = message.trim();
 
     if (!trimmedName || !trimmedMsg) {
-      showToast("Please enter both your name and a note!", "⚠️");
+      showToast("Please enter both your name and a note!", "warning");
       return;
     }
 
@@ -149,13 +181,13 @@ export default function GuestbookModal() {
       setName("");
       setRole("");
       setMessage("");
-      showToast("Signed the guestbook! Thank you 🚀", "✅");
+      showToast("Signed the guestbook! Thank you", "check");
     } catch (err) {
       console.warn("Guestbook error:", err);
       const updated = [newEntry, ...entries];
       setEntries(updated);
       localStorage.setItem("portfolio_guestbook", JSON.stringify(updated));
-      showToast("Saved to guestbook locally!", "💾");
+      showToast("Saved to guestbook locally!", "download");
     } finally {
       setIsSubmitting(false);
     }
@@ -185,7 +217,7 @@ export default function GuestbookModal() {
         className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-medium border border-[var(--white-icon-tr)] bg-[var(--card-bg)] text-[var(--white)] hover:border-[var(--sec)] hover:text-[var(--sec)] transition shadow-sm cursor-pointer"
         aria-label="Open Guestbook"
       >
-        <span className="text-base">✍️</span>
+        <PenLine className="size-4 text-[var(--sec)]" />
         <span>Sign Guestbook</span>
       </button>
 
@@ -199,7 +231,7 @@ export default function GuestbookModal() {
             {/* Modal Header */}
             <div className="flex items-center justify-between px-6 py-4 border-b border-[var(--white-icon-tr)] bg-[var(--container)]/50">
               <div className="flex items-center gap-2.5">
-                <span className="text-xl">📖</span>
+                <BookOpen className="size-5 text-[var(--sec)]" />
                 <div>
                   <h3 className="text-base font-bold text-[var(--white)]">Visitor Guestbook</h3>
                   <p className="text-xs text-[var(--white-icon)]">
@@ -210,10 +242,10 @@ export default function GuestbookModal() {
               <button
                 type="button"
                 onClick={() => setIsOpen(false)}
-                className="p-1 rounded-lg text-[var(--white-icon)] hover:text-[var(--white)] hover:bg-[var(--white-icon-tr)]/50 transition cursor-pointer"
+                className="p-1.5 rounded-lg text-[var(--white-icon)] hover:text-[var(--white)] hover:bg-[var(--white-icon-tr)]/50 transition cursor-pointer"
                 aria-label="Close modal"
               >
-                ✕
+                <X className="size-4" />
               </button>
             </div>
 
@@ -272,30 +304,34 @@ export default function GuestbookModal() {
                     Select a Reaction
                   </label>
                   <div className="flex flex-wrap gap-2">
-                    {REACTIONS.map((r) => (
-                      <button
-                        key={r.emoji}
-                        type="button"
-                        onClick={() => setSelectedReaction(r.emoji)}
-                        className={`flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium border transition cursor-pointer ${
-                          selectedReaction === r.emoji
-                            ? "bg-[var(--sec)]/20 border-[var(--sec)] text-[var(--sec)]"
-                            : "border-[var(--white-icon-tr)] text-[var(--white-icon)] hover:text-[var(--white)] hover:bg-[var(--white-icon-tr)]/30"
-                        }`}
-                      >
-                        <span>{r.emoji}</span>
-                        <span>{r.label}</span>
-                      </button>
-                    ))}
+                    {REACTIONS.map((r) => {
+                      const Icon = r.icon;
+                      return (
+                        <button
+                          key={r.id}
+                          type="button"
+                          onClick={() => setSelectedReaction(r.id)}
+                          className={`flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium border transition cursor-pointer ${
+                            selectedReaction === r.id
+                              ? "bg-[var(--sec)]/20 border-[var(--sec)] text-[var(--sec)] font-semibold"
+                              : "border-[var(--white-icon-tr)] text-[var(--white-icon)] hover:text-[var(--white)] hover:bg-[var(--white-icon-tr)]/30"
+                          }`}
+                        >
+                          <Icon className={`size-3.5 ${r.color}`} />
+                          <span>{r.label}</span>
+                        </button>
+                      );
+                    })}
                   </div>
                 </div>
 
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-[var(--sec)] text-white dark:text-[#101010] hover:opacity-90 disabled:opacity-50 transition cursor-pointer"
+                  className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-[var(--sec)] text-white dark:text-[#101010] hover:opacity-90 disabled:opacity-50 transition cursor-pointer"
                 >
-                  {isSubmitting ? "Signing..." : "Post Signature ✍️"}
+                  <PenLine className="size-3.5" />
+                  <span>{isSubmitting ? "Signing..." : "Post Signature"}</span>
                 </button>
               </form>
 
@@ -314,7 +350,7 @@ export default function GuestbookModal() {
                     >
                       <div className="flex items-center justify-between gap-2">
                         <div className="flex items-center gap-2 min-w-0">
-                          <span className="text-base shrink-0">{item.reaction}</span>
+                          <span className="shrink-0">{renderReactionIcon(item.reaction)}</span>
                           <span className="font-semibold text-xs sm:text-sm text-[var(--white)] truncate">
                             {item.name}
                           </span>

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import CodeTerminal from "@/components/CodeTerminal";
+import { Zap } from "lucide-react";
 
 const iconProps = {
   xmlns: "http://www.w3.org/2000/svg",
@@ -117,8 +118,8 @@ const SkillsList = () => {
 
         {/* Quick Filter Stack Bar */}
         <div className="flex items-center gap-2 mt-4 overflow-x-auto no-scrollbar pb-1">
-          <span className="text-[11px] font-mono text-[var(--sec)] uppercase tracking-wider shrink-0 font-semibold">
-            ⚡ Filter by Stack:
+          <span className="flex items-center gap-1.5 text-[11px] font-mono text-[var(--sec)] uppercase tracking-wider shrink-0 font-semibold">
+            <Zap className="size-3.5" /> Filter by Stack:
           </span>
           {[
             { label: "Python", query: "Python" },

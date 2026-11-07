@@ -1,4 +1,5 @@
 import { ComparisonMode } from "@/data/pyshareData";
+import { Globe, Laptop, Check, Download, ExternalLink } from "lucide-react";
 
 interface PyShareModesProps {
   modes: ComparisonMode[];
@@ -26,7 +27,13 @@ export default function PyShareModes({ modes }: PyShareModesProps) {
           >
             <div>
               <div className="flex items-center justify-between gap-3 mb-4">
-                <span className="text-3xl">{mode.icon}</span>
+                <span className="size-12 rounded-xl bg-[var(--component-bg)] border border-[var(--white-icon-tr)] flex items-center justify-center">
+                  {mode.icon === "web" || mode.icon === "🌐" ? (
+                    <Globe className="size-6 text-purple-400" />
+                  ) : (
+                    <Laptop className="size-6 text-emerald-400" />
+                  )}
+                </span>
                 <span
                   className={`px-3 py-1 rounded-full text-[10px] font-mono font-bold tracking-wider border ${mode.badgeColor}`}
                 >
@@ -42,7 +49,7 @@ export default function PyShareModes({ modes }: PyShareModesProps) {
               <ul className="space-y-2.5 mb-6 text-xs sm:text-sm text-[var(--white-icon)]">
                 {mode.points.map((pt) => (
                   <li key={pt} className="flex items-start gap-2">
-                    <span className="text-[var(--sec)] font-bold mt-0.5">✓</span>
+                    <Check className="size-4 text-[var(--sec)] shrink-0 mt-0.5" />
                     <span>{pt}</span>
                   </li>
                 ))}
@@ -60,6 +67,11 @@ export default function PyShareModes({ modes }: PyShareModesProps) {
               }`}
             >
               <span>{mode.actionText}</span>
+              {mode.isPrimary ? (
+                <ExternalLink className="size-3.5" />
+              ) : (
+                <Download className="size-3.5" />
+              )}
             </a>
           </div>
         ))}

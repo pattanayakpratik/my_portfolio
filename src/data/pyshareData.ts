@@ -21,7 +21,7 @@ export const pyshareComparisonModes = (liveUrl: string, downloadUrl: string): Co
     title: "Instant Web Mode (Zero Install)",
     badge: "ANY DEVICE · WORLDWIDE",
     badgeColor: "border-purple-500/40 text-purple-400 bg-purple-500/10",
-    icon: "🌐",
+    icon: "web",
     description:
       "Run PyShare directly inside your web browser. No software download or installation required on any device.",
     points: [
@@ -39,7 +39,7 @@ export const pyshareComparisonModes = (liveUrl: string, downloadUrl: string): Co
     title: "Desktop App Mode (.exe / installer)",
     badge: "v4.9.3 WINDOWS · 100 MB/s",
     badgeColor: "border-emerald-500/40 text-emerald-400 bg-emerald-500/10",
-    icon: "💻",
+    icon: "desktop",
     description:
       "Self-contained portable Windows application & setup installer engineered for ultra-fast local offline file transfers.",
     points: [
@@ -49,7 +49,7 @@ export const pyshareComparisonModes = (liveUrl: string, downloadUrl: string): Co
       "Thread-safe PIN rate-limiting, path canonicalization & CSRF defense",
       "Official Inno Setup installer & single-instance Named Mutex system tray",
     ],
-    actionText: "Download PyShare v4.9.3 ⬇",
+    actionText: "Download PyShare v4.9.3",
     actionUrl: downloadUrl,
     isPrimary: false,
   },

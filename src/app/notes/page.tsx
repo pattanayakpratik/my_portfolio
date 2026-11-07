@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { caseStudies } from "@/data/caseStudies";
 import type { Metadata } from "next";
+import { Check } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Engineering Notes & Deep Dives | Pratik Pattanayak",
@@ -91,7 +92,7 @@ export default function NotesPage() {
                     key={hIdx}
                     className="flex items-start gap-2.5 p-3 rounded-xl bg-[var(--container)]/50 border border-[var(--white-icon-tr)]/50 text-xs sm:text-sm text-[var(--white)]"
                   >
-                    <span className="text-[var(--sec)] shrink-0 font-bold">✓</span>
+                    <Check className="size-4 text-[var(--sec)] shrink-0 mt-0.5" />
                     <span>{h}</span>
                   </li>
                 ))}

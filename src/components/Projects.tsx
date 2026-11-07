@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { showToast } from "./Toast";
 import Image from "next/image";
 import Link from "next/link";
+import { X } from "lucide-react";
 import cypherImg from "@/assets/projects/cypher.png";
 import pyshareImg from "@/assets/projects/pyshare.png";
 import { featuredProjects, otherProjects, profile } from "@/data/profile";
@@ -67,7 +68,7 @@ export default function Projects() {
       if (customEvent.detail?.tag) {
         setSelectedTag(customEvent.detail.tag);
         setActiveCategory("All");
-        showToast(`Filtered projects by "${customEvent.detail.tag}"`, "🔍");
+        showToast(`Filtered projects by "${customEvent.detail.tag}"`, "search");
         const el = document.getElementById("projects");
         if (el) {
           el.scrollIntoView({ behavior: "smooth" });
@@ -164,11 +165,12 @@ export default function Projects() {
               type="button"
               onClick={() => {
                 setSelectedTag(null);
-                showToast("Cleared skill filter", "↺");
+                showToast("Cleared skill filter", "refresh");
               }}
-              className="ml-auto flex items-center gap-1 px-2.5 py-1 rounded-lg bg-[var(--white-icon-tr)] hover:bg-[var(--sec)]/20 text-[var(--white-icon)] hover:text-[var(--sec)] text-xs font-medium cursor-pointer transition-colors"
+              className="ml-auto flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[var(--white-icon-tr)] hover:bg-[var(--sec)]/20 text-[var(--white-icon)] hover:text-[var(--sec)] text-xs font-medium cursor-pointer transition-colors"
             >
-              <span>✕ Clear filter</span>
+              <X className="size-3.5" />
+              <span>Clear filter</span>
             </button>
           </div>
         )}
@@ -347,7 +349,7 @@ export default function Projects() {
                             e.preventDefault();
                             e.stopPropagation();
                             setSelectedTag(t === selectedTag ? null : t);
-                            showToast(t === selectedTag ? "Cleared filter" : `Filtered by "${t}"`, "🔍");
+                            showToast(t === selectedTag ? "Cleared filter" : `Filtered by "${t}"`, "search");
                           }}
                           className={`tag transition-all cursor-pointer ${
                             selectedTag === t
@@ -457,7 +459,7 @@ export default function Projects() {
                           e.preventDefault();
                           e.stopPropagation();
                           setSelectedTag(t === selectedTag ? null : t);
-                          showToast(t === selectedTag ? "Cleared filter" : `Filtered by "${t}"`, "🔍");
+                          showToast(t === selectedTag ? "Cleared filter" : `Filtered by "${t}"`, "search");
                         }}
                         className={`tag transition-all cursor-pointer ${
                           selectedTag === t

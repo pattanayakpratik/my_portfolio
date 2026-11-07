@@ -142,25 +142,25 @@ export default function InteractiveCli({ onExit }: InteractiveCliProps) {
           root.classList.remove("dark");
           localStorage.setItem("theme", "light");
           window.dispatchEvent(new Event("themechange"));
-          showToast("Switched to Light mode", "☀️");
+          showToast("Switched to Light mode", "sun");
           newLines = [{ text: "Theme set to: Light Mode", type: "success" }];
         } else if (mode === "dark") {
           root.classList.add("dark");
           localStorage.setItem("theme", "dark");
           window.dispatchEvent(new Event("themechange"));
-          showToast("Switched to Dark mode", "🌙");
+          showToast("Switched to Dark mode", "moon");
           newLines = [{ text: "Theme set to: Dark Mode", type: "success" }];
         } else if (mode === "toggle" || !mode) {
           const isDark = root.classList.contains("dark");
           if (isDark) {
             root.classList.remove("dark");
             localStorage.setItem("theme", "light");
-            showToast("Switched to Light mode", "☀️");
+            showToast("Switched to Light mode", "sun");
             newLines = [{ text: "Theme toggled to: Light Mode", type: "success" }];
           } else {
             root.classList.add("dark");
             localStorage.setItem("theme", "dark");
-            showToast("Switched to Dark mode", "🌙");
+            showToast("Switched to Dark mode", "moon");
             newLines = [{ text: "Theme toggled to: Dark Mode", type: "success" }];
           }
           window.dispatchEvent(new Event("themechange"));
@@ -197,15 +197,15 @@ export default function InteractiveCli({ onExit }: InteractiveCliProps) {
         const target = args.toLowerCase().trim();
         if (target.includes("pulse")) {
           if (typeof window !== "undefined") window.open("https://pulse-engine-dashboard-ten.vercel.app", "_blank");
-          showToast("Launching PulseEngine Live Dashboard...", "⚡");
+          showToast("Launching PulseEngine Live Dashboard...", "zap");
           newLines = [{ text: "Opening PulseEngine Live Dashboard (https://pulse-engine-dashboard-ten.vercel.app)...", type: "success" }];
         } else if (target.includes("pyshare") || target.includes("share")) {
           if (typeof window !== "undefined") window.open("https://pyshare.vercel.app", "_blank");
-          showToast("Launching PyShare Web App...", "🌐");
+          showToast("Launching PyShare Web App...", "globe");
           newLines = [{ text: "Opening PyShare P2P Web App (https://pyshare.vercel.app)...", type: "success" }];
         } else if (target.includes("attendance") || target.includes("campus")) {
           if (typeof window !== "undefined") window.open("https://smartcampus-attendance.vercel.app", "_blank");
-          showToast("Launching Smart Campus Attendance...", "📱");
+          showToast("Launching Smart Campus Attendance...", "mobile");
           newLines = [{ text: "Opening Smart Campus Attendance (https://smartcampus-attendance.vercel.app)...", type: "success" }];
         } else if (target.includes("cypher")) {
           if (typeof window !== "undefined") window.location.href = "/projects/cypher";
