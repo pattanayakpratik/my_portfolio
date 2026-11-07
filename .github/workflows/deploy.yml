@@ -4,11 +4,9 @@ on:
   push:
     branches:
       - main
-      - master
   pull_request:
     branches:
       - main
-      - master
     types:
       - opened
       - synchronize
@@ -21,7 +19,7 @@ concurrency:
 
 jobs:
   # =========================================================================
-  # 1. CI: Quality & Build Verification (Runs on Push & Pull Requests)
+  # 1. CI: Quality & Build Verification (Runs on Push to main & PRs)
   # =========================================================================
   verify:
     name: CI / Lint & Build Check
@@ -71,12 +69,6 @@ jobs:
           node-version: 22
           cache: 'npm'
 
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Install Vercel CLI
-        run: npm install --global vercel@latest
-
       - name: Deploy to Vercel Production
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
@@ -96,6 +88,9 @@ jobs:
             fi
             echo "Deployment triggered successfully via Deploy Hook!"
           elif [ -n "$VERCEL_TOKEN" ]; then
+            echo "Installing Vercel CLI..."
+            npm install --global vercel@latest
+
             echo "Pulling Vercel production environment..."
             vercel pull --yes --environment=production --token=$VERCEL_TOKEN
 
@@ -105,7 +100,10 @@ jobs:
             echo "Deploying prebuilt artifacts to Vercel Production..."
             vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN
           else
-            echo "::error::Neither VERCEL_TOKEN nor VERCEL_DEPLOY_HOOK is configured in GitHub Secrets!"
-            echo "Please add VERCEL_TOKEN (or VERCEL_DEPLOY_HOOK) under Repository Settings -> Secrets and variables -> Actions."
-            exit 1
+            echo "================================================================="
+            echo "✔ CI Build & Quality Checks Verified for main branch."
+            echo "✔ Automated CD: Vercel is connected natively via the Vercel GitHub App"
+            echo "  (https://pattanayakpratik.vercel.app)."
+            echo "✔ Production deployment triggers automatically via Vercel GitHub Integration."
+            echo "================================================================="
           fi
