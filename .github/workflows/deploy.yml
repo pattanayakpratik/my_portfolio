@@ -4,9 +4,11 @@ on:
   push:
     branches:
       - main
+      - dev
   pull_request:
     branches:
       - main
+      - dev
     types:
       - opened
       - synchronize
@@ -19,14 +21,19 @@ concurrency:
 
 jobs:
   # =========================================================================
-  # 1. CI: Quality & Build Verification (Runs on Push to main & PRs)
+  # 1. CI: Quality, Test & Build Verification (Runs on main, dev & PRs)
   # =========================================================================
   verify:
-    name: CI / Lint & Build Check
+    name: CI / Lint, Test & Build Check
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
 
       - name: Setup Node.js 22
         uses: actions/setup-node@v4
@@ -39,6 +46,9 @@ jobs:
 
       - name: Run TypeScript type check
         run: npm run typecheck
+
+      - name: Run automated test suite (Node + Python)
+        run: npm test
 
       - name: Run production build
         run: npm run build
