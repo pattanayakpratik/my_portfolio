@@ -10,7 +10,7 @@ import pyshareImg from "@/assets/projects/pyshare.png";
 import { featuredProjects, otherProjects, profile } from "@/data/profile";
 
 const images = {
-  cypher: { src: cypherImg, pad: "p-6 md:p-8" },
+  cypher: { src: cypherImg, pad: "p-3 md:p-4" },
   pyshare: { src: pyshareImg, pad: "p-3 md:p-4" },
 };
 
