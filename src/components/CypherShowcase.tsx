@@ -42,7 +42,7 @@ export default function CypherShowcase() {
             href={repoUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[var(--white-icon-tr)] bg-[var(--component-bg)] hover:bg-[var(--white-icon-tr)] text-xs font-medium text-[var(--white-icon)] hover:text-[var(--white)] transition-colors"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[var(--white-icon-tr)] bg-[var(--component-bg)] hover:bg-[var(--white-icon-tr)] text-xs font-medium text-[var(--white-icon)] hover:text-[var(--sec)] transition-colors"
           >
             <span>GitHub</span>
             <span className="text-xs">↗</span>
@@ -99,7 +99,7 @@ export default function CypherShowcase() {
             href={releaseUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-[var(--white-icon-tr)] bg-[var(--component-bg)] hover:bg-[var(--white-icon-tr)] text-sm font-medium text-[var(--white-icon)] hover:text-[var(--white)] transition-colors"
+            className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-[var(--white-icon-tr)] bg-[var(--component-bg)] hover:bg-[var(--white-icon-tr)] text-sm font-medium text-[var(--white-icon)] hover:text-[var(--sec)] transition-colors"
           >
             <span>Releases</span>
             <span className="text-xs">↗</span>
@@ -152,7 +152,7 @@ export default function CypherShowcase() {
 
           <Link
             href="/#projects"
-            className="w-full sm:w-auto px-6 py-3.5 rounded-xl border border-[var(--white-icon-tr)] bg-[var(--component-bg)] hover:bg-[var(--white-icon-tr)] text-xs md:text-sm font-medium text-[var(--white-icon)] hover:text-[var(--white)] transition-colors"
+            className="w-full sm:w-auto px-6 py-3.5 rounded-xl border border-[var(--white-icon-tr)] bg-[var(--component-bg)] hover:bg-[var(--white-icon-tr)] text-xs md:text-sm font-medium text-[var(--white-icon)] hover:text-[var(--sec)] transition-colors"
           >
             Back to All Projects
           </Link>

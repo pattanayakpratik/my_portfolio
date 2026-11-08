@@ -107,7 +107,7 @@ export default function Contact() {
                     onClick={handleCopyEmail}
                     aria-label="Copy email address"
                     title="Copy email to clipboard"
-                    className="shrink-0 p-2.5 rounded-full border border-[var(--white-icon-tr)] bg-[var(--glass-btn-bg)] hover:bg-[var(--card-hover-bg)] hover:border-[var(--sec)]/50 text-[var(--white-icon)] hover:text-[var(--white)] backdrop-blur-md transition cursor-pointer"
+                    className="shrink-0 p-2.5 rounded-full border border-[var(--white-icon-tr)] bg-[var(--glass-btn-bg)] hover:bg-[var(--card-hover-bg)] hover:border-[var(--sec)]/50 text-[var(--white-icon)] hover:text-[var(--sec)] backdrop-blur-md transition cursor-pointer"
                   >
                     {copied ? (
                       <span className="flex items-center gap-1 text-xs text-emerald-400 font-medium">

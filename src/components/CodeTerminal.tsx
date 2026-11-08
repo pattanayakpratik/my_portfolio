@@ -168,7 +168,7 @@ export default function CodeTerminal({
                 type="button"
                 onClick={handleCopy}
                 aria-label="Copy code"
-                className="flex items-center gap-1.5 px-3 py-1 rounded-full text-xs text-[var(--white-icon)] hover:text-[var(--white)] hover:bg-[var(--white-icon-tr)]/60 transition-colors cursor-pointer border border-transparent hover:border-[var(--white-icon-tr)]"
+                className="flex items-center gap-1.5 px-3 py-1 rounded-full text-xs text-[var(--white-icon)] hover:text-[var(--sec)] hover:bg-[var(--white-icon-tr)]/60 transition-colors cursor-pointer border border-transparent hover:border-[var(--white-icon-tr)]"
               >
                 {copied ? (
                   <>

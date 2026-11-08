@@ -52,7 +52,7 @@ export default function PyShareShowcase() {
             href={repoUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[var(--white-icon-tr)] bg-[var(--component-bg)] hover:bg-[var(--white-icon-tr)] text-xs font-medium text-[var(--white-icon)] hover:text-[var(--white)] transition-colors"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[var(--white-icon-tr)] bg-[var(--component-bg)] hover:bg-[var(--white-icon-tr)] text-xs font-medium text-[var(--white-icon)] hover:text-[var(--sec)] transition-colors"
           >
             <span>GitHub</span>
             <span className="text-xs">↗</span>
@@ -121,7 +121,7 @@ export default function PyShareShowcase() {
             href={universalZipUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-[var(--white-icon-tr)] bg-[var(--component-bg)] hover:bg-[var(--white-icon-tr)] text-sm font-medium text-[var(--white-icon)] hover:text-[var(--white)] transition-colors"
+            className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-[var(--white-icon-tr)] bg-[var(--component-bg)] hover:bg-[var(--white-icon-tr)] text-sm font-medium text-[var(--white-icon)] hover:text-[var(--sec)] transition-colors"
           >
             <span>Universal ZIP</span>
             <span className="text-xs opacity-60">Mac/Linux</span>
@@ -131,7 +131,7 @@ export default function PyShareShowcase() {
             href={releaseUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-[var(--white-icon-tr)] bg-[var(--component-bg)] hover:bg-[var(--white-icon-tr)] text-sm font-medium text-[var(--white-icon)] hover:text-[var(--white)] transition-colors"
+            className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-[var(--white-icon-tr)] bg-[var(--component-bg)] hover:bg-[var(--white-icon-tr)] text-sm font-medium text-[var(--white-icon)] hover:text-[var(--sec)] transition-colors"
           >
             <span>Release Notes</span>
             <span className="text-xs">↗</span>
@@ -195,7 +195,7 @@ export default function PyShareShowcase() {
             href={repoUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-4 py-3 rounded-xl border border-[var(--white-icon-tr)] bg-[var(--card-bg)] hover:bg-[var(--white-icon-tr)] text-xs sm:text-sm font-medium text-[var(--white-icon)] hover:text-[var(--white)] transition-colors"
+            className="flex items-center gap-2 px-4 py-3 rounded-xl border border-[var(--white-icon-tr)] bg-[var(--card-bg)] hover:bg-[var(--white-icon-tr)] text-xs sm:text-sm font-medium text-[var(--white-icon)] hover:text-[var(--sec)] transition-colors"
           >
             <span>GitHub Repo</span>
             <ExternalLink className="size-3.5" />

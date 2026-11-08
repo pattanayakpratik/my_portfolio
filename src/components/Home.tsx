@@ -217,7 +217,7 @@ export default function Home() {
                   href={s.href}
                   aria-label={s.label}
                   title={s.label}
-                  className="size-12 flex items-center justify-center text-[var(--white-icon)] hover:text-[var(--white)] transition duration-200 border border-[var(--card-border)] hover:border-[var(--sec)]/40 rounded-full bg-[var(--component-bg)] hover:bg-[var(--card-hover-bg)] hover:-translate-y-0.5 shadow-xs cursor-pointer backdrop-blur-xl"
+                  className="size-12 flex items-center justify-center text-[var(--white-icon)] hover:text-[var(--sec)] transition duration-200 border border-[var(--card-border)] hover:border-[var(--sec)]/40 rounded-full bg-[var(--component-bg)] hover:bg-[var(--card-hover-bg)] hover:-translate-y-0.5 shadow-xs cursor-pointer backdrop-blur-xl"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

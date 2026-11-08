@@ -177,7 +177,7 @@ export default function NotesPage() {
                 href={study.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-medium text-[var(--white-icon)] hover:text-[var(--white)] border border-[var(--white-icon-tr)] hover:bg-[var(--white-icon-tr)]/30 transition-colors"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-medium text-[var(--white-icon)] hover:text-[var(--sec)] border border-[var(--white-icon-tr)] hover:bg-[var(--white-icon-tr)]/30 transition-colors"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
