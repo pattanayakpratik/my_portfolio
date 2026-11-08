@@ -233,7 +233,7 @@ export default function Nav() {
       <nav
         ref={navRef}
         id="main-nav"
-        className="fixed left-1/2 -translate-x-1/2 z-[100] md:top-6 md:bottom-auto bottom-0 w-full md:w-fit md:max-w-xl md:rounded-full max-md:rounded-t-2xl max-md:pb-[env(safe-area-inset-bottom,0px)] overflow-hidden transition-all duration-300"
+        className="fixed left-1/2 -translate-x-1/2 z-[100] md:top-6 md:bottom-auto bottom-0 w-full md:w-fit md:max-w-xl md:rounded-full max-md:rounded-t-2xl max-md:pb-[env(safe-area-inset-bottom,0px)] overflow-hidden"
       >
         <div className="relative w-full flex justify-center items-center py-2 px-3 md:py-1.5 md:px-3.5">
           <ul className="flex w-full md:w-auto justify-between md:justify-center items-center gap-1 md:gap-1.5">
@@ -247,7 +247,7 @@ export default function Nav() {
                     aria-label={item.label}
                     aria-current={isActive ? "location" : undefined}
                     onClick={(e) => handleNavClick(e, item)}
-                    className={`flex flex-col md:flex-row items-center justify-center gap-1 md:gap-1.5 rounded-full px-3 md:px-3.5 py-1.5 transition-all duration-200 text-[11px] md:text-xs relative group cursor-pointer ${
+                    className={`flex flex-col md:flex-row items-center justify-center gap-1 md:gap-1.5 rounded-full px-3 md:px-3.5 py-1.5 transition-colors duration-150 text-[11px] md:text-xs relative group cursor-pointer ${
                       isActive
                         ? "active font-semibold text-slate-950 dark:text-white"
                         : "text-slate-600 hover:text-slate-950 dark:text-slate-400 dark:hover:text-white hover:bg-slate-900/5 dark:hover:bg-white/[0.06] font-medium"
