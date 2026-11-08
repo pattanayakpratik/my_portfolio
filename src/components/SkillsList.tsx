@@ -134,7 +134,7 @@ const SkillsList = () => {
                   new CustomEvent("filter-project-tag", { detail: { tag: item.query } })
                 );
               }}
-              className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-mono border border-[var(--white-icon-tr)] bg-[var(--component-bg)] hover:bg-[var(--white-icon-tr)] hover:border-[var(--sec)]/50 text-[var(--white-icon)] hover:text-[var(--sec)] transition-all cursor-pointer shrink-0 shadow-xs"
+              className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-mono border border-[var(--white-icon-tr)] bg-[var(--component-bg)] backdrop-blur-xl hover:bg-[var(--white-icon-tr)] hover:border-[var(--sec)]/50 text-[var(--white-icon)] hover:text-[var(--sec)] transition-all cursor-pointer shrink-0 shadow-xs"
               title={`View projects built with ${item.label}`}
             >
               <span>{item.label}</span>
@@ -154,9 +154,9 @@ const SkillsList = () => {
               return (
                 <li key={category} className="w-full">
                   <div
-                    className={`relative w-full rounded-2xl text-left transition-all duration-200 border overflow-hidden ${
+                    className={`relative w-full rounded-2xl text-left transition-all duration-200 border overflow-hidden backdrop-blur-xl ${
                       isOpen
-                        ? "bg-[var(--card-bg)] border-[var(--sec)]/70 shadow-sm ring-1 ring-[var(--sec)]/20"
+                        ? "bg-[var(--card-hover-bg)] border-[var(--sec)]/70 shadow-sm ring-1 ring-[var(--sec)]/30"
                         : "bg-[var(--card-bg)] border-[var(--white-icon-tr)] hover:border-[var(--sec)]/40 hover:bg-[var(--card-hover-bg)]"
                     }`}
                   >

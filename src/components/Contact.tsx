@@ -6,7 +6,7 @@ import { showToast } from "./Toast";
 import { AlertCircle } from "lucide-react";
 
 const inputCls =
-  "w-full px-4 py-3 bg-[var(--card-bg)] text-[var(--white)] placeholder:text-[var(--white-icon)] border border-[var(--white-icon-tr)] rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--sec)]/50 focus:border-[var(--sec)] transition duration-200 text-sm shadow-xs";
+  "w-full px-4 py-3 bg-[var(--input-bg)] text-[var(--white)] placeholder:text-[var(--white-icon)] border border-[var(--white-icon-tr)] rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--sec)]/50 focus:border-[var(--sec)] transition duration-200 text-sm shadow-xs backdrop-blur-xl";
 
 export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -100,7 +100,7 @@ export default function Contact() {
                   onClick={handleCopyEmail}
                   aria-label="Copy email address"
                   title="Copy email to clipboard"
-                  className="shrink-0 p-2.5 rounded-lg border border-[var(--white-icon-tr)] text-[var(--white-icon)] hover:text-[var(--white)] hover:bg-[var(--white-icon-tr)] transition cursor-pointer"
+                  className="shrink-0 p-2.5 rounded-lg border border-[var(--white-icon-tr)] bg-[var(--glass-btn-bg)] hover:bg-[var(--card-hover-bg)] hover:border-[var(--sec)]/50 text-[var(--white-icon)] hover:text-[var(--white)] backdrop-blur-md transition cursor-pointer"
                 >
                   {copied ? (
                     <span className="flex items-center gap-1 text-xs text-emerald-400 font-medium">
@@ -131,7 +131,7 @@ export default function Contact() {
               </div>
 
               {/* Response SLA Note */}
-              <div className="flex items-center gap-2 px-3.5 py-2.5 rounded-xl border border-[var(--white-icon-tr)] bg-[var(--component-bg)] text-xs text-[var(--white-icon)]">
+              <div className="flex items-center gap-2 px-3.5 py-2.5 rounded-xl border border-[var(--white-icon-tr)] bg-[var(--component-bg)] backdrop-blur-xl text-xs text-[var(--white-icon)]">
                 <span className="size-2 rounded-full bg-emerald-400 shrink-0" />
                 <span>Typically replies within 24 hours on business days</span>
               </div>

@@ -169,6 +169,8 @@ export default function RootLayout({
         <div className="ambient" aria-hidden="true">
           <span className="ambient-orb ambient-orb--1"></span>
           <span className="ambient-orb ambient-orb--2"></span>
+          <span className="ambient-orb ambient-orb--3"></span>
+          <span className="ambient-orb ambient-orb--4"></span>
         </div>
         {children}
         <Analytics />

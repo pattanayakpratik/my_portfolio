@@ -390,7 +390,7 @@ export default function CommandMenu() {
       onClick={() => setIsOpen(false)}
     >
       <div
-        className="relative w-full max-w-xl rounded-2xl border border-[var(--white-icon-tr)] bg-[var(--card-bg)] text-[var(--white)] shadow-2xl overflow-hidden transition-all duration-200"
+        className="relative w-full max-w-xl rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] text-[var(--white)] shadow-[var(--card-shadow)] backdrop-blur-2xl overflow-hidden transition-all duration-200"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Search Header */}

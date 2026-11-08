@@ -74,7 +74,7 @@ export default function CodeTerminal({
   };
 
   return (
-    <div className="w-full flex flex-col rounded-2xl border border-[var(--white-icon-tr)] bg-[var(--card-bg)] text-[var(--white)] shadow-sm dark:shadow-none overflow-hidden transition-all duration-300">
+    <div className="w-full flex flex-col rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] text-[var(--white)] shadow-[var(--card-shadow)] backdrop-blur-2xl overflow-hidden transition-all duration-300">
       {/* Top Subtle Gradient Stripe */}
       <div className="h-[2px] w-full bg-gradient-to-r from-[var(--sec)] via-sky-400 to-[var(--sec)]" />
 

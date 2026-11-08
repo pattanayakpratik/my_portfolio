@@ -7,7 +7,7 @@ import { profile, stats } from "@/data/profile";
 import { showToast } from "./Toast";
 
 const iconBtn =
-  "size-11 sm:size-12 flex items-center justify-center text-[var(--white-icon)] hover:text-[var(--white)] transition duration-200 border border-[var(--white-icon-tr)] rounded-xl bg-[var(--card-bg)] hover:bg-[var(--white-icon-tr)] hover:-translate-y-0.5 shadow-xs cursor-pointer";
+  "size-11 sm:size-12 flex items-center justify-center text-[var(--white-icon)] hover:text-[var(--white)] transition duration-200 border border-[var(--white-icon-tr)] rounded-xl bg-[var(--glass-btn-bg)] hover:bg-[var(--card-hover-bg)] hover:border-[var(--sec)]/50 hover:-translate-y-0.5 shadow-xs cursor-pointer backdrop-blur-xl";
 
 const socials = [
   {
@@ -167,7 +167,7 @@ export default function Home() {
                 </svg>
               </span>
             </p>
-            <span className="inline-flex items-center gap-2 text-xs md:text-sm text-[var(--white-icon)] border border-[var(--white-icon-tr)] bg-[var(--component-bg)] rounded-full px-3 py-1 shadow-xs">
+            <span className="inline-flex items-center gap-2 text-xs md:text-sm text-[var(--white-icon)] border border-[var(--white-icon-tr)] bg-[var(--component-bg)] backdrop-blur-xl rounded-full px-3 py-1 shadow-xs">
               <span className="relative flex size-2">
                 <span className="absolute inline-flex h-full w-full rounded-full bg-[var(--accent)] opacity-75 animate-ping"></span>
                 <span className="relative inline-flex size-2 rounded-full bg-[var(--accent)]"></span>
@@ -176,7 +176,7 @@ export default function Home() {
             </span>
             {timeStr && (
               <span
-                className="inline-flex items-center gap-1.5 text-xs font-mono text-[var(--sec)] border border-[var(--sec)]/30 bg-[var(--sec)]/10 rounded-full px-3 py-1 shadow-xs"
+                className="inline-flex items-center gap-1.5 text-xs font-mono text-[var(--sec)] border border-[var(--sec)]/30 bg-[var(--sec)]/10 backdrop-blur-xl rounded-full px-3 py-1 shadow-xs"
                 title="Current local time in Mumbai, India (UTC+5:30 IST)"
               >
                 <span className="size-1.5 rounded-full bg-[var(--sec)] animate-pulse" />

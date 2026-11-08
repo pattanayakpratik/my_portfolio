@@ -15,7 +15,7 @@ const images = {
 };
 
 const iconBtn =
-  "size-9.5 md:size-10 flex justify-center items-center text-[var(--white-icon)] hover:text-[var(--white)] transition duration-200 border border-[var(--white-icon-tr)] rounded-xl bg-[var(--card-bg)] hover:bg-[var(--white-icon-tr)] shadow-xs cursor-pointer";
+  "size-9.5 md:size-10 flex justify-center items-center text-[var(--white-icon)] hover:text-[var(--white)] transition duration-200 border border-[var(--white-icon-tr)] rounded-xl bg-[var(--glass-btn-bg)] hover:bg-[var(--card-hover-bg)] hover:border-[var(--sec)]/50 shadow-xs cursor-pointer backdrop-blur-xl";
 
 const githubPath =
   "M12.001 2C6.47598 2 2.00098 6.475 2.00098 12C2.00098 16.425 4.86348 20.1625 8.83848 21.4875C9.33848 21.575 9.52598 21.275 9.52598 21.0125C9.52598 20.775 9.51348 19.9875 9.51348 19.15C7.00098 19.6125 6.35098 18.5375 6.15098 17.975C6.03848 17.6875 5.55098 16.8 5.12598 16.5625C4.77598 16.375 4.27598 15.9125 5.11348 15.9C5.90098 15.8875 6.46348 16.625 6.65098 16.925C7.55098 18.4375 8.98848 18.0125 9.56348 17.75C9.65098 17.1 9.91348 16.6625 10.201 16.4125C7.97598 16.1625 5.65098 15.3 5.65098 11.475C5.65098 10.3875 6.03848 9.4875 6.67598 8.7875C6.57598 8.5375 6.22598 7.5125 6.77598 6.1375C6.77598 6.1375 7.61348 5.875 9.52598 7.1625C10.326 6.9375 11.176 6.825 12.026 6.825C12.876 6.825 13.726 6.9375 14.526 7.1625C16.4385 5.8625 17.276 6.1375 17.276 6.1375C17.826 7.5125 17.476 8.5375 17.376 8.7875C18.0135 9.4875 18.401 10.375 18.401 11.475C18.401 15.3125 16.0635 16.1625 13.8385 16.4125C14.201 16.725 14.5135 17.325 14.5135 18.2625C14.5135 19.6 14.501 20.675 14.501 21.0125C14.501 21.275 14.6885 21.5875 15.1885 21.4875C19.259 20.1133 21.9999 16.2963 22.001 12C22.001 6.475 17.526 2 12.001 2Z";
@@ -110,7 +110,7 @@ export default function Projects() {
             <div
               role="tablist"
               aria-label="Filter projects by category"
-              className="flex items-center gap-1.5 p-1 rounded-xl bg-[var(--component-bg)] border border-[var(--white-icon-tr)] backdrop-blur-md max-w-full overflow-x-auto no-scrollbar scroll-smooth self-start md:self-auto shrink-0 shadow-xs"
+              className="flex items-center gap-1.5 p-1 rounded-xl bg-[var(--component-bg)] border border-[var(--white-icon-tr)] backdrop-blur-2xl max-w-full overflow-x-auto no-scrollbar scroll-smooth self-start md:self-auto shrink-0 shadow-xs"
             >
               {categories.map((cat) => {
                 const isSelected = activeCategory === cat;
@@ -152,7 +152,7 @@ export default function Projects() {
 
         {/* Active Tech Filter Banner */}
         {selectedTag && (
-          <div className="flex items-center gap-2 mb-6 p-3 px-4 rounded-xl bg-[var(--component-bg)] border border-[var(--sec)]/40 text-xs md:text-sm shadow-xs animate-in fade-in duration-200">
+          <div className="flex items-center gap-2 mb-6 p-3 px-4 rounded-xl bg-[var(--component-bg)] border border-[var(--sec)]/40 backdrop-blur-xl text-xs md:text-sm shadow-xs animate-in fade-in duration-200">
             <span className="size-2 rounded-full bg-[var(--sec)] animate-pulse" />
             <span className="text-[var(--white-icon)]">Filtered by technology:</span>
             <span className="font-mono font-semibold text-[var(--sec)] px-2 py-0.5 rounded bg-[var(--sec)]/15 border border-[var(--sec)]/30">
@@ -500,7 +500,7 @@ export default function Projects() {
             rel="noopener noreferrer"
             href={profile.socials.github}
             aria-label="More projects on GitHub"
-            className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-sm font-medium text-[var(--white-icon)] hover:text-[var(--white)] border border-[var(--white-icon-tr)] bg-[var(--card-bg)] hover:bg-[var(--white-icon-tr)] hover:-translate-y-0.5 transition duration-200 shadow-xs"
+            className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-sm font-medium text-[var(--white-icon)] hover:text-[var(--white)] border border-[var(--white-icon-tr)] bg-[var(--glass-btn-bg)] hover:bg-[var(--card-hover-bg)] hover:border-[var(--sec)]/50 hover:-translate-y-0.5 transition duration-200 shadow-xs backdrop-blur-xl"
           >
             <span>See more repositories on GitHub</span>
             <svg
