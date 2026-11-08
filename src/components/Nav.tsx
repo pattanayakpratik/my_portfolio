@@ -1,10 +1,13 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import ThemeToggle from "./ThemeToggle";
 import { openCommandMenu } from "./CommandMenu";
 
 interface NavItem {
+  id: string;
   label: string;
   href: string;
   icon: React.ReactNode;
@@ -12,6 +15,7 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   {
+    id: "home",
     label: "Home",
     href: "/#home",
     icon: (
@@ -21,6 +25,7 @@ const navItems: NavItem[] = [
     ),
   },
   {
+    id: "experience",
     label: "Experience",
     href: "/#experience",
     icon: (
@@ -30,6 +35,7 @@ const navItems: NavItem[] = [
     ),
   },
   {
+    id: "projects",
     label: "Projects",
     href: "/#projects",
     icon: (
@@ -39,6 +45,7 @@ const navItems: NavItem[] = [
     ),
   },
   {
+    id: "notes",
     label: "Notes",
     href: "/notes",
     icon: (
@@ -48,6 +55,7 @@ const navItems: NavItem[] = [
     ),
   },
   {
+    id: "contact",
     label: "Contact",
     href: "/#contact",
     icon: (
@@ -59,14 +67,16 @@ const navItems: NavItem[] = [
 ];
 
 export default function Nav() {
+  const pathname = usePathname();
   const navRef = useRef<HTMLElement | null>(null);
+  const [activeTab, setActiveTab] = useState<string>("home");
+  const isManualScrollingRef = useRef(false);
+  const manualTimerRef = useRef<NodeJS.Timeout | null>(null);
 
-  useEffect(() => {
+  // High-performance scroll spy with reverse section detection
+  const updateScrollSpy = useCallback(() => {
     const nav = navRef.current;
-    let rafId: number | null = null;
-
-    function updateNav() {
-      if (!nav) return;
+    if (nav) {
       if (window.scrollY > 20) {
         nav.classList.add("scrolling");
       } else {
@@ -74,61 +84,110 @@ export default function Nav() {
       }
     }
 
+    if (pathname === "/notes") {
+      setActiveTab("notes");
+      return;
+    }
+
+    // While smooth scrolling from a manual click, don't overwrite active tab
+    if (isManualScrollingRef.current) return;
+
+    // 1. Check if user is at or near the bottom of document -> Contact is active
+    const scrollBottom = window.innerHeight + window.scrollY;
+    const documentHeight = document.documentElement.scrollHeight;
+    if (documentHeight - scrollBottom < 90) {
+      setActiveTab("contact");
+      return;
+    }
+
+    // 2. Check if near very top -> Home is active
+    if (window.scrollY < 120) {
+      setActiveTab("home");
+      return;
+    }
+
+    // 3. Scan sections in reverse order (bottom to top) with header line offset
+    const sectionIds = ["contact", "projects", "experience", "home"];
+    const triggerOffset = 140;
+
+    for (const id of sectionIds) {
+      const el = document.getElementById(id);
+      if (el) {
+        const rect = el.getBoundingClientRect();
+        if (rect.top <= triggerOffset) {
+          setActiveTab(id);
+          return;
+        }
+      }
+    }
+
+    setActiveTab("home");
+  }, [pathname]);
+
+  useEffect(() => {
+    let rafId: number | null = null;
+
     function onScroll() {
       if (rafId) cancelAnimationFrame(rafId);
-      rafId = requestAnimationFrame(updateNav);
+      rafId = requestAnimationFrame(updateScrollSpy);
     }
 
     window.addEventListener("scroll", onScroll, { passive: true });
-    updateNav();
+    updateScrollSpy();
 
-    // ScrollSpy observer for section highlights
-    const sectionIds = ["home", "experience", "projects", "contact"];
-    const sections = sectionIds
-      .map((id) => document.getElementById(id))
-      .filter((s): s is HTMLElement => s !== null);
-
-    const observerOptions = {
-      root: null,
-      rootMargin: "-25% 0px -65% 0px",
-      threshold: 0,
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const id = entry.target.id;
-          document.querySelectorAll("nav a").forEach((a) => {
-            a.classList.remove("active");
-            a.removeAttribute("aria-current");
-          });
-          const activeLink = document.querySelector<HTMLAnchorElement>(
-            `nav a[href="#${id}"], nav a[href="/#${id}"]`
-          );
-          if (activeLink) {
-            activeLink.classList.add("active");
-            activeLink.setAttribute("aria-current", "location");
-          }
+    // Check if initial URL has hash
+    if (typeof window !== "undefined" && window.location.hash) {
+      const hashId = window.location.hash.replace(/^#/, "");
+      if (["home", "experience", "projects", "contact"].includes(hashId)) {
+        setActiveTab(hashId);
+        const el = document.getElementById(hashId);
+        if (el) {
+          setTimeout(() => {
+            const yOffset = -75;
+            const y = el.getBoundingClientRect().top + window.scrollY + yOffset;
+            window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
+          }, 150);
         }
-      });
-    }, observerOptions);
-
-    sections.forEach((section) => observer.observe(section));
+      }
+    }
 
     return () => {
       window.removeEventListener("scroll", onScroll);
       if (rafId) cancelAnimationFrame(rafId);
-      observer.disconnect();
+      if (manualTimerRef.current) clearTimeout(manualTimerRef.current);
     };
-  }, []);
+  }, [updateScrollSpy]);
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    if (href.startsWith("#") || (href.startsWith("/#") && window.location.pathname === "/")) {
-      e.preventDefault();
-      const targetId = href.replace(/^\/?#/, "");
-      const targetElement = document.getElementById(targetId);
-      if (targetElement) {
-        targetElement.scrollIntoView({ behavior: "smooth" });
+  // Clean, zero-lag click handler that prevents ugly hash lock
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, item: NavItem) => {
+    if (item.href.startsWith("/#") || item.href.startsWith("#")) {
+      const targetId = item.id;
+
+      if (pathname === "/") {
+        e.preventDefault();
+
+        // 1. Immediately activate tab with 0ms visual latency
+        setActiveTab(targetId);
+
+        // 2. Lock scroll spy during smooth scroll duration
+        isManualScrollingRef.current = true;
+        if (manualTimerRef.current) clearTimeout(manualTimerRef.current);
+        manualTimerRef.current = setTimeout(() => {
+          isManualScrollingRef.current = false;
+        }, 850);
+
+        // 3. Scroll with precise header offset so title isn't covered
+        const el = document.getElementById(targetId);
+        if (el) {
+          const yOffset = -75;
+          const y = el.getBoundingClientRect().top + window.scrollY + yOffset;
+          window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
+        }
+
+        // 4. Clean URL: prevent locking hash in address bar
+        if (window.history.replaceState) {
+          window.history.replaceState(null, "", window.location.pathname);
+        }
       }
     }
   };
@@ -142,21 +201,34 @@ export default function Nav() {
       >
         <div className="relative w-full flex justify-center items-center py-2 px-3 md:py-1.5 md:px-3.5">
           <ul className="flex w-full md:w-auto justify-between md:justify-center items-center gap-1 md:gap-1.5">
-            {navItems.map((item) => (
-              <li key={item.label} className="flex-1 md:flex-none">
-                <a
-                  href={item.href}
-                  aria-label={item.label}
-                  onClick={(e) => handleNavClick(e, item.href)}
-                  className="flex flex-col md:flex-row items-center justify-center gap-1 md:gap-1.5 text-slate-600 hover:text-slate-950 dark:text-slate-400 dark:hover:text-white hover:bg-slate-900/5 dark:hover:bg-white/[0.06] rounded-full px-3 md:px-3.5 py-1.5 transition-all text-[11px] md:text-xs font-medium relative group"
-                >
-                  <span className="md:hidden flex items-center justify-center w-5 h-5">
-                    {item.icon}
-                  </span>
-                  <span className="truncate">{item.label}</span>
-                </a>
-              </li>
-            ))}
+            {navItems.map((item) => {
+              const isActive = activeTab === item.id;
+              return (
+                <li key={item.label} className="flex-1 md:flex-none">
+                  <Link
+                    href={item.href}
+                    aria-label={item.label}
+                    aria-current={isActive ? "location" : undefined}
+                    onClick={(e) => handleNavClick(e, item)}
+                    className={`flex flex-col md:flex-row items-center justify-center gap-1 md:gap-1.5 rounded-full px-3 md:px-3.5 py-1.5 transition-all duration-200 text-[11px] md:text-xs relative group cursor-pointer ${
+                      isActive
+                        ? "active font-semibold text-slate-950 dark:text-white"
+                        : "text-slate-600 hover:text-slate-950 dark:text-slate-400 dark:hover:text-white hover:bg-slate-900/5 dark:hover:bg-white/[0.06] font-medium"
+                    }`}
+                  >
+                    {/* Glowing active indicator dot on desktop */}
+                    {isActive && (
+                      <span className="hidden md:inline-block size-1.5 rounded-full bg-cyan-500 dark:bg-cyan-400 shrink-0 shadow-[0_0_8px_rgba(6,182,212,0.8)] animate-pulse" />
+                    )}
+
+                    <span className="md:hidden flex items-center justify-center w-5 h-5">
+                      {item.icon}
+                    </span>
+                    <span className="truncate">{item.label}</span>
+                  </Link>
+                </li>
+              );
+            })}
 
             <li className="hidden md:block w-px h-3.5 bg-slate-200 dark:bg-white/10 mx-1.5" aria-hidden="true" />
 
