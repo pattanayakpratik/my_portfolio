@@ -7,7 +7,7 @@ import { profile, stats } from "@/data/profile";
 import { showToast } from "./Toast";
 
 const iconBtn =
-  "text-[var(--white-icon)] hover:text-[var(--white)] transition duration-300 ease-in-out border border-1 border-[var(--white-icon-tr)] p-3 rounded-xl bg-[var(--card-bg)] hover:bg-[var(--white-icon-tr)] hover:-translate-y-0.5 shadow-sm dark:shadow-none cursor-pointer";
+  "size-11 sm:size-12 flex items-center justify-center text-[var(--white-icon)] hover:text-[var(--white)] transition duration-200 border border-[var(--white-icon-tr)] rounded-xl bg-[var(--card-bg)] hover:bg-[var(--white-icon-tr)] hover:-translate-y-0.5 shadow-xs cursor-pointer";
 
 const socials = [
   {
@@ -32,7 +32,6 @@ const socials = [
   },
 ];
 
-// Custom hook to tick IST local time
 function useLiveLocalTime() {
   const [timeStr, setTimeStr] = useState<string>("");
 
@@ -60,7 +59,6 @@ function useLiveLocalTime() {
   return timeStr;
 }
 
-// Smooth odometer counting component for numeric stats; renders text cleanly
 function StatCounter({ targetValue, label }: { targetValue: string; label: string }) {
   const [displayValue, setDisplayValue] = useState(targetValue);
   const ref = useRef<HTMLDivElement>(null);
@@ -70,7 +68,6 @@ function StatCounter({ targetValue, label }: { targetValue: string; label: strin
     const el = ref.current;
     if (!el) return;
 
-    // Check if target is a float (e.g. "8.65"), an int with suffix (e.g. "15+"), or plain text (e.g. "AWS")
     const floatMatch = targetValue.match(/^(\d+\.\d+)$/);
     const intMatch = targetValue.match(/^(\d+)(.*)$/);
 
@@ -130,12 +127,12 @@ function StatCounter({ targetValue, label }: { targetValue: string; label: strin
   }, [targetValue, hasAnimated]);
 
   return (
-    <div ref={ref} className="border-l border-[var(--white-icon-tr)] pl-3 md:pl-4">
+    <div ref={ref} className="border-l-2 border-[var(--sec)]/40 pl-3 md:pl-4">
       <dt className="sr-only">{label}</dt>
-      <dd className="text-2xl md:text-3xl font-semibold text-[var(--white)] font-mono">
+      <dd className="text-2xl md:text-3xl font-bold text-[var(--white)] font-mono tracking-tight">
         {displayValue}
       </dd>
-      <dd className="text-xs md:text-sm text-[var(--white-icon)]">{label}</dd>
+      <dd className="text-xs md:text-sm text-[var(--white-icon)] mt-0.5">{label}</dd>
     </div>
   );
 }
@@ -144,11 +141,12 @@ export default function Home() {
   const timeStr = useLiveLocalTime();
 
   return (
-    <section className="text-[var(--white)] mt-12 md:mt-0" id="home">
-      <div className="max-w-5xl mx-auto space-y-8 md:pt-40 md:pb-24 pb-14">
-        <div className="text-left space-y-4">
+    <section className="text-[var(--white)] pt-24 md:pt-36 pb-12" id="home">
+      <div className="max-w-5xl mx-auto space-y-10">
+        <div className="text-left space-y-6">
+          {/* Top Status & Location Badges */}
           <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 hero-in" style={{ ["--d" as string]: "0ms" }}>
-            <p className="text-md md:text-lg text-[var(--white-icon)] flex items-center gap-2">
+            <p className="text-sm md:text-base text-[var(--white-icon)] flex items-center gap-2">
               <span>Hi, I&apos;m {profile.firstName}</span>
               <span className="inline-block origin-[70%_70%] hover:rotate-12 transition-transform duration-300">
                 <svg
@@ -159,7 +157,7 @@ export default function Home() {
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  className="size-5 text-[var(--sec)]"
+                  className="size-4.5 text-[var(--sec)]"
                   aria-hidden="true"
                 >
                   <path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0" />
@@ -169,7 +167,7 @@ export default function Home() {
                 </svg>
               </span>
             </p>
-            <span className="inline-flex items-center gap-2 text-xs md:text-sm text-[var(--white-icon)] border border-[var(--white-icon-tr)] bg-[var(--card-bg)] rounded-full px-3 py-1 shadow-sm dark:shadow-none">
+            <span className="inline-flex items-center gap-2 text-xs md:text-sm text-[var(--white-icon)] border border-[var(--white-icon-tr)] bg-[var(--component-bg)] rounded-full px-3 py-1 shadow-xs">
               <span className="relative flex size-2">
                 <span className="absolute inline-flex h-full w-full rounded-full bg-[var(--accent)] opacity-75 animate-ping"></span>
                 <span className="relative inline-flex size-2 rounded-full bg-[var(--accent)]"></span>
@@ -178,7 +176,7 @@ export default function Home() {
             </span>
             {timeStr && (
               <span
-                className="inline-flex items-center gap-1.5 text-xs font-mono text-[var(--sec)] border border-[var(--sec)]/30 bg-[var(--sec)]/10 rounded-full px-3 py-1 shadow-sm dark:shadow-none"
+                className="inline-flex items-center gap-1.5 text-xs font-mono text-[var(--sec)] border border-[var(--sec)]/30 bg-[var(--sec)]/10 rounded-full px-3 py-1 shadow-xs"
                 title="Current local time in Mumbai, India (UTC+5:30 IST)"
               >
                 <span className="size-1.5 rounded-full bg-[var(--sec)] animate-pulse" />
@@ -187,24 +185,27 @@ export default function Home() {
             )}
           </div>
 
-          <div className="flex flex-col lg:flex-row lg:items-center space-y-4 lg:space-y-0 lg:space-x-8 md:gap-4">
+          {/* Headline & Narrative Lead */}
+          <div className="space-y-4 max-w-4xl">
             <h1
-              className="text-[var(--white)] text-4xl sm:text-6xl md:text-7xl font-medium text-pretty leading-tight md:leading-none hero-in"
+              className="text-[var(--white)] text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight leading-[1.08] hero-in"
               style={{ ["--d" as string]: "80ms" }}
             >
-              Backend &amp; AI <br /> Engineer
+              Backend &amp; AI <br className="hidden sm:inline" />
+              Engineer
             </h1>
             <p
-              className="text-md md:text-2xl text-[var(--white-icon)] hero-in"
+              className="text-base sm:text-xl md:text-2xl text-[var(--white-icon)] leading-relaxed max-w-3xl hero-in"
               style={{ ["--d" as string]: "160ms" }}
             >
               Architecting scalable backend systems, analytical APIs, and production-grade{" "}
-              <span className="text-[var(--sec)] shiny-sec">Generative AI</span> workflows with Python.
+              <span className="text-[var(--sec)] font-semibold">Generative AI</span> workflows with Python.
             </p>
           </div>
 
+          {/* Socials & Resume CTA */}
           <div
-            className="flex flex-col sm:flex-row sm:items-center gap-3 pt-3 md:pt-6 hero-in"
+            className="flex flex-wrap items-center gap-3 pt-2 hero-in"
             style={{ ["--d" as string]: "240ms" }}
           >
             <div className="flex items-center gap-2">
@@ -222,7 +223,7 @@ export default function Home() {
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
                     fill="currentColor"
-                    className="size-8"
+                    className="size-5"
                   >
                     <path d={s.path} />
                   </svg>
@@ -238,13 +239,13 @@ export default function Home() {
               rel="noopener noreferrer"
               onClick={() => showToast("Opening Resume PDF...", "file")}
               aria-label="View and download resume (PDF)"
-              className="resume-btn group inline-flex items-center justify-center gap-2 h-[58px] px-6 rounded-xl font-medium text-white dark:text-[#101010] bg-[var(--sec)] hover:-translate-y-0.5 transition duration-300 w-full sm:w-auto"
+              className="resume-btn group inline-flex items-center justify-center gap-2 h-11 sm:h-12 px-6 rounded-xl font-medium text-sm sm:text-base text-white dark:text-slate-950 bg-[var(--sec)] hover:-translate-y-0.5 transition duration-200"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 fill="currentColor"
-                className="size-5 transition-transform duration-300 group-hover:translate-y-0.5"
+                className="size-4.5 transition-transform duration-200 group-hover:translate-y-0.5"
               >
                 <path d="M13 10H18L12 16L6 10H11V3H13V10ZM4 19H20V12H22V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V12H4V19Z" />
               </svg>
@@ -252,8 +253,9 @@ export default function Home() {
             </a>
           </div>
 
+          {/* Key Metric Counters */}
           <dl
-            className="grid grid-cols-3 gap-3 md:gap-6 pt-6 max-w-xl hero-in"
+            className="grid grid-cols-3 gap-4 md:gap-8 pt-4 max-w-xl hero-in"
             style={{ ["--d" as string]: "320ms" }}
           >
             {stats.map((s) => (
