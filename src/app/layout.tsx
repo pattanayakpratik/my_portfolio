@@ -8,7 +8,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 export const viewport: Viewport = {
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#f8fafc" },
-    { media: "(prefers-color-scheme: dark)", color: "#101010" },
+    { media: "(prefers-color-scheme: dark)", color: "#060913" },
   ],
 };
 
@@ -164,11 +164,13 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="bg-[--background] px-4 sm:px-12 md:px-20 lg:px-28">
+      <body className="bg-[--background] px-4 sm:px-6 md:px-8">
         <SpotlightEffect />
         <div className="ambient" aria-hidden="true">
           <span className="ambient-orb ambient-orb--1"></span>
           <span className="ambient-orb ambient-orb--2"></span>
+          <span className="ambient-orb ambient-orb--3"></span>
+          <span className="ambient-orb ambient-orb--4"></span>
         </div>
         {children}
         <Analytics />

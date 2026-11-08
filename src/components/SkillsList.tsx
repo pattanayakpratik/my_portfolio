@@ -6,8 +6,8 @@ import { Zap } from "lucide-react";
 
 const iconProps = {
   xmlns: "http://www.w3.org/2000/svg",
-  width: 24,
-  height: 24,
+  width: 22,
+  height: 22,
   viewBox: "0 0 24 24",
   fill: "none",
   stroke: "currentColor",
@@ -20,7 +20,6 @@ const iconProps = {
 const skills = [
   {
     category: "Backend Engineering",
-    // lucide: server
     icon: (
       <svg {...iconProps}>
         <rect width="20" height="8" x="2" y="2" rx="2" ry="2" />
@@ -38,7 +37,6 @@ const skills = [
   },
   {
     category: "Generative AI & Agents",
-    // lucide: sparkles
     icon: (
       <svg {...iconProps}>
         <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z" />
@@ -55,7 +53,6 @@ const skills = [
   },
   {
     category: "Machine Learning",
-    // lucide: brain-circuit
     icon: (
       <svg {...iconProps}>
         <path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z" />
@@ -82,7 +79,6 @@ const skills = [
   },
   {
     category: "Automation & Tooling",
-    // lucide: workflow
     icon: (
       <svg {...iconProps}>
         <rect width="8" height="8" x="3" y="3" rx="2" />
@@ -107,18 +103,18 @@ const SkillsList = () => {
   };
 
   return (
-    <div className="text-left pt-3 md:pt-9 w-full">
+    <div className="text-left pt-6 md:pt-12 w-full" id="skills">
       <div className="mb-6">
-        <span className="block text-xs md:text-sm text-[var(--sec)] shiny-sec font-mono font-medium tracking-wider uppercase mb-1">
+        <span className="block text-xs md:text-sm text-[var(--sec)] font-mono font-semibold tracking-wider uppercase mb-1">
           Capabilities &amp; Tech Stack
         </span>
-        <h3 className="text-[var(--white)] text-3xl md:text-4xl font-semibold">
-          What I do?
-        </h3>
+        <h2 className="text-[var(--white)] text-3xl md:text-4xl font-bold tracking-tight">
+          What I do
+        </h2>
 
         {/* Quick Filter Stack Bar */}
         <div className="flex items-center gap-2 mt-4 overflow-x-auto no-scrollbar pb-1">
-          <span className="flex items-center gap-1.5 text-[11px] font-mono text-[var(--sec)] uppercase tracking-wider shrink-0 font-semibold">
+          <span className="flex items-center gap-1.5 text-xs font-mono text-[var(--sec)] uppercase tracking-wider shrink-0 font-semibold">
             <Zap className="size-3.5" /> Filter by Stack:
           </span>
           {[
@@ -138,7 +134,7 @@ const SkillsList = () => {
                   new CustomEvent("filter-project-tag", { detail: { tag: item.query } })
                 );
               }}
-              className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-mono border border-[var(--white-icon-tr)] bg-[var(--component-bg)] hover:bg-[var(--white-icon-tr)] hover:border-[var(--sec)] text-[var(--white-icon)] hover:text-[var(--sec)] transition-all cursor-pointer shrink-0 shadow-xs"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-mono border border-[var(--white-icon-tr)] bg-[var(--component-bg)] backdrop-blur-2xl hover:bg-[var(--white-icon-tr)] hover:border-[var(--sec)]/50 text-[var(--white-icon)] hover:text-[var(--sec)] transition-all cursor-pointer shrink-0 shadow-xs"
               title={`View projects built with ${item.label}`}
             >
               <span>{item.label}</span>
@@ -147,25 +143,26 @@ const SkillsList = () => {
           ))}
         </div>
       </div>
+
       <div className="flex flex-col lg:flex-row items-start gap-8 lg:gap-10 w-full">
         {/* Left: Skills Accordion */}
         <div className="w-full lg:w-[420px] shrink-0">
-          <ul className="space-y-4 text-lg">
+          <ul className="space-y-3.5 text-lg">
             {skills.map(({ category, icon, items }) => {
               const isOpen = openItem === category;
               const panelId = `skill-panel-${category.replace(/\W+/g, "-").toLowerCase()}`;
               return (
                 <li key={category} className="w-full">
                   <div
-                    className={`relative w-full rounded-2xl text-left transition-all duration-300 border overflow-hidden ${
+                    className={`card relative w-full rounded-2xl text-left transition-all duration-200 border overflow-hidden backdrop-blur-xl ${
                       isOpen
-                        ? "bg-gradient-to-r from-cyan-500/10 via-sky-500/[0.04] to-white dark:from-cyan-950/40 dark:via-[#141414] dark:to-[#141414] border-[var(--sec)] shadow-md shadow-cyan-500/10 ring-1 ring-[var(--sec)]/30"
-                        : "bg-[var(--card-bg)] border-[var(--white-icon-tr)] hover:border-[var(--sec)]/40 hover:shadow-md shadow-sm dark:shadow-none"
+                        ? "bg-[var(--card-hover-bg)] border-[var(--sec)]/70 shadow-sm ring-1 ring-[var(--sec)]/30"
+                        : "border-[var(--white-icon-tr)] hover:border-[var(--sec)]/40 hover:bg-[var(--card-hover-bg)]"
                     }`}
                   >
-                    {/* Glowing Left Indicator on Open */}
+                    {/* Clean Left Accent Strip on Open */}
                     {isOpen && (
-                      <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-[var(--sec)] to-sky-400" />
+                      <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-gradient-to-b from-[var(--sec)] to-purple-500 rounded-l-2xl z-10" />
                     )}
 
                     <button
@@ -175,12 +172,10 @@ const SkillsList = () => {
                       aria-controls={panelId}
                       className="w-full flex items-center gap-3 p-4 cursor-pointer"
                     >
-                      <div className={`transition-transform duration-300 ${isOpen ? "scale-110" : ""}`}>
-                        {icon}
-                      </div>
+                      <div className="shrink-0">{icon}</div>
                       <span className="flex items-center gap-2 flex-grow justify-between min-w-0">
                         <span
-                          className={`block truncate text-lg transition-colors ${
+                          className={`block truncate text-base sm:text-lg transition-colors ${
                             isOpen ? "text-[var(--white)] font-semibold" : "text-[var(--white)]"
                           }`}
                         >
@@ -190,7 +185,7 @@ const SkillsList = () => {
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 24 24"
                           fill="currentColor"
-                          className={`w-6 h-6 transform transition-transform duration-300 flex-shrink-0 ${
+                          className={`w-5 h-5 transform transition-transform duration-200 flex-shrink-0 ${
                             isOpen ? "rotate-180 text-[var(--sec)]" : "text-[var(--white-icon)]"
                           }`}
                         >
@@ -201,16 +196,16 @@ const SkillsList = () => {
 
                     <div
                       id={panelId}
-                      className={`grid transition-all duration-300 ease-in-out px-4 ${
+                      className={`grid transition-all duration-250 ease-in-out px-4 ${
                         isOpen ? "grid-rows-[1fr] opacity-100 pb-4" : "grid-rows-[0fr] opacity-0 pb-0"
                       }`}
                     >
                       <div className="overflow-hidden">
-                        <ul className="space-y-2 text-[var(--white-icon)] text-sm pl-1">
+                        <ul className="space-y-2 text-[var(--white-icon)] text-xs sm:text-sm pl-1 pt-1 border-t border-[var(--white-icon-tr)]">
                           {items.map((item) => (
-                            <li key={item} className="flex items-start gap-3">
-                              <span className="pl-1 text-[var(--sec)] font-bold">•</span>
-                              <span className="leading-snug">{item}</span>
+                            <li key={item} className="flex items-start gap-2.5">
+                              <span className="text-[var(--sec)] font-bold mt-0.5">•</span>
+                              <span className="leading-relaxed">{item}</span>
                             </li>
                           ))}
                         </ul>

@@ -495,8 +495,39 @@ export const otherProjects: MiniProject[] = [
   {
     title: "CTS Digital Score Card",
     description:
-      "Flutter app digitizing the Clean Train Station inspection process with coach-wise scoring and remarks.",
+      "Flutter app digitizing the Clean Train Station inspection process with coach-wise scoring, inspector remarks, and structured reporting.",
     repo: "https://github.com/pattanayakpratik/cts_digital_score_card",
-    tags: ["Flutter", "Dart", "Mobile"],
+    badge: "MOBILE APP",
+    tags: ["Flutter", "Dart", "Mobile", "Clean Architecture"],
+  },
+  {
+    title: "Flodo Task Manager",
+    description:
+      "Production-grade task management mobile application built with Flutter, demonstrating clean architecture, predictable state management, and an intuitive UI.",
+    repo: "https://github.com/pattanayakpratik/task_manager_flodo",
+    badge: "FLUTTER",
+    tags: ["Flutter", "Dart", "Mobile", "State Management"],
+  },
+  {
+    title: "PrimeTrade Quant Analytics",
+    description:
+      "Data science and quantitative research pipeline exploring relationships between trader execution performance and market sentiment to optimize algorithmic strategy returns.",
+    repo: "https://github.com/pattanayakpratik/primetrade-data-science-task",
+    badge: "QUANT & DS",
+    tags: ["Python", "Pandas", "Scikit-Learn", "Data Science"],
+  },
+  {
+    title: "Race AI Task Manager",
+    description:
+      "Scalable multi-user asynchronous task orchestration backend API supporting concurrent job scheduling, user authentication, and task lifecycle tracking.",
+    repo: "https://github.com/pattanayakpratik/Race_Ai_Assignment_TaskManager",
+    tags: ["Python", "FastAPI", "Job Queue", "REST API"],
+  },
+  {
+    title: "Amazon Marketplace UI",
+    description:
+      "Responsive front-end clone of the Amazon marketplace featuring product grids, multi-tier navigation menus, and cart preview interactions.",
+    repo: "https://github.com/pattanayakpratik/amazon-clone-website",
+    tags: ["HTML5", "CSS3", "JavaScript", "Responsive UI"],
   },
 ];
