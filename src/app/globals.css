@@ -11,38 +11,38 @@
 }
 
 :root {
-  /* 🏙️ The Clean Canvas: Soft Porcelain Base (#F4F7FC) & Milk-Glass Layer */
-  --background: #F4F7FC; /* Absolute main page light background color */
-  --sec: #2563EB; /* Vibrant Sky/Electric Blue */
-  --accent: #059669; /* Soft Mint Accent (#A7F3D0 inspired) */
-  --white: rgba(15, 23, 42, 0.90); /* Deep Ink Slate: #0F172A at 90% opacity */
+  /* 🏙️ Living Flow Liquid Quartz Light Theme: Deep 3D Elevation & Defined Boundaries */
+  --background: #EEF2F6; /* Soft porcelain slate canvas providing true contrast against floating cards */
+  --sec: #2563EB; /* Vibrant Electric / Sky Blue */
+  --accent: #059669; /* Soft Mint Accent */
+  --white: rgba(15, 23, 42, 0.95); /* Deep Ink Slate: #0F172A at 95% opacity */
   --white-icon: #475569; /* Muted Blue Slate: #475569 */
-  --white-icon-tr: rgba(255, 255, 255, 0.65); /* Physical Border Glare: Pure White at 65% Opacity */
-  --card-border: rgba(255, 255, 255, 0.65); /* Razor-thin Pure White border at 65% opacity */
-  --card-border-hover: rgba(59, 130, 246, 0.40); /* Touch Tracking Glow pulse */
-  --component-bg: rgba(255, 255, 255, 0.50); /* Dense premium milk-glass protective layer (50%) */
-  --container: rgba(255, 255, 255, 0.45);
-  --line: rgba(255, 255, 255, 0.65);
-  --pink: #FFD6E8; /* Blush Pink Silk */
-  --card-bg: rgba(255, 255, 255, 0.45); /* The Translucent Glass Fill: #FFFFFF at 45-50% opacity */
-  --card-hover-bg: rgba(255, 255, 255, 0.65);
-  --card-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.06), 0 1px 3px rgba(15, 23, 42, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.90);
-  --project-media-bg: rgba(255, 255, 255, 0.35);
-  --nav-bg: rgba(255, 255, 255, 0.65);
-  --nav-bg-scrolled: rgba(255, 255, 255, 0.85);
-  --nav-border: rgba(255, 255, 255, 0.65);
-  --nav-border-scrolled: rgba(255, 255, 255, 0.85);
-  --nav-shadow: 0 14px 34px -6px rgba(15, 23, 42, 0.07), inset 0 1px 0 rgba(255, 255, 255, 0.95);
-  --input-bg: rgba(255, 255, 255, 0.50);
-  --glass-btn-bg: rgba(255, 255, 255, 0.50);
-  --touch-glow: rgba(59, 130, 246, 0.08); /* The Touch Tracking Glow: #3B82F6 at 8% opacity */
+  --white-icon-tr: rgba(15, 23, 42, 0.08); /* Crisp visible hairline glass border */
+  --card-border: rgba(15, 23, 42, 0.085); /* Razor-sharp hairline contour defining every card boundary */
+  --card-border-hover: rgba(37, 99, 235, 0.45); /* Electric Blue hover glow */
+  --component-bg: rgba(255, 255, 255, 0.85); /* Solid milk-quartz surface for pills and sub-cards */
+  --container: rgba(255, 255, 255, 0.70);
+  --line: rgba(15, 23, 42, 0.08);
+  --pink: #F472B6; /* Blush Pink Silk */
+  --card-bg: rgba(255, 255, 255, 0.80); /* Dense, premium milk-quartz glass (80% opacity, zero washed-out haze) */
+  --card-hover-bg: rgba(255, 255, 255, 0.92);
+  --card-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.03), 0 10px 24px -4px rgba(15, 23, 42, 0.07), 0 24px 48px -8px rgba(15, 23, 42, 0.09), inset 0 1px 0 0 #FFFFFF;
+  --project-media-bg: rgba(238, 242, 248, 0.75);
+  --nav-bg: rgba(255, 255, 255, 0.85);
+  --nav-bg-scrolled: rgba(255, 255, 255, 0.96);
+  --nav-border: rgba(15, 23, 42, 0.09);
+  --nav-border-scrolled: rgba(15, 23, 42, 0.14);
+  --nav-shadow: 0 14px 34px -6px rgba(15, 23, 42, 0.10), 0 2px 6px 0 rgba(15, 23, 42, 0.04), inset 0 1px 0 rgba(255, 255, 255, 1);
+  --input-bg: rgba(255, 255, 255, 0.85);
+  --glass-btn-bg: rgba(255, 255, 255, 0.85);
+  --touch-glow: rgba(59, 130, 246, 0.10); /* The Touch Tracking Glow: #3B82F6 at 10% opacity */
 
-  /* 🌊 The Liquid Meshes (Glows Underneath the Glass) */
-  --ambient-orb-1: #A8BFFF; /* Fluid Sky Blue */
-  --ambient-orb-2: #FFD6E8; /* Blush Pink Silk */
+  /* 🌊 Liquid Meshes (Radiant Glows Underneath the Glass) */
+  --ambient-orb-1: #93C5FD; /* Fluid Sky Blue */
+  --ambient-orb-2: #FBCFE8; /* Blush Pink Silk */
   --ambient-orb-3: #A7F3D0; /* Soft Mint Accent */
-  --ambient-orb-4: #A8BFFF; /* Fluid Sky Blue */
-  --ambient-opacity: 0.50; /* Visible, dreamy fluid meshes flowing underneath */
+  --ambient-orb-4: #C7D2FE; /* Soft Periwinkle */
+  --ambient-opacity: 0.55; /* Rich, colorful ambient meshes radiating through the quartz glass */
   --shiny-start: #2563EB;
   --shiny-mid: #3B82F6;
   --shiny-end: #2563EB;
@@ -260,6 +260,15 @@ html.dark .ambient {
 .card:hover, .glass-panel:hover {
   border-color: var(--card-border-hover);
   background: var(--card-hover-bg);
+  box-shadow:
+    0 4px 8px 0 rgba(15, 23, 42, 0.04),
+    0 16px 32px -4px rgba(15, 23, 42, 0.10),
+    0 32px 64px -8px rgba(15, 23, 42, 0.13),
+    inset 0 1px 0 0 #FFFFFF;
+}
+
+html.dark .card:hover, html.dark .glass-panel:hover {
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.85), inset 0 1px 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 /* Physical Border Glare: Specular reflection line on card top edge */
@@ -286,9 +295,9 @@ html:not(.dark) .card::after, html:not(.dark) .glass-panel::after {
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(255, 255, 255, 0.65) 30%,
-    rgba(255, 255, 255, 0.90) 50%,
-    rgba(255, 255, 255, 0.65) 70%,
+    rgba(255, 255, 255, 0.95) 20%,
+    #FFFFFF 50%,
+    rgba(255, 255, 255, 0.95) 80%,
     transparent 100%
   );
 }
@@ -478,9 +487,9 @@ nav.scrolling {
 
 nav a.active {
   color: #0F172A !important;
-  background: rgba(255, 255, 255, 0.85) !important;
-  border: 1px solid rgba(255, 255, 255, 0.65) !important;
-  box-shadow: 0 4px 14px -2px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 1) !important;
+  background: #FFFFFF !important;
+  border: 1px solid rgba(15, 23, 42, 0.10) !important;
+  box-shadow: 0 2px 8px -1px rgba(15, 23, 42, 0.10), 0 1px 2px rgba(15, 23, 42, 0.05), inset 0 1px 0 #FFFFFF !important;
   font-weight: 600;
 }
 
