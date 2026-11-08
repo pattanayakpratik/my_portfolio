@@ -78,7 +78,7 @@ export default function ThemeToggle({
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="w-5 h-5 text-amber-400 transition-transform duration-500 rotate-0 group-hover:rotate-45 hidden dark:block"
+          className="w-4.5 h-4.5 text-slate-400 transition-transform duration-500 rotate-0 group-hover:rotate-45 group-hover:text-amber-300 hidden dark:block"
         >
           <circle cx="12" cy="12" r="4" />
           <path d="M12 2v2" />

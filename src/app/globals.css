@@ -48,35 +48,35 @@
 
 html.dark {
   /* The Living Flow / ColorOS 17 / iOS 18 Midnight Void Fluid Glass */
-  --background: #060913; /* The Midnight Void */
+  --background: #030712; /* Pure deep obsidian midnight void */
   --sec: #00F2FE; /* Electric Cyber Cyan */
   --accent: #10B981; /* Backend Emerald */
   --white: #F8FAFC; /* Luminous Text */
   --white-icon: #94A3B8; /* Terminal Muted Slate */
-  --white-icon-tr: rgba(255, 255, 255, 0.07); /* Physical Border Glare (White at 7% Opacity) */
-  --card-border: rgba(255, 255, 255, 0.07); /* Physical Border Glare */
-  --card-border-hover: rgba(0, 242, 254, 0.45); /* Electric Cyan Glow on Hover */
-  --component-bg: rgba(10, 15, 30, 0.42);
-  --container: rgba(10, 15, 30, 0.35);
-  --line: rgba(255, 255, 255, 0.07);
+  --white-icon-tr: rgba(255, 255, 255, 0.08); /* Physical Border Glare */
+  --card-border: rgba(255, 255, 255, 0.08); /* Physical Border Glare */
+  --card-border-hover: rgba(0, 242, 254, 0.35); /* Electric Cyan Glow on Hover */
+  --component-bg: rgba(255, 255, 255, 0.03);
+  --container: rgba(255, 255, 255, 0.02);
+  --line: rgba(255, 255, 255, 0.08);
   --pink: #00F2FE;
-  --card-bg: rgba(10, 15, 30, 0.45); /* The Translucent Glass Fill (#0A0F1E at watery glaze opacity) */
-  --card-hover-bg: rgba(15, 23, 42, 0.58);
-  --card-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 1px 0 rgba(255, 255, 255, 0.15);
-  --project-media-bg: rgba(10, 15, 30, 0.4);
-  --nav-bg: rgba(10, 15, 30, 0.4);
-  --nav-bg-scrolled: rgba(10, 15, 30, 0.65);
-  --nav-border: rgba(255, 255, 255, 0.07);
-  --nav-border-scrolled: rgba(255, 255, 255, 0.15);
-  --nav-shadow: 0 16px 36px -6px rgba(0, 0, 0, 0.5), inset 0 1px 1px 0 rgba(255, 255, 255, 0.18);
-  --input-bg: rgba(10, 15, 30, 0.4);
+  --card-bg: rgba(255, 255, 255, 0.025); /* Ultra-pure crystal glass glaze (97.5% translucent) */
+  --card-hover-bg: rgba(255, 255, 255, 0.05);
+  --card-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.7), inset 0 1px 1px 0 rgba(255, 255, 255, 0.12);
+  --project-media-bg: rgba(255, 255, 255, 0.02);
+  --nav-bg: rgba(6, 10, 20, 0.75);
+  --nav-bg-scrolled: rgba(6, 10, 20, 0.88);
+  --nav-border: rgba(255, 255, 255, 0.09);
+  --nav-border-scrolled: rgba(255, 255, 255, 0.16);
+  --nav-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.7), inset 0 1px 1px 0 rgba(255, 255, 255, 0.15);
+  --input-bg: rgba(255, 255, 255, 0.03);
   --glass-btn-bg: rgba(255, 255, 255, 0.04);
-  --touch-glow: rgba(6, 182, 212, 0.15); /* The Touch Tracking Glow #06B6D4 at 15% opacity */
-  --ambient-orb-1: #00F2FE; /* Electric Cyber Cyan */
-  --ambient-orb-2: #7F00FF; /* Deep AI Violet */
+  --touch-glow: rgba(0, 242, 254, 0.08);
+  --ambient-orb-1: #00F2FE;
+  --ambient-orb-2: #7F00FF;
   --ambient-orb-3: #00F2FE;
-  --ambient-orb-4: #10B981; /* Backend Emerald */
-  --ambient-opacity: 0.35;
+  --ambient-orb-4: #10B981;
+  --ambient-opacity: 0.12; /* Subtle, delicate atmosphere - NOT a muddy blob */
   --shiny-start: #00F2FE;
   --shiny-mid: #F8FAFC;
   --shiny-end: #00F2FE;
@@ -142,52 +142,55 @@ body {
   pointer-events: none;
   z-index: -1;
   overflow: hidden;
+  background-color: var(--background);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 28px 28px;
 }
 
 .ambient-orb {
   position: absolute;
   border-radius: 9999px;
-  filter: blur(130px);
-  opacity: var(--ambient-opacity, 0.35);
+  filter: blur(160px);
+  opacity: var(--ambient-opacity, 0.12);
   will-change: transform;
   pointer-events: none;
 }
 
 .ambient-orb--1 {
-  width: 660px;
-  height: 660px;
+  width: 500px;
+  height: 500px;
   background: var(--ambient-orb-1);
-  top: -120px;
-  right: -80px;
+  top: -150px;
+  right: -50px;
   animation: drift1 28s ease-in-out infinite alternate;
 }
 
 .ambient-orb--2 {
-  width: 620px;
-  height: 620px;
+  width: 480px;
+  height: 480px;
   background: var(--ambient-orb-2);
-  top: 25%;
-  left: -140px;
+  top: 30%;
+  left: -120px;
   animation: drift2 32s ease-in-out infinite alternate;
   animation-delay: -8s;
 }
 
 .ambient-orb--3 {
-  width: 600px;
-  height: 600px;
+  width: 460px;
+  height: 460px;
   background: var(--ambient-orb-3);
-  top: 58%;
-  right: -120px;
+  top: 60%;
+  right: -100px;
   animation: drift3 26s ease-in-out infinite alternate;
   animation-delay: -14s;
 }
 
 .ambient-orb--4 {
-  width: 580px;
-  height: 580px;
+  width: 440px;
+  height: 440px;
   background: var(--ambient-orb-4);
   bottom: -100px;
-  left: -80px;
+  left: -60px;
   animation: drift4 30s ease-in-out infinite alternate;
   animation-delay: -20s;
 }
@@ -463,30 +466,31 @@ html:not(.dark) #main-nav::after {
 nav.scrolling {
   background: var(--nav-bg-scrolled) !important;
   border-color: var(--nav-border-scrolled) !important;
-  box-shadow: var(--nav-shadow), 0 14px 36px -10px rgba(0, 0, 0, 0.4) !important;
+  box-shadow: var(--nav-shadow), 0 14px 36px -10px rgba(0, 0, 0, 0.6) !important;
 }
 
 nav a.active {
-  color: var(--sec) !important;
-  background: rgba(0, 242, 254, 0.12) !important;
-  font-weight: 600;
+  color: #FFFFFF !important;
+  background: rgba(255, 255, 255, 0.12) !important;
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.22), 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+  font-weight: 500;
 }
 
 html.dark nav a.active {
-  color: var(--sec) !important;
-  background: rgba(0, 242, 254, 0.12) !important;
-  box-shadow: inset 0 0 0 1px rgba(0, 242, 254, 0.25);
+  color: #FFFFFF !important;
+  background: rgba(255, 255, 255, 0.12) !important;
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.22), 0 2px 8px rgba(0, 0, 0, 0.3) !important;
 }
 
-nav a.active .nav-indicator {
-  transform: scale(1);
-  opacity: 1;
+.nav-indicator {
+  display: none !important;
 }
 
 @media (max-width: 767px) {
   nav a.active {
     color: var(--sec) !important;
     background: transparent !important;
+    box-shadow: none !important;
   }
 }
 
