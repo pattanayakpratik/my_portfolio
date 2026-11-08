@@ -129,14 +129,14 @@ export default function CodeTerminal({
             onClick={() => setViewMode("cli")}
             className={`shrink-0 flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono transition-all duration-200 cursor-pointer ${
               viewMode === "cli"
-                ? "bg-[var(--card-hover-bg)] text-cyan-400 shadow-xs border border-[var(--white-icon-tr)] font-semibold"
+                ? "bg-[var(--card-hover-bg)] text-cyan-700 dark:text-cyan-400 shadow-xs border border-[var(--white-icon-tr)] font-semibold"
                 : "text-[var(--white-icon)] hover:text-[var(--white)] hover:bg-[var(--white-icon-tr)]/50 border border-transparent"
             }`}
           >
             <span
               className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
                 viewMode === "cli"
-                  ? "bg-cyan-400 scale-125 shadow-[0_0_6px_#22d3ee]"
+                  ? "bg-cyan-600 dark:bg-cyan-400 scale-125 shadow-[0_0_6px_#22d3ee]"
                   : "bg-slate-400/40 dark:bg-slate-600/40"
               }`}
             />
