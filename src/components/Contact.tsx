@@ -6,7 +6,7 @@ import { showToast } from "./Toast";
 import { AlertCircle, Mail, MapPin, Copy, Check, Send } from "lucide-react";
 
 const inputCls =
-  "w-full px-5 py-3.5 bg-white/70 dark:bg-[#0a0f1e]/40 text-slate-900 dark:text-[#F8FAFC] placeholder:text-slate-400 dark:placeholder:text-[#94A3B8]/60 border border-slate-200/80 dark:border-white/[0.07] rounded-2xl focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-cyan-500/50 transition-all duration-200 text-sm shadow-inner backdrop-blur-xl";
+  "w-full px-5 py-3.5 bg-[var(--input-bg)] text-[var(--white)] placeholder:text-[var(--white-icon)]/60 border border-[var(--card-border)] rounded-2xl focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-cyan-500/50 transition-all duration-200 text-sm shadow-inner backdrop-blur-xl";
 
 export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);

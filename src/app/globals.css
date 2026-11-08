@@ -11,36 +11,36 @@
 }
 
 :root {
-  /* Crisp Frosted Porcelain-Glass Light Mode */
-  --background: #f4f6fa; /* Ultra-refined luminous pearl-porcelain */
-  --sec: #0284c7; /* Sky-600 */
+  /* Warm Peach-Alabaster & Tuscan Crema Light Mode (Zero Glare, Eye-Soothing Luxury Glass) */
+  --background: #faf4ed; /* Soft warm peach-cream / alabaster */
+  --sec: #0284c7; /* Sky-600 vibrant accent */
   --accent: #059669; /* Emerald-600 */
-  --white: #0f172a; /* Slate-900 (High-contrast primary text) */
-  --white-icon: #475569; /* Slate-600 (Secondary readable text) */
-  --white-icon-tr: rgba(15, 23, 42, 0.08); /* Hairline glass border */
-  --card-border: rgba(15, 23, 42, 0.08); /* Crisp visible hairline border defining the glass */
-  --card-border-hover: rgba(2, 132, 199, 0.4);
-  --component-bg: rgba(255, 255, 255, 0.85);
-  --container: rgba(255, 255, 255, 0.7);
-  --line: rgba(15, 23, 42, 0.08);
-  --pink: #0284c7;
-  --card-bg: rgba(255, 255, 255, 0.72); /* True frosted crystal glass */
-  --card-hover-bg: rgba(255, 255, 255, 0.92);
-  --card-shadow: 0 1px 3px rgba(15, 23, 42, 0.04), 0 14px 34px -8px rgba(15, 23, 42, 0.07), inset 0 1px 0 rgba(255, 255, 255, 0.95);
-  --project-media-bg: rgba(241, 245, 249, 0.6);
-  --nav-bg: rgba(255, 255, 255, 0.82);
-  --nav-bg-scrolled: rgba(255, 255, 255, 0.94);
-  --nav-border: rgba(15, 23, 42, 0.09);
-  --nav-border-scrolled: rgba(15, 23, 42, 0.12);
-  --nav-shadow: 0 14px 34px -6px rgba(15, 23, 42, 0.09), inset 0 1px 0 rgba(255, 255, 255, 1);
-  --input-bg: rgba(255, 255, 255, 0.85);
-  --glass-btn-bg: rgba(255, 255, 255, 0.82);
-  --touch-glow: rgba(2, 132, 199, 0.06);
-  --ambient-orb-1: #38bdf8;
-  --ambient-orb-2: #818cf8;
-  --ambient-orb-3: #38bdf8;
-  --ambient-orb-4: #34d399;
-  --ambient-opacity: 0.1;
+  --white: #1c1917; /* Warm Deep Espresso-Stone (High-contrast, eye-friendly primary text) */
+  --white-icon: #57534e; /* Warm Stone-600 (Secondary readable text) */
+  --white-icon-tr: rgba(180, 83, 9, 0.08); /* Warm peach-amber hairline border */
+  --card-border: rgba(180, 83, 9, 0.085); /* Crisp visible warm-tinted hairline glass border */
+  --card-border-hover: rgba(234, 88, 12, 0.35); /* Warm peach-coral hover glow */
+  --component-bg: rgba(255, 248, 242, 0.82); /* Warm peach-frosted glass */
+  --container: rgba(254, 244, 236, 0.72);
+  --line: rgba(180, 83, 9, 0.08);
+  --pink: #ea580c;
+  --card-bg: rgba(255, 248, 242, 0.75); /* Rich frosted peach-crystal glaze */
+  --card-hover-bg: rgba(255, 252, 248, 0.92);
+  --card-shadow: 0 1px 3px rgba(120, 53, 15, 0.04), 0 16px 36px -8px rgba(120, 53, 15, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  --project-media-bg: rgba(254, 242, 232, 0.65);
+  --nav-bg: rgba(255, 248, 242, 0.82);
+  --nav-bg-scrolled: rgba(255, 248, 242, 0.94);
+  --nav-border: rgba(180, 83, 9, 0.09);
+  --nav-border-scrolled: rgba(180, 83, 9, 0.14);
+  --nav-shadow: 0 14px 34px -6px rgba(120, 53, 15, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  --input-bg: rgba(255, 248, 242, 0.85);
+  --glass-btn-bg: rgba(255, 248, 242, 0.82);
+  --touch-glow: rgba(234, 88, 12, 0.07); /* Warm peach tracking glow */
+  --ambient-orb-1: #fed7aa; /* Soft Apricot / Peach Glow */
+  --ambient-orb-2: #fecdd3; /* Warm Rose-Blush / Coral Glow */
+  --ambient-orb-3: #fde68a; /* Golden Amber / Honey Glow */
+  --ambient-orb-4: #fed7aa; /* Warm Peach */
+  --ambient-opacity: 0.28; /* Warm, rich sunset ambient meshes */
   --shiny-start: #0284c7;
   --shiny-mid: #0369a1;
   --shiny-end: #0284c7;
@@ -143,7 +143,7 @@ body {
   z-index: -1;
   overflow: hidden;
   background-color: var(--background);
-  background-image: radial-gradient(rgba(15, 23, 42, 0.05) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(180, 83, 9, 0.05) 1px, transparent 1px);
   background-size: 28px 28px;
 }
 
@@ -474,10 +474,10 @@ nav.scrolling {
 }
 
 nav a.active {
-  color: #0f172a !important;
-  background: #FFFFFF !important;
-  border: 1px solid rgba(15, 23, 42, 0.09) !important;
-  box-shadow: 0 2px 8px -1px rgba(15, 23, 42, 0.08), 0 1px 2px rgba(15, 23, 42, 0.04) !important;
+  color: #1c1917 !important;
+  background: #FFFDF9 !important;
+  border: 1px solid rgba(180, 83, 9, 0.12) !important;
+  box-shadow: 0 2px 8px -1px rgba(120, 53, 15, 0.08), 0 1px 2px rgba(120, 53, 15, 0.04) !important;
   font-weight: 600;
 }
 

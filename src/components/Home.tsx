@@ -144,7 +144,7 @@ export default function Home() {
         <div className="relative text-left space-y-8">
           {/* Top Status & Location Badges */}
           <div className="flex flex-wrap items-center gap-3 hero-in" style={{ ["--d" as string]: "0ms" }}>
-            <span className="inline-flex items-center gap-2.5 text-xs font-medium text-slate-700 dark:text-slate-300 border border-slate-200/80 dark:border-white/[0.08] bg-white/70 dark:bg-white/[0.03] backdrop-blur-xl rounded-full px-4 py-1.5 shadow-xs">
+            <span className="inline-flex items-center gap-2.5 text-xs font-medium text-[var(--white)] border border-[var(--card-border)] bg-[var(--component-bg)] backdrop-blur-xl rounded-full px-4 py-1.5 shadow-xs">
               <span className="relative flex size-2">
                 <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75 animate-ping" />
                 <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
@@ -152,12 +152,12 @@ export default function Home() {
               <span>Available for Backend &amp; AI Engineering</span>
             </span>
 
-            <span className="inline-flex items-center gap-2 text-xs font-mono text-slate-600 dark:text-slate-400 border border-slate-200/80 dark:border-white/[0.08] bg-white/70 dark:bg-white/[0.03] backdrop-blur-xl rounded-full px-3.5 py-1.5 shadow-xs">
+            <span className="inline-flex items-center gap-2 text-xs font-mono text-[var(--white-icon)] border border-[var(--card-border)] bg-[var(--component-bg)] backdrop-blur-xl rounded-full px-3.5 py-1.5 shadow-xs">
               <span>{profile.location}</span>
               {timeStr && (
                 <>
-                  <span className="text-slate-300 dark:text-white/20">•</span>
-                  <span className="text-cyan-700 dark:text-cyan-400 font-semibold">{timeStr} IST</span>
+                  <span className="opacity-40">•</span>
+                  <span className="text-[var(--sec)] font-semibold">{timeStr} IST</span>
                 </>
               )}
             </span>
@@ -217,7 +217,7 @@ export default function Home() {
                   href={s.href}
                   aria-label={s.label}
                   title={s.label}
-                  className="size-12 flex items-center justify-center text-slate-600 hover:text-slate-950 dark:text-slate-400 dark:hover:text-white transition duration-200 border border-slate-200/80 hover:border-slate-300 dark:border-white/[0.08] dark:hover:border-white/[0.2] rounded-full bg-white/70 hover:bg-slate-100 dark:bg-white/[0.03] dark:hover:bg-white/[0.08] hover:-translate-y-0.5 shadow-xs cursor-pointer backdrop-blur-xl"
+                  className="size-12 flex items-center justify-center text-[var(--white-icon)] hover:text-[var(--white)] transition duration-200 border border-[var(--card-border)] hover:border-[var(--sec)]/40 rounded-full bg-[var(--component-bg)] hover:bg-[var(--card-hover-bg)] hover:-translate-y-0.5 shadow-xs cursor-pointer backdrop-blur-xl"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
