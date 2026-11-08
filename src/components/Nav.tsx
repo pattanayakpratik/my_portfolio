@@ -138,20 +138,20 @@ export default function Nav() {
       <nav
         ref={navRef}
         id="main-nav"
-        className="fixed left-1/2 -translate-x-1/2 z-[100] transition-all duration-300 ease-out md:top-5 md:bottom-auto bottom-0 w-full md:w-auto md:min-w-[540px] md:max-w-2xl md:rounded-full max-md:rounded-t-2xl border border-[var(--white-icon-tr)] bg-[var(--component-bg)] backdrop-blur-xl max-md:pb-[env(safe-area-inset-bottom,0px)]"
+        className="fixed left-1/2 -translate-x-1/2 z-[100] md:top-5 md:bottom-auto bottom-0 w-full md:w-fit md:max-w-xl md:rounded-full max-md:rounded-t-2xl max-md:pb-[env(safe-area-inset-bottom,0px)] overflow-hidden"
       >
-        <div className="relative w-full flex justify-center items-center py-2 px-3 md:py-2 md:px-5">
-          <ul className="flex w-full md:w-auto justify-between md:justify-center items-center gap-1 md:gap-3">
+        <div className="relative w-full flex justify-center items-center py-1.5 px-3 md:py-1.5 md:px-3">
+          <ul className="flex w-full md:w-auto justify-between md:justify-center items-center gap-0.5 md:gap-1.5">
             {navItems.map((item) => (
               <li key={item.label} className="flex-1 md:flex-none">
                 <a
                   href={item.href}
                   aria-label={item.label}
                   onClick={(e) => handleNavClick(e, item.href)}
-                  className="flex flex-col md:flex-row items-center justify-center gap-1 md:gap-1.5 text-[var(--white-icon)] hover:text-[var(--white)] hover:bg-[var(--white-icon-tr)]/60 rounded-full px-2.5 py-1.5 transition-colors text-[10px] md:text-xs font-medium relative group"
+                  className="flex flex-col md:flex-row items-center justify-center gap-1 md:gap-1.5 text-[var(--white-icon)] hover:text-[var(--white)] hover:bg-white/10 dark:hover:bg-white/5 rounded-full px-3 py-1.5 transition-all text-[10px] md:text-xs font-medium relative group"
                 >
                   <span
-                    className="size-1.5 rounded-full bg-[var(--sec)] transition-all duration-200 scale-0 opacity-0 nav-indicator hidden md:inline-block shrink-0"
+                    className="size-1.5 rounded-full bg-[var(--sec)] transition-all duration-200 scale-0 opacity-0 nav-indicator hidden md:inline-block shrink-0 shadow-[0_0_6px_var(--sec)]"
                     aria-hidden="true"
                   />
                   <span className="md:hidden flex items-center justify-center w-5 h-5">
@@ -170,7 +170,7 @@ export default function Nav() {
                 onClick={openCommandMenu}
                 aria-label="Open command palette (Ctrl+K)"
                 title="Search / Command Palette (Ctrl+K)"
-                className="w-full group flex flex-col md:flex-row items-center justify-center gap-1.5 text-[var(--white-icon)] hover:text-[var(--white)] transition-all cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-[var(--sec)] rounded-full py-1.5 px-2 md:px-2.5 hover:bg-[var(--white-icon-tr)]/60"
+                className="w-full group flex flex-col md:flex-row items-center justify-center gap-1.5 text-[var(--white-icon)] hover:text-[var(--white)] hover:bg-white/10 dark:hover:bg-white/5 transition-all cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-[var(--sec)] rounded-full py-1.5 px-2 md:px-2.5"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -186,14 +186,14 @@ export default function Nav() {
                   <path d="m21 21-4.3-4.3" />
                 </svg>
                 <span className="text-[10px] md:hidden font-medium">Search</span>
-                <kbd className="hidden md:inline-flex items-center text-[10px] font-mono font-medium px-1.5 py-0.5 rounded bg-[var(--container)] border border-[var(--white-icon-tr)] text-[var(--white-icon)] group-hover:text-[var(--white)]">
+                <kbd className="hidden md:inline-flex items-center text-[10px] font-mono font-medium px-1.5 py-0.5 rounded-md bg-white/10 dark:bg-white/5 border border-[var(--white-icon-tr)] text-[var(--white-icon)] group-hover:text-[var(--white)]">
                   ⌘K
                 </kbd>
               </button>
             </li>
 
             <li className="flex-1 md:flex-none flex items-center justify-center">
-              <ThemeToggle showMobileLabel={true} className="w-full py-1 md:p-1 justify-center" />
+              <ThemeToggle showMobileLabel={true} className="w-full py-1 md:p-1 justify-center hover:bg-white/10 dark:hover:bg-white/5" />
             </li>
           </ul>
         </div>

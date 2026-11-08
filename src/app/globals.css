@@ -28,9 +28,11 @@
   --card-hover-bg: rgba(255, 255, 255, 0.82);
   --card-shadow: 0 12px 32px -4px rgba(31, 38, 135, 0.08), inset 0 1px 0 0 rgba(255, 255, 255, 0.95);
   --project-media-bg: rgba(241, 245, 249, 0.55);
-  --nav-bg: rgba(255, 255, 255, 0.72);
-  --nav-border: rgba(255, 255, 255, 0.85);
-  --nav-shadow: 0 16px 36px -8px rgba(15, 23, 42, 0.08), inset 0 1px 0 0 rgba(255, 255, 255, 1);
+  --nav-bg: rgba(255, 255, 255, 0.45);
+  --nav-bg-scrolled: rgba(255, 255, 255, 0.68);
+  --nav-border: rgba(255, 255, 255, 0.55);
+  --nav-border-scrolled: rgba(255, 255, 255, 0.75);
+  --nav-shadow: 0 10px 30px -10px rgba(31, 38, 135, 0.08), inset 0 1px 0 0 rgba(255, 255, 255, 0.95);
   --input-bg: rgba(255, 255, 255, 0.55);
   --glass-btn-bg: rgba(255, 255, 255, 0.65);
   --ambient-orb-1: #38bdf8;
@@ -61,9 +63,11 @@ html.dark {
   --card-hover-bg: rgba(22, 33, 62, 0.58);
   --card-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.55), inset 0 1px 0 0 rgba(255, 255, 255, 0.18);
   --project-media-bg: rgba(12, 18, 34, 0.45);
-  --nav-bg: rgba(15, 23, 42, 0.62);
-  --nav-border: rgba(255, 255, 255, 0.18);
-  --nav-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.7), inset 0 1px 0 0 rgba(255, 255, 255, 0.22);
+  --nav-bg: rgba(10, 15, 26, 0.38);
+  --nav-bg-scrolled: rgba(10, 15, 26, 0.6);
+  --nav-border: rgba(255, 255, 255, 0.09);
+  --nav-border-scrolled: rgba(255, 255, 255, 0.16);
+  --nav-shadow: 0 12px 32px -6px rgba(0, 0, 0, 0.35), inset 0 1px 0 0 rgba(255, 255, 255, 0.16);
   --input-bg: rgba(15, 23, 42, 0.4);
   --glass-btn-bg: rgba(255, 255, 255, 0.06);
   --ambient-orb-1: #0284c7;
@@ -434,30 +438,47 @@ html.dark .resume-btn:hover {
 /* Glass Navigation Dock */
 #main-nav {
   background: var(--nav-bg);
-  border-color: var(--nav-border);
+  border: 1px solid var(--nav-border);
   box-shadow: var(--nav-shadow);
-  backdrop-filter: blur(28px) saturate(200%);
-  -webkit-backdrop-filter: blur(28px) saturate(200%);
+  backdrop-filter: blur(20px) saturate(190%);
+  -webkit-backdrop-filter: blur(20px) saturate(190%);
+  transition:
+    background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 #main-nav::after {
   content: "";
   position: absolute;
   top: 0;
-  left: 10%;
-  right: 10%;
+  left: 12%;
+  right: 12%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
   pointer-events: none;
 }
 
+html:not(.dark) #main-nav::after {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+}
+
 nav.scrolling {
-  box-shadow: var(--nav-shadow), 0 12px 35px -8px rgba(0, 0, 0, 0.35);
+  background: var(--nav-bg-scrolled) !important;
+  border-color: var(--nav-border-scrolled) !important;
+  box-shadow: var(--nav-shadow), 0 14px 36px -10px rgba(0, 0, 0, 0.35) !important;
 }
 
 nav a.active {
-  color: var(--white) !important;
+  color: var(--sec) !important;
+  background: rgba(2, 132, 199, 0.12) !important;
   font-weight: 600;
+}
+
+html.dark nav a.active {
+  color: var(--sec) !important;
+  background: rgba(56, 189, 248, 0.12) !important;
+  box-shadow: inset 0 0 0 1px rgba(56, 189, 248, 0.25);
 }
 
 nav a.active .nav-indicator {
@@ -468,6 +489,7 @@ nav a.active .nav-indicator {
 @media (max-width: 767px) {
   nav a.active {
     color: var(--sec) !important;
+    background: transparent !important;
   }
 }
 
