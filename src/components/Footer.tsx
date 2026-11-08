@@ -60,7 +60,7 @@ export default function Footer() {
                 href={link.href}
                 target={link.href.startsWith("mailto:") ? undefined : "_blank"}
                 rel={link.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
-                className="size-10 flex items-center justify-center rounded-xl border border-[var(--white-icon-tr)] bg-[var(--glass-btn-bg)] hover:bg-[var(--card-hover-bg)] text-[var(--white-icon)] hover:text-[var(--white)] hover:border-[var(--sec)]/50 hover:-translate-y-0.5 transition duration-200 shadow-xs backdrop-blur-xl"
+                className="size-10 flex items-center justify-center rounded-full border border-[var(--white-icon-tr)] bg-[var(--glass-btn-bg)] hover:bg-[var(--card-hover-bg)] text-[var(--white-icon)] hover:text-[var(--white)] hover:border-[var(--sec)]/50 hover:-translate-y-0.5 transition duration-200 shadow-xs backdrop-blur-xl"
                 aria-label={link.label}
                 title={link.label}
               >

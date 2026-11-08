@@ -134,7 +134,7 @@ const SkillsList = () => {
                   new CustomEvent("filter-project-tag", { detail: { tag: item.query } })
                 );
               }}
-              className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-mono border border-[var(--white-icon-tr)] bg-[var(--component-bg)] backdrop-blur-xl hover:bg-[var(--white-icon-tr)] hover:border-[var(--sec)]/50 text-[var(--white-icon)] hover:text-[var(--sec)] transition-all cursor-pointer shrink-0 shadow-xs"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-mono border border-[var(--white-icon-tr)] bg-[var(--component-bg)] backdrop-blur-2xl hover:bg-[var(--white-icon-tr)] hover:border-[var(--sec)]/50 text-[var(--white-icon)] hover:text-[var(--sec)] transition-all cursor-pointer shrink-0 shadow-xs"
               title={`View projects built with ${item.label}`}
             >
               <span>{item.label}</span>
@@ -154,15 +154,15 @@ const SkillsList = () => {
               return (
                 <li key={category} className="w-full">
                   <div
-                    className={`relative w-full rounded-2xl text-left transition-all duration-200 border overflow-hidden backdrop-blur-xl ${
+                    className={`card relative w-full rounded-2xl text-left transition-all duration-200 border overflow-hidden backdrop-blur-xl ${
                       isOpen
                         ? "bg-[var(--card-hover-bg)] border-[var(--sec)]/70 shadow-sm ring-1 ring-[var(--sec)]/30"
-                        : "bg-[var(--card-bg)] border-[var(--white-icon-tr)] hover:border-[var(--sec)]/40 hover:bg-[var(--card-hover-bg)]"
+                        : "border-[var(--white-icon-tr)] hover:border-[var(--sec)]/40 hover:bg-[var(--card-hover-bg)]"
                     }`}
                   >
                     {/* Clean Left Accent Strip on Open */}
                     {isOpen && (
-                      <div className="absolute left-0 top-0 bottom-0 w-1 bg-[var(--sec)] rounded-l-2xl" />
+                      <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-gradient-to-b from-[#00F2FE] to-[#7F00FF] rounded-l-2xl z-10" />
                     )}
 
                     <button

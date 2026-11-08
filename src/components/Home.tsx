@@ -141,9 +141,10 @@ export default function Home() {
   const timeStr = useLiveLocalTime();
 
   return (
-    <section className="text-[var(--white)] pt-24 md:pt-36 pb-12" id="home">
+    <section className="text-[var(--white)] pt-24 md:pt-32 pb-12" id="home">
       <div className="max-w-5xl mx-auto space-y-10">
-        <div className="text-left space-y-6">
+        {/* Wide Fluid Glass Canvas Hero Header Block */}
+        <div className="card rounded-[2.5rem] p-6 sm:p-10 md:p-14 relative overflow-hidden text-left space-y-8">
           {/* Top Status & Location Badges */}
           <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 hero-in" style={{ ["--d" as string]: "0ms" }}>
             <p className="text-sm md:text-base text-[var(--white-icon)] flex items-center gap-2">
@@ -167,7 +168,7 @@ export default function Home() {
                 </svg>
               </span>
             </p>
-            <span className="inline-flex items-center gap-2 text-xs md:text-sm text-[var(--white-icon)] border border-[var(--white-icon-tr)] bg-[var(--component-bg)] backdrop-blur-xl rounded-full px-3 py-1 shadow-xs">
+            <span className="inline-flex items-center gap-2 text-xs md:text-sm text-[var(--white-icon)] border border-[var(--white-icon-tr)] bg-[var(--component-bg)] backdrop-blur-xl rounded-full px-3.5 py-1.5 shadow-xs">
               <span className="relative flex size-2">
                 <span className="absolute inline-flex h-full w-full rounded-full bg-[var(--accent)] opacity-75 animate-ping"></span>
                 <span className="relative inline-flex size-2 rounded-full bg-[var(--accent)]"></span>
@@ -176,7 +177,7 @@ export default function Home() {
             </span>
             {timeStr && (
               <span
-                className="inline-flex items-center gap-1.5 text-xs font-mono text-[var(--sec)] border border-[var(--sec)]/30 bg-[var(--sec)]/10 backdrop-blur-xl rounded-full px-3 py-1 shadow-xs"
+                className="inline-flex items-center gap-1.5 text-xs font-mono text-[var(--sec)] border border-[var(--sec)]/30 bg-[var(--sec)]/10 backdrop-blur-xl rounded-full px-3.5 py-1.5 shadow-xs"
                 title="Current local time in Mumbai, India (UTC+5:30 IST)"
               >
                 <span className="size-1.5 rounded-full bg-[var(--sec)] animate-pulse" />
@@ -217,7 +218,7 @@ export default function Home() {
                   href={s.href}
                   aria-label={s.label}
                   title={s.label}
-                  className={iconBtn}
+                  className="size-11 sm:size-12 flex items-center justify-center text-[var(--white-icon)] hover:text-[var(--white)] transition duration-200 border border-[var(--white-icon-tr)] rounded-full bg-[var(--glass-btn-bg)] hover:bg-[var(--card-hover-bg)] hover:border-[var(--sec)]/50 hover:-translate-y-0.5 shadow-xs cursor-pointer backdrop-blur-xl"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -239,7 +240,7 @@ export default function Home() {
               rel="noopener noreferrer"
               onClick={() => showToast("Opening Resume PDF...", "file")}
               aria-label="View and download resume (PDF)"
-              className="resume-btn group inline-flex items-center justify-center gap-2 h-11 sm:h-12 px-6 rounded-xl font-medium text-sm sm:text-base text-white dark:text-slate-950 bg-[var(--sec)] hover:-translate-y-0.5 transition duration-200"
+              className="resume-btn group inline-flex items-center justify-center gap-2 h-11 sm:h-12 px-7 rounded-full font-medium text-sm sm:text-base text-white dark:text-slate-950 bg-[var(--sec)] hover:-translate-y-0.5 transition duration-200"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

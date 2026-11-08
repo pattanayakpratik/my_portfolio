@@ -8,8 +8,8 @@ export default function Experience() {
     >
       <div className="max-w-5xl mx-auto">
         <div data-reveal="">
-          <p className="text-xs uppercase tracking-widest font-mono text-[var(--sec)] mb-2">Where I&apos;ve worked</p>
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-10">Experience</h2>
+          <p className="text-xs uppercase tracking-widest font-mono text-[var(--sec)] mb-2">Career Roadmap</p>
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-10 text-[var(--white)]">Work Experience</h2>
         </div>
 
         {/* Timeline */}
@@ -28,18 +28,18 @@ export default function Experience() {
                 {job.current && (
                   <span className="absolute inline-flex size-full rounded-full bg-[var(--sec)] opacity-40 animate-ping" />
                 )}
-                <span className="relative inline-flex size-2.5 rounded-full bg-[var(--sec)] ring-4 ring-[var(--background)]" />
+                <span className="relative inline-flex size-2.5 rounded-full bg-[var(--sec)] ring-4 ring-[var(--background)] shadow-[0_0_8px_var(--sec)]" />
               </span>
 
-              <article className="card p-5 md:p-7">
+              <article className="card rounded-[2.5rem] p-6 sm:p-8">
                 <header className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-4">
                   <div>
-                    <h3 className="text-xl md:text-2xl font-bold tracking-tight">{job.role}</h3>
+                    <h3 className="text-xl md:text-2xl font-bold tracking-tight text-[var(--white)]">{job.role}</h3>
                     <p className="text-sm md:text-base font-medium text-[var(--sec)] mt-0.5">{job.company}</p>
                   </div>
-                  <span className="tag self-start md:self-auto text-xs font-mono font-medium">
+                  <span className="tag rounded-full self-start md:self-auto text-xs font-mono font-medium">
                     {job.current && (
-                      <span className="mr-2 size-1.5 rounded-full bg-[var(--accent)] inline-block" />
+                      <span className="mr-2 size-1.5 rounded-full bg-[var(--accent)] inline-block shadow-[0_0_6px_var(--accent)]" />
                     )}
                     {job.period}
                   </span>
@@ -59,7 +59,7 @@ export default function Experience() {
 
                 <div className="flex flex-wrap gap-1.5 mt-5">
                   {job.tags.map((t) => (
-                    <span key={t} className="tag text-xs">
+                    <span key={t} className="tag rounded-full text-xs">
                       {t}
                     </span>
                   ))}
@@ -72,9 +72,9 @@ export default function Experience() {
         {/* Education & Certifications */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-14">
           {/* Education Card */}
-          <div className="card p-5 md:p-7" data-reveal="">
+          <div className="card rounded-[2.5rem] p-6 sm:p-8" data-reveal="">
             <div className="flex items-center gap-3 mb-5">
-              <div className="size-9 rounded-lg bg-[var(--sec)]/10 text-[var(--sec)] flex items-center justify-center border border-[var(--sec)]/20">
+              <div className="size-10 rounded-full bg-[var(--sec)]/10 text-[var(--sec)] flex items-center justify-center border border-[var(--sec)]/20 shadow-xs">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
@@ -92,7 +92,7 @@ export default function Experience() {
                 </svg>
               </div>
               <div>
-                <h3 className="text-lg md:text-xl font-bold tracking-tight">Education</h3>
+                <h3 className="text-lg md:text-xl font-bold tracking-tight text-[var(--white)]">Education</h3>
                 <p className="text-xs text-[var(--white-icon)]">Academic background</p>
               </div>
             </div>
@@ -112,12 +112,12 @@ export default function Experience() {
 
           {/* Certifications Card */}
           <div
-            className="card p-5 md:p-7"
+            className="card rounded-[2.5rem] p-6 sm:p-8"
             data-reveal=""
             style={{ ["--reveal-delay" as string]: "120ms" }}
           >
             <div className="flex items-center gap-3 mb-5">
-              <div className="size-9 rounded-lg bg-[var(--sec)]/10 text-[var(--sec)] flex items-center justify-center border border-[var(--sec)]/20">
+              <div className="size-10 rounded-full bg-[var(--sec)]/10 text-[var(--sec)] flex items-center justify-center border border-[var(--sec)]/20 shadow-xs">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
@@ -134,7 +134,7 @@ export default function Experience() {
                 </svg>
               </div>
               <div>
-                <h3 className="text-lg md:text-xl font-bold tracking-tight">Certifications</h3>
+                <h3 className="text-lg md:text-xl font-bold tracking-tight text-[var(--white)]">Certifications</h3>
                 <p className="text-xs text-[var(--white-icon)]">Verified credentials</p>
               </div>
             </div>
@@ -156,7 +156,7 @@ export default function Experience() {
                       href={c.image}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="self-start sm:self-auto shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-medium text-[var(--sec)] bg-[var(--sec)]/10 hover:bg-[var(--sec)]/20 border border-[var(--sec)]/30 hover:border-[var(--sec)]/50 transition-colors"
+                      className="self-start sm:self-auto shrink-0 inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-mono font-medium text-[var(--sec)] bg-[var(--sec)]/10 hover:bg-[var(--sec)]/20 border border-[var(--sec)]/30 hover:border-[var(--sec)]/50 transition-colors"
                       title={`Open ${c.title} certificate PDF`}
                     >
                       <span>PDF</span>

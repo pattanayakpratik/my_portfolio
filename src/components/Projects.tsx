@@ -15,7 +15,7 @@ const images = {
 };
 
 const iconBtn =
-  "size-9.5 md:size-10 flex justify-center items-center text-[var(--white-icon)] hover:text-[var(--white)] transition duration-200 border border-[var(--white-icon-tr)] rounded-xl bg-[var(--glass-btn-bg)] hover:bg-[var(--card-hover-bg)] hover:border-[var(--sec)]/50 shadow-xs cursor-pointer backdrop-blur-xl";
+  "size-9.5 md:size-10 flex justify-center items-center text-[var(--white-icon)] hover:text-[var(--white)] transition duration-200 border border-[var(--white-icon-tr)] rounded-full bg-[var(--glass-btn-bg)] hover:bg-[var(--card-hover-bg)] hover:border-[var(--sec)]/50 shadow-xs cursor-pointer backdrop-blur-xl";
 
 const githubPath =
   "M12.001 2C6.47598 2 2.00098 6.475 2.00098 12C2.00098 16.425 4.86348 20.1625 8.83848 21.4875C9.33848 21.575 9.52598 21.275 9.52598 21.0125C9.52598 20.775 9.51348 19.9875 9.51348 19.15C7.00098 19.6125 6.35098 18.5375 6.15098 17.975C6.03848 17.6875 5.55098 16.8 5.12598 16.5625C4.77598 16.375 4.27598 15.9125 5.11348 15.9C5.90098 15.8875 6.46348 16.625 6.65098 16.925C7.55098 18.4375 8.98848 18.0125 9.56348 17.75C9.65098 17.1 9.91348 16.6625 10.201 16.4125C7.97598 16.1625 5.65098 15.3 5.65098 11.475C5.65098 10.3875 6.03848 9.4875 6.67598 8.7875C6.57598 8.5375 6.22598 7.5125 6.77598 6.1375C6.77598 6.1375 7.61348 5.875 9.52598 7.1625C10.326 6.9375 11.176 6.825 12.026 6.825C12.876 6.825 13.726 6.9375 14.526 7.1625C16.4385 5.8625 17.276 6.1375 17.276 6.1375C17.826 7.5125 17.476 8.5375 17.376 8.7875C18.0135 9.4875 18.401 10.375 18.401 11.475C18.401 15.3125 16.0635 16.1625 13.8385 16.4125C14.201 16.725 14.5135 17.325 14.5135 18.2625C14.5135 19.6 14.501 20.675 14.501 21.0125C14.501 21.275 14.6885 21.5875 15.1885 21.4875C19.259 20.1133 21.9999 16.2963 22.001 12C22.001 6.475 17.526 2 12.001 2Z";
@@ -110,7 +110,7 @@ export default function Projects() {
             <div
               role="tablist"
               aria-label="Filter projects by category"
-              className="flex items-center gap-1.5 p-1 rounded-xl bg-[var(--component-bg)] border border-[var(--white-icon-tr)] backdrop-blur-2xl max-w-full overflow-x-auto no-scrollbar scroll-smooth self-start md:self-auto shrink-0 shadow-xs"
+              className="flex items-center gap-1.5 p-1.5 rounded-full bg-[var(--component-bg)] border border-[var(--white-icon-tr)] backdrop-blur-2xl max-w-full overflow-x-auto no-scrollbar scroll-smooth self-start md:self-auto shrink-0 shadow-xs"
             >
               {categories.map((cat) => {
                 const isSelected = activeCategory === cat;
@@ -127,9 +127,9 @@ export default function Projects() {
                     type="button"
                     aria-selected={isSelected}
                     onClick={() => setActiveCategory(cat)}
-                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs md:text-sm font-medium transition-all duration-200 cursor-pointer shrink-0 whitespace-nowrap ${
+                    className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs md:text-sm font-medium transition-all duration-200 cursor-pointer shrink-0 whitespace-nowrap ${
                       isSelected
-                        ? "bg-[var(--card-bg)] text-[var(--sec)] shadow-xs ring-1 ring-[var(--sec)]/30 font-semibold"
+                        ? "bg-[var(--card-hover-bg)] text-[var(--sec)] shadow-xs ring-1 ring-[var(--sec)]/30 font-semibold"
                         : "text-[var(--white-icon)] hover:text-[var(--white)] hover:bg-[var(--white-icon-tr)]"
                     }`}
                   >
@@ -152,10 +152,10 @@ export default function Projects() {
 
         {/* Active Tech Filter Banner */}
         {selectedTag && (
-          <div className="flex items-center gap-2 mb-6 p-3 px-4 rounded-xl bg-[var(--component-bg)] border border-[var(--sec)]/40 backdrop-blur-xl text-xs md:text-sm shadow-xs animate-in fade-in duration-200">
+          <div className="flex items-center gap-2.5 mb-6 p-2.5 px-5 rounded-full bg-[var(--component-bg)] border border-[var(--sec)]/40 backdrop-blur-2xl text-xs md:text-sm shadow-xs animate-in fade-in duration-200">
             <span className="size-2 rounded-full bg-[var(--sec)] animate-pulse" />
             <span className="text-[var(--white-icon)]">Filtered by technology:</span>
-            <span className="font-mono font-semibold text-[var(--sec)] px-2 py-0.5 rounded bg-[var(--sec)]/15 border border-[var(--sec)]/30">
+            <span className="font-mono font-semibold text-[var(--sec)] px-2.5 py-0.5 rounded-full bg-[var(--sec)]/15 border border-[var(--sec)]/30">
               {selectedTag}
             </span>
             <span className="text-xs text-[var(--white-icon)] hidden sm:inline">
@@ -167,7 +167,7 @@ export default function Projects() {
                 setSelectedTag(null);
                 showToast("Cleared skill filter", "refresh");
               }}
-              className="ml-auto flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[var(--white-icon-tr)] hover:bg-[var(--sec)]/20 text-[var(--white-icon)] hover:text-[var(--sec)] text-xs font-medium cursor-pointer transition-colors"
+              className="ml-auto flex items-center gap-1.5 px-3 py-1 rounded-full bg-[var(--white-icon-tr)] hover:bg-[var(--sec)]/20 text-[var(--white-icon)] hover:text-[var(--sec)] text-xs font-medium cursor-pointer transition-colors"
             >
               <X className="size-3.5" />
               <span>Clear filter</span>
@@ -182,26 +182,62 @@ export default function Projects() {
             className="grid grid-cols-1 md:grid-cols-2 gap-8"
           >
             {filteredFeatured.map((project, i) => {
-              const imgData = images[project.image];
+              const imgData = project.image !== "pulseengine" ? images[project.image as "cypher" | "pyshare"] : null;
               return (
                 <article
                   key={project.title}
-                  className="group card overflow-hidden flex flex-col is-visible"
+                  className="group card rounded-[2.5rem] overflow-hidden flex flex-col is-visible"
                   data-reveal=""
                   style={{ ["--reveal-delay" as string]: `${i * 120}ms` }}
                 >
-                  {project.showcaseUrl ? (
+                  {project.image === "pulseengine" ? (
+                    <a
+                      href={project.repo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="project-media relative flex flex-col justify-center items-center h-56 md:h-72 p-6 bg-gradient-to-br from-[#00F2FE]/10 via-[#0A0F1E]/60 to-[#7F00FF]/15 border-b border-[var(--white-icon-tr)] overflow-hidden"
+                      aria-label={`${project.title} on GitHub`}
+                    >
+                      <div className="w-full max-w-sm p-4 rounded-2xl bg-black/40 border border-white/10 backdrop-blur-md space-y-3 font-mono text-xs transition-transform duration-500 ease-out group-hover:scale-[1.03]">
+                        <div className="flex items-center justify-between pb-2 border-b border-white/10 text-slate-300">
+                          <span className="flex items-center gap-1.5 text-[#00F2FE] font-bold">
+                            <span className="size-2 rounded-full bg-[#00F2FE] animate-pulse" />
+                            PulseEngine
+                          </span>
+                          <span className="text-[10px] text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/30 font-semibold">
+                            ACID OUTBOX
+                          </span>
+                        </div>
+                        <div className="grid grid-cols-2 gap-2 text-[11px]">
+                          <div className="p-2 rounded-xl bg-white/5 border border-white/5">
+                            <span className="text-slate-400 block text-[10px]">Lane 1 (Priority)</span>
+                            <span className="text-white font-semibold">OTP / Alerts</span>
+                          </div>
+                          <div className="p-2 rounded-xl bg-white/5 border border-white/5">
+                            <span className="text-slate-400 block text-[10px]">Lane 2 (Bulk)</span>
+                            <span className="text-white font-semibold">Campaigns</span>
+                          </div>
+                        </div>
+                        <div className="flex items-center justify-between text-[10px] text-slate-400 pt-1">
+                          <span>Redis Lua Rate-Limiter</span>
+                          <span className="text-[#00F2FE] font-bold">p99 &lt; 8.4ms</span>
+                        </div>
+                      </div>
+                    </a>
+                  ) : project.showcaseUrl ? (
                     <Link
                       href={project.showcaseUrl}
                       className="project-media relative block overflow-hidden h-56 md:h-72 bg-gradient-to-b from-transparent to-[var(--container)]/30 border-b border-[var(--white-icon-tr)]"
                       aria-label={`${project.title} dedicated showcase and download`}
                     >
-                      <Image
-                        src={imgData.src}
-                        alt={`${project.title} — ${project.tagline}`}
-                        sizes="(min-width: 768px) 500px, 100vw"
-                        className={`w-full h-full object-contain ${imgData.pad} transition-transform duration-500 ease-out group-hover:scale-[1.03]`}
-                      />
+                      {imgData && (
+                        <Image
+                          src={imgData.src}
+                          alt={`${project.title} — ${project.tagline}`}
+                          sizes="(min-width: 768px) 500px, 100vw"
+                          className={`w-full h-full object-contain ${imgData.pad} transition-transform duration-500 ease-out group-hover:scale-[1.03]`}
+                        />
+                      )}
                     </Link>
                   ) : (
                     <a
@@ -211,12 +247,14 @@ export default function Projects() {
                       className="project-media relative block overflow-hidden h-56 md:h-72 bg-gradient-to-b from-transparent to-[var(--container)]/30 border-b border-[var(--white-icon-tr)]"
                       aria-label={`${project.title} on GitHub`}
                     >
-                      <Image
-                        src={imgData.src}
-                        alt={`${project.title} — ${project.tagline}`}
-                        sizes="(min-width: 768px) 500px, 100vw"
-                        className={`w-full h-full object-contain ${imgData.pad} transition-transform duration-500 ease-out group-hover:scale-[1.03]`}
-                      />
+                      {imgData && (
+                        <Image
+                          src={imgData.src}
+                          alt={`${project.title} — ${project.tagline}`}
+                          sizes="(min-width: 768px) 500px, 100vw"
+                          className={`w-full h-full object-contain ${imgData.pad} transition-transform duration-500 ease-out group-hover:scale-[1.03]`}
+                        />
+                      )}
                     </a>
                   )}
 
@@ -320,7 +358,7 @@ export default function Projects() {
                     {project.showcaseUrl && (
                       <Link
                         href={project.showcaseUrl}
-                        className="my-1 flex items-center justify-between w-full px-4 py-2.5 rounded-xl bg-[var(--component-bg)] hover:bg-[var(--card-hover-bg)] border border-[var(--sec)]/30 hover:border-[var(--sec)]/60 text-xs md:text-sm font-semibold text-[var(--sec)] transition-all duration-200 group/btn shadow-xs"
+                        className="my-1 flex items-center justify-between w-full px-5 py-3 rounded-full bg-[var(--component-bg)] hover:bg-[var(--card-hover-bg)] border border-[var(--sec)]/30 hover:border-[var(--sec)]/60 text-xs md:text-sm font-semibold text-[var(--sec)] transition-all duration-200 group/btn shadow-xs backdrop-blur-xl"
                       >
                         <span className="flex items-center gap-2">
                           <span className="relative flex h-2 w-2">
@@ -381,7 +419,7 @@ export default function Projects() {
                   href={p.repo}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mini-card group card p-5 flex flex-col gap-3 hover:-translate-y-1 transition-all duration-200 is-visible"
+                  className="mini-card group card rounded-2xl p-5 flex flex-col gap-3 hover:-translate-y-1 transition-all duration-200 is-visible"
                   data-reveal=""
                   style={{ ["--reveal-delay" as string]: `${(i % 3) * 90}ms` }}
                 >
@@ -397,7 +435,7 @@ export default function Projects() {
                         <path d="M4 5V19H20V7H11.5858L9.58579 5H4ZM12.4142 5H21C21.5523 5 22 5.44772 22 6V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3H10.4142L12.4142 5Z" />
                       </svg>
                       {p.badge && (
-                        <span className="inline-flex items-center gap-1.5 text-[10px] font-mono px-2 py-0.5 rounded-full bg-[var(--sec)]/15 text-[var(--sec)] border border-[var(--sec)]/30 font-semibold tracking-wider">
+                        <span className="inline-flex items-center gap-1.5 text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-[var(--sec)]/15 text-[var(--sec)] border border-[var(--sec)]/30 font-semibold tracking-wider">
                           {p.liveUrl && <span className="size-1.5 rounded-full bg-emerald-400 animate-pulse" />}
                           {p.badge}
                         </span>
@@ -412,7 +450,7 @@ export default function Projects() {
                             e.stopPropagation();
                             window.open(p.liveUrl, "_blank", "noopener,noreferrer");
                           }}
-                          className="px-2 py-0.5 rounded text-[11px] font-mono font-medium text-[var(--sec)] hover:bg-[var(--sec)]/20 border border-[var(--sec)]/30 transition-colors"
+                          className="px-2.5 py-1 rounded-full text-[11px] font-mono font-medium text-[var(--sec)] hover:bg-[var(--sec)]/20 border border-[var(--sec)]/30 transition-colors cursor-pointer"
                           title="Open live app"
                         >
                           Live ↗
@@ -426,7 +464,7 @@ export default function Projects() {
                             e.stopPropagation();
                             window.open(p.apkUrl, "_blank", "noopener,noreferrer");
                           }}
-                          className="px-2 py-0.5 rounded text-[11px] font-mono font-medium text-emerald-400 hover:bg-emerald-500/20 border border-emerald-500/30 transition-colors"
+                          className="px-2.5 py-1 rounded-full text-[11px] font-mono font-medium text-emerald-400 hover:bg-emerald-500/20 border border-emerald-500/30 transition-colors cursor-pointer"
                           title="Download Android APK"
                         >
                           APK ⬇
@@ -449,7 +487,7 @@ export default function Projects() {
                   <p className="text-xs text-[var(--white-icon)] leading-relaxed flex-grow">
                     {p.description}
                   </p>
-                  <div className="flex flex-wrap gap-1 pt-1">
+                  <div className="flex flex-wrap gap-1.5 pt-1">
                     {p.tags.map((t) => (
                       <button
                         key={t}
@@ -460,7 +498,7 @@ export default function Projects() {
                           setSelectedTag(t === selectedTag ? null : t);
                           showToast(t === selectedTag ? "Cleared filter" : `Filtered by "${t}"`, "search");
                         }}
-                        className={`tag text-[10px] px-2 py-0.5 transition-all cursor-pointer ${
+                        className={`tag text-[10px] px-2.5 py-0.5 transition-all cursor-pointer ${
                           selectedTag === t
                             ? "bg-[var(--sec)]/20 text-[var(--sec)] border-[var(--sec)] ring-1 ring-[var(--sec)]/30 font-semibold"
                             : "hover:border-[var(--sec)]/60 hover:text-[var(--white)]"
@@ -487,7 +525,7 @@ export default function Projects() {
                 setActiveCategory("All");
                 setSelectedTag(null);
               }}
-              className="mt-4 px-4 py-2 rounded-xl bg-[var(--sec)] text-white dark:text-slate-950 font-medium text-sm hover:opacity-90 transition cursor-pointer"
+              className="mt-4 px-6 py-2.5 rounded-full bg-[var(--sec)] text-white dark:text-slate-950 font-medium text-sm hover:opacity-90 transition cursor-pointer"
             >
               Show all projects
             </button>
@@ -500,7 +538,7 @@ export default function Projects() {
             rel="noopener noreferrer"
             href={profile.socials.github}
             aria-label="More projects on GitHub"
-            className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-sm font-medium text-[var(--white-icon)] hover:text-[var(--white)] border border-[var(--white-icon-tr)] bg-[var(--glass-btn-bg)] hover:bg-[var(--card-hover-bg)] hover:border-[var(--sec)]/50 hover:-translate-y-0.5 transition duration-200 shadow-xs backdrop-blur-xl"
+            className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full text-sm font-medium text-[var(--white-icon)] hover:text-[var(--white)] border border-[var(--white-icon-tr)] bg-[var(--glass-btn-bg)] hover:bg-[var(--card-hover-bg)] hover:border-[var(--sec)]/50 hover:-translate-y-0.5 transition duration-200 shadow-xs backdrop-blur-xl"
           >
             <span>See more repositories on GitHub</span>
             <svg

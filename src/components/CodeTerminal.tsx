@@ -74,12 +74,12 @@ export default function CodeTerminal({
   };
 
   return (
-    <div className="w-full flex flex-col rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] text-[var(--white)] shadow-[var(--card-shadow)] backdrop-blur-2xl overflow-hidden transition-all duration-300">
+    <div className="w-full flex flex-col card rounded-[2.5rem] text-[var(--white)] overflow-hidden transition-all duration-300">
       {/* Top Subtle Gradient Stripe */}
       <div className="h-[2px] w-full bg-gradient-to-r from-[var(--sec)] via-sky-400 to-[var(--sec)]" />
 
       {/* Window Title Bar */}
-      <div className="flex items-center justify-between px-4 py-3 border-b border-[var(--white-icon-tr)] bg-[var(--container)]/60 backdrop-blur-md gap-2">
+      <div className="flex items-center justify-between px-5 py-3.5 border-b border-[var(--white-icon-tr)] bg-[var(--container)]/50 backdrop-blur-xl gap-2">
         {/* macOS Traffic Lights */}
         <div className="flex items-center gap-2 shrink-0">
           <span className="w-3 h-3 rounded-full bg-[#ef4444] inline-block shadow-xs" />
@@ -105,9 +105,9 @@ export default function CodeTerminal({
                   setViewMode("code");
                   onSelectCategory(item.category);
                 }}
-                className={`shrink-0 flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-mono transition-all duration-200 cursor-pointer ${
+                className={`shrink-0 flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono transition-all duration-200 cursor-pointer ${
                   isActive
-                    ? "bg-[var(--card-bg)] text-[var(--sec)] shadow-sm border border-[var(--white-icon-tr)] font-semibold"
+                    ? "bg-[var(--card-hover-bg)] text-[var(--sec)] shadow-xs border border-[var(--white-icon-tr)] font-semibold"
                     : "text-[var(--white-icon)] hover:text-[var(--white)] hover:bg-[var(--white-icon-tr)]/50 border border-transparent"
                 }`}
               >
@@ -127,9 +127,9 @@ export default function CodeTerminal({
           <button
             type="button"
             onClick={() => setViewMode("cli")}
-            className={`shrink-0 flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-mono transition-all duration-200 cursor-pointer ${
+            className={`shrink-0 flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono transition-all duration-200 cursor-pointer ${
               viewMode === "cli"
-                ? "bg-[var(--card-bg)] text-cyan-400 shadow-sm border border-[var(--white-icon-tr)] font-semibold"
+                ? "bg-[var(--card-hover-bg)] text-cyan-400 shadow-xs border border-[var(--white-icon-tr)] font-semibold"
                 : "text-[var(--white-icon)] hover:text-[var(--white)] hover:bg-[var(--white-icon-tr)]/50 border border-transparent"
             }`}
           >
@@ -150,7 +150,7 @@ export default function CodeTerminal({
             <button
               type="button"
               onClick={() => setViewMode("code")}
-              className="flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-mono text-[var(--white-icon)] hover:text-[var(--white)] hover:bg-[var(--white-icon-tr)]/60 transition cursor-pointer border border-[var(--white-icon-tr)]"
+              className="flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono text-[var(--white-icon)] hover:text-[var(--white)] hover:bg-[var(--white-icon-tr)]/60 transition cursor-pointer border border-[var(--white-icon-tr)]"
             >
               &lt;/&gt; View Code
             </button>
@@ -159,7 +159,7 @@ export default function CodeTerminal({
               <button
                 type="button"
                 onClick={() => setViewMode("cli")}
-                className="hidden sm:inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-mono text-[var(--sec)] hover:bg-[var(--white-icon-tr)]/40 transition cursor-pointer border border-transparent hover:border-[var(--white-icon-tr)]"
+                className="hidden sm:inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-mono text-[var(--sec)] hover:bg-[var(--white-icon-tr)]/40 transition cursor-pointer border border-transparent hover:border-[var(--white-icon-tr)]"
                 title="Launch Interactive Shell"
               >
                 &gt;_ CLI
@@ -168,7 +168,7 @@ export default function CodeTerminal({
                 type="button"
                 onClick={handleCopy}
                 aria-label="Copy code"
-                className="flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs text-[var(--white-icon)] hover:text-[var(--white)] hover:bg-[var(--white-icon-tr)]/60 transition-colors cursor-pointer border border-transparent hover:border-[var(--white-icon-tr)]"
+                className="flex items-center gap-1.5 px-3 py-1 rounded-full text-xs text-[var(--white-icon)] hover:text-[var(--white)] hover:bg-[var(--white-icon-tr)]/60 transition-colors cursor-pointer border border-transparent hover:border-[var(--white-icon-tr)]"
               >
                 {copied ? (
                   <>
