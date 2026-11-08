@@ -191,6 +191,17 @@ export default function Nav() {
 
   // Clean, zero-lag click handler with smooth scroll and scroll lock release
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, item: NavItem) => {
+    // If clicking "Notes", ensure window starts cleanly at the top of /notes
+    if (item.id === "notes") {
+      if (pathname === "/notes") {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        window.scrollTo({ top: 0, behavior: "instant" });
+      }
+      return;
+    }
+
     if (item.href.startsWith("/#") || item.href.startsWith("#")) {
       const targetId = item.id;
 
@@ -239,11 +250,12 @@ export default function Nav() {
           <ul className="flex w-full md:w-auto justify-between md:justify-center items-center gap-1 md:gap-1.5">
             {navItems.map((item) => {
               const isActive = activeTab === item.id;
+              const isHashLink = item.href.startsWith("/#") || item.href.startsWith("#");
               return (
                 <li key={item.label} className="flex-1 md:flex-none">
                   <Link
                     href={item.href}
-                    scroll={false}
+                    scroll={isHashLink ? false : true}
                     aria-label={item.label}
                     aria-current={isActive ? "location" : undefined}
                     onClick={(e) => handleNavClick(e, item)}

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { caseStudies } from "@/data/caseStudies";
 import type { Metadata } from "next";
 import { Check } from "lucide-react";
+import ScrollToTop from "@/components/ScrollToTop";
 
 export const metadata: Metadata = {
   title: "Engineering Notes & Deep Dives | Pratik Pattanayak",
@@ -12,6 +13,7 @@ export const metadata: Metadata = {
 export default function NotesPage() {
   return (
     <div className="min-h-screen text-[var(--white)] max-w-5xl mx-auto py-12 md:py-20 space-y-16">
+      <ScrollToTop />
       {/* Top Navigation */}
       <div className="flex items-center justify-between border-b border-[var(--white-icon-tr)] pb-6">
         <Link
