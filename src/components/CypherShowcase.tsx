@@ -21,7 +21,7 @@ export default function CypherShowcase() {
   const repoUrl = cypher?.repo || "https://github.com/pattanayakpratik/Cypher-AI";
 
   return (
-    <div className="min-h-screen py-10 max-w-5xl mx-auto text-[var(--white)] animate-terminal-fade">
+    <div className="min-h-screen py-10 max-w-6xl mx-auto text-[var(--white)] animate-terminal-fade">
       {/* Top Nav Back Bar */}
       <div className="flex items-center justify-between gap-4 mb-8 pb-4 border-b border-[var(--white-icon-tr)]">
         <Link

@@ -171,7 +171,7 @@ export interface FeaturedProject {
   tagline: string;
   description: string;
   highlights: string[];
-  image: "cypher" | "pyshare" | "pulseengine";
+  image: "cypher" | "pyshare";
   repo: string;
   tags: string[];
   version?: string;
@@ -424,22 +424,6 @@ export const featuredProjects: FeaturedProject[] = [
         "Connect phones and laptops via local Wi-Fi, hotspot, or Internet tunnel to share files and clipboard at maximum speeds.",
       ],
     },
-  },
-  {
-    title: "PulseEngine",
-    tagline: "Distributed Multi-Channel Notification Infrastructure",
-    description:
-      "High-throughput event-driven notification dispatch pipeline engineered with FastAPI, PostgreSQL ACID Transactional Outbox, Redis Lua token-bucket rate limiter, and isolated 2-lane priority workers.",
-    highlights: [
-      "ACID Transactional Outbox pattern guaranteeing zero-loss dispatch under network partitions",
-      "2-lane priority worker queue (High-priority OTPs vs. Bulk marketing broadcasts)",
-      "Distributed Redis Lua token-bucket rate limiter with 24-hour deduplication idempotency guard",
-      "Dynamic AST JSON-to-SQL rule evaluation engine for targeted audience segmentation",
-    ],
-    image: "pulseengine",
-    repo: "https://github.com/pattanayakpratik/PulseEngine",
-    liveUrl: "https://pulse-engine-dashboard-ten.vercel.app",
-    tags: ["FastAPI", "PostgreSQL", "Redis", "Distributed Systems", "Docker", "Next.js"],
   },
 ];
 

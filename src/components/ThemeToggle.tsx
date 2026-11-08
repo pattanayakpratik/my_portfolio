@@ -100,7 +100,7 @@ export default function ThemeToggle({
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="w-5 h-5 text-cyan-600 transition-transform duration-500 -rotate-12 group-hover:rotate-0 block dark:hidden"
+          className="w-4.5 h-4.5 text-slate-700 transition-transform duration-500 -rotate-12 group-hover:rotate-0 group-hover:text-cyan-700 block dark:hidden"
         >
           <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
         </svg>

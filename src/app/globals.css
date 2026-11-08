@@ -11,36 +11,36 @@
 }
 
 :root {
-  /* Crisp Fluid Glass Porcelain Light Mode */
-  --background: #f8fafc;
+  /* Crisp Frosted Platinum-Glass Light Mode */
+  --background: #eaeff6; /* Frosted Platinum Mist (prevents flat blinding white) */
   --sec: #0284c7; /* Sky-600 */
   --accent: #059669; /* Emerald-600 */
-  --white: #0f172a; /* Slate-900 (High-contrast text) */
+  --white: #0f172a; /* Slate-900 (High-contrast primary text) */
   --white-icon: #475569; /* Slate-600 (Secondary readable text) */
-  --white-icon-tr: rgba(15, 23, 42, 0.08); /* Subtle hairline border */
-  --card-border: rgba(15, 23, 42, 0.08);
+  --white-icon-tr: rgba(15, 23, 42, 0.09); /* Hairline glass border */
+  --card-border: rgba(255, 255, 255, 0.95); /* Crisp physical white edge glare */
   --card-border-hover: rgba(2, 132, 199, 0.45);
-  --component-bg: rgba(255, 255, 255, 0.85);
-  --container: rgba(255, 255, 255, 0.7);
-  --line: rgba(15, 23, 42, 0.08);
+  --component-bg: rgba(255, 255, 255, 0.88);
+  --container: rgba(255, 255, 255, 0.78);
+  --line: rgba(15, 23, 42, 0.09);
   --pink: #0284c7;
-  --card-bg: rgba(255, 255, 255, 0.75); /* Frosted porcelain glass */
+  --card-bg: rgba(255, 255, 255, 0.82); /* Frosted crystal glass surface */
   --card-hover-bg: rgba(255, 255, 255, 0.95);
-  --card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08), inset 0 1px 1px 0 rgba(255, 255, 255, 0.95);
-  --project-media-bg: rgba(241, 245, 249, 0.7);
-  --nav-bg: rgba(255, 255, 255, 0.82);
-  --nav-bg-scrolled: rgba(255, 255, 255, 0.95);
-  --nav-border: rgba(15, 23, 42, 0.08);
-  --nav-border-scrolled: rgba(15, 23, 42, 0.12);
-  --nav-shadow: 0 12px 32px -8px rgba(0, 0, 0, 0.08), inset 0 1px 1px 0 rgba(255, 255, 255, 0.95);
+  --card-shadow: 0 16px 36px -10px rgba(15, 23, 42, 0.08), 0 1px 3px rgba(15, 23, 42, 0.04), inset 0 1px 1px 0 rgba(255, 255, 255, 1);
+  --project-media-bg: rgba(234, 239, 246, 0.6);
+  --nav-bg: rgba(255, 255, 255, 0.88);
+  --nav-bg-scrolled: rgba(255, 255, 255, 0.96);
+  --nav-border: rgba(255, 255, 255, 0.95);
+  --nav-border-scrolled: rgba(255, 255, 255, 1);
+  --nav-shadow: 0 16px 36px -8px rgba(15, 23, 42, 0.1), inset 0 1px 1px 0 rgba(255, 255, 255, 1);
   --input-bg: rgba(255, 255, 255, 0.9);
-  --glass-btn-bg: rgba(255, 255, 255, 0.85);
+  --glass-btn-bg: rgba(255, 255, 255, 0.88);
   --touch-glow: rgba(2, 132, 199, 0.08);
   --ambient-orb-1: #38bdf8;
   --ambient-orb-2: #818cf8;
   --ambient-orb-3: #38bdf8;
   --ambient-orb-4: #34d399;
-  --ambient-opacity: 0.06;
+  --ambient-opacity: 0.12; /* Rich pearlescent atmospheric glow */
   --shiny-start: #0284c7;
   --shiny-mid: #0369a1;
   --shiny-end: #0284c7;

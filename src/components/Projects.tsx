@@ -182,7 +182,7 @@ export default function Projects() {
             className="grid grid-cols-1 md:grid-cols-2 gap-8"
           >
             {filteredFeatured.map((project, i) => {
-              const imgData = project.image !== "pulseengine" ? images[project.image as "cypher" | "pyshare"] : null;
+              const imgData = images[project.image as "cypher" | "pyshare"];
               return (
                 <article
                   key={project.title}
@@ -190,41 +190,7 @@ export default function Projects() {
                   data-reveal=""
                   style={{ ["--reveal-delay" as string]: `${i * 120}ms` }}
                 >
-                  {project.image === "pulseengine" ? (
-                    <a
-                      href={project.repo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="project-media relative flex flex-col justify-center items-center h-56 md:h-72 p-6 bg-gradient-to-br from-[#00F2FE]/10 via-[#0A0F1E]/60 to-[#7F00FF]/15 border-b border-[var(--white-icon-tr)] overflow-hidden"
-                      aria-label={`${project.title} on GitHub`}
-                    >
-                      <div className="w-full max-w-sm p-4 rounded-2xl bg-black/40 border border-white/10 backdrop-blur-md space-y-3 font-mono text-xs transition-transform duration-500 ease-out group-hover:scale-[1.03]">
-                        <div className="flex items-center justify-between pb-2 border-b border-white/10 text-slate-300">
-                          <span className="flex items-center gap-1.5 text-[#00F2FE] font-bold">
-                            <span className="size-2 rounded-full bg-[#00F2FE] animate-pulse" />
-                            PulseEngine
-                          </span>
-                          <span className="text-[10px] text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/30 font-semibold">
-                            ACID OUTBOX
-                          </span>
-                        </div>
-                        <div className="grid grid-cols-2 gap-2 text-[11px]">
-                          <div className="p-2 rounded-xl bg-white/5 border border-white/5">
-                            <span className="text-slate-400 block text-[10px]">Lane 1 (Priority)</span>
-                            <span className="text-white font-semibold">OTP / Alerts</span>
-                          </div>
-                          <div className="p-2 rounded-xl bg-white/5 border border-white/5">
-                            <span className="text-slate-400 block text-[10px]">Lane 2 (Bulk)</span>
-                            <span className="text-white font-semibold">Campaigns</span>
-                          </div>
-                        </div>
-                        <div className="flex items-center justify-between text-[10px] text-slate-400 pt-1">
-                          <span>Redis Lua Rate-Limiter</span>
-                          <span className="text-[#00F2FE] font-bold">p99 &lt; 8.4ms</span>
-                        </div>
-                      </div>
-                    </a>
-                  ) : project.showcaseUrl ? (
+                  {project.showcaseUrl ? (
                     <Link
                       href={project.showcaseUrl}
                       className="project-media relative block overflow-hidden h-56 md:h-72 bg-gradient-to-b from-transparent to-[var(--container)]/30 border-b border-[var(--white-icon-tr)]"
