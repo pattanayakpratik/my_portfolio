@@ -70,10 +70,15 @@ export default function Nav() {
   const pathname = usePathname();
   const navRef = useRef<HTMLElement | null>(null);
   const [activeTab, setActiveTab] = useState<string>("home");
+  const activeTabRef = useRef<string>("home");
   const isManualScrollingRef = useRef(false);
   const manualTimerRef = useRef<NodeJS.Timeout | null>(null);
 
-  // High-performance scroll spy with reverse section detection
+  useEffect(() => {
+    activeTabRef.current = activeTab;
+  }, [activeTab]);
+
+  // High-performance scroll spy with focal-point detection and hysteresis deadband
   const updateScrollSpy = useCallback(() => {
     const nav = navRef.current;
     if (nav) {
@@ -85,43 +90,64 @@ export default function Nav() {
     }
 
     if (pathname === "/notes") {
-      setActiveTab("notes");
+      if (activeTabRef.current !== "notes") {
+        setActiveTab("notes");
+        activeTabRef.current = "notes";
+      }
       return;
     }
 
     // While smooth scrolling from a manual click, don't overwrite active tab
     if (isManualScrollingRef.current) return;
 
-    // 1. Check if user is at or near the bottom of document -> Contact is active
+    // 1. Guard: At or near very top -> Home is active
+    if (window.scrollY < 120) {
+      if (activeTabRef.current !== "home") {
+        setActiveTab("home");
+        activeTabRef.current = "home";
+      }
+      return;
+    }
+
+    // 2. Guard: At or near bottom of document -> Contact is active
     const scrollBottom = window.innerHeight + window.scrollY;
     const documentHeight = document.documentElement.scrollHeight;
     if (documentHeight - scrollBottom < 90) {
-      setActiveTab("contact");
+      if (activeTabRef.current !== "contact") {
+        setActiveTab("contact");
+        activeTabRef.current = "contact";
+      }
       return;
     }
 
-    // 2. Check if near very top -> Home is active
-    if (window.scrollY < 120) {
-      setActiveTab("home");
-      return;
+    // 3. Focal zone detection with Hysteresis (prevents rapid toggling at section boundaries)
+    const focalPoint = window.innerHeight * 0.35;
+    const currentActive = activeTabRef.current;
+    const currentEl = document.getElementById(currentActive);
+
+    // Hysteresis deadband: if the current section still covers the focal zone, retain it without switching
+    if (currentEl) {
+      const cr = currentEl.getBoundingClientRect();
+      if (cr.top <= focalPoint + 50 && cr.bottom >= focalPoint - 50) {
+        return;
+      }
     }
 
-    // 3. Scan sections in reverse order (bottom to top) with header line offset
+    // Scan candidate sections to see which one encompasses the focal reading point
     const sectionIds = ["contact", "projects", "experience", "home"];
-    const triggerOffset = 140;
-
     for (const id of sectionIds) {
       const el = document.getElementById(id);
       if (el) {
         const rect = el.getBoundingClientRect();
-        if (rect.top <= triggerOffset) {
-          setActiveTab(id);
+        if (rect.top <= focalPoint && rect.bottom > focalPoint) {
+          if (activeTabRef.current !== id) {
+            setActiveTab(id);
+            activeTabRef.current = id;
+          }
           return;
         }
       }
     }
-
-    setActiveTab("home");
   }, [pathname]);
 
   useEffect(() => {
@@ -140,12 +166,17 @@ export default function Nav() {
       const hashId = window.location.hash.replace(/^#/, "");
       if (["home", "experience", "projects", "contact"].includes(hashId)) {
         setActiveTab(hashId);
+        activeTabRef.current = hashId;
         const el = document.getElementById(hashId);
         if (el) {
+          isManualScrollingRef.current = true;
           setTimeout(() => {
             const yOffset = -75;
             const y = el.getBoundingClientRect().top + window.scrollY + yOffset;
             window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
+            setTimeout(() => {
+              isManualScrollingRef.current = false;
+            }, 600);
           }, 150);
         }
       }
@@ -158,7 +189,7 @@ export default function Nav() {
     };
   }, [updateScrollSpy]);
 
-  // Clean, zero-lag click handler that prevents ugly hash lock
+  // Clean, zero-lag click handler with smooth scroll and scroll lock release
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, item: NavItem) => {
     if (item.href.startsWith("/#") || item.href.startsWith("#")) {
       const targetId = item.id;
@@ -168,13 +199,18 @@ export default function Nav() {
 
         // 1. Immediately activate tab with 0ms visual latency
         setActiveTab(targetId);
+        activeTabRef.current = targetId;
 
         // 2. Lock scroll spy during smooth scroll duration
         isManualScrollingRef.current = true;
         if (manualTimerRef.current) clearTimeout(manualTimerRef.current);
-        manualTimerRef.current = setTimeout(() => {
+
+        const unlockScroll = () => {
           isManualScrollingRef.current = false;
-        }, 850);
+          window.removeEventListener("scrollend", unlockScroll);
+        };
+        window.addEventListener("scrollend", unlockScroll, { once: true });
+        manualTimerRef.current = setTimeout(unlockScroll, 1000);
 
         // 3. Scroll with precise header offset so title isn't covered
         const el = document.getElementById(targetId);
@@ -207,6 +243,7 @@ export default function Nav() {
                 <li key={item.label} className="flex-1 md:flex-none">
                   <Link
                     href={item.href}
+                    scroll={false}
                     aria-label={item.label}
                     aria-current={isActive ? "location" : undefined}
                     onClick={(e) => handleNavClick(e, item)}

@@ -56,6 +56,21 @@ function useLiveLocalTime() {
   return timeStr;
 }
 
+function LiveTimeBadge({ location }: { location: string }) {
+  const timeStr = useLiveLocalTime();
+  return (
+    <span className="inline-flex items-center gap-2 text-xs font-mono text-[var(--white-icon)] border border-[var(--card-border)] bg-[var(--component-bg)] backdrop-blur-xl rounded-full px-3.5 py-1.5 shadow-xs">
+      <span>{location}</span>
+      {timeStr && (
+        <>
+          <span className="opacity-40">•</span>
+          <span className="text-[var(--sec)] font-semibold">{timeStr} IST</span>
+        </>
+      )}
+    </span>
+  );
+}
+
 function StatCounter({ targetValue, label }: { targetValue: string; label: string }) {
   const [displayValue, setDisplayValue] = useState(targetValue);
   const ref = useRef<HTMLDivElement>(null);
@@ -135,8 +150,6 @@ function StatCounter({ targetValue, label }: { targetValue: string; label: strin
 }
 
 export default function Home() {
-  const timeStr = useLiveLocalTime();
-
   return (
     <section className="text-[var(--white)] pt-28 sm:pt-36 md:pt-40 pb-16" id="home">
       <div className="max-w-6xl mx-auto space-y-14">
@@ -152,15 +165,7 @@ export default function Home() {
               <span>Available for Backend &amp; AI Engineering</span>
             </span>
 
-            <span className="inline-flex items-center gap-2 text-xs font-mono text-[var(--white-icon)] border border-[var(--card-border)] bg-[var(--component-bg)] backdrop-blur-xl rounded-full px-3.5 py-1.5 shadow-xs">
-              <span>{profile.location}</span>
-              {timeStr && (
-                <>
-                  <span className="opacity-40">•</span>
-                  <span className="text-[var(--sec)] font-semibold">{timeStr} IST</span>
-                </>
-              )}
-            </span>
+            <LiveTimeBadge location={profile.location} />
           </div>
 
           {/* Headline & Narrative Lead */}
