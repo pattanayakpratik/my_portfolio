@@ -6,7 +6,7 @@ export default function Experience() {
       id="experience"
       className="py-16 md:py-20 border-t border-[var(--white-icon-tr)] text-[var(--white)]"
     >
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         <div data-reveal="">
           <p className="text-xs uppercase tracking-widest font-mono text-[var(--sec)] mb-2">Career Roadmap</p>
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-10 text-[var(--white)]">Work Experience</h2>

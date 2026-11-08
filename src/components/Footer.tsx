@@ -51,7 +51,7 @@ export default function Footer() {
 
   return (
     <footer className="w-full py-12 md:py-16 border-t border-[var(--white-icon-tr)] text-[var(--white)]">
-      <div className="max-w-5xl mx-auto space-y-8">
+      <div className="max-w-6xl mx-auto space-y-8">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3">
             {socialLinks.map((link) => (

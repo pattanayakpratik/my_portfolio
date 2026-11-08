@@ -148,7 +148,7 @@ export default function Nav() {
                   href={item.href}
                   aria-label={item.label}
                   onClick={(e) => handleNavClick(e, item.href)}
-                  className="flex flex-col md:flex-row items-center justify-center gap-1 md:gap-1.5 text-slate-400 hover:text-white hover:bg-white/[0.06] rounded-full px-3 md:px-3.5 py-1.5 transition-all text-[11px] md:text-xs font-medium relative group"
+                  className="flex flex-col md:flex-row items-center justify-center gap-1 md:gap-1.5 text-slate-600 hover:text-slate-950 dark:text-slate-400 dark:hover:text-white hover:bg-slate-900/5 dark:hover:bg-white/[0.06] rounded-full px-3 md:px-3.5 py-1.5 transition-all text-[11px] md:text-xs font-medium relative group"
                 >
                   <span className="md:hidden flex items-center justify-center w-5 h-5">
                     {item.icon}
@@ -158,7 +158,7 @@ export default function Nav() {
               </li>
             ))}
 
-            <li className="hidden md:block w-px h-3.5 bg-white/10 mx-1.5" aria-hidden="true" />
+            <li className="hidden md:block w-px h-3.5 bg-slate-200 dark:bg-white/10 mx-1.5" aria-hidden="true" />
 
             <li className="flex-1 md:flex-none">
               <button
@@ -166,7 +166,7 @@ export default function Nav() {
                 onClick={openCommandMenu}
                 aria-label="Open command palette (Ctrl+K)"
                 title="Search / Command Palette (Ctrl+K)"
-                className="w-full group flex flex-col md:flex-row items-center justify-center gap-1.5 text-slate-400 hover:text-white hover:bg-white/[0.06] transition-all cursor-pointer outline-none focus-visible:ring-1 focus-visible:ring-white/20 rounded-full py-1.5 px-2 md:px-2.5"
+                className="w-full group flex flex-col md:flex-row items-center justify-center gap-1.5 text-slate-600 hover:text-slate-950 dark:text-slate-400 dark:hover:text-white hover:bg-slate-900/5 dark:hover:bg-white/[0.06] transition-all cursor-pointer outline-none focus-visible:ring-1 focus-visible:ring-slate-400 dark:focus-visible:ring-white/20 rounded-full py-1.5 px-2 md:px-2.5"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -176,20 +176,20 @@ export default function Nav() {
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  className="size-3.5 text-slate-400 group-hover:text-cyan-400 transition-colors"
+                  className="size-3.5 text-slate-500 group-hover:text-cyan-600 dark:text-slate-400 dark:group-hover:text-cyan-400 transition-colors"
                 >
                   <circle cx="11" cy="11" r="8" />
                   <path d="m21 21-4.3-4.3" />
                 </svg>
                 <span className="text-[10px] md:hidden font-medium">Search</span>
-                <kbd className="hidden md:inline-flex items-center text-[10px] font-mono font-medium px-1.5 py-0.5 rounded-full bg-white/[0.06] border border-white/[0.08] text-slate-300 group-hover:text-white">
+                <kbd className="hidden md:inline-flex items-center text-[10px] font-mono font-medium px-1.5 py-0.5 rounded-full bg-slate-100 dark:bg-white/[0.06] border border-slate-200 dark:border-white/[0.08] text-slate-600 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-white">
                   ⌘K
                 </kbd>
               </button>
             </li>
 
             <li className="flex-1 md:flex-none flex items-center justify-center">
-              <ThemeToggle showMobileLabel={true} className="w-full py-1 md:p-1 justify-center hover:bg-white/[0.06]" />
+              <ThemeToggle showMobileLabel={true} className="w-full py-1 md:p-1 justify-center hover:bg-slate-900/5 dark:hover:bg-white/[0.06]" />
             </li>
           </ul>
         </div>

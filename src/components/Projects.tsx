@@ -100,7 +100,7 @@ export default function Projects() {
       id="projects"
       className="py-16 md:py-20 border-t border-[var(--white-icon-tr)] text-[var(--white)]"
     >
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         <div data-reveal="">
           <p className="text-xs uppercase tracking-widest font-mono text-[var(--sec)] mb-2">My work</p>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">

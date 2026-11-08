@@ -6,7 +6,7 @@ import { showToast } from "./Toast";
 import { AlertCircle, Mail, MapPin, Copy, Check, Send } from "lucide-react";
 
 const inputCls =
-  "w-full px-5 py-3.5 bg-[#0a0f1e]/40 text-[#F8FAFC] placeholder:text-[#94A3B8]/60 border border-white/[0.07] rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#00F2FE]/50 focus:border-[#00F2FE]/50 transition-all duration-200 text-sm shadow-inner backdrop-blur-xl";
+  "w-full px-5 py-3.5 bg-white/70 dark:bg-[#0a0f1e]/40 text-slate-900 dark:text-[#F8FAFC] placeholder:text-slate-400 dark:placeholder:text-[#94A3B8]/60 border border-slate-200/80 dark:border-white/[0.07] rounded-2xl focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-cyan-500/50 transition-all duration-200 text-sm shadow-inner backdrop-blur-xl";
 
 export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -58,7 +58,7 @@ export default function Contact() {
 
   return (
     <section id="contact" className="w-full py-16 md:py-20 border-t border-[var(--white-icon-tr)] text-[var(--white)]">
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         <div data-reveal="" className="mb-8">
           <p className="text-xs uppercase tracking-widest font-mono text-[var(--sec)] mb-2">Let&apos;s talk</p>
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight">
@@ -72,10 +72,10 @@ export default function Contact() {
             {/* Left Info Column */}
             <div className="text-[var(--white-icon)] space-y-6 flex flex-col justify-between">
               <div className="space-y-4">
-                <h3 className="text-2xl font-bold text-[#F8FAFC] tracking-tight">
+                <h3 className="text-2xl font-bold text-slate-900 dark:text-[#F8FAFC] tracking-tight">
                   Let&apos;s build something resilient together.
                 </h3>
-                <p className="text-sm md:text-base leading-relaxed text-[#94A3B8]">
+                <p className="text-sm md:text-base leading-relaxed text-slate-600 dark:text-[#94A3B8]">
                   Hiring for a backend or AI engineering role, or looking to collaborate on a high-throughput distributed system?
                   My inbox is always open.
                 </p>
@@ -232,8 +232,8 @@ export default function Contact() {
                     <Check className="size-7" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold tracking-tight mb-1 text-[#F8FAFC]">Message Sent!</h3>
-                    <p className="text-xs sm:text-sm text-[#94A3B8] max-w-sm">
+                    <h3 className="text-xl font-bold tracking-tight mb-1 text-slate-900 dark:text-[#F8FAFC]">Message Sent!</h3>
+                    <p className="text-xs sm:text-sm text-slate-600 dark:text-[#94A3B8] max-w-sm">
                       Thank you for reaching out. I&apos;ll review your message and reply as soon as possible.
                     </p>
                   </div>

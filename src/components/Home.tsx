@@ -126,10 +126,10 @@ function StatCounter({ targetValue, label }: { targetValue: string; label: strin
   return (
     <div ref={ref} className="space-y-1">
       <dt className="sr-only">{label}</dt>
-      <dd className="text-3xl sm:text-4xl font-bold font-mono tracking-tight text-white">
+      <dd className="text-3xl sm:text-4xl font-bold font-mono tracking-tight text-slate-900 dark:text-white">
         {displayValue}
       </dd>
-      <dd className="text-xs sm:text-sm text-slate-400 font-mono tracking-wide">{label}</dd>
+      <dd className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-mono tracking-wide">{label}</dd>
     </div>
   );
 }
@@ -139,25 +139,25 @@ export default function Home() {
 
   return (
     <section className="text-[var(--white)] pt-28 sm:pt-36 md:pt-40 pb-16" id="home">
-      <div className="max-w-5xl mx-auto space-y-14">
+      <div className="max-w-6xl mx-auto space-y-14">
         {/* Open Breathing Hero Stage */}
         <div className="relative text-left space-y-8">
           {/* Top Status & Location Badges */}
           <div className="flex flex-wrap items-center gap-3 hero-in" style={{ ["--d" as string]: "0ms" }}>
-            <span className="inline-flex items-center gap-2.5 text-xs font-medium text-slate-300 border border-white/[0.08] bg-white/[0.03] backdrop-blur-xl rounded-full px-4 py-1.5 shadow-xs">
+            <span className="inline-flex items-center gap-2.5 text-xs font-medium text-slate-700 dark:text-slate-300 border border-slate-200/80 dark:border-white/[0.08] bg-white/70 dark:bg-white/[0.03] backdrop-blur-xl rounded-full px-4 py-1.5 shadow-xs">
               <span className="relative flex size-2">
-                <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping" />
-                <span className="relative inline-flex size-2 rounded-full bg-emerald-400" />
+                <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75 animate-ping" />
+                <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
               </span>
               <span>Available for Backend &amp; AI Engineering</span>
             </span>
 
-            <span className="inline-flex items-center gap-2 text-xs font-mono text-slate-400 border border-white/[0.08] bg-white/[0.03] backdrop-blur-xl rounded-full px-3.5 py-1.5 shadow-xs">
+            <span className="inline-flex items-center gap-2 text-xs font-mono text-slate-600 dark:text-slate-400 border border-slate-200/80 dark:border-white/[0.08] bg-white/70 dark:bg-white/[0.03] backdrop-blur-xl rounded-full px-3.5 py-1.5 shadow-xs">
               <span>{profile.location}</span>
               {timeStr && (
                 <>
-                  <span className="text-white/20">•</span>
-                  <span className="text-cyan-400 font-semibold">{timeStr} IST</span>
+                  <span className="text-slate-300 dark:text-white/20">•</span>
+                  <span className="text-cyan-700 dark:text-cyan-400 font-semibold">{timeStr} IST</span>
                 </>
               )}
             </span>
@@ -166,18 +166,18 @@ export default function Home() {
           {/* Headline & Narrative Lead */}
           <div className="space-y-5 max-w-4xl">
             <h1
-              className="text-5xl sm:text-7xl md:text-8xl font-black tracking-tight leading-[1.05] hero-in bg-clip-text text-transparent bg-gradient-to-b from-white via-white/95 to-slate-400"
+              className="text-5xl sm:text-7xl md:text-8xl font-black tracking-tight leading-[1.05] hero-in text-slate-900 dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-b dark:from-white dark:via-white/95 dark:to-slate-400"
               style={{ ["--d" as string]: "80ms" }}
             >
               Backend &amp; AI <br className="hidden sm:inline" />
               Engineer
             </h1>
             <p
-              className="text-lg sm:text-xl md:text-2xl text-slate-400 font-normal leading-relaxed max-w-2xl hero-in"
+              className="text-lg sm:text-xl md:text-2xl text-slate-600 dark:text-slate-400 font-normal leading-relaxed max-w-2xl hero-in"
               style={{ ["--d" as string]: "160ms" }}
             >
               Architecting high-throughput distributed systems, analytical APIs, and production-grade{" "}
-              <span className="text-cyan-400 font-medium">Generative AI</span> workflows with Python.
+              <span className="text-cyan-700 dark:text-cyan-400 font-medium">Generative AI</span> workflows with Python.
             </p>
           </div>
 
@@ -194,7 +194,7 @@ export default function Home() {
               rel="noopener noreferrer"
               onClick={() => showToast("Opening Resume PDF...", "file")}
               aria-label="View and download resume (PDF)"
-              className="resume-btn group relative inline-flex items-center justify-center gap-2.5 h-12 px-7 rounded-full font-medium text-sm sm:text-base text-white bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 shadow-[0_0_25px_rgba(6,182,212,0.35)] hover:shadow-[0_0_35px_rgba(6,182,212,0.55)] hover:scale-[1.02] transition-all duration-300 cursor-pointer"
+              className="resume-btn group relative inline-flex items-center justify-center gap-2.5 h-12 px-7 rounded-full font-medium text-sm sm:text-base text-white bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 shadow-[0_0_25px_rgba(6,182,212,0.25)] hover:shadow-[0_0_35px_rgba(6,182,212,0.45)] hover:scale-[1.02] transition-all duration-300 cursor-pointer"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -217,7 +217,7 @@ export default function Home() {
                   href={s.href}
                   aria-label={s.label}
                   title={s.label}
-                  className="size-12 flex items-center justify-center text-slate-400 hover:text-white transition duration-200 border border-white/[0.08] hover:border-white/[0.2] rounded-full bg-white/[0.03] hover:bg-white/[0.08] hover:-translate-y-0.5 shadow-xs cursor-pointer backdrop-blur-xl"
+                  className="size-12 flex items-center justify-center text-slate-600 hover:text-slate-950 dark:text-slate-400 dark:hover:text-white transition duration-200 border border-slate-200/80 hover:border-slate-300 dark:border-white/[0.08] dark:hover:border-white/[0.2] rounded-full bg-white/70 hover:bg-slate-100 dark:bg-white/[0.03] dark:hover:bg-white/[0.08] hover:-translate-y-0.5 shadow-xs cursor-pointer backdrop-blur-xl"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -234,7 +234,7 @@ export default function Home() {
 
           {/* Key Metric Counters */}
           <dl
-            className="grid grid-cols-3 gap-6 sm:gap-12 pt-8 border-t border-white/[0.08] max-w-2xl hero-in"
+            className="grid grid-cols-3 gap-6 sm:gap-12 pt-8 border-t border-slate-200/80 dark:border-white/[0.08] max-w-2xl hero-in"
             style={{ ["--d" as string]: "320ms" }}
           >
             {stats.map((s) => (
